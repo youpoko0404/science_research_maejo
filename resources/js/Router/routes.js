@@ -6,17 +6,20 @@ const routes = [
             let user_role = document.head.querySelector(
                 'meta[name="user-role"]'
             ).content;
-            // switch (user_role) {
-            //     case "admin":
-            //         return import("../pages/home.vue");
-            // }
-        }
+            console.log(user_role)
+            switch (user_role) {
+                case "user":
+                    return import("../components/Home/Index.vue");
+                default:
+                    return import("../components/Index.vue");
+            }
+        },
     },
-    // {
-    //     path: "/announce",
-    //     name: "announce",
-    //     component: () => import("../components/Announcement/Announce.vue")
-    // }
+    {
+        path: "/home",
+        name: "home",
+        component: () => import("../components/Home/Index.vue"),
+    },
 ];
 
 export default routes;

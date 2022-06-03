@@ -12,44 +12,31 @@
                   <v-spacer></v-spacer>
                 </v-toolbar>
                 <v-card-text>
-                  <v-form
-                    ref="form"
-                    id="form"
-                    method="POST"
-                    action="/announce/user"
-                  >
-                    <v-text-field
-                      prepend-icon="person"
-                      v-model="email"
-                      name="email"
-                      label="Email"
-                      type="text"
-                      placeholder=" "
-                      persistent-placeholder
-                    ></v-text-field>
-                    <v-text-field
-                      id="password"
-                      v-model="password"
-                      prepend-icon="lock"
-                      name="password"
-                      label="Password"
-                      type="password"
-                      placeholder=" "
-                      persistent-placeholder
-                    ></v-text-field>
-                    <v-text-field
-                      v-show="false"
-                      name="_token"
-                      :value="csrf"
-                    ></v-text-field>
-                  </v-form>
+                  <v-text-field
+                    prepend-icon="person"
+                    v-model="email"
+                    name="email"
+                    label="Email"
+                    type="text"
+                    placeholder=" "
+                    persistent-placeholder
+                  ></v-text-field>
+                  <v-text-field
+                    id="password"
+                    v-model="password"
+                    prepend-icon="lock"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    placeholder=" "
+                    persistent-placeholder
+                  ></v-text-field>
+
                 </v-card-text>
                 <v-layout justify-center>
                   <v-card-actions class="mb-4">
                     <div class="text-center">
-                      <v-btn color="primary" type="submit" form="form"
-                        >Log in</v-btn
-                      >
+                      <v-btn @click="login()">asdasd</v-btn>
                     </div>
                   </v-card-actions>
                 </v-layout>
@@ -58,8 +45,6 @@
           </v-layout>
         </v-row>
       </v-container>
-
-      <v-btn @click="login()">asdasd</v-btn>
     </v-main>
   </v-app>
 </template>
@@ -67,15 +52,14 @@
 
 <script>
 import GuestTopBar from "../../Layouts/GuestTopBar.vue";
-
+import HttpRequest from '../../HttpRequest/httpRequest'
+const httpRequest = new HttpRequest()
 export default {
   components: { GuestTopBar },
   data: () => ({
     drawer: null,
     email: "",
     password: "",
-    //csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    csrf: document.head.querySelector('meta[name="csrf-token"]').content,
   }),
   props: {
     source: String,
@@ -85,7 +69,14 @@ export default {
       window.location.href = url;
     },
     login() {
-      axios.post("api/auth/user", {}).then(() => {});
+      httpRequest
+        .post("api/login", {
+          email: this.email,
+          password: this.password,
+        })
+        .then((response) =>{
+          window.location.href = "/"
+        });
     },
   },
 };

@@ -7,8 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="user-role" content="{{ auth()->user()->role??'' }}">
-    <meta name="user-last-login" content="{{ auth()->user()->last_login??'' }}">
+    <meta name="user-role" content="{{ auth()->user() ? 'user' : 'guest' }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
