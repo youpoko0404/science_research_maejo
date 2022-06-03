@@ -8,10 +8,10 @@
     >
       <v-col align-self="end">
         <v-row justify="end">
-          <v-col lg="1">
+          <v-col cols="1">
             <p class="h5"><a @click="redirect('/')"> หน้าแรก </a></p>
           </v-col>
-          <v-col lg="2">
+          <v-col cols="2">
             <p class="h5">
               <a @click="redirect('/login')">
                 <v-icon> mdi-account </v-icon>

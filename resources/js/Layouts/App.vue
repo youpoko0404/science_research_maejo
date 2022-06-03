@@ -2,7 +2,7 @@
   <v-app id="app" data-app>
     <AdminMenu></AdminMenu>
     <v-main class="background">
-      <router-view></router-view>
+      <router-view  class="mt-5 mb-5"></router-view>
     </v-main>
     <Footer></Footer>
   </v-app>
@@ -20,7 +20,8 @@ export default {
 
 <style scoped>
 .background {
-  background-color: #bebebe;
+  background-color: #dcdcdc;
+  /* margin-bottom: 90px; */
 }
 </style>
 

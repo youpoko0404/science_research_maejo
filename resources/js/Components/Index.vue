@@ -4,7 +4,6 @@
 
 
 <script>
-import GuestTopBar from "../Layouts/GuestTopBar.vue";
 export default {
   data: () => ({}),
   props: {},
