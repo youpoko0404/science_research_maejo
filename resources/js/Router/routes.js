@@ -16,6 +16,21 @@ const routes = [
             }
         },
     },
+    {
+        path: "/account",
+        name: "account",
+        component: () => import("../components/Account/Account.vue"),
+    },
+    {
+        path: "/my-research",
+        name: "my-research",
+        component: () => import("../components/Research/MyResearch.vue"),
+    },
+    {
+        path: "/edit-research",
+        name: "edit-research",
+        component: () => import("../components/Research/EditResearch.vue"),
+    },
     // {
     //     path: "/home",
     //     name: "home",
