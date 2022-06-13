@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Loading :loading="loading" />
+    <Snackbar />
     <v-toolbar
       :height="150"
       dark
@@ -7,74 +9,73 @@
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
       <v-col align-self="end">
-        <v-row justify="end">
-          <v-col cols="1">
-            <p class="h5"><a @click="redirect('/')"> หน้าแรก </a></p>
-          </v-col>
-          <template v-if="this.$store.state.user.user != null">
-            <v-col cols="2">
-              <p class="h5">
-                <a @click="redirect('/my-research')"> งานวิจัยจองฉัน </a>
-              </p>
-            </v-col>
+        <div class="d-flex justify-end">
+          <div class="pa-3">
+            <v-btn text to="/"> หน้าแรก </v-btn>
+          </div>
+          <template v-if="user != null">
+            <div class="pa-3">
+              <v-btn text to="/my-research"> งานวิจัยจองฉัน </v-btn>
+            </div>
           </template>
-          <v-col cols="2">
-            <p class="h5">
-              <a
-                @click="
-                  $store.state.user.user != null
-                    ? redirect('/account')
-                    : redirect('/login')
-                "
-              >
-                <v-icon> mdi-account </v-icon>
-                บุคลากร ({{
-                  this.$store.state.user.user != null
-                    ? this.$store.state.user.user.name
-                    : "เข้าสู่ระบบ"
-                }})
-              </a>
-            </p>
-          </v-col>
-          <template v-if="this.$store.state.user.user != null">
-            <v-col cols="1">
-              <p class="h5 error--text">
-                <a @click="redirect('/logout')"> ออกจากระบบ </a>
-              </p>
-            </v-col>
+          <div class="pa-3">
+            <template v-if="user != null">
+              <v-btn text to="/account"> บุคลากร ({{ user.name }}) </v-btn>
+            </template>
+            <template v-else>
+              <v-btn text @click="redirect('/login')">
+                บุคลากร(เข้าสู่ระบบ)
+              </v-btn>
+            </template>
+          </div>
+          <template v-if="user != null">
+            <div class="pa-3">
+              <v-btn text color="error" @click="redirect('/logout')">
+                ออกจากระบบ
+              </v-btn>
+            </div>
           </template>
-        </v-row>
+        </div>
       </v-col>
     </v-toolbar>
   </div>
 </template>
 <script>
-import axios from "axios";
-import Redirect from "../Base/Redirect";
+import Loading from "../Components/Loading/Loading.vue";
+import Snackbar from "../Components/Snackbar/Snackbar.vue";
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
-    Redirect,
+    Loading,
+    Snackbar,
   },
   data() {
     return {};
   },
   async created() {
-    this.fetchUser();
+    await this.fetchUser();
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      user: (state) => state.auth.user,
+      loading: (state) => state.auth.loading,
+    }),
+  },
   methods: {
     redirect(path) {
-      Redirect.redirect(path);
+      window.location.href = path;
     },
-    fetchUser() {
-      axios
-        .get("api/user")
-        .then((response) => {
-          if (response.data.success) {
-            this.$store.commit("user/SET_USER", response.data.user);
-          }
-        })
-        .catch((e) => {});
+    ...mapActions("snackbar", ["showSnack"]),
+    snackBar(timeout = 3500, text = "Successfully", color = "success") {
+      this.showSnack({
+        text: text,
+        color: color,
+        timeout: timeout,
+      });
+    },
+
+    async fetchUser() {
+      await this.$store.dispatch("auth/fetchUser").catch((error) => {});
     },
   },
 };

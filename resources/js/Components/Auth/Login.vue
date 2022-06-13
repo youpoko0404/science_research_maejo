@@ -31,12 +31,11 @@
                     placeholder=" "
                     persistent-placeholder
                   ></v-text-field>
-
                 </v-card-text>
                 <v-layout justify-center>
                   <v-card-actions class="mb-4">
                     <div class="text-center">
-                      <v-btn @click="login()">asdasd</v-btn>
+                      <v-btn @click="login()">LOGIN</v-btn>
                     </div>
                   </v-card-actions>
                 </v-layout>
@@ -49,15 +48,11 @@
   </v-app>
 </template>
 
-
 <script>
 import GuestTopBar from "../../Layouts/GuestTopBar.vue";
-import HttpRequest from '../../HttpRequest/httpRequest'
-const httpRequest = new HttpRequest()
 export default {
   components: { GuestTopBar },
   data: () => ({
-    drawer: null,
     email: "",
     password: "",
   }),
@@ -65,18 +60,16 @@ export default {
     source: String,
   },
   methods: {
-    redirect(url) {
-      window.location.href = url;
-    },
     login() {
-      httpRequest
-        .post("api/login", {
-          email: this.email,
-          password: this.password,
-        })
-        .then((response) =>{
-          window.location.href = "/"
-        });
+      let user = {
+        email: this.email,
+        password: this.password,
+      };
+      this.$store.dispatch("auth/login", user).then((response) => {
+        if (response.success) {
+          window.location.href = "/account";
+        }
+      });
     },
   },
 };

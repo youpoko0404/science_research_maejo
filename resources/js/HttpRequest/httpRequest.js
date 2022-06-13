@@ -28,7 +28,7 @@ class HttpRequest {
                     })
                 } else if (error.response.status === 401) {
                     setTimeout(() => {
-                        window.location.href ='/login'
+                        // window.location.href ='/login'
                     })
                 } else if (error.response.status === 404) {
                     setTimeout(() => {

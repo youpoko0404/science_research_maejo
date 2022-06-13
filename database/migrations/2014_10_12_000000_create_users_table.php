@@ -17,8 +17,13 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('positionNumber')->nullable()->default(null);
+            $table->string('employmentType')->nullable()->default(null);
+            $table->string('position')->nullable()->default(null);
+            $table->string('level')->nullable()->default(null);
+            $table->string('workStartDate')->nullable()->default(null);
             $table->string('username')->nullable()->unique()->default(null);
-            $table->string('password');
+            $table->string('password')->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
+use App\Models\StudyUser;
+
 
 
 /*
@@ -24,6 +26,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout');
 
     Route::get('/user', function (Request $request) {
-        return response()->json(['success' => true, 'user' => $request->user()]);
+        $user = $request->user();
+        $study = StudyUser::where('user_id', '=', $user->id)->get();
+
+        $collection = collect($user);
+        $result = $collection->put("study", $study)->all();
+        $result = $collection->put("service", [])->all();
+        $result = $collection->put("expertise", [])->all();
+
+        return response()->json(['success' => true, 'user' => $result]);
     })->middleware('auth');
 });

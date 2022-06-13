@@ -1,13 +1,18 @@
-import VueRouter from 'vue-router';
-import routes from './routes';
+import VueRouter from "vue-router";
+import routes from "./routes";
 
-import Vue from 'vue'
+import Vue from "vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: "history",
     routes,
-})
+});
+
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title ?? "Science Research";
+    next();
+});
 
 export default router;
