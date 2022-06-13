@@ -31,7 +31,6 @@
 <script>
 import HttpRequest from "../../HttpRequest/httpRequest";
 import Loading from "../../Components/Loading/Loading";
-const httpRequest = new HttpRequest();
 export default {
   components: {
     Loading,

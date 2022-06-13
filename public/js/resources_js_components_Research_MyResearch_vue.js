@@ -102,7 +102,7 @@ var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["def
     heddleOnClickEdit: function heddleOnClickEdit(id) {
       if (id) {
         this.$router.push({
-          path: "edit-research",
+          path: "detail-research",
           query: {
             id: id
           }

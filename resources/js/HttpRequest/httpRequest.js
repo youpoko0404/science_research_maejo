@@ -7,7 +7,7 @@ class HttpRequest {
             timeout: 600000,
         })
         this.axiosInstance.defaults.headers['Content-Type'] = 'application/json'
-        
+
         this.axiosInstance.interceptors.request.use(
             (config) => {
                 return config
@@ -24,7 +24,7 @@ class HttpRequest {
             (error) => {
                 if (error.response === undefined) {
                     setTimeout(() => {
-                        window.location.href ='/error500'
+                        // window.location.href ='/error500'
                     })
                 } else if (error.response.status === 401) {
                     setTimeout(() => {
@@ -32,11 +32,11 @@ class HttpRequest {
                     })
                 } else if (error.response.status === 404) {
                     setTimeout(() => {
-                        window.location.href ='/error404'
+                        // window.location.href = '/error404'
                     })
                 } else if (error.response.status === 500) {
                     setTimeout(() => {
-                        window.location.href ='/error500'
+                        // window.location.href = '/error500'
                     })
                 }
                 return new Promise((resolve, reject) => {

@@ -1,5 +1,4 @@
-const routes = [
-    {
+const routes = [{
         path: "/",
         name: "app",
         component: () => {
@@ -8,9 +7,9 @@ const routes = [
             ).content;
             switch (user_role) {
                 case "user":
-                    return import("../components/Home/Index.vue");
+                    return import ("../components/Home/Index.vue");
                 default:
-                    return import("../components/Home/Index.vue");
+                    return import ("../components/Home/Index.vue");
             }
         },
         meta: { title: "Home" },
@@ -18,17 +17,20 @@ const routes = [
     {
         path: "/account",
         name: "account",
-        component: () => import("../components/Account/Account.vue"),
+        component: () =>
+            import ("../components/Account/Account.vue"),
     },
     {
         path: "/my-research",
         name: "my-research",
-        component: () => import("../components/Research/MyResearch.vue"),
+        component: () =>
+            import ("../components/Research/MyResearch.vue"),
     },
     {
-        path: "/edit-research",
-        name: "edit-research",
-        component: () => import("../components/Research/EditResearch.vue"),
+        path: "/detail-research",
+        name: "detail-research",
+        component: () =>
+            import ("../components/Research/DetailResearch.vue"),
     },
 ];
 

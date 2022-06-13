@@ -226,10 +226,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../HttpRequest/httpRequest */ "./resources/js/HttpRequest/httpRequest.js");
-/* harmony import */ var _Components_Chart_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Chart/BarChart */ "./resources/js/Components/Chart/BarChart.vue");
-/* harmony import */ var _Components_Home_Research__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Home/Research */ "./resources/js/Components/Home/Research.vue");
-/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
+/* harmony import */ var _Components_Chart_BarChart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Components/Chart/BarChart */ "./resources/js/Components/Chart/BarChart.vue");
+/* harmony import */ var _Components_Home_Research__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Home/Research */ "./resources/js/Components/Home/Research.vue");
+/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
 //
 //
 //
@@ -262,13 +261,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["default"]();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    BarChart: _Components_Chart_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Research: _Components_Home_Research__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_3__["default"]
+    BarChart: _Components_Chart_BarChart__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Research: _Components_Home_Research__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -13752,7 +13749,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.row-pointer[data-v-c4e341a0] tbody tr :hover {\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.row-pointer[data-v-c4e341a0] tbody tr :hover {\r\n  cursor: pointer;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

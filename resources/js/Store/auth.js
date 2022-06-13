@@ -1,5 +1,4 @@
-import HttpRequest from "../HttpRequest/httpRequest";
-const httpRequest = new HttpRequest();
+import AuthService from "../Service/Auth.service";
 
 const state = {
     user: null,
@@ -10,59 +9,53 @@ const getters = {};
 
 const actions = {
     login({ commit }, items) {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             state.loading = true;
-            await httpRequest
-                .post("api/login", {
-                    email: items.email,
-                    password: items.password,
-                })
+            await AuthService.login(items)
                 .then((response) => {
                     if (response.data.success) {
+                        console.log(response.data)
                         commit("USER_SET", response.data.payload);
                         resolve(response.data);
                     }
-                })
-                .catch((error) => {
+                }).catch((error) => {
                     reject(error);
-                });
+                })
             state.loading = false;
         });
     },
 
     fetchUser({ commit }) {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             state.loading = true;
-            await httpRequest
-                .get("api/user")
+            await AuthService.fetchUser()
                 .then((response) => {
                     if (response.data.success) {
                         commit("USER_SET", response.data.user);
                         resolve(response.data);
                     }
-                })
-                .catch((error) => {
+                }).catch((error) => {
                     reject(error);
-                });
+                })
             state.loading = false;
         });
     },
 
-    async logout({ commit }) {
-        return new Promise(async (resolve, reject) => {
-            state.loading = true;
-            await httpRequest
-                .post("api/logout")
-                .then((response) => {
-                    commit("USER_CLEAR");
-                    resolve(response.data);
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-            state.loading = false;
-        });
-    },
+    // logout({ commit }) {
+    //     return new Promise(async(resolve, reject) => {
+    //         state.loading = true;
+    //         await AuthService.logout()
+    //             .then((response) => {
+    //                 if (response.data.success) {
+    //                     commit("USER_CLEAR");
+    //                     resolve(response.data);
+    //                 }
+    //             }).catch((error) => {
+    //                 reject(error);
+    //             })
+    //         state.loading = false;
+    //     });
+    // },
 };
 
 const mutations = {

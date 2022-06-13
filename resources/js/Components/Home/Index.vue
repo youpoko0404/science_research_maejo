@@ -28,11 +28,9 @@
 
 
 <script>
-import HttpRequest from "../../HttpRequest/httpRequest";
 import BarChart from "../../Components/Chart/BarChart";
 import Research from "../../Components/Home/Research";
 import Loading from "../../Components/Loading/Loading";
-const httpRequest = new HttpRequest();
 export default {
   components: {
     BarChart,

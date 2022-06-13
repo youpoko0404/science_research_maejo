@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use App\Models\StudyUser;
+use App\Models\ExpertiseUser;
 
 
 
@@ -28,11 +29,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/user', function (Request $request) {
         $user = $request->user();
         $study = StudyUser::where('user_id', '=', $user->id)->get();
+        $expertise = ExpertiseUser::where('user_id', '=', $user->id)->get();
 
         $collection = collect($user);
         $result = $collection->put("study", $study)->all();
         $result = $collection->put("service", [])->all();
-        $result = $collection->put("expertise", [])->all();
+        $result = $collection->put("expertise", $expertise)->all();
 
         return response()->json(['success' => true, 'user' => $result]);
     })->middleware('auth');

@@ -93,7 +93,7 @@ export default {
     heddleOnClickEdit(id) {
       if (id) {
         this.$router.push({
-          path: "edit-research",
+          path: "detail-research",
           query: { id: id },
         });
       }
