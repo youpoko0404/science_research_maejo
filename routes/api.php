@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ParameterController;
+use App\Http\Controllers\DashBoardController;
 use App\Models\StudyUser;
 use App\Models\ExpertiseUser;
 
@@ -38,4 +40,18 @@ Route::controller(AuthController::class)->group(function () {
 
         return response()->json(['success' => true, 'user' => $result]);
     })->middleware('auth');
+});
+
+Route::controller(ParameterController::class)->group(function () {
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/parameter', 'fetch');
+    });
+});
+
+Route::controller(DashBoardController::class)->group(function () {
+    Route::get('/dashboard', 'fetch');
+
+    // Route::group(['middleware' => ['auth']], function () {
+    //     Route::get('/dash-board', 'fetch');
+    // });
 });

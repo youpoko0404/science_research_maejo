@@ -1,16 +1,8 @@
 <template>
   <div>
     <p>ผลการค้นหา {{ "3" }} รายการ</p>
-    <!-- {{ research }} -->
-    <v-data-table
-      :headers="headers"
-      :items="items"
-      :page.sync="page"
-      :items-per-page="itemsPerPage"
-      hide-default-footer
-      class="elevation-1 row-pointer"
-      @page-count="pageCount = $event"
-    >
+    <v-data-table :headers="headers" :items="items" :page.sync="page" :items-per-page="itemsPerPage" hide-default-footer
+      @click:row="heddleOnClick" class="elevation-1 row-pointer" @page-count="pageCount = $event">
       <template v-slot:[`item.index`]="{ index }">
         {{ index + 1 }}
       </template>
@@ -26,7 +18,7 @@
 export default {
   name: "Research",
   props: {
-    research: Object,
+    research: Array,
   },
   components: {},
   data() {
@@ -58,6 +50,7 @@ export default {
       ],
       items: [
         {
+          id: 1,
           name: "Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -66,6 +59,7 @@ export default {
           iron: "1%",
         },
         {
+          id: 2,
           name: "Ice cream sandwich",
           calories: 237,
           fat: 9.0,
@@ -76,11 +70,21 @@ export default {
       ],
     };
   },
+  methods: {
+    heddleOnClick(row) {
+      if (row) {
+        this.$router.push({
+          path: "research",
+          query: { id: row.id },
+        });
+      }
+    },
+  },
 };
 </script>
 
 <style lang="css" scoped>
-.row-pointer >>> tbody tr :hover {
+.row-pointer>>>tbody tr :hover {
   cursor: pointer;
 }
 </style>

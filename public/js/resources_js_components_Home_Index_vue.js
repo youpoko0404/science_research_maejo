@@ -11,18 +11,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_chartjs_legacy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-chartjs/legacy */ "./node_modules/vue-chartjs/legacy/index.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var vue_chartjs_legacy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-chartjs/legacy */ "./node_modules/vue-chartjs/legacy/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -57,11 +55,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_0__.Title, chart_js__WEBPACK_IMPORTED_MODULE_0__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_0__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_0__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_0__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_0__.LinearScale);
+
+
+chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_1__.Title, chart_js__WEBPACK_IMPORTED_MODULE_1__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_1__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_1__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_1__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_1__.LinearScale);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "BarChart",
   components: {
-    Bar: vue_chartjs_legacy__WEBPACK_IMPORTED_MODULE_1__.Bar
+    Bar: vue_chartjs_legacy__WEBPACK_IMPORTED_MODULE_2__.Bar,
+    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     chartId: {
@@ -97,26 +98,6 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
   },
   data: function data() {
     return {
-      items: [{
-        title: "Jason Oner",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
-      }, {
-        title: "Travis Howard",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
-      }, {
-        title: "Ali Connors",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
-      }, {
-        title: "Cindy Baker",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
-      }],
-      chartData: {
-        labels: ["Red", "Blue", "Yellow"],
-        datasets: [{
-          data: [1, 2, 3],
-          backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(255, 206, 86, 0.2)"]
-        }]
-      },
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -127,6 +108,43 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
         }
       }
     };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
+    loading: function loading(state) {
+      return state.dashboard.loading;
+    },
+    dashboard: function dashboard(state) {
+      return state.dashboard.dashboard;
+    }
+  })),
+  created: function created() {
+    this.fetchDashboard();
+  },
+  methods: {
+    fetchDashboard: function fetchDashboard() {
+      this.$store.dispatch("dashboard/fetchDashboard");
+    },
+    chartData: function chartData(dashboard) {
+      var chartData = {};
+
+      if (dashboard) {
+        chartData = {
+          labels: dashboard.map(function (e) {
+            return e.branch.replace("สาขาวิชา", "");
+          }),
+          datasets: [{
+            data: dashboard.map(function (e) {
+              return e.count;
+            }),
+            backgroundColor: dashboard.map(function (e) {
+              return e.color;
+            })
+          }]
+        };
+      }
+
+      return chartData;
+    }
   }
 });
 
@@ -158,18 +176,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Research",
   props: {
-    research: Object
+    research: Array
   },
   components: {},
   data: function data() {
@@ -196,6 +206,7 @@ __webpack_require__.r(__webpack_exports__);
         width: "400px"
       }],
       items: [{
+        id: 1,
         name: "Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt",
         calories: 159,
         fat: 6.0,
@@ -203,6 +214,7 @@ __webpack_require__.r(__webpack_exports__);
         protein: 4.0,
         iron: "1%"
       }, {
+        id: 2,
         name: "Ice cream sandwich",
         calories: 237,
         fat: 9.0,
@@ -211,6 +223,18 @@ __webpack_require__.r(__webpack_exports__);
         iron: "1%"
       }]
     };
+  },
+  methods: {
+    heddleOnClick: function heddleOnClick(row) {
+      if (row) {
+        this.$router.push({
+          path: "research",
+          query: {
+            id: row.id
+          }
+        });
+      }
+    }
   }
 });
 
@@ -256,8 +280,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -270,27 +292,23 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: false,
-      research: "",
       checkResearch: false,
+      query_param: "",
       item: []
     };
   },
+  created: function created() {
+    if (this.$route.query.search) {
+      this.query_param = this.$route.query.search;
+    }
+  },
   methods: {
     heddleOnClickSearch: function heddleOnClickSearch() {
-      var _this = this;
-
-      if (this.research) {
-        this.checkResearch = true;
-        this.loading = true;
-        setTimeout(function () {
-          _this.item = [{
-            132: "123"
-          }];
-          _this.loading = false;
-        }, 2000);
-      } else {
-        this.checkResearch = false;
-      }
+      this.$router.replace({
+        query: {
+          search: this.query_param
+        }
+      });
     }
   }
 });
@@ -14320,6 +14338,8 @@ var render = function () {
   return _c(
     "div",
     [
+      _c("Loading", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
       _c(
         "v-card",
         [
@@ -14330,7 +14350,7 @@ var render = function () {
           _c("Bar", {
             attrs: {
               "chart-options": _vm.chartOptions,
-              "chart-data": _vm.chartData,
+              "chart-data": _vm.chartData(_vm.dashboard),
               "chart-id": _vm.chartId,
               "dataset-id-key": _vm.datasetIdKey,
               plugins: _vm.plugins,
@@ -14350,26 +14370,24 @@ var render = function () {
         [
           _c(
             "v-list",
-            _vm._l(_vm.items, function (item) {
+            _vm._l(_vm.dashboard, function (item) {
               return _c(
                 "v-list-item",
-                { key: item.title },
+                { key: item.id },
                 [
                   _c(
                     "v-list-item-content",
                     [
                       _c("v-list-item-title", {
-                        domProps: { textContent: _vm._s(item.title) },
+                        domProps: { textContent: _vm._s(item.branch) },
                       }),
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-list-item-avatar",
-                    [_c("v-img", { attrs: { src: item.avatar } })],
-                    1
-                  ),
+                  _c("v-list-item-avatar", [
+                    _vm._v("\n          " + _vm._s(item.count) + "\n        "),
+                  ]),
                 ],
                 1
               )
@@ -14442,6 +14460,7 @@ var render = function () {
           "update:page": function ($event) {
             _vm.page = $event
           },
+          "click:row": _vm.heddleOnClick,
           "page-count": function ($event) {
             _vm.pageCount = $event
           },
@@ -14555,17 +14574,15 @@ var render = function () {
                   },
                 ]),
                 model: {
-                  value: _vm.research,
+                  value: _vm.query_param,
                   callback: function ($$v) {
-                    _vm.research = $$v
+                    _vm.query_param = $$v
                   },
-                  expression: "research",
+                  expression: "query_param",
                 },
               }),
               _vm._v(" "),
-              _vm.loading
-                ? void 0
-                : _vm.checkResearch && !_vm.loading
+              this.$route.query.search
                 ? [_c("Research", { attrs: { research: _vm.item } })]
                 : [_c("BarChart")],
             ],

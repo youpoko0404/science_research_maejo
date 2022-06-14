@@ -5,22 +5,20 @@
       <p class="h3">ข้อมูลงานวิจัย</p>
       <v-divider></v-divider>
       <v-row>
-        <v-text-field
-          label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
-          solo
-          v-model="research"
-        >
+        <v-text-field label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย" solo
+          v-model="query_param">
           <template v-slot:append>
             <v-btn depressed tile color="primary" @click="heddleOnClickSearch">
               SEARCH
             </v-btn>
           </template>
         </v-text-field>
-        <template v-if="loading"> </template>
-        <template v-else-if="checkResearch && !loading">
+        <template v-if="this.$route.query.search">
           <Research :research="item" />
         </template>
-        <template v-else> <BarChart /> </template>
+        <template v-else>
+          <BarChart />
+        </template>
       </v-row>
     </v-container>
   </div>
@@ -39,26 +37,22 @@ export default {
   },
   data: () => ({
     loading: false,
-    research: "",
     checkResearch: false,
+    query_param: "",
     item: [],
   }),
+  created() {
+    if (this.$route.query.search) {
+      this.query_param = this.$route.query.search
+    }
+  },
   methods: {
     heddleOnClickSearch() {
-      if (this.research) {
-        this.checkResearch = true;
-        this.loading = true;
-        setTimeout(() => {
-          this.item = [
-            {
-              132: "123",
-            },
-          ];
-          this.loading = false;
-        }, 2000);
-      } else {
-        this.checkResearch = false;
-      }
+      this.$router.replace({
+        query: {
+          search: this.query_param
+        }
+      })
     },
   },
 };

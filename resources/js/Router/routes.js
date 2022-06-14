@@ -32,6 +32,12 @@ const routes = [{
         component: () =>
             import ("../components/Research/DetailResearch.vue"),
     },
+    {
+        path: "/research",
+        name: "research",
+        component: () =>
+            import ("../components/Home/DetailResearch.vue"),
+    },
 ];
 
 export default routes;

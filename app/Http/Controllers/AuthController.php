@@ -110,27 +110,6 @@ class AuthController extends Controller
             'message' => 'The provided credentials do not match our records.',
             'payload' =>  null
         ], 401);
-
-
-
-
-        // $user = User::where('email', '=', $request->email)->first();
-
-        // if ($user) {
-        //     Auth::login($user);
-        //     $request->session()->regenerate();
-        //     return response()->json([
-        //         'success' => true,
-        //         'message' => 'Successfully',
-        //         'payload' =>  $user
-        //     ], 200);
-        // }
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'The provided credentials do not match our records.',
-        //     'payload' =>  null
-        // ], 401);
     }
 
     public function logout(Request $request)
