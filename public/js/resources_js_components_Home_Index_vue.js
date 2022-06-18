@@ -280,6 +280,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -298,17 +301,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    if (this.$route.query.search) {
-      this.query_param = this.$route.query.search;
+    if (this.$route.query.q) {
+      this.query_param = this.$route.query.q;
     }
   },
   methods: {
     heddleOnClickSearch: function heddleOnClickSearch() {
       this.$router.replace({
         query: {
-          search: this.query_param
+          q: this.query_param
         }
-      });
+      }, function () {});
     }
   }
 });
@@ -13767,7 +13770,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.row-pointer[data-v-c4e341a0] tbody tr :hover {\r\n  cursor: pointer;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.row-pointer[data-v-c4e341a0] tbody tr :hover {\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14582,7 +14585,7 @@ var render = function () {
                 },
               }),
               _vm._v(" "),
-              this.$route.query.search
+              this.$route.query.q
                 ? [_c("Research", { attrs: { research: _vm.item } })]
                 : [_c("BarChart")],
             ],

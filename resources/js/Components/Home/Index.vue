@@ -5,15 +5,18 @@
       <p class="h3">ข้อมูลงานวิจัย</p>
       <v-divider></v-divider>
       <v-row>
-        <v-text-field label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย" solo
-          v-model="query_param">
+        <v-text-field
+          label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
+          solo
+          v-model="query_param"
+        >
           <template v-slot:append>
             <v-btn depressed tile color="primary" @click="heddleOnClickSearch">
               SEARCH
             </v-btn>
           </template>
         </v-text-field>
-        <template v-if="this.$route.query.search">
+        <template v-if="this.$route.query.q">
           <Research :research="item" />
         </template>
         <template v-else>
@@ -42,17 +45,20 @@ export default {
     item: [],
   }),
   created() {
-    if (this.$route.query.search) {
-      this.query_param = this.$route.query.search
+    if (this.$route.query.q) {
+      this.query_param = this.$route.query.q;
     }
   },
   methods: {
     heddleOnClickSearch() {
-      this.$router.replace({
-        query: {
-          search: this.query_param
-        }
-      })
+      this.$router.replace(
+        {
+          query: {
+            q: this.query_param,
+          },
+        },
+        () => {}
+      );
     },
   },
 };

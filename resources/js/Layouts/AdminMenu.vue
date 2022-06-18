@@ -2,7 +2,7 @@
   <div>
     <Loading :loading="loading" />
     <Snackbar />
-    <v-toolbar :height="150" dark prominent src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+    <v-toolbar :height="150" dark prominent src="/images/SideBar.jpg">
       <v-col align-self="end">
         <div class="d-flex justify-end">
           <div class="pa-3">
@@ -10,12 +10,16 @@
           </div>
           <template v-if="user != null">
             <div class="pa-3">
-              <v-btn text to="/my-research" styles="selected"> งานวิจัยจองฉัน </v-btn>
+              <v-btn text to="/my-research" styles="selected">
+                งานวิจัยจองฉัน
+              </v-btn>
             </div>
           </template>
           <div class="pa-3">
             <template v-if="user != null">
-              <v-btn text to="/account"> บุคลากร ({{ `${user.first_name} ${user.last_name}` }}) </v-btn>
+              <v-btn text to="/account">
+                บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
+              </v-btn>
             </template>
             <template v-else>
               <v-btn text @click="redirect('/login')">
@@ -70,7 +74,7 @@ export default {
     },
 
     async fetchUser() {
-      await this.$store.dispatch("auth/fetchUser").catch(e => { });
+      await this.$store.dispatch("auth/fetchUser").catch((e) => {});
     },
   },
 };
