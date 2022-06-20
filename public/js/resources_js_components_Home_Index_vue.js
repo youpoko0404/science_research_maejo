@@ -53,6 +53,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -253,7 +265,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Chart_BarChart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Components/Chart/BarChart */ "./resources/js/Components/Chart/BarChart.vue");
 /* harmony import */ var _Components_Home_Research__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Home/Research */ "./resources/js/Components/Home/Research.vue");
 /* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
-//
 //
 //
 //
@@ -14372,29 +14383,37 @@ var render = function () {
         { staticClass: "mt-5" },
         [
           _c(
-            "v-list",
-            _vm._l(_vm.dashboard, function (item) {
-              return _c(
-                "v-list-item",
-                { key: item.id },
-                [
-                  _c(
-                    "v-list-item-content",
+            "v-card",
+            [
+              _c(
+                "v-list",
+                _vm._l(_vm.dashboard, function (item) {
+                  return _c(
+                    "v-list-item",
+                    { key: item.id },
                     [
-                      _c("v-list-item-title", {
-                        domProps: { textContent: _vm._s(item.branch) },
-                      }),
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c("v-list-item-title", {
+                            domProps: { textContent: _vm._s(item.branch) },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-list-item-avatar", [
+                        _vm._v(
+                          "\n            " + _vm._s(item.count) + "\n          "
+                        ),
+                      ]),
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("v-list-item-avatar", [
-                    _vm._v("\n          " + _vm._s(item.count) + "\n        "),
-                  ]),
-                ],
+                  )
+                }),
                 1
-              )
-            }),
+              ),
+            ],
             1
           ),
         ],
@@ -14554,6 +14573,17 @@ var render = function () {
                     "ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย",
                   solo: "",
                 },
+                on: {
+                  keyup: function ($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.heddleOnClickSearch.apply(null, arguments)
+                  },
+                },
                 scopedSlots: _vm._u([
                   {
                     key: "append",
@@ -14562,14 +14592,10 @@ var render = function () {
                         _c(
                           "v-btn",
                           {
-                            attrs: {
-                              depressed: "",
-                              tile: "",
-                              color: "primary",
-                            },
+                            attrs: { color: "primary" },
                             on: { click: _vm.heddleOnClickSearch },
                           },
-                          [_vm._v("\n            SEARCH\n          ")]
+                          [_vm._v(" SEARCH ")]
                         ),
                       ]
                     },

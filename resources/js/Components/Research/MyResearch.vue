@@ -2,7 +2,12 @@
   <div>
     <Loading :loading="loading" />
     <v-container>
-      <p class="h3">งานวิจัย</p>
+      <div class="d-flex justify-space-between">
+        <p class="h2">งานวิจัย</p>
+        <v-btn color="primary" @click="heddleOnClickButton(0)">
+          เพิ่มงานวิจัย
+        </v-btn>
+      </div>
       <v-divider></v-divider>
       <v-row>
         <v-data-table
@@ -18,7 +23,7 @@
             {{ index + 1 }}
           </template>
           <template v-slot:[`item.edit`]="{ item }">
-            <v-btn color="warning" dark @click="heddleOnClickEdit(item.id)"
+            <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
               >แก้ไข</v-btn
             >
           </template>
@@ -90,13 +95,11 @@ export default {
     ],
   }),
   methods: {
-    heddleOnClickEdit(id) {
-      if (id) {
-        this.$router.push({
-          path: "detail-research",
-          query: { id: id },
-        });
-      }
+    heddleOnClickButton(id) {
+      this.$router.push({
+        path: "detail-research",
+        query: { id: id },
+      });
     },
   },
 };

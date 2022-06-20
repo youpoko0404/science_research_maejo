@@ -48,6 +48,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["default"]();
@@ -99,15 +104,13 @@ var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["def
     };
   },
   methods: {
-    heddleOnClickEdit: function heddleOnClickEdit(id) {
-      if (id) {
-        this.$router.push({
-          path: "detail-research",
-          query: {
-            id: id
-          }
-        });
-      }
+    heddleOnClickButton: function heddleOnClickButton(id) {
+      this.$router.push({
+        path: "detail-research",
+        query: {
+          id: id
+        }
+      });
     }
   }
 });
@@ -206,7 +209,27 @@ var render = function () {
       _c(
         "v-container",
         [
-          _c("p", { staticClass: "h3" }, [_vm._v("งานวิจัย")]),
+          _c(
+            "div",
+            { staticClass: "d-flex justify-space-between" },
+            [
+              _c("p", { staticClass: "h2" }, [_vm._v("งานวิจัย")]),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "primary" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.heddleOnClickButton(0)
+                    },
+                  },
+                },
+                [_vm._v("\n        เพิ่มงานวิจัย\n      ")]
+              ),
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("v-divider"),
           _vm._v(" "),
@@ -254,7 +277,7 @@ var render = function () {
                               attrs: { color: "warning", dark: "" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.heddleOnClickEdit(item.id)
+                                  return _vm.heddleOnClickButton(item.id)
                                 },
                               },
                             },

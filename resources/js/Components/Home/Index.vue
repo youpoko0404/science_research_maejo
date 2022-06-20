@@ -9,11 +9,10 @@
           label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
           solo
           v-model="query_param"
+          v-on:keyup.enter="heddleOnClickSearch"
         >
           <template v-slot:append>
-            <v-btn depressed tile color="primary" @click="heddleOnClickSearch">
-              SEARCH
-            </v-btn>
+            <v-btn color="primary" @click="heddleOnClickSearch"> SEARCH </v-btn>
           </template>
         </v-text-field>
         <template v-if="this.$route.query.q">

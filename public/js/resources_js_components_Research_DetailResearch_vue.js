@@ -51,6 +51,424 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -58,18 +476,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      dialog: {
+        dialog_researcher: false
+      },
+      request: {
+        research_name: "",
+        university_code: "",
+        research_period: "",
+        research_format: "",
+        research_type: "",
+        research_branch: "",
+        related_activities: "",
+        road_map: "",
+        research_status: "",
+        researcher: []
+      }
+    };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     loading: function loading(state) {
       return state.parameter.loading;
     },
     parameter: function parameter(state) {
       return state.parameter;
     }
-  })),
+  })), {}, {
+    research_id: function research_id() {
+      return this.$route.query.id;
+    }
+  }),
   created: function created() {
-    this.fetchParameter(['branch_group', 'test']);
+    this.fetchParameter(["branch_group"]);
   },
   methods: {
     fetchParameter: function fetchParameter(group_name) {
@@ -169,24 +607,6 @@ var render = function () {
     [
       _c("Loading", { attrs: { loading: _vm.loading } }),
       _vm._v(" "),
-      _c("v-select", {
-        attrs: {
-          items: _vm.parameter.branch_group,
-          "item-text": "value_ref",
-          "item-value": "value",
-          label: "branch_group",
-        },
-      }),
-      _vm._v(" "),
-      _c("v-select", {
-        attrs: {
-          items: _vm.parameter.test,
-          "item-text": "value_ref",
-          "item-value": "value",
-          label: "test",
-        },
-      }),
-      _vm._v(" "),
       _c(
         "v-container",
         [
@@ -194,38 +614,480 @@ var render = function () {
             "v-row",
             { attrs: { justify: "space-between" } },
             [
-              _c("v-col", [
-                _c("p", { staticClass: "h3" }, [_vm._v("รายละเอียดงานวิจัย")]),
-              ]),
+              _vm.research_id == 0
+                ? [
+                    _c("v-col", [
+                      _c("p", { staticClass: "h3" }, [_vm._v("เพิ่มงานวิจัย")]),
+                    ]),
+                  ]
+                : [
+                    _c("v-col", [
+                      _c("p", { staticClass: "h3 mt-6" }, [
+                        _vm._v("รายละเอียดงานวิจัย"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", { attrs: { cols: "10 text-right" } }, [
+                              _c("div", [
+                                _vm._v("หากท่านต้องการลบงานวิจัยนี้ออกจากระบบ"),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", [
+                                _vm._v(
+                                  "\n                (หากลบงานวิจัยใด ๆ\n                ออกจากระบบแล้วจะไม่สามารถเรียกข้อมูลงานวิจัยนั้นกลับมาได้อีก)\n              "
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "2" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  { attrs: { color: "error", dark: "" } },
+                                  [_vm._v("ลบงานวิจัยนี้")]
+                                ),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _vm.research_id == 0
+                ? [
+                    _c(
+                      "v-row",
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "auto" } },
+                          [
+                            _c("v-subheader", { staticClass: "mt-2" }, [
+                              _vm._v("ชื่อผลงานวิจัย : "),
+                            ]),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c("v-text-field", {
+                              attrs: { label: "ชื่อผลงานวิจัย" },
+                              model: {
+                                value: _vm.research_name,
+                                callback: function ($$v) {
+                                  _vm.research_name = $$v
+                                },
+                                expression: "research_name",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ]
+                : [_c("p", { staticClass: "h3 ml-4" }, [_vm._v("Name")])],
               _vm._v(" "),
               _c(
-                "v-col",
+                "v-row",
                 [
                   _c(
-                    "v-row",
+                    "v-col",
+                    { attrs: { cols: "auto" } },
                     [
-                      _c("v-col", { attrs: { cols: "10 text-right" } }, [
-                        _c("div", [
-                          _vm._v("หากท่านต้องการลบงานวิจัยนี้ออกจากระบบ"),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v(
-                            "\n              (หากลบงานวิจัยใด ๆ\n              ออกจากระบบแล้วจะไม่สามารถเรียกข้อมูลงานวิจัยนั้นกลับมาได้อีก)\n            "
-                          ),
-                        ]),
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("รหัสอ้างอิงมหาวิทยาลัย : "),
                       ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "2" } },
-                        [
-                          _c("v-btn", { attrs: { color: "error", dark: "" } }, [
-                            _vm._v("ลบงานวิจัยนี้"),
-                          ]),
-                        ],
-                        1
-                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "รหัสอ้างอิงมหาวิทยาลัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("ช่วงเวลาวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "ช่วงเวลาวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("รูปแบบงานวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "รูปแบบงานวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("ประเภทงานวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "ประเภทงานวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("สาขางานวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "สาขางานวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("กิจกรรมที่เกี่ยวข้อง : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "กิจกรรมที่เกี่ยวข้อง",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("Road map : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "Road map",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("สถานะงานวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "สถานะงานวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("ประเภทโครงการวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "ประเภทโครงการวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("ลักษณะโครงการวิจัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "ลักษณะโครงการวิจัย",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [_vm._v("ส่วนที่ 2")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", dark: "" },
+                      on: {
+                        click: function ($event) {
+                          _vm.dialog.dialog_researcher = true
+                        },
+                      },
+                    },
+                    [_vm._v("\n          นักวิจัย\n        ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [
+                      _c("v-subheader", { staticClass: "mt-2" }, [
+                        _vm._v("รหัสอ้างอิงมหาวิทยาลัย : "),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.parameter.branch_group,
+                          "item-text": "value_ref",
+                          "item-value": "value",
+                          label: "รหัสอ้างอิงมหาวิทยาลัย",
+                        },
+                      }),
                     ],
                     1
                   ),
@@ -236,9 +1098,695 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _c("v-divider"),
+          _c("br"),
           _vm._v(" "),
-          _c("v-row", [_vm._v(" ฟหกฟ ")]),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" ที่ปรึกษางานวิจัย "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c("v-select", {
+                    attrs: {
+                      items: _vm.parameter.branch_group,
+                      "item-text": "value_ref",
+                      "item-value": "value",
+                      label: "ที่ปรึกษางานวิจัย",
+                    },
+                  }),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" แนวทางการทำวิจัย "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c("v-textarea", { attrs: { label: "แนวทางการทำวิจัย" } }),
+                  _vm._v(" "),
+                  _c("v-text-field", { attrs: { label: "แนวทางการทำวิจัย" } }),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" วัตถุประสงค์ "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "วัตถุประสงค์" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" ประโยชน์ที่จะได้รับ "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ประโยชน์ที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" ผลสำเร็จที่จะได้รับ "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" พื้นที่ดำเนินงานวิจัย "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "d-flex mb-6",
+                  attrs: { color: "grey lighten-2", flat: "", tile: "" },
+                },
+                [
+                  _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
+                    _vm._v("ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { staticClass: "pa-2 primary mr-2" }, [
+                    _vm._v(" งานวิจัยหลัก"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { staticClass: "pa-2 primary" }, [
+                    _vm._v(" งานวิจัยย่อย "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" แหล่งทุนสนับสนุน "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" เอกสารประกอบ "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [
+                  _c("v-file-input", {
+                    attrs: { label: "เอกสารประกอบงานวิจัย" },
+                  }),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 12 การนำเสนองานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" เพิ่มข้อมูล "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" เพิ่มข้อมูล "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" เพิ่มข้อมูล "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" เพิ่มข้อมูล "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-textarea", { attrs: { label: "ผลสำเร็จที่จะได้รับ" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex justify-space-between" },
+                [
+                  _c("p", { staticClass: "h3 ml-4" }, [
+                    _vm._v("แนบไฟล์เอกสารอ้างอิง"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "primary" } }, [
+                    _vm._v(" เอกสารประกอบ "),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                [_c("v-file-input", { attrs: { label: "เอกสารอ้างอิง" } })],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pa-4" },
+            [
+              _c(
+                "v-row",
+                [
+                  _c("v-btn", { attrs: { color: "primary", dark: "" } }, [
+                    _vm._v("บันทึกงานวิจัย"),
+                  ]),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "text-center" },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { width: "900" },
+              model: {
+                value: _vm.dialog.dialog_researcher,
+                callback: function ($$v) {
+                  _vm.$set(_vm.dialog, "dialog_researcher", $$v)
+                },
+                expression: "dialog.dialog_researcher",
+              },
+            },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", { staticClass: "grey lighten-2 mb-2" }, [
+                    _vm._v(" นักวิจัย "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "auto" } },
+                            [
+                              _c("v-subheader", { staticClass: "mt-2" }, [
+                                _vm._v("ชื่อนักวิจัย : "),
+                              ]),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.parameter.branch_group,
+                                  "item-text": "value_ref",
+                                  "item-value": "value",
+                                  label: "รหัสอ้างอิงมหาวิทยาลัย",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "auto" } },
+                            [
+                              _c("v-subheader", { staticClass: "mt-2" }, [
+                                _vm._v("สังกัด : "),
+                              ]),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.parameter.branch_group,
+                                  "item-text": "value_ref",
+                                  "item-value": "value",
+                                  label: "รหัสอ้างอิงมหาวิทยาลัย",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "auto" } },
+                            [
+                              _c("v-subheader", { staticClass: "mt-2" }, [
+                                _vm._v("สาขา : "),
+                              ]),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.parameter.branch_group,
+                                  "item-text": "value_ref",
+                                  "item-value": "value",
+                                  label: "รหัสอ้างอิงมหาวิทยาลัย",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "auto" } },
+                            [
+                              _c("v-subheader", { staticClass: "mt-2" }, [
+                                _vm._v("ตำแหน่งงานวิจัย : "),
+                              ]),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.parameter.branch_group,
+                                  "item-text": "value_ref",
+                                  "item-value": "value",
+                                  label: "รหัสอ้างอิงมหาวิทยาลัย",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "auto" } },
+                            [
+                              _c("v-subheader", { staticClass: "mt-2" }, [
+                                _vm._v("ร้อยละความรับผิดชอบ : "),
+                              ]),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.parameter.branch_group,
+                                  "item-text": "value_ref",
+                                  "item-value": "value",
+                                  label: "รหัสอ้างอิงมหาวิทยาลัย",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary", text: "" },
+                          on: {
+                            click: function ($event) {
+                              _vm.dialog.dialog_researcher =
+                                !_vm.dialog.dialog_researcher
+                            },
+                          },
+                        },
+                        [_vm._v("\n            ยกเลิก\n          ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary", text: "" },
+                          on: {
+                            click: function ($event) {
+                              _vm.dialog.dialog_researcher =
+                                !_vm.dialog.dialog_researcher
+                            },
+                          },
+                        },
+                        [_vm._v("\n            ยืนยัน\n          ")]
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
         ],
         1
       ),
