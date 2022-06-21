@@ -609,6 +609,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1059,6 +1072,7 @@ var render = function () {
                                 _c("v-text-field", {
                                   attrs: {
                                     label: "ชื่อผลงานวิจัย",
+                                    color: "green darken-3",
                                     rules: _vm.rules.required,
                                     required: "",
                                   },
@@ -1103,6 +1117,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "รหัสอ้างอิงมหาวิทยาลัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1141,6 +1156,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "ช่วงเวลาวิจัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1179,6 +1195,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "รูปแบบงานวิจัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1217,6 +1234,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "ประเภทงานวิจัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1255,6 +1273,7 @@ var render = function () {
                           _c("v-select", {
                             attrs: {
                               items: _vm.parameter.branch_group,
+                              color: "green darken-3",
                               "item-text": "value_ref",
                               "item-value": "value",
                               label: "สาขางานวิจัย",
@@ -1296,6 +1315,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "กิจกรรมที่เกี่ยวข้อง",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1334,6 +1354,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "Road map",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1372,6 +1393,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "สถานะงานวิจัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1410,6 +1432,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "ประเภทโครงการวิจัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1452,6 +1475,7 @@ var render = function () {
                           _c("v-text-field", {
                             attrs: {
                               label: "ประเภทโครงการวิจัย",
+                              color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -1696,6 +1720,7 @@ var render = function () {
                       _c("v-select", {
                         attrs: {
                           items: _vm.parameter.branch_group,
+                          color: "green darken-3",
                           "item-text": "value_ref",
                           "item-value": "value",
                           label: "ที่ปรึกษางานวิจัย",
@@ -1733,7 +1758,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "แนวทางการทำวิจัย" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "แนวทางการทำวิจัย",
+                        },
                       }),
                     ],
                     1
@@ -1765,7 +1793,14 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "v-row",
-                    [_c("v-textarea", { attrs: { label: "วัตถุประสงค์" } })],
+                    [
+                      _c("v-textarea", {
+                        attrs: {
+                          color: "green darken-3",
+                          label: "วัตถุประสงค์",
+                        },
+                      }),
+                    ],
                     1
                   ),
                 ],
@@ -1797,7 +1832,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "ประโยชน์ที่จะได้รับ" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "ประโยชน์ที่จะได้รับ",
+                        },
                       }),
                     ],
                     1
@@ -1831,7 +1869,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "ผลสำเร็จที่จะได้รับ" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "ผลสำเร็จที่จะได้รับ",
+                        },
                       }),
                     ],
                     1
@@ -1865,7 +1906,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "พื้นที่ดำเนินงานวิจัย" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "พื้นที่ดำเนินงานวิจัย",
+                        },
                       }),
                     ],
                     1
@@ -1906,7 +1950,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "งานวิจัยอื่น ๆ ที่เกี่ยวข้อง" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "งานวิจัยอื่น ๆ ที่เกี่ยวข้อง",
+                        },
                       }),
                     ],
                     1
@@ -2209,7 +2256,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-file-input", {
-                        attrs: { label: "เอกสารประกอบงานวิจัย" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "เอกสารประกอบงานวิจัย",
+                        },
                         model: {
                           value: _vm.request.part_11_file,
                           callback: function ($$v) {
@@ -2250,7 +2300,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "การนำเสนองานวิจัย" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "การนำเสนองานวิจัย",
+                        },
                       }),
                     ],
                     1
@@ -2284,7 +2337,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "การตีพิมพ์เผยแพร่งานวิจัย" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "การตีพิมพ์เผยแพร่งานวิจัย",
+                        },
                       }),
                     ],
                     1
@@ -2318,7 +2374,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "การนำงานวิจัยไปใช้ประโยชน์" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "การนำงานวิจัยไปใช้ประโยชน์",
+                        },
                       }),
                     ],
                     1
@@ -2352,7 +2411,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-textarea", {
-                        attrs: { label: "การนำงานวิจัยไปใช้อ้างอิง" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "การนำงานวิจัยไปใช้อ้างอิง",
+                        },
                       }),
                     ],
                     1
@@ -2386,7 +2448,10 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-file-input", {
-                        attrs: { label: "เอกสารอ้างอิง" },
+                        attrs: {
+                          color: "green darken-3",
+                          label: "เอกสารอ้างอิง",
+                        },
                         model: {
                           value: _vm.request.ref_file,
                           callback: function ($$v) {
@@ -2490,6 +2555,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       label: "ชื่อนักวิจัย",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -2528,6 +2594,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       label: "สังกัด",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -2564,6 +2631,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       label: "สาขา",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -2606,6 +2674,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       label: "ตำแหน่งงานวิจัย",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -2648,6 +2717,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       label: "ร้อยละความรับผิดชอบ",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -2770,6 +2840,7 @@ var render = function () {
                                 [
                                   _c("v-select", {
                                     attrs: {
+                                      color: "green darken-3",
                                       items: _vm.parameter.funding_type_group,
                                       "item-text": "value_ref",
                                       "item-value": "value",
@@ -2799,6 +2870,7 @@ var render = function () {
                                 [
                                   _c("v-select", {
                                     attrs: {
+                                      color: "green darken-3",
                                       items:
                                         _vm.parameter[_vm.part_10.part_10_type],
                                       "item-text": "value_ref",
@@ -2835,6 +2907,7 @@ var render = function () {
                                 [
                                   _c("v-select", {
                                     attrs: {
+                                      color: "green darken-3",
                                       items: _vm.parameter.funding_level_group,
                                       "item-text": "value_ref",
                                       "item-value": "value",
@@ -2870,6 +2943,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       type: "number",
                                       label: "ปีการศึกษา",
                                       rules: _vm.rules.required,
@@ -2918,6 +2992,7 @@ var render = function () {
                                                   _vm._b(
                                                     {
                                                       attrs: {
+                                                        color: "green darken-3",
                                                         label: "Date",
                                                         "prepend-icon":
                                                           "mdi-calendar",
@@ -3013,6 +3088,7 @@ var render = function () {
                                                   _vm._b(
                                                     {
                                                       attrs: {
+                                                        color: "green darken-3",
                                                         label: "Date2",
                                                         "prepend-icon":
                                                           "mdi-calendar",
@@ -3093,6 +3169,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       type: "number",
                                       label: "จำนวนเงินที่สนับสนุน",
                                       onfocus: "this.select()",
@@ -3121,6 +3198,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      color: "green darken-3",
                                       label: "คำอธิบายเพิ่มเติม",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -3152,7 +3230,10 @@ var render = function () {
                                 { attrs: { cols: "4" } },
                                 [
                                   _c("v-text-field", {
-                                    attrs: { label: "วันที่ส่งมอบงานวิจัย" },
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "วันที่ส่งมอบงานวิจัย",
+                                    },
                                     model: {
                                       value: _vm.part_10.part_10_send,
                                       callback: function ($$v) {

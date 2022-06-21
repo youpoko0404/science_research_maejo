@@ -37,7 +37,8 @@
                 <v-subheader class="mt-2">ชื่อผลงานวิจัย : </v-subheader>
               </v-col>
               <v-col>
-                <v-text-field label="ชื่อผลงานวิจัย" v-model="request.research_name" :rules="rules.required" required>
+                <v-text-field label="ชื่อผลงานวิจัย" color="green darken-3" v-model="request.research_name"
+                  :rules="rules.required" required>
                 </v-text-field>
               </v-col>
             </v-row>
@@ -50,8 +51,8 @@
               <v-subheader class="mt-2">รหัสอ้างอิงมหาวิทยาลัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="รหัสอ้างอิงมหาวิทยาลัย" v-model="request.university_code" :rules="rules.required"
-                required>
+              <v-text-field label="รหัสอ้างอิงมหาวิทยาลัย" color="green darken-3" v-model="request.university_code"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -60,7 +61,8 @@
               <v-subheader class="mt-2">ช่วงเวลาวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="ช่วงเวลาวิจัย" v-model="request.research_period" :rules="rules.required" required>
+              <v-text-field label="ช่วงเวลาวิจัย" color="green darken-3" v-model="request.research_period"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -69,7 +71,8 @@
               <v-subheader class="mt-2">รูปแบบงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="รูปแบบงานวิจัย" v-model="request.research_format" :rules="rules.required" required>
+              <v-text-field label="รูปแบบงานวิจัย" color="green darken-3" v-model="request.research_format"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -78,7 +81,8 @@
               <v-subheader class="mt-2">ประเภทงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="ประเภทงานวิจัย" v-model="request.research_type" :rules="rules.required" required>
+              <v-text-field label="ประเภทงานวิจัย" color="green darken-3" v-model="request.research_type"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -87,8 +91,8 @@
               <v-subheader class="mt-2">สาขางานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="สาขางานวิจัย"
-                v-model="request.research_branch" :rules="rules.required" required>
+              <v-select :items="parameter.branch_group" color="green darken-3" item-text="value_ref" item-value="value"
+                label="สาขางานวิจัย" v-model="request.research_branch" :rules="rules.required" required>
               </v-select>
             </v-col>
           </v-row>
@@ -97,8 +101,8 @@
               <v-subheader class="mt-2">กิจกรรมที่เกี่ยวข้อง : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="กิจกรรมที่เกี่ยวข้อง" v-model="request.related_activities" :rules="rules.required"
-                required>
+              <v-text-field label="กิจกรรมที่เกี่ยวข้อง" color="green darken-3" v-model="request.related_activities"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -107,7 +111,8 @@
               <v-subheader class="mt-2">Road map : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="Road map" v-model="request.road_map" :rules="rules.required" required>
+              <v-text-field label="Road map" color="green darken-3" v-model="request.road_map" :rules="rules.required"
+                required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -116,7 +121,8 @@
               <v-subheader class="mt-2">สถานะงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="สถานะงานวิจัย" v-model="request.research_status" :rules="rules.required" required>
+              <v-text-field label="สถานะงานวิจัย" color="green darken-3" v-model="request.research_status"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -125,8 +131,8 @@
               <v-subheader class="mt-2">ประเภทโครงการวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="ประเภทโครงการวิจัย" v-model="request.research_project_type" :rules="rules.required"
-                required>
+              <v-text-field label="ประเภทโครงการวิจัย" color="green darken-3" v-model="request.research_project_type"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -135,8 +141,8 @@
               <v-subheader class="mt-2">ลักษณะโครงการวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field label="ประเภทโครงการวิจัย" v-model="request.research_nature" :rules="rules.required"
-                required>
+              <v-text-field label="ประเภทโครงการวิจัย" color="green darken-3" v-model="request.research_nature"
+                :rules="rules.required" required>
               </v-text-field>
             </v-col>
           </v-row>
@@ -195,7 +201,7 @@
             <v-btn color="primary"> ที่ปรึกษางานวิจัย </v-btn>
           </div>
           <v-row>
-            <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value"
+            <v-select :items="parameter.branch_group" color="green darken-3" item-text="value_ref" item-value="value"
               label="ที่ปรึกษางานวิจัย">
             </v-select>
           </v-row>
@@ -207,7 +213,7 @@
             <v-btn color="primary"> แนวทางการทำวิจัย </v-btn>
           </div>
           <v-row>
-            <v-textarea label="แนวทางการทำวิจัย"></v-textarea>
+            <v-textarea color="green darken-3" label="แนวทางการทำวิจัย"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -217,7 +223,7 @@
             <v-btn color="primary"> วัตถุประสงค์ </v-btn>
           </div>
           <v-row>
-            <v-textarea label="วัตถุประสงค์"></v-textarea>
+            <v-textarea color="green darken-3" label="วัตถุประสงค์"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -227,7 +233,7 @@
             <v-btn color="primary"> ประโยชน์ที่จะได้รับ </v-btn>
           </div>
           <v-row>
-            <v-textarea label="ประโยชน์ที่จะได้รับ"></v-textarea>
+            <v-textarea color="green darken-3" label="ประโยชน์ที่จะได้รับ"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -237,7 +243,7 @@
             <v-btn color="primary"> ผลสำเร็จที่จะได้รับ </v-btn>
           </div>
           <v-row>
-            <v-textarea label="ผลสำเร็จที่จะได้รับ"></v-textarea>
+            <v-textarea color="green darken-3" label="ผลสำเร็จที่จะได้รับ"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -247,7 +253,7 @@
             <v-btn color="primary"> พื้นที่ดำเนินงานวิจัย </v-btn>
           </div>
           <v-row>
-            <v-textarea label="พื้นที่ดำเนินงานวิจัย"></v-textarea>
+            <v-textarea color="green darken-3" label="พื้นที่ดำเนินงานวิจัย"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -258,7 +264,7 @@
             <v-btn class="pa-2 primary"> งานวิจัยย่อย </v-btn>
           </div>
           <v-row>
-            <v-textarea label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"></v-textarea>
+            <v-textarea color="green darken-3" label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -329,7 +335,8 @@
             <v-btn color="primary"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input v-model="request.part_11_file" label="เอกสารประกอบงานวิจัย"></v-file-input>
+            <v-file-input color="green darken-3" v-model="request.part_11_file" label="เอกสารประกอบงานวิจัย">
+            </v-file-input>
           </v-row>
         </div>
         <br />
@@ -339,7 +346,7 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea label="การนำเสนองานวิจัย"></v-textarea>
+            <v-textarea color="green darken-3" label="การนำเสนองานวิจัย"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -349,7 +356,7 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea label="การตีพิมพ์เผยแพร่งานวิจัย"></v-textarea>
+            <v-textarea color="green darken-3" label="การตีพิมพ์เผยแพร่งานวิจัย"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -359,7 +366,7 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea label="การนำงานวิจัยไปใช้ประโยชน์"></v-textarea>
+            <v-textarea color="green darken-3" label="การนำงานวิจัยไปใช้ประโยชน์"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -369,7 +376,7 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea label="การนำงานวิจัยไปใช้อ้างอิง"></v-textarea>
+            <v-textarea color="green darken-3" label="การนำงานวิจัยไปใช้อ้างอิง"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -379,7 +386,7 @@
             <v-btn color="primary"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input v-model="request.ref_file" label="เอกสารอ้างอิง"></v-file-input>
+            <v-file-input color="green darken-3" v-model="request.ref_file" label="เอกสารอ้างอิง"></v-file-input>
           </v-row>
         </div>
         <div class="pa-4">
@@ -407,7 +414,8 @@
                   <v-subheader class="mt-2">ชื่อนักวิจัย : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="part_2.part_2_name" label="ชื่อนักวิจัย" :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_2.part_2_name" label="ชื่อนักวิจัย"
+                    :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -416,14 +424,16 @@
                   <v-subheader class="mt-2">สังกัด : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="part_2.part_2_structure" label="สังกัด" :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_2.part_2_structure" label="สังกัด"
+                    :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
                 <v-col cols="auto">
                   <v-subheader class="mt-2">สาขา : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="part_2.part_2_branch" label="สาขา" :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_2.part_2_branch" label="สาขา"
+                    :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -432,8 +442,8 @@
                   <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="part_2.part_2_position" label="ตำแหน่งงานวิจัย" :rules="rules.required"
-                    required></v-text-field>
+                  <v-text-field color="green darken-3" v-model="part_2.part_2_position" label="ตำแหน่งงานวิจัย"
+                    :rules="rules.required" required></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
@@ -441,8 +451,8 @@
                   <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="part_2.part_2_responsibility" label="ร้อยละความรับผิดชอบ"
-                    :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_2.part_2_responsibility"
+                    label="ร้อยละความรับผิดชอบ" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -478,35 +488,38 @@
             <v-card-text>
               <v-row>
                 <v-col cols="6">
-                  <v-select :items="parameter.funding_type_group" item-text="value_ref" item-value="value"
-                    :rules="rules.required" v-model="part_10.part_10_type" label="ประเภททุนสนับสนุน" required>
+                  <v-select color="green darken-3" :items="parameter.funding_type_group" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_10.part_10_type" label="ประเภททุนสนับสนุน"
+                    required>
                   </v-select>
                 </v-col>
                 <v-col cols="6">
-                  <v-select :items="parameter[part_10.part_10_type]" item-text="value_ref" item-value="value"
-                    :rules="rules.required" v-model="part_10.part_10_source" label="แหล่งทุนสนับสนุน" required>
+                  <v-select color="green darken-3" :items="parameter[part_10.part_10_type]" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_10.part_10_source" label="แหล่งทุนสนับสนุน"
+                    required>
                   </v-select>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="12">
-                  <v-select :items="parameter.funding_level_group" item-text="value_ref" item-value="value"
-                    :rules="rules.required" v-model="part_10.part_10_level" label="ระดับแหล่งทุน" required>
+                  <v-select color="green darken-3" :items="parameter.funding_level_group" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_10.part_10_level" label="ระดับแหล่งทุน"
+                    required>
                   </v-select>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="3">
-                  <v-text-field v-model="part_10.part_10_year" type="number" label="ปีการศึกษา" :rules="rules.required"
-                    required>
+                  <v-text-field color="green darken-3" v-model="part_10.part_10_year" type="number" label="ปีการศึกษา"
+                    :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
                 <v-col cols="3">
                   <v-menu v-model="datePicker_date1" :close-on-content-click="false" transition="scale-transition"
                     offset-y max-width="290px" min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field v-model="part_10.part_10_start_date" label="Date" prepend-icon="mdi-calendar"
-                        v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
+                      <v-text-field color="green darken-3" v-model="part_10.part_10_start_date" label="Date"
+                        prepend-icon="mdi-calendar" v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
                       </v-text-field>
                     </template>
                     <v-date-picker v-model="dateNow_date_1" no-title @input="datePicker_date1 = false"></v-date-picker>
@@ -516,8 +529,8 @@
                   <v-menu v-model="datePicker_date2" :close-on-content-click="false" transition="scale-transition"
                     offset-y max-width="290px" min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field v-model="part_10.part_10_end_date" label="Date2" prepend-icon="mdi-calendar"
-                        v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
+                      <v-text-field color="green darken-3" v-model="part_10.part_10_end_date" label="Date2"
+                        prepend-icon="mdi-calendar" v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
                       </v-text-field>
                     </template>
                     <v-date-picker v-model="dateNow_date_2" no-title @input="datePicker_date2 = false"></v-date-picker>
@@ -527,19 +540,19 @@
 
               <v-row>
                 <v-col cols="5">
-                  <v-text-field v-model="part_10.part_10_amount" type="number" label="จำนวนเงินที่สนับสนุน"
-                    onfocus="this.select()" :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_10.part_10_amount" type="number"
+                    label="จำนวนเงินที่สนับสนุน" onfocus="this.select()" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
                 <v-col cols="7">
-                  <v-text-field v-model="part_10.part_10_description" label="คำอธิบายเพิ่มเติม" :rules="rules.required"
-                    required>
+                  <v-text-field color="green darken-3" v-model="part_10.part_10_description" label="คำอธิบายเพิ่มเติม"
+                    :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="4">
-                  <v-text-field v-model="part_10.part_10_send" label="วันที่ส่งมอบงานวิจัย">
+                  <v-text-field color="green darken-3" v-model="part_10.part_10_send" label="วันที่ส่งมอบงานวิจัย">
                   </v-text-field>
                 </v-col>
               </v-row>
