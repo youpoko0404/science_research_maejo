@@ -50,8 +50,9 @@
               <v-subheader class="mt-2">รหัสอ้างอิงมหาวิทยาลัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value"
-                label="รหัสอ้างอิงมหาวิทยาลัย"></v-select>
+              <v-text-field label="รหัสอ้างอิงมหาวิทยาลัย" v-model="request.university_code" :rules="rules.required"
+                required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -59,8 +60,8 @@
               <v-subheader class="mt-2">ช่วงเวลาวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="ช่วงเวลาวิจัย">
-              </v-select>
+              <v-text-field label="ช่วงเวลาวิจัย" v-model="request.research_period" :rules="rules.required" required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -68,8 +69,8 @@
               <v-subheader class="mt-2">รูปแบบงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="รูปแบบงานวิจัย">
-              </v-select>
+              <v-text-field label="รูปแบบงานวิจัย" v-model="request.research_format" :rules="rules.required" required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -77,8 +78,8 @@
               <v-subheader class="mt-2">ประเภทงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="ประเภทงานวิจัย">
-              </v-select>
+              <v-text-field label="ประเภทงานวิจัย" v-model="request.research_type" :rules="rules.required" required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -86,7 +87,8 @@
               <v-subheader class="mt-2">สาขางานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="สาขางานวิจัย">
+              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="สาขางานวิจัย"
+                v-model="request.research_branch" :rules="rules.required" required>
               </v-select>
             </v-col>
           </v-row>
@@ -95,8 +97,9 @@
               <v-subheader class="mt-2">กิจกรรมที่เกี่ยวข้อง : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value"
-                label="กิจกรรมที่เกี่ยวข้อง"></v-select>
+              <v-text-field label="กิจกรรมที่เกี่ยวข้อง" v-model="request.related_activities" :rules="rules.required"
+                required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -104,8 +107,8 @@
               <v-subheader class="mt-2">Road map : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="Road map">
-              </v-select>
+              <v-text-field label="Road map" v-model="request.road_map" :rules="rules.required" required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -113,8 +116,8 @@
               <v-subheader class="mt-2">สถานะงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="สถานะงานวิจัย">
-              </v-select>
+              <v-text-field label="สถานะงานวิจัย" v-model="request.research_status" :rules="rules.required" required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -122,8 +125,9 @@
               <v-subheader class="mt-2">ประเภทโครงการวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value"
-                label="ประเภทโครงการวิจัย"></v-select>
+              <v-text-field label="ประเภทโครงการวิจัย" v-model="request.research_project_type" :rules="rules.required"
+                required>
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -131,8 +135,9 @@
               <v-subheader class="mt-2">ลักษณะโครงการวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value"
-                label="ลักษณะโครงการวิจัย"></v-select>
+              <v-text-field label="ประเภทโครงการวิจัย" v-model="request.research_nature" :rules="rules.required"
+                required>
+              </v-text-field>
             </v-col>
           </v-row>
         </div>
@@ -273,21 +278,40 @@
           <v-row>
             <template v-if="request.part_10.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                <div v-for="part_10 in request.part_10" :key="part_10.id">
-                  <v-row>
-                    <!-- <div class="d-flex justify-end">
-                      <v-btn class="pa-2 error mr-2" @click="() => {
-                        ManageItemPart_10(part_10, 'delete')
-                      }"> ลบ</v-btn>
-                      <v-btn class="pa-2 primary" @click="() => {
-                        ManageItemPart_10(part_10, null)
-                        dialog.dialog_part_10 = true
-                      }"> แก้ไข</v-btn>
-                    </div> -->
-                    <v-data-table :headers="headers_part_10" :items="request.part_10">
-                    </v-data-table>
-                  </v-row>
-                </div>
+                <v-data-table :headers="headers_part_10" :items="request.part_10">
+                  <template v-slot:item.count="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:item.title="{ item }">
+                    <strong>{{ fetchParameterDATA(parameter, "funding_type_group", item.part_10_type).value_ref
+                    }}</strong> <br />
+                    {{ fetchParameterDATA(parameter, item.part_10_type, item.part_10_source).value_ref }} <br />
+                    {{ fetchParameterDATA(parameter, "funding_level_group", item.part_10_level).value_ref }}
+                  </template>
+                  <template v-slot:item.year="{ item }">
+                    {{ item.part_10_year }} <br /> {{ item.part_10_start_date }} - {{ item.part_10_end_date }}
+                  </template>
+                  <template v-slot:item.price="{ item }">
+                    {{ item.part_10_amount }}
+                  </template>
+                  <template v-slot:item.actions="{ item }">
+                    <v-btn class="pa-2 error mr-2" @click="() => {
+                      ManageItemPart_10(item, 'delete')
+                    }"> ลบ</v-btn>
+                    <v-btn class="pa-2 primary" @click="() => {
+                      ManageItemPart_10(item, null)
+                      dialog.dialog_part_10 = true
+                    }"> แก้ไข</v-btn>
+                  </template>
+                  <template slot="body.append">
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>รวมทั้งหมดเป็น</th>
+                      <th>{{ request.part_10.reduce((t, n) => t + Number(n.part_10_amount), 0) }}</th>
+                    </tr>
+                  </template>
+                </v-data-table>
               </div>
             </template>
             <template v-else>
@@ -305,7 +329,7 @@
             <v-btn color="primary"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input label="เอกสารประกอบงานวิจัย"></v-file-input>
+            <v-file-input v-model="request.part_11_file" label="เอกสารประกอบงานวิจัย"></v-file-input>
           </v-row>
         </div>
         <br />
@@ -355,17 +379,15 @@
             <v-btn color="primary"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input label="เอกสารอ้างอิง"></v-file-input>
+            <v-file-input v-model="request.ref_file" label="เอกสารอ้างอิง"></v-file-input>
           </v-row>
         </div>
         <div class="pa-4">
           <v-row>
             <v-btn color="primary" dark @click="() => {
-            
               if (this.$refs.request.validate()) {
-                this.$refs.request.reset()
+                onClickSave()
               } else {
-                this.$refs.request.validate()
                 valid = true
               }
             }">บันทึกงานวิจัย</v-btn>
@@ -484,7 +506,7 @@
                     offset-y max-width="290px" min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field v-model="part_10.part_10_start_date" label="Date" prepend-icon="mdi-calendar"
-                        v-bind="attrs" v-on="on">
+                        v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
                       </v-text-field>
                     </template>
                     <v-date-picker v-model="dateNow_date_1" no-title @input="datePicker_date1 = false"></v-date-picker>
@@ -495,17 +517,18 @@
                     offset-y max-width="290px" min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field v-model="part_10.part_10_end_date" label="Date2" prepend-icon="mdi-calendar"
-                        v-bind="attrs" v-on="on">
+                        v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
                       </v-text-field>
                     </template>
                     <v-date-picker v-model="dateNow_date_2" no-title @input="datePicker_date2 = false"></v-date-picker>
                   </v-menu>
                 </v-col>
               </v-row>
+
               <v-row>
                 <v-col cols="5">
                   <v-text-field v-model="part_10.part_10_amount" type="number" label="จำนวนเงินที่สนับสนุน"
-                    :rules="rules.required" required>
+                    onfocus="this.select()" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
                 <v-col cols="7">
@@ -516,8 +539,7 @@
               </v-row>
               <v-row>
                 <v-col cols="4">
-                  <v-text-field v-model="part_10.part_10_send" label="วันที่ส่งมอบงานวิจัย" :rules="rules.required"
-                    required>
+                  <v-text-field v-model="part_10.part_10_send" label="วันที่ส่งมอบงานวิจัย">
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -590,8 +612,12 @@ export default {
       related_activities: "",
       road_map: "",
       research_status: "",
+      research_project_type: "",
+      research_nature: "",
       part_2: [],
-      part_10: []
+      part_10: [],
+      part_11_file: null,
+      ref_file: null
     },
     part_2: {
       part_2_name: "",
@@ -607,20 +633,27 @@ export default {
       part_10_year: "",
       part_10_start_date: "",
       part_10_end_date: "",
-      part_10_amount: "",
+      part_10_amount: 0,
       part_10_description: "",
       part_10_send: "",
     },
     rules: {
-      required: [val => (val || '').length > 0 || 'This field is required'],
+      required: [val => !!val || 'กรอกข้อมูลไม่ครบถ้วน'],
+      requiredDateTime: [
+        v => !!v || 'กรอกข้อมูลไม่ครบถ้วน',
+        v => /^\d{2}\/\d{2}\/\d{4}$/.test(v) || 'ข้อมูลไม่ถูกต้อง',
+      ],
     },
     dateNow_date_1: "",
     datePicker_date1: false,
     dateNow_date_2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     datePicker_date2: false,
     headers_part_10: [
-      { text: 'Calories', value: 'part_10_type' },
-      { text: 'Fat (g)', value: 'part_10_source' },
+      { text: '', value: 'count' },
+      { text: 'ประมาณทุนสนับสนุน', value: 'title' },
+      { text: 'ปีงบประมาณ', value: 'year', align: 'center' },
+      { text: 'จำนวนเงิน (บาท)', value: 'price' },
+      { text: 'จัดการ', value: 'actions' },
     ],
   }),
 
@@ -650,6 +683,10 @@ export default {
   methods: {
     fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+
+    fetchParameterDATA(items, group, key) {
+      return items[group].find(e => e.value == key)
     },
 
     onClickPart_2() {
@@ -682,20 +719,31 @@ export default {
         part_10_source: this.part_10.part_10_source,
         part_10_level: this.part_10.part_10_level,
         part_10_year: this.part_10.part_10_year,
-        part_10_start_date: dayJs.parseDate(this.part_10.part_10_start_date),
-        part_10_end_date: dayJs.parseDate(this.part_10.part_10_end_date),
+        part_10_start_date: this.part_10.part_10_start_date,
+        part_10_end_date: this.part_10.part_10_end_date,
         part_10_amount: this.part_10.part_10_amount,
         part_10_description: this.part_10.part_10_description,
         part_10_send: this.part_10.part_10_send,
       }
-      console.log(part_10)
       if (this.editedIndex > -1) {
         Object.assign(this.request.part_10[this.editedIndex], this.part_10)
       } else {
         this.request.part_10.push(part_10)
       }
-      // this.$refs.form_part_10.reset()
+      this.$refs.form_part_10.reset()
     },
+
+    ManageItemPart_10(item, action) {
+      this.editedIndex = this.request.part_10.indexOf(item)
+      this.part_10 = Object.assign({}, item)
+      if (action == 'delete') {
+        this.request.part_10.splice(this.editedIndex, 1)
+      }
+    },
+
+    onClickSave() {
+      console.log(this.request)
+    }
   },
 };
 </script>

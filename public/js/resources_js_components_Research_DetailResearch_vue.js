@@ -587,6 +587,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -612,8 +634,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         related_activities: "",
         road_map: "",
         research_status: "",
+        research_project_type: "",
+        research_nature: "",
         part_2: [],
-        part_10: []
+        part_10: [],
+        part_11_file: null,
+        ref_file: null
       },
       part_2: {
         part_2_name: "",
@@ -629,13 +655,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         part_10_year: "",
         part_10_start_date: "",
         part_10_end_date: "",
-        part_10_amount: "",
+        part_10_amount: 0,
         part_10_description: "",
         part_10_send: ""
       },
       rules: {
         required: [function (val) {
-          return (val || '').length > 0 || 'This field is required';
+          return !!val || 'กรอกข้อมูลไม่ครบถ้วน';
+        }],
+        requiredDateTime: [function (v) {
+          return !!v || 'กรอกข้อมูลไม่ครบถ้วน';
+        }, function (v) {
+          return /^\d{2}\/\d{2}\/\d{4}$/.test(v) || 'ข้อมูลไม่ถูกต้อง';
         }]
       },
       dateNow_date_1: "",
@@ -643,11 +674,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dateNow_date_2: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
       datePicker_date2: false,
       headers_part_10: [{
-        text: 'Calories',
-        value: 'part_10_type'
+        text: '',
+        value: 'count'
       }, {
-        text: 'Fat (g)',
-        value: 'part_10_source'
+        text: 'ประมาณทุนสนับสนุน',
+        value: 'title'
+      }, {
+        text: 'ปีงบประมาณ',
+        value: 'year',
+        align: 'center'
+      }, {
+        text: 'จำนวนเงิน (บาท)',
+        value: 'price'
+      }, {
+        text: 'จัดการ',
+        value: 'actions'
       }]
     };
   },
@@ -677,6 +718,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     fetchParameter: function fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+    fetchParameterDATA: function fetchParameterDATA(items, group, key) {
+      return items[group].find(function (e) {
+        return e.value == key;
+      });
     },
     onClickPart_2: function onClickPart_2() {
       var part_2 = {
@@ -709,20 +755,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         part_10_source: this.part_10.part_10_source,
         part_10_level: this.part_10.part_10_level,
         part_10_year: this.part_10.part_10_year,
-        part_10_start_date: _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].parseDate(this.part_10.part_10_start_date),
-        part_10_end_date: _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].parseDate(this.part_10.part_10_end_date),
+        part_10_start_date: this.part_10.part_10_start_date,
+        part_10_end_date: this.part_10.part_10_end_date,
         part_10_amount: this.part_10.part_10_amount,
         part_10_description: this.part_10.part_10_description,
         part_10_send: this.part_10.part_10_send
       };
-      console.log(part_10);
 
       if (this.editedIndex > -1) {
         Object.assign(this.request.part_10[this.editedIndex], this.part_10);
       } else {
         this.request.part_10.push(part_10);
-      } // this.$refs.form_part_10.reset()
+      }
 
+      this.$refs.form_part_10.reset();
+    },
+    ManageItemPart_10: function ManageItemPart_10(item, action) {
+      this.editedIndex = this.request.part_10.indexOf(item);
+      this.part_10 = Object.assign({}, item);
+
+      if (action == 'delete') {
+        this.request.part_10.splice(this.editedIndex, 1);
+      }
+    },
+    onClickSave: function onClickSave() {
+      console.log(this.request);
     }
   }
 });
@@ -1043,12 +1100,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "รหัสอ้างอิงมหาวิทยาลัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.university_code,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "university_code", $$v)
+                              },
+                              expression: "request.university_code",
                             },
                           }),
                         ],
@@ -1075,12 +1138,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "ช่วงเวลาวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_period,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "research_period", $$v)
+                              },
+                              expression: "request.research_period",
                             },
                           }),
                         ],
@@ -1107,12 +1176,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "รูปแบบงานวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_format,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "research_format", $$v)
+                              },
+                              expression: "request.research_format",
                             },
                           }),
                         ],
@@ -1139,12 +1214,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "ประเภทงานวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_type,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "research_type", $$v)
+                              },
+                              expression: "request.research_type",
                             },
                           }),
                         ],
@@ -1177,6 +1258,15 @@ var render = function () {
                               "item-text": "value_ref",
                               "item-value": "value",
                               label: "สาขางานวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_branch,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "research_branch", $$v)
+                              },
+                              expression: "request.research_branch",
                             },
                           }),
                         ],
@@ -1203,12 +1293,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "กิจกรรมที่เกี่ยวข้อง",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.related_activities,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "related_activities", $$v)
+                              },
+                              expression: "request.related_activities",
                             },
                           }),
                         ],
@@ -1235,12 +1331,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "Road map",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.road_map,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "road_map", $$v)
+                              },
+                              expression: "request.road_map",
                             },
                           }),
                         ],
@@ -1267,12 +1369,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "สถานะงานวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_status,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "research_status", $$v)
+                              },
+                              expression: "request.research_status",
                             },
                           }),
                         ],
@@ -1299,12 +1407,22 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
                               label: "ประเภทโครงการวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_project_type,
+                              callback: function ($$v) {
+                                _vm.$set(
+                                  _vm.request,
+                                  "research_project_type",
+                                  $$v
+                                )
+                              },
+                              expression: "request.research_project_type",
                             },
                           }),
                         ],
@@ -1331,12 +1449,18 @@ var render = function () {
                       _c(
                         "v-col",
                         [
-                          _c("v-select", {
+                          _c("v-text-field", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
-                              "item-text": "value_ref",
-                              "item-value": "value",
-                              label: "ลักษณะโครงการวิจัย",
+                              label: "ประเภทโครงการวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_nature,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "research_nature", $$v)
+                              },
+                              expression: "request.research_nature",
                             },
                           }),
                         ],
@@ -1850,28 +1974,193 @@ var render = function () {
                             _c(
                               "div",
                               { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              _vm._l(_vm.request.part_10, function (part_10) {
-                                return _c(
-                                  "div",
-                                  { key: part_10.id },
-                                  [
-                                    _c(
-                                      "v-row",
+                              [
+                                _c(
+                                  "v-data-table",
+                                  {
+                                    attrs: {
+                                      headers: _vm.headers_part_10,
+                                      items: _vm.request.part_10,
+                                    },
+                                    scopedSlots: _vm._u(
                                       [
-                                        _c("v-data-table", {
-                                          attrs: {
-                                            headers: _vm.headers_part_10,
-                                            items: _vm.request.part_10,
+                                        {
+                                          key: "item.count",
+                                          fn: function (ref) {
+                                            var index = ref.index
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(index + 1) +
+                                                  "\n                "
+                                              ),
+                                            ]
                                           },
-                                        }),
+                                        },
+                                        {
+                                          key: "item.title",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.fetchParameterDATA(
+                                                      _vm.parameter,
+                                                      "funding_type_group",
+                                                      item.part_10_type
+                                                    ).value_ref
+                                                  )
+                                                ),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("br"),
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(
+                                                    _vm.fetchParameterDATA(
+                                                      _vm.parameter,
+                                                      item.part_10_type,
+                                                      item.part_10_source
+                                                    ).value_ref
+                                                  ) +
+                                                  " "
+                                              ),
+                                              _c("br"),
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(
+                                                    _vm.fetchParameterDATA(
+                                                      _vm.parameter,
+                                                      "funding_level_group",
+                                                      item.part_10_level
+                                                    ).value_ref
+                                                  ) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                        {
+                                          key: "item.year",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(item.part_10_year) +
+                                                  " "
+                                              ),
+                                              _c("br"),
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    item.part_10_start_date
+                                                  ) +
+                                                  " - " +
+                                                  _vm._s(
+                                                    item.part_10_end_date
+                                                  ) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                        {
+                                          key: "item.price",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(item.part_10_amount) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                        {
+                                          key: "item.actions",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  staticClass:
+                                                    "pa-2 error mr-2",
+                                                  on: {
+                                                    click: function () {
+                                                      _vm.ManageItemPart_10(
+                                                        item,
+                                                        "delete"
+                                                      )
+                                                    },
+                                                  },
+                                                },
+                                                [_vm._v(" ลบ")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  staticClass: "pa-2 primary",
+                                                  on: {
+                                                    click: function () {
+                                                      _vm.ManageItemPart_10(
+                                                        item,
+                                                        null
+                                                      )
+                                                      _vm.dialog.dialog_part_10 = true
+                                                    },
+                                                  },
+                                                },
+                                                [_vm._v(" แก้ไข")]
+                                              ),
+                                            ]
+                                          },
+                                        },
                                       ],
-                                      1
+                                      null,
+                                      false,
+                                      3197536720
                                     ),
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _vm._v(" "),
+                                    _vm._v(" "),
+                                    _vm._v(" "),
+                                    _vm._v(" "),
+                                    _c("template", { slot: "body.append" }, [
+                                      _c("tr", [
+                                        _c("th"),
+                                        _vm._v(" "),
+                                        _c("th"),
+                                        _vm._v(" "),
+                                        _c("th", [_vm._v("รวมทั้งหมดเป็น")]),
+                                        _vm._v(" "),
+                                        _c("th", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.request.part_10.reduce(
+                                                function (t, n) {
+                                                  return (
+                                                    t + Number(n.part_10_amount)
+                                                  )
+                                                },
+                                                0
+                                              )
+                                            )
+                                          ),
+                                        ]),
+                                      ]),
+                                    ]),
                                   ],
-                                  1
-                                )
-                              }),
-                              0
+                                  2
+                                ),
+                              ],
+                              1
                             ),
                           ]
                         : [
@@ -1921,6 +2210,13 @@ var render = function () {
                     [
                       _c("v-file-input", {
                         attrs: { label: "เอกสารประกอบงานวิจัย" },
+                        model: {
+                          value: _vm.request.part_11_file,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_11_file", $$v)
+                          },
+                          expression: "request.part_11_file",
+                        },
                       }),
                     ],
                     1
@@ -2088,7 +2384,18 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "v-row",
-                    [_c("v-file-input", { attrs: { label: "เอกสารอ้างอิง" } })],
+                    [
+                      _c("v-file-input", {
+                        attrs: { label: "เอกสารอ้างอิง" },
+                        model: {
+                          value: _vm.request.ref_file,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "ref_file", $$v)
+                          },
+                          expression: "request.ref_file",
+                        },
+                      }),
+                    ],
                     1
                   ),
                 ],
@@ -2109,9 +2416,8 @@ var render = function () {
                           on: {
                             click: function () {
                               if (this$1.$refs.request.validate()) {
-                                this$1.$refs.request.reset()
+                                _vm.onClickSave()
                               } else {
-                                this$1.$refs.request.validate()
                                 _vm.valid = true
                               }
                             },
@@ -2615,6 +2921,10 @@ var render = function () {
                                                         label: "Date",
                                                         "prepend-icon":
                                                           "mdi-calendar",
+                                                        rules:
+                                                          _vm.rules
+                                                            .requiredDateTime,
+                                                        required: "",
                                                       },
                                                       model: {
                                                         value:
@@ -2706,6 +3016,10 @@ var render = function () {
                                                         label: "Date2",
                                                         "prepend-icon":
                                                           "mdi-calendar",
+                                                        rules:
+                                                          _vm.rules
+                                                            .requiredDateTime,
+                                                        required: "",
                                                       },
                                                       model: {
                                                         value:
@@ -2781,6 +3095,7 @@ var render = function () {
                                     attrs: {
                                       type: "number",
                                       label: "จำนวนเงินที่สนับสนุน",
+                                      onfocus: "this.select()",
                                       rules: _vm.rules.required,
                                       required: "",
                                     },
@@ -2837,11 +3152,7 @@ var render = function () {
                                 { attrs: { cols: "4" } },
                                 [
                                   _c("v-text-field", {
-                                    attrs: {
-                                      label: "วันที่ส่งมอบงานวิจัย",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
+                                    attrs: { label: "วันที่ส่งมอบงานวิจัย" },
                                     model: {
                                       value: _vm.part_10.part_10_send,
                                       callback: function ($$v) {
