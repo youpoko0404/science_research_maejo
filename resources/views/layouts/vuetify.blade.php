@@ -10,6 +10,7 @@
     <meta name="user-role" content="{{ auth()->user() ? 'user' : 'guest' }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/th/b/b7/MJU_LOGO.svg">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

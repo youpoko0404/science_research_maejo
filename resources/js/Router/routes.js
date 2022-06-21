@@ -12,31 +12,39 @@ const routes = [{
                     return import ("../components/Home/Index.vue");
             }
         },
-        meta: { title: "Home" },
+        meta: { title: "หน้าแรก" },
     },
     {
         path: "/account",
         name: "account",
         component: () =>
             import ("../components/Account/Account.vue"),
+        meta: { title: "โปรไฟล์" },
+
     },
     {
         path: "/my-research",
         name: "my-research",
         component: () =>
             import ("../components/Research/MyResearch.vue"),
+        meta: { title: "งานวิจัยของฉัน" },
+
     },
     {
         path: "/detail-research",
         name: "detail-research",
         component: () =>
             import ("../components/Research/DetailResearch.vue"),
+        meta: { title: "รายละเอียดงานวิจัย" },
+
     },
     {
         path: "/research",
         name: "research",
         component: () =>
             import ("../components/Home/DetailResearch.vue"),
+        meta: { title: "รายละเอียดงานวิจัย" },
+
     },
 ];
 

@@ -5867,31 +5867,43 @@ var routes = [{
     }
   },
   meta: {
-    title: "Home"
+    title: "หน้าแรก"
   }
 }, {
   path: "/account",
   name: "account",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Account_Account_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Account/Account.vue */ "./resources/js/components/Account/Account.vue"));
+  },
+  meta: {
+    title: "โปรไฟล์"
   }
 }, {
   path: "/my-research",
   name: "my-research",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Research_MyResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/MyResearch.vue */ "./resources/js/components/Research/MyResearch.vue"));
+  },
+  meta: {
+    title: "งานวิจัยของฉัน"
   }
 }, {
   path: "/detail-research",
   name: "detail-research",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Research_DetailResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/DetailResearch.vue */ "./resources/js/components/Research/DetailResearch.vue"));
+  },
+  meta: {
+    title: "รายละเอียดงานวิจัย"
   }
 }, {
   path: "/research",
   name: "research",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Home_DetailResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Home/DetailResearch.vue */ "./resources/js/components/Home/DetailResearch.vue"));
+  },
+  meta: {
+    title: "รายละเอียดงานวิจัย"
   }
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
