@@ -140,35 +140,35 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
             <p class="h3 pa-2 mr-auto">ส่วนที่ 2 นักวิจัย</p>
-            <template v-if="request.researcher.length > 0">
-              <v-btn class="pa-2 error mr-2" @click="request.researcher = []"> ล้างค่า </v-btn>
+            <template v-if="request.part_2.length > 0">
+              <v-btn class="pa-2 error mr-2" @click="request.part_2 = []"> ล้างค่า </v-btn>
             </template>
             <v-btn class="pa-2 primary" @click="() => {
               editedIndex = -1
-              dialog.dialog_researcher = true
+              dialog.dialog_part_2 = true
             }
             "> นักวิจัย</v-btn>
           </div>
           <v-row>
-            <template v-if="request.researcher.length > 0">
+            <template v-if="request.part_2.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                <div v-for="researcher in request.researcher" :key="researcher.id">
+                <div v-for="part_2 in request.part_2" :key="part_2.id">
                   <v-row>
                     <div class="d-flex justify-end">
                       <v-btn class="pa-2 error mr-2" @click="() => {
-                        ManageItemResearcher(researcher, 'delete')
+                        ManageItemPart_2(part_2, 'delete')
                       }"> ลบ</v-btn>
                       <v-btn class="pa-2 primary" @click="() => {
-                        ManageItemResearcher(researcher, null)
-                        dialog.dialog_researcher = true
+                        ManageItemPart_2(part_2, null)
+                        dialog.dialog_part_2 = true
                       }"> แก้ไข</v-btn>
                     </div>
-                    <v-subheader> {{ `ชื่อนักวิจัย : ${researcher.researcher_name || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `สังกัด : ${researcher.researcher_structure || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `สาขา : ${researcher.researcher_branch || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `ตำแหน่งงานวิจัย : ${researcher.researcher_position || '-- ไม่ระบุ --'}` }}
+                    <v-subheader> {{ `ชื่อนักวิจัย : ${part_2.part_2_name || '-- ไม่ระบุ --'}` }}</v-subheader>
+                    <v-subheader> {{ `สังกัด : ${part_2.part_2_structure || '-- ไม่ระบุ --'}` }}</v-subheader>
+                    <v-subheader> {{ `สาขา : ${part_2.part_2_branch || '-- ไม่ระบุ --'}` }}</v-subheader>
+                    <v-subheader> {{ `ตำแหน่งงานวิจัย : ${part_2.part_2_position || '-- ไม่ระบุ --'}` }}
                     </v-subheader>
-                    <v-subheader> {{ `ร้อยละความรับผิดชอบ : ${researcher.researcher_responsibility || '-- ไม่ระบุ --'}`
+                    <v-subheader> {{ `ร้อยละความรับผิดชอบ : ${part_2.part_2_responsibility || '-- ไม่ระบุ --'}`
                     }}
                     </v-subheader>
                   </v-row>
@@ -275,7 +275,7 @@
               <div class="pa-4 grey lighten-2 rounded-lg">
                 <div v-for="part_10 in request.part_10" :key="part_10.id">
                   <v-row>
-                    <div class="d-flex justify-end">
+                    <!-- <div class="d-flex justify-end">
                       <v-btn class="pa-2 error mr-2" @click="() => {
                         ManageItemPart_10(part_10, 'delete')
                       }"> ลบ</v-btn>
@@ -283,17 +283,10 @@
                         ManageItemPart_10(part_10, null)
                         dialog.dialog_part_10 = true
                       }"> แก้ไข</v-btn>
-                    </div>
-                    <!-- <v-subheader> {{ `ชื่อนักวิจัย : ${part_10.researcher_name || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `สังกัด : ${part_10.researcher_structure || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `สาขา : ${part_10.researcher_branch || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `ตำแหน่งงานวิจัย : ${part_10.researcher_position || '-- ไม่ระบุ --'}` }}
-                    </v-subheader>
-                    <v-subheader> {{ `ร้อยละความรับผิดชอบ : ${part_10.researcher_responsibility || '-- ไม่ระบุ --'}`
-                    }}
-                    </v-subheader> -->
+                    </div> -->
+                    <v-data-table :headers="headers_part_10" :items="request.part_10">
+                    </v-data-table>
                   </v-row>
-                  <v-divider></v-divider>
                 </div>
               </div>
             </template>
@@ -382,8 +375,8 @@
     </v-container>
 
     <div class="text-center">
-      <v-dialog v-model="dialog.dialog_researcher" width="900">
-        <v-form ref="form_researcher">
+      <v-dialog v-model="dialog.dialog_part_2" width="900">
+        <v-form ref="form_part_2">
           <v-card>
             <v-card-title class="grey lighten-2 mb-2"> นักวิจัย </v-card-title>
             <v-card-text>
@@ -392,8 +385,7 @@
                   <v-subheader class="mt-2">ชื่อนักวิจัย : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="researcher.researcher_name" label="ชื่อนักวิจัย" :rules="rules.required"
-                    required>
+                  <v-text-field v-model="part_2.part_2_name" label="ชื่อนักวิจัย" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -402,14 +394,14 @@
                   <v-subheader class="mt-2">สังกัด : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="researcher.researcher_structure" label="สังกัด" :rules="rules.required"
-                    required></v-text-field>
+                  <v-text-field v-model="part_2.part_2_structure" label="สังกัด" :rules="rules.required" required>
+                  </v-text-field>
                 </v-col>
                 <v-col cols="auto">
                   <v-subheader class="mt-2">สาขา : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="researcher.researcher_branch" label="สาขา" :rules="rules.required" required>
+                  <v-text-field v-model="part_2.part_2_branch" label="สาขา" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -418,7 +410,7 @@
                   <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="researcher.researcher_position" label="ตำแหน่งงานวิจัย" :rules="rules.required"
+                  <v-text-field v-model="part_2.part_2_position" label="ตำแหน่งงานวิจัย" :rules="rules.required"
                     required></v-text-field>
                 </v-col>
               </v-row>
@@ -427,7 +419,7 @@
                   <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field v-model="researcher.researcher_responsibility" label="ร้อยละความรับผิดชอบ"
+                  <v-text-field v-model="part_2.part_2_responsibility" label="ร้อยละความรับผิดชอบ"
                     :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
@@ -436,16 +428,16 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="primary" text @click="() => {
-                this.$refs.form_researcher.reset()
-                dialog.dialog_researcher = !dialog.dialog_researcher
+                this.$refs.form_part_2.reset()
+                dialog.dialog_part_2 = !dialog.dialog_part_2
               }">
                 ยกเลิก
               </v-btn>
               <v-btn color="primary" text @click="() => {
-                this.$refs.form_researcher.validate()
-                if (this.$refs.form_researcher.validate()) {
-                  onClickResearcher()
-                  dialog.dialog_researcher = !dialog.dialog_researcher
+                this.$refs.form_part_2.validate()
+                if (this.$refs.form_part_2.validate()) {
+                  onClickPart_2()
+                  dialog.dialog_part_2 = !dialog.dialog_part_2
                 }
               }">
                 ยืนยัน
@@ -463,11 +455,68 @@
             <v-card-title class="grey lighten-2 mb-2"> แบบฟอร์มจัดการงบประมาณ </v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="auto">
-                  <v-subheader class="mt-2">ชื่อนักวิจัย : </v-subheader>
+                <v-col cols="6">
+                  <v-select :items="parameter.funding_type_group" item-text="value_ref" item-value="value"
+                    :rules="rules.required" v-model="part_10.part_10_type" label="ประเภททุนสนับสนุน" required>
+                  </v-select>
                 </v-col>
-                <v-col>
-                  <v-text-field v-model="researcher.researcher_name" label="ชื่อนักวิจัย" :rules="rules.required"
+                <v-col cols="6">
+                  <v-select :items="parameter[part_10.part_10_type]" item-text="value_ref" item-value="value"
+                    :rules="rules.required" v-model="part_10.part_10_source" label="แหล่งทุนสนับสนุน" required>
+                  </v-select>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-select :items="parameter.funding_level_group" item-text="value_ref" item-value="value"
+                    :rules="rules.required" v-model="part_10.part_10_level" label="ระดับแหล่งทุน" required>
+                  </v-select>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-text-field v-model="part_10.part_10_year" type="number" label="ปีการศึกษา" :rules="rules.required"
+                    required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="3">
+                  <v-menu v-model="datePicker_date1" :close-on-content-click="false" transition="scale-transition"
+                    offset-y max-width="290px" min-width="auto">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field v-model="part_10.part_10_start_date" label="Date" prepend-icon="mdi-calendar"
+                        v-bind="attrs" v-on="on">
+                      </v-text-field>
+                    </template>
+                    <v-date-picker v-model="dateNow_date_1" no-title @input="datePicker_date1 = false"></v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="3">
+                  <v-menu v-model="datePicker_date2" :close-on-content-click="false" transition="scale-transition"
+                    offset-y max-width="290px" min-width="auto">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field v-model="part_10.part_10_end_date" label="Date2" prepend-icon="mdi-calendar"
+                        v-bind="attrs" v-on="on">
+                      </v-text-field>
+                    </template>
+                    <v-date-picker v-model="dateNow_date_2" no-title @input="datePicker_date2 = false"></v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="5">
+                  <v-text-field v-model="part_10.part_10_amount" type="number" label="จำนวนเงินที่สนับสนุน"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="7">
+                  <v-text-field v-model="part_10.part_10_description" label="คำอธิบายเพิ่มเติม" :rules="rules.required"
+                    required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="4">
+                  <v-text-field v-model="part_10.part_10_send" label="วันที่ส่งมอบงานวิจัย" :rules="rules.required"
                     required>
                   </v-text-field>
                 </v-col>
@@ -484,7 +533,7 @@
               <v-btn color="primary" text @click="() => {
                 this.$refs.form_part_10.validate()
                 if (this.$refs.form_part_10.validate()) {
-                  onClickResearcher()
+                  onClickPart_10()
                   dialog.dialog_part_10 = !dialog.dialog_part_10
                 }
               }">
@@ -517,6 +566,7 @@
 
 
 <script>
+import dayJs from "../Utili/dayJs";
 import { mapState } from "vuex";
 import Loading from "../../Components/Loading/Loading";
 export default {
@@ -527,7 +577,7 @@ export default {
     valid: false,
     editedIndex: -1,
     dialog: {
-      dialog_researcher: false,
+      dialog_part_2: false,
       dialog_part_10: false,
     },
     request: {
@@ -540,27 +590,40 @@ export default {
       related_activities: "",
       road_map: "",
       research_status: "",
-      researcher: [],
+      part_2: [],
       part_10: []
     },
-    researcher: {
-      researcher_name: "",
-      researcher_structure: "",
-      researcher_branch: "",
-      researcher_position: "",
-      researcher_responsibility: "",
+    part_2: {
+      part_2_name: "",
+      part_2_structure: "",
+      part_2_branch: "",
+      part_2_position: "",
+      part_2_responsibility: "",
     },
     part_10: {
-      researcher_name: "",
-      researcher_structure: "",
-      researcher_branch: "",
-      researcher_position: "",
-      researcher_responsibility: "",
+      part_10_type: "",
+      part_10_source: "",
+      part_10_level: "",
+      part_10_year: "",
+      part_10_start_date: "",
+      part_10_end_date: "",
+      part_10_amount: "",
+      part_10_description: "",
+      part_10_send: "",
     },
     rules: {
       required: [val => (val || '').length > 0 || 'This field is required'],
     },
+    dateNow_date_1: "",
+    datePicker_date1: false,
+    dateNow_date_2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    datePicker_date2: false,
+    headers_part_10: [
+      { text: 'Calories', value: 'part_10_type' },
+      { text: 'Fat (g)', value: 'part_10_source' },
+    ],
   }),
+
   computed: {
     ...mapState({
       loading: (state) => state.parameter.loading,
@@ -570,8 +633,18 @@ export default {
       return this.$route.query.id;
     },
   },
+
   created() {
-    this.fetchParameter(["branch_group"]);
+    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group"]);
+  },
+
+  watch: {
+    dateNow_date_1() {
+      this.part_10.part_10_start_date = dayJs.formatDate(this.dateNow_date_1)
+    },
+    dateNow_date_2() {
+      this.part_10.part_10_end_date = dayJs.formatDate(this.dateNow_date_2)
+    },
   },
 
   methods: {
@@ -579,28 +652,49 @@ export default {
       this.$store.dispatch("parameter/fetchParameter", group_name);
     },
 
-    onClickResearcher() {
-      const researcher = {
-        researcher_name: this.researcher.researcher_name,
-        researcher_structure: this.researcher.researcher_structure,
-        researcher_branch: this.researcher.researcher_branch,
-        researcher_position: this.researcher.researcher_position,
-        researcher_responsibility: this.researcher.researcher_responsibility,
+    onClickPart_2() {
+      const part_2 = {
+        part_2_name: this.part_2.part_2_name,
+        part_2_structure: this.part_2.part_2_structure,
+        part_2_branch: this.part_2.part_2_branch,
+        part_2_position: this.part_2.part_2_position,
+        part_2_responsibility: this.part_2.part_2_responsibility,
       }
       if (this.editedIndex > -1) {
-        Object.assign(this.request.researcher[this.editedIndex], this.researcher)
+        Object.assign(this.request.part_2[this.editedIndex], this.part_2)
       } else {
-        this.request.researcher.push(researcher)
+        this.request.part_2.push(part_2)
       }
-      this.$refs.form_researcher.reset()
+      this.$refs.form_part_2.reset()
     },
 
-    ManageItemResearcher(item, action) {
-      this.editedIndex = this.request.researcher.indexOf(item)
-      this.researcher = Object.assign({}, item)
+    ManageItemPart_2(item, action) {
+      this.editedIndex = this.request.part_2.indexOf(item)
+      this.part_2 = Object.assign({}, item)
       if (action == 'delete') {
-        this.request.researcher.splice(this.editedIndex, 1)
+        this.request.part_2.splice(this.editedIndex, 1)
       }
+    },
+
+    onClickPart_10() {
+      const part_10 = {
+        part_10_type: this.part_10.part_10_type,
+        part_10_source: this.part_10.part_10_source,
+        part_10_level: this.part_10.part_10_level,
+        part_10_year: this.part_10.part_10_year,
+        part_10_start_date: dayJs.parseDate(this.part_10.part_10_start_date),
+        part_10_end_date: dayJs.parseDate(this.part_10.part_10_end_date),
+        part_10_amount: this.part_10.part_10_amount,
+        part_10_description: this.part_10.part_10_description,
+        part_10_send: this.part_10.part_10_send,
+      }
+      console.log(part_10)
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.part_10[this.editedIndex], this.part_10)
+      } else {
+        this.request.part_10.push(part_10)
+      }
+      // this.$refs.form_part_10.reset()
     },
   },
 };

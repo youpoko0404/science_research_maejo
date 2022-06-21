@@ -95,12 +95,80 @@ class ParametersTableSeeder extends Seeder
                 'sort_order' => "9",
                 'remark' => ""
             ],
+
             [
-                'group_name' => "test",
-                'value' => "information_technology",
-                'value_ref' => "สาขาวิชาเทคโนโลยีสารสนเทศ",
-                'sort_order' => "9",
-                'remark' => ""
+                'group_name' => "funding_type_group",
+                'value' => "external_institution_budget_group",
+                'value_ref' => "งบประมาณภายนอกสถาบัน",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "funding_type_group",
+                'value' => "institutional_budget_group",
+                'value_ref' => "งบประมาณภายในสถาบัน",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "funding_type_group",
+                'value' => "personal_budget_group",
+                'value_ref' => "ทุนส่วนตัว",
+                'sort_order' => "3",
+            ],
+            [
+                'group_name' => "funding_type_group",
+                'value' => "other",
+                'value_ref' => "อื่นๆ",
+                'sort_order' => "4",
+            ],
+
+            [
+                'group_name' => "institutional_budget_group",
+                'value' => "research_budget",
+                'value_ref' => "กองทุนวิจัย มหาวิทยาลัยแม่โจ้",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "institutional_budget_group",
+                'value' => "university_budget",
+                'value_ref' => "งบภายในมหาวิทยาลัยแม่โจ้",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "institutional_budget_group",
+                'value' => "agency_budget",
+                'value_ref' => "งบภายในหน่วยงาน",
+                'sort_order' => "3",
+            ],
+
+            [
+                'group_name' => "funding_level_group",
+                'value' => "faculty_office_level",
+                'value_ref' => "ระดับคณะ/สำนักงาน",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "university_level",
+                'value_ref' => "ระดับมหาวิทยาลัย",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "national_level",
+                'value_ref' => "ระดับชาติ",
+                'sort_order' => "3",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "international_level",
+                'value_ref' => "ระดับนานาชาติ",
+                'sort_order' => "4",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "other",
+                'value_ref' => "อื่นๆ",
+                'sort_order' => "5",
             ],
         ];
 
