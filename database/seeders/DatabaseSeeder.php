@@ -30,6 +30,19 @@ class ParametersTableSeeder extends Seeder
         DB::table('Parameters')->truncate();
         $rows = [
             [
+                'group_name' => "research_consultant",
+                'value' => "inside",
+                'value_ref' => "ภายใน",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "research_consultant",
+                'value' => "outside",
+                'value_ref' => "ภายนอน",
+                'sort_order' => "2",
+            ],
+
+            [
                 'group_name' => "branch_group",
                 'value' => "materials",
                 'value_ref' => "สาขาวิชาวัสดุศาสตร์",
@@ -170,6 +183,8 @@ class ParametersTableSeeder extends Seeder
                 'value_ref' => "อื่นๆ",
                 'sort_order' => "5",
             ],
+
+
         ];
 
         foreach ($rows as $row) {

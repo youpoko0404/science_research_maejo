@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\ResearchController;
 use App\Models\StudyUser;
 use App\Models\ExpertiseUser;
 
@@ -50,8 +51,14 @@ Route::controller(ParameterController::class)->group(function () {
 
 Route::controller(DashBoardController::class)->group(function () {
     Route::get('/dashboard', 'fetch');
+});
 
-    // Route::group(['middleware' => ['auth']], function () {
-    //     Route::get('/dash-board', 'fetch');
-    // });
+Route::controller(ResearchController::class)->group(function () {
+    Route::group(['middleware' => ['auth']], function () {
+        Route::post('/research', 'save');
+        Route::post('/research/edit/{id}', 'edit');
+        Route::get('/research', 'fetchAll');
+        Route::get('/research/{id}', 'fetchById');
+        Route::delete('/research/{id}', 'delete');
+    });
 });

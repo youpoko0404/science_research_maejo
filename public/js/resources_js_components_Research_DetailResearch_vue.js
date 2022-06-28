@@ -14,12 +14,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Utili/dayJs */ "./resources/js/components/Utili/dayJs.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -650,8 +714,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         research_project_type: "",
         research_nature: "",
         part_2: [],
+        part_3: "",
+        part_4: "",
+        part_5: "",
+        part_6: "",
+        part_7: "",
+        part_8: "",
+        part_9: "",
         part_10: [],
-        part_11_file: null,
+        part_11: null,
+        part_12: [],
+        part_13: [],
+        part_14: [],
+        part_15: [],
         ref_file: null
       },
       part_2: {
@@ -672,6 +747,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         part_10_description: "",
         part_10_send: ""
       },
+      part_12: {},
+      part_13: {},
+      part_14: {},
+      part_15: {},
       rules: {
         required: [function (val) {
           return !!val || 'กรอกข้อมูลไม่ครบถ้วน';
@@ -718,7 +797,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group"]);
+    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
+    this.fetchResearchById(this.$route.query.id);
   },
   watch: {
     dateNow_date_1: function dateNow_date_1() {
@@ -731,6 +811,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     fetchParameter: function fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+    fetchResearchById: function fetchResearchById(id) {
+      var _this = this;
+
+      if (id != 0) {
+        this.$store.dispatch("research/fetchById", id).then(function (response) {
+          if (response.success) {
+            for (var _i = 0, _Object$entries = Object.entries(response.payload); _i < _Object$entries.length; _i++) {
+              var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+                  key = _Object$entries$_i[0],
+                  value = _Object$entries$_i[1];
+
+              if (value) {
+                if (key == 'ref_file' || key == 'part_11') {
+                  _this.request[key] = new File([""], value);
+                } else {
+                  _this.request[key] = value;
+                }
+              }
+            }
+          }
+        });
+      }
     },
     fetchParameterDATA: function fetchParameterDATA(items, group, key) {
       return items[group].find(function (e) {
@@ -792,7 +895,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     onClickSave: function onClickSave() {
-      console.log(this.request);
+      var formData = new FormData();
+      formData.append("research_name", this.request.research_name);
+      formData.append("university_code", this.request.university_code);
+      formData.append("research_period", this.request.research_period);
+      formData.append("research_format", this.request.research_format);
+      formData.append("research_type", this.request.research_type);
+      formData.append("research_branch", this.request.research_branch);
+      formData.append("related_activities", this.request.related_activities);
+      formData.append("road_map", this.request.road_map);
+      formData.append("research_status", this.request.research_status);
+      formData.append("research_project_type", this.request.research_project_type);
+      formData.append("research_nature", this.request.research_nature);
+      formData.append("part_2", this.request.part_2);
+      formData.append("part_3", this.request.part_3);
+      formData.append("part_4", this.request.part_4);
+      formData.append("part_5", this.request.part_5);
+      formData.append("part_6", this.request.part_6);
+      formData.append("part_7", this.request.part_7);
+      formData.append("part_8", this.request.part_8);
+      formData.append("part_9", this.request.part_9);
+      formData.append("part_10", this.request.part_10);
+      formData.append("part_11", this.request.part_11);
+      formData.append("part_12", this.request.part_12);
+      formData.append("part_13", this.request.part_13);
+      formData.append("part_14", this.request.part_14);
+      formData.append("part_15", this.request.part_15);
+      formData.append("ref_file", this.request.ref_file);
+
+      if (this.$route.query.id == 0) {
+        this.$store.dispatch("research/save", formData).then(function (response) {
+          if (response.success) {// window.location.href = `/detail-research?id=${response.payload}`;
+          }
+        });
+      } else {
+        this.$store.dispatch("research/update", {
+          id: this.$route.query.id,
+          research: formData
+        }).then(function (response) {
+          if (response.success) {// window.location.href = `/detail-research?id=${response.payload}`;
+          }
+        });
+      }
     }
   }
 });
@@ -1095,7 +1239,11 @@ var render = function () {
                           1
                         ),
                       ]
-                    : [_c("p", { staticClass: "h3 ml-4" }, [_vm._v("Name")])],
+                    : [
+                        _c("p", { staticClass: "h3 ml-4" }, [
+                          _vm._v(_vm._s(_vm.request.research_name)),
+                        ]),
+                      ],
                   _vm._v(" "),
                   _c(
                     "v-row",
@@ -1719,11 +1867,20 @@ var render = function () {
                     [
                       _c("v-select", {
                         attrs: {
-                          items: _vm.parameter.branch_group,
+                          items: _vm.parameter.research_consultant,
                           color: "green darken-3",
                           "item-text": "value_ref",
                           "item-value": "value",
                           label: "ที่ปรึกษางานวิจัย",
+                          rules: _vm.rules.required,
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.request.part_3,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_3", $$v)
+                          },
+                          expression: "request.part_3",
                         },
                       }),
                     ],
@@ -1762,6 +1919,13 @@ var render = function () {
                           color: "green darken-3",
                           label: "แนวทางการทำวิจัย",
                         },
+                        model: {
+                          value: _vm.request.part_4,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_4", $$v)
+                          },
+                          expression: "request.part_4",
+                        },
                       }),
                     ],
                     1
@@ -1798,6 +1962,13 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "วัตถุประสงค์",
+                        },
+                        model: {
+                          value: _vm.request.part_5,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_5", $$v)
+                          },
+                          expression: "request.part_5",
                         },
                       }),
                     ],
@@ -1836,6 +2007,13 @@ var render = function () {
                           color: "green darken-3",
                           label: "ประโยชน์ที่จะได้รับ",
                         },
+                        model: {
+                          value: _vm.request.part_6,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_6", $$v)
+                          },
+                          expression: "request.part_6",
+                        },
                       }),
                     ],
                     1
@@ -1873,6 +2051,13 @@ var render = function () {
                           color: "green darken-3",
                           label: "ผลสำเร็จที่จะได้รับ",
                         },
+                        model: {
+                          value: _vm.request.part_7,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_7", $$v)
+                          },
+                          expression: "request.part_7",
+                        },
                       }),
                     ],
                     1
@@ -1909,6 +2094,13 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "พื้นที่ดำเนินงานวิจัย",
+                        },
+                        model: {
+                          value: _vm.request.part_8,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_8", $$v)
+                          },
+                          expression: "request.part_8",
                         },
                       }),
                     ],
@@ -1953,6 +2145,13 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "งานวิจัยอื่น ๆ ที่เกี่ยวข้อง",
+                        },
+                        model: {
+                          value: _vm.request.part_9,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "part_9", $$v)
+                          },
+                          expression: "request.part_9",
                         },
                       }),
                     ],
@@ -2261,11 +2460,11 @@ var render = function () {
                           label: "เอกสารประกอบงานวิจัย",
                         },
                         model: {
-                          value: _vm.request.part_11_file,
+                          value: _vm.request.part_11,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_11_file", $$v)
+                            _vm.$set(_vm.request, "part_11", $$v)
                           },
-                          expression: "request.part_11_file",
+                          expression: "request.part_11",
                         },
                       }),
                     ],
@@ -2299,14 +2498,38 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _c("v-textarea", {
-                        attrs: {
-                          color: "green darken-3",
-                          label: "การนำเสนองานวิจัย",
-                        },
-                      }),
+                      _vm.request.part_12.length > 0
+                        ? [
+                            _c(
+                              "div",
+                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
+                              _vm._l(_vm.request.part_12, function (part_12) {
+                                return _c(
+                                  "div",
+                                  { key: part_12.id },
+                                  [_c("v-row")],
+                                  1
+                                )
+                              }),
+                              0
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "pa-4 grey lighten-2 rounded-lg text-center",
+                              },
+                              [
+                                _vm._v(
+                                  "\n              -- ไม่ระบุ --\n            "
+                                ),
+                              ]
+                            ),
+                          ],
                     ],
-                    1
+                    2
                   ),
                 ],
                 1
@@ -2336,14 +2559,38 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _c("v-textarea", {
-                        attrs: {
-                          color: "green darken-3",
-                          label: "การตีพิมพ์เผยแพร่งานวิจัย",
-                        },
-                      }),
+                      _vm.request.part_13.length > 0
+                        ? [
+                            _c(
+                              "div",
+                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
+                              _vm._l(_vm.request.part_13, function (part_13) {
+                                return _c(
+                                  "div",
+                                  { key: part_13.id },
+                                  [_c("v-row")],
+                                  1
+                                )
+                              }),
+                              0
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "pa-4 grey lighten-2 rounded-lg text-center",
+                              },
+                              [
+                                _vm._v(
+                                  "\n              -- ไม่ระบุ --\n            "
+                                ),
+                              ]
+                            ),
+                          ],
                     ],
-                    1
+                    2
                   ),
                 ],
                 1
@@ -2373,14 +2620,38 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _c("v-textarea", {
-                        attrs: {
-                          color: "green darken-3",
-                          label: "การนำงานวิจัยไปใช้ประโยชน์",
-                        },
-                      }),
+                      _vm.request.part_14.length > 0
+                        ? [
+                            _c(
+                              "div",
+                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
+                              _vm._l(_vm.request.part_14, function (part_14) {
+                                return _c(
+                                  "div",
+                                  { key: part_14.id },
+                                  [_c("v-row")],
+                                  1
+                                )
+                              }),
+                              0
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "pa-4 grey lighten-2 rounded-lg text-center",
+                              },
+                              [
+                                _vm._v(
+                                  "\n              -- ไม่ระบุ --\n            "
+                                ),
+                              ]
+                            ),
+                          ],
                     ],
-                    1
+                    2
                   ),
                 ],
                 1
@@ -2410,14 +2681,38 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _c("v-textarea", {
-                        attrs: {
-                          color: "green darken-3",
-                          label: "การนำงานวิจัยไปใช้อ้างอิง",
-                        },
-                      }),
+                      _vm.request.part_15.length > 0
+                        ? [
+                            _c(
+                              "div",
+                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
+                              _vm._l(_vm.request.part_15, function (part_15) {
+                                return _c(
+                                  "div",
+                                  { key: part_15.id },
+                                  [_c("v-row")],
+                                  1
+                                )
+                              }),
+                              0
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "pa-4 grey lighten-2 rounded-lg text-center",
+                              },
+                              [
+                                _vm._v(
+                                  "\n              -- ไม่ระบุ --\n            "
+                                ),
+                              ]
+                            ),
+                          ],
                     ],
-                    1
+                    2
                   ),
                 ],
                 1
@@ -2480,11 +2775,12 @@ var render = function () {
                           attrs: { color: "primary", dark: "" },
                           on: {
                             click: function () {
-                              if (this$1.$refs.request.validate()) {
-                                _vm.onClickSave()
-                              } else {
-                                _vm.valid = true
-                              }
+                              _vm.onClickSave()
+                              // if (this.$refs.request.validate()) {
+                              //   onClickSave()
+                              // } else {
+                              //   valid = true
+                              // }
                             },
                           },
                         },

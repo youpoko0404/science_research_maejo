@@ -44,7 +44,7 @@
             </v-row>
           </template>
           <template v-else>
-            <p class="h3 ml-4">Name</p>
+            <p class="h3 ml-4">{{ request.research_name }}</p>
           </template>
           <v-row>
             <v-col cols="auto">
@@ -201,8 +201,8 @@
             <v-btn color="primary"> ที่ปรึกษางานวิจัย </v-btn>
           </div>
           <v-row>
-            <v-select :items="parameter.branch_group" color="green darken-3" item-text="value_ref" item-value="value"
-              label="ที่ปรึกษางานวิจัย">
+            <v-select :items="parameter.research_consultant" color="green darken-3" item-text="value_ref"
+              item-value="value" label="ที่ปรึกษางานวิจัย" v-model="request.part_3" :rules="rules.required" required>
             </v-select>
           </v-row>
         </div>
@@ -213,7 +213,7 @@
             <v-btn color="primary"> แนวทางการทำวิจัย </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="แนวทางการทำวิจัย"></v-textarea>
+            <v-textarea color="green darken-3" label="แนวทางการทำวิจัย" v-model="request.part_4"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -223,7 +223,7 @@
             <v-btn color="primary"> วัตถุประสงค์ </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="วัตถุประสงค์"></v-textarea>
+            <v-textarea color="green darken-3" label="วัตถุประสงค์" v-model="request.part_5"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -233,7 +233,7 @@
             <v-btn color="primary"> ประโยชน์ที่จะได้รับ </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="ประโยชน์ที่จะได้รับ"></v-textarea>
+            <v-textarea color="green darken-3" label="ประโยชน์ที่จะได้รับ" v-model="request.part_6"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -243,7 +243,7 @@
             <v-btn color="primary"> ผลสำเร็จที่จะได้รับ </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="ผลสำเร็จที่จะได้รับ"></v-textarea>
+            <v-textarea color="green darken-3" label="ผลสำเร็จที่จะได้รับ" v-model="request.part_7"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -253,7 +253,7 @@
             <v-btn color="primary"> พื้นที่ดำเนินงานวิจัย </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="พื้นที่ดำเนินงานวิจัย"></v-textarea>
+            <v-textarea color="green darken-3" label="พื้นที่ดำเนินงานวิจัย" v-model="request.part_8"></v-textarea>
           </v-row>
         </div>
         <br />
@@ -264,7 +264,8 @@
             <v-btn class="pa-2 primary"> งานวิจัยย่อย </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"></v-textarea>
+            <v-textarea color="green darken-3" label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง" v-model="request.part_9">
+            </v-textarea>
           </v-row>
         </div>
         <br />
@@ -335,7 +336,7 @@
             <v-btn color="primary"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input color="green darken-3" v-model="request.part_11_file" label="เอกสารประกอบงานวิจัย">
+            <v-file-input color="green darken-3" v-model="request.part_11" label="เอกสารประกอบงานวิจัย">
             </v-file-input>
           </v-row>
         </div>
@@ -346,7 +347,19 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="การนำเสนองานวิจัย"></v-textarea>
+            <template v-if="request.part_12.length > 0">
+              <div class="pa-4 grey lighten-2 rounded-lg">
+                <div v-for="part_12 in request.part_12" :key="part_12.id">
+                  <v-row>
+                  </v-row>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                -- ไม่ระบุ --
+              </div>
+            </template>
           </v-row>
         </div>
         <br />
@@ -356,7 +369,19 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="การตีพิมพ์เผยแพร่งานวิจัย"></v-textarea>
+            <template v-if="request.part_13.length > 0">
+              <div class="pa-4 grey lighten-2 rounded-lg">
+                <div v-for="part_13 in request.part_13" :key="part_13.id">
+                  <v-row>
+                  </v-row>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                -- ไม่ระบุ --
+              </div>
+            </template>
           </v-row>
         </div>
         <br />
@@ -366,7 +391,20 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="การนำงานวิจัยไปใช้ประโยชน์"></v-textarea>
+            <template v-if="request.part_14.length > 0">
+              <div class="pa-4 grey lighten-2 rounded-lg">
+                <div v-for="part_14 in request.part_14" :key="part_14.id">
+                  <v-row>
+
+                  </v-row>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                -- ไม่ระบุ --
+              </div>
+            </template>
           </v-row>
         </div>
         <br />
@@ -376,7 +414,20 @@
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
-            <v-textarea color="green darken-3" label="การนำงานวิจัยไปใช้อ้างอิง"></v-textarea>
+            <template v-if="request.part_15.length > 0">
+              <div class="pa-4 grey lighten-2 rounded-lg">
+                <div v-for="part_15 in request.part_15" :key="part_15.id">
+                  <v-row>
+
+                  </v-row>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                -- ไม่ระบุ --
+              </div>
+            </template>
           </v-row>
         </div>
         <br />
@@ -392,11 +443,12 @@
         <div class="pa-4">
           <v-row>
             <v-btn color="primary" dark @click="() => {
-              if (this.$refs.request.validate()) {
-                onClickSave()
-              } else {
-                valid = true
-              }
+              onClickSave()
+              // if (this.$refs.request.validate()) {
+              //   onClickSave()
+              // } else {
+              //   valid = true
+              // }
             }">บันทึกงานวิจัย</v-btn>
           </v-row>
         </div>
@@ -628,8 +680,19 @@ export default {
       research_project_type: "",
       research_nature: "",
       part_2: [],
+      part_3: "",
+      part_4: "",
+      part_5: "",
+      part_6: "",
+      part_7: "",
+      part_8: "",
+      part_9: "",
       part_10: [],
-      part_11_file: null,
+      part_11: null,
+      part_12: [],
+      part_13: [],
+      part_14: [],
+      part_15: [],
       ref_file: null
     },
     part_2: {
@@ -650,6 +713,10 @@ export default {
       part_10_description: "",
       part_10_send: "",
     },
+    part_12: {},
+    part_13: {},
+    part_14: {},
+    part_15: {},
     rules: {
       required: [val => !!val || 'กรอกข้อมูลไม่ครบถ้วน'],
       requiredDateTime: [
@@ -681,7 +748,9 @@ export default {
   },
 
   created() {
-    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group"]);
+    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
+    this.fetchResearchById(this.$route.query.id)
+
   },
 
   watch: {
@@ -696,6 +765,24 @@ export default {
   methods: {
     fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+
+    fetchResearchById(id) {
+      if (id != 0) {
+        this.$store.dispatch("research/fetchById", id).then((response) => {
+          if (response.success) {
+            for (const [key, value] of Object.entries(response.payload)) {
+              if (value) {
+                if (key == 'ref_file' || key == 'part_11') {
+                  this.request[key] = new File([""], value)
+                } else {
+                  this.request[key] = value
+                }
+              }
+            }
+          }
+        });
+      }
     },
 
     fetchParameterDATA(items, group, key) {
@@ -755,7 +842,50 @@ export default {
     },
 
     onClickSave() {
-      console.log(this.request)
+      let formData = new FormData();
+      formData.append("research_name", this.request.research_name);
+      formData.append("university_code", this.request.university_code);
+      formData.append("research_period", this.request.research_period);
+      formData.append("research_format", this.request.research_format);
+      formData.append("research_type", this.request.research_type);
+      formData.append("research_branch", this.request.research_branch);
+      formData.append("related_activities", this.request.related_activities);
+      formData.append("road_map", this.request.road_map);
+      formData.append("research_status", this.request.research_status);
+      formData.append("research_project_type", this.request.research_project_type);
+      formData.append("research_nature", this.request.research_nature);
+      formData.append("part_2", this.request.part_2);
+      formData.append("part_3", this.request.part_3);
+      formData.append("part_4", this.request.part_4);
+      formData.append("part_5", this.request.part_5);
+      formData.append("part_6", this.request.part_6);
+      formData.append("part_7", this.request.part_7);
+      formData.append("part_8", this.request.part_8);
+      formData.append("part_9", this.request.part_9);
+      formData.append("part_10", this.request.part_10);
+      formData.append("part_11", this.request.part_11);
+      formData.append("part_12", this.request.part_12);
+      formData.append("part_13", this.request.part_13);
+      formData.append("part_14", this.request.part_14);
+      formData.append("part_15", this.request.part_15);
+      formData.append("ref_file", this.request.ref_file);
+      if (this.$route.query.id == 0) {
+        this.$store.dispatch("research/save", formData).then((response) => {
+          if (response.success) {
+            // window.location.href = `/detail-research?id=${response.payload}`;
+          }
+        });
+      } else {
+        this.$store.dispatch("research/update", {
+          id: this.$route.query.id,
+          research: formData
+        }).then((response) => {
+          if (response.success) {
+            // window.location.href = `/detail-research?id=${response.payload}`;
+          }
+        });
+      }
+
     }
   },
 };

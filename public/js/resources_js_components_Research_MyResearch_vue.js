@@ -11,17 +11,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../HttpRequest/httpRequest */ "./resources/js/HttpRequest/httpRequest.js");
-/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -55,14 +52,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["default"]();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      loading: false,
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
@@ -76,33 +71,29 @@ var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["def
         text: "ชื่อผลงาน",
         align: "start",
         sortable: false,
-        value: "name"
+        value: "research_name"
       }, {
         text: "แก้ไขงานวิจัย",
         align: "start",
         sortable: false,
         value: "edit",
         width: "200px"
-      }],
-      items: [{
-        name: "Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt",
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: "1%",
-        id: 1
-      }, {
-        name: "Ice cream sandwich",
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: "1%",
-        id: 2
       }]
     };
   },
+  created: function created() {
+    this.fetchResearch();
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+    loading: function loading(state) {
+      return state.research.loading;
+    },
+    researchAll: function researchAll(state) {
+      var _state$research$resea;
+
+      return (_state$research$resea = state.research.researchAll) !== null && _state$research$resea !== void 0 ? _state$research$resea : [];
+    }
+  })),
   methods: {
     heddleOnClickButton: function heddleOnClickButton(id) {
       this.$router.push({
@@ -111,6 +102,9 @@ var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["def
           id: id
         }
       });
+    },
+    fetchResearch: function fetchResearch() {
+      this.$store.dispatch("research/fetchAll");
     }
   }
 });
@@ -240,7 +234,7 @@ var render = function () {
                 staticClass: "elevation-1",
                 attrs: {
                   headers: _vm.headers,
-                  items: _vm.items,
+                  items: _vm.researchAll,
                   page: _vm.page,
                   "items-per-page": _vm.itemsPerPage,
                   "hide-default-footer": "",
