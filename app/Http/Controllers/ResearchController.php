@@ -15,7 +15,11 @@ class ResearchController extends Controller
 
     public function fetchAll()
     {
-        $research = Researchs::where("created_by", auth()->user()->id)->get();
+        $research = Researchs::where([
+            ['created_by', '=', auth()->user()->id],
+            ['is_deleted', '=', 0]
+        ])->get();
+
         if ($research) {
             return response()->json([
                 'success' => true,
@@ -71,9 +75,7 @@ class ResearchController extends Controller
 
     public function edit($id, Request $request)
     {
-
         $research = Researchs::find($id);
-
         $research->part_11 = $this->updateFile($request->file('part_11'),  $research->part_11, $id)['name'] ?? null;
         $research->ref_file = $this->updateFile($request->file('ref_file'), $research->ref_file, $id)['name'] ?? null;
         $research->save();
@@ -101,7 +103,7 @@ class ResearchController extends Controller
             ], 200);
         } else {
             return response()->json([
-                'success' => true,
+                'success' => false,
                 'message' => 'File not found',
                 'payload' =>  null
             ], 404);

@@ -15,7 +15,7 @@ class CreateResearchsTable extends Migration
     {
         Schema::create('researchs', function (Blueprint $table) {
             $table->id();
-            $table->string('research_name')->unique();
+            $table->string('research_name');
             $table->string('university_code')->nullable()->default(null);
             $table->string('research_period')->nullable()->default(null);
             $table->string('research_format')->nullable()->default(null);

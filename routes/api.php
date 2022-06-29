@@ -50,7 +50,9 @@ Route::controller(ParameterController::class)->group(function () {
 });
 
 Route::controller(DashBoardController::class)->group(function () {
-    Route::get('/dashboard', 'fetch');
+    Route::get('/dashboard', 'fetchDashboard');
+    Route::get('/search-research', 'fetchSearch');
+    Route::get('/search-research/{id}', 'fetchSearchById');
 });
 
 Route::controller(ResearchController::class)->group(function () {

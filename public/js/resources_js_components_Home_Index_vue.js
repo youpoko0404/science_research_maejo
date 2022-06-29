@@ -191,9 +191,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Research",
   props: {
-    research: Array
+    research: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
   },
-  components: {},
   data: function data() {
     return {
       page: 1,
@@ -208,31 +212,11 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: "ชื่อผลงาน",
         align: "start",
-        sortable: false,
-        value: "name"
+        value: "research_name"
       }, {
         text: "ชื่อผู้แต่ง",
         align: "start",
-        sortable: false,
-        value: "calories",
-        width: "400px"
-      }],
-      items: [{
-        id: 1,
-        name: "Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt",
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: "1%"
-      }, {
-        id: 2,
-        name: "Ice cream sandwich",
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: "1%"
+        value: "calories"
       }]
     };
   },
@@ -265,6 +249,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Chart_BarChart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Components/Chart/BarChart */ "./resources/js/Components/Chart/BarChart.vue");
 /* harmony import */ var _Components_Home_Research__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Home/Research */ "./resources/js/Components/Home/Research.vue");
 /* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -290,10 +281,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
+
 
 
 
@@ -305,17 +293,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      loading: false,
       checkResearch: false,
-      query_param: "",
-      item: []
+      query_param: ""
     };
   },
   created: function created() {
     if (this.$route.query.q) {
       this.query_param = this.$route.query.q;
+      this.fetchSearchResearch(this.$route.query.q);
     }
   },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
+    loading: function loading(state) {
+      return state.dashboard.loading;
+    },
+    search_research: function search_research(state) {
+      return state.dashboard.search_research;
+    }
+  })),
   methods: {
     heddleOnClickSearch: function heddleOnClickSearch() {
       this.$router.replace({
@@ -323,6 +318,13 @@ __webpack_require__.r(__webpack_exports__);
           q: this.query_param
         }
       }, function () {});
+
+      if (this.query_param) {
+        this.fetchSearchResearch(this.query_param);
+      }
+    },
+    fetchSearchResearch: function fetchSearchResearch(q) {
+      this.$store.dispatch("dashboard/fetchSearchResearch", q);
     }
   }
 });
@@ -14467,13 +14469,19 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("p", [_vm._v("ผลการค้นหา " + _vm._s("3") + " รายการ")]),
+      _c("p", [
+        _vm._v(
+          "ผลการค้นหา " +
+            _vm._s(_vm.research ? _vm.research.length : 0) +
+            " รายการ"
+        ),
+      ]),
       _vm._v(" "),
       _c("v-data-table", {
         staticClass: "elevation-1 row-pointer",
         attrs: {
           headers: _vm.headers,
-          items: _vm.items,
+          items: _vm.research ? _vm.research : [],
           page: _vm.page,
           "items-per-page": _vm.itemsPerPage,
           "hide-default-footer": "",
@@ -14612,7 +14620,7 @@ var render = function () {
               }),
               _vm._v(" "),
               this.$route.query.q
-                ? [_c("Research", { attrs: { research: _vm.item } })]
+                ? [_c("Research", { attrs: { research: _vm.search_research } })]
                 : [_c("BarChart")],
             ],
             2

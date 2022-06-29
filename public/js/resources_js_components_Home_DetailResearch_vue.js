@@ -35,22 +35,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -62,18 +46,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     loading: function loading(state) {
-      return state.parameter.loading;
+      return state.dashboard.loading;
     },
-    parameter: function parameter(state) {
-      return state.parameter;
+    search_research_by_id: function search_research_by_id(state) {
+      return state.dashboard.search_research_by_id;
     }
   })),
   created: function created() {
-    this.fetchParameter(['branch_group', 'test']);
+    this.fetchParameter(this.$route.query.id);
   },
   methods: {
-    fetchParameter: function fetchParameter(group_name) {
-      this.$store.dispatch("parameter/fetchParameter", group_name);
+    fetchParameter: function fetchParameter(id) {
+      if (id) {
+        this.$store.dispatch("dashboard/fetchSearchResearchById", id);
+      }
     }
   }
 });
@@ -169,79 +155,29 @@ var render = function () {
     [
       _c("Loading", { attrs: { loading: _vm.loading } }),
       _vm._v(" "),
-      _c("v-select", {
-        attrs: {
-          items: _vm.parameter.branch_group,
-          "item-text": "value_ref",
-          "item-value": "value",
-          label: "branch_group",
-        },
-      }),
-      _vm._v(" "),
-      _c("v-select", {
-        attrs: {
-          items: _vm.parameter.test,
-          "item-text": "value_ref",
-          "item-value": "value",
-          label: "test",
-        },
-      }),
-      _vm._v(" "),
-      _c(
-        "v-container",
-        [
-          _c(
-            "v-row",
-            { attrs: { justify: "space-between" } },
+      !_vm.loading
+        ? _c(
+            "v-container",
             [
-              _c("v-col", [
-                _c("p", { staticClass: "h3" }, [_vm._v("รายละเอียดงานวิจัย")]),
-              ]),
-              _vm._v(" "),
               _c(
-                "v-col",
+                "v-row",
+                { attrs: { justify: "space-between" } },
                 [
-                  _c(
-                    "v-row",
-                    [
-                      _c("v-col", { attrs: { cols: "10 text-right" } }, [
-                        _c("div", [
-                          _vm._v("หากท่านต้องการลบงานวิจัยนี้ออกจากระบบ"),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v(
-                            "\n              (หากลบงานวิจัยใด ๆ\n              ออกจากระบบแล้วจะไม่สามารถเรียกข้อมูลงานวิจัยนั้นกลับมาได้อีก)\n            "
-                          ),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "2" } },
-                        [
-                          _c("v-btn", { attrs: { color: "error", dark: "" } }, [
-                            _vm._v("ลบงานวิจัยนี้"),
-                          ]),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
+                  _c("v-col", [
+                    _c("p", { staticClass: "h3" }, [
+                      _vm._v("รายละเอียดงานวิจัย"),
+                    ]),
+                  ]),
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v("\n    " + _vm._s(_vm.search_research_by_id) + "\n  "),
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c("v-row", [_vm._v(" ฟหกฟ ")]),
-        ],
-        1
-      ),
+          )
+        : _vm._e(),
     ],
     1
   )

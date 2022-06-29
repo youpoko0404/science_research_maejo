@@ -16,7 +16,8 @@
                   <v-text-field prepend-icon="person" v-model="email" name="email" label="Email" type="text"
                     placeholder=" " persistent-placeholder></v-text-field>
                   <v-text-field id="password" v-model="password" prepend-icon="lock" name="password" label="Password"
-                    type="password" placeholder=" " persistent-placeholder></v-text-field>
+                    v-on:keyup.enter="login()" type="password" placeholder=" " persistent-placeholder>
+                  </v-text-field>
                 </v-card-text>
                 <v-layout justify-center>
                   <v-card-actions class="mb-4">

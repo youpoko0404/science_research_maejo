@@ -5,18 +5,14 @@
       <p class="h3">ข้อมูลงานวิจัย</p>
       <v-divider></v-divider>
       <v-row>
-        <v-text-field
-          label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
-          solo
-          v-model="query_param"
-          v-on:keyup.enter="heddleOnClickSearch"
-        >
+        <v-text-field label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย" solo
+          v-model="query_param" v-on:keyup.enter="heddleOnClickSearch">
           <template v-slot:append>
             <v-btn color="primary" @click="heddleOnClickSearch"> SEARCH </v-btn>
           </template>
         </v-text-field>
         <template v-if="this.$route.query.q">
-          <Research :research="item" />
+          <Research :research="search_research" />
         </template>
         <template v-else>
           <BarChart />
@@ -31,6 +27,7 @@
 import BarChart from "../../Components/Chart/BarChart";
 import Research from "../../Components/Home/Research";
 import Loading from "../../Components/Loading/Loading";
+import { mapState } from "vuex";
 export default {
   components: {
     BarChart,
@@ -38,15 +35,20 @@ export default {
     Loading,
   },
   data: () => ({
-    loading: false,
     checkResearch: false,
     query_param: "",
-    item: [],
   }),
   created() {
     if (this.$route.query.q) {
       this.query_param = this.$route.query.q;
+      this.fetchSearchResearch(this.$route.query.q)
     }
+  },
+  computed: {
+    ...mapState({
+      loading: (state) => state.dashboard.loading,
+      search_research: (state) => state.dashboard.search_research,
+    }),
   },
   methods: {
     heddleOnClickSearch() {
@@ -56,9 +58,15 @@ export default {
             q: this.query_param,
           },
         },
-        () => {}
+        () => { }
       );
+      if (this.query_param) {
+        this.fetchSearchResearch(this.query_param)
+      }
     },
+    fetchSearchResearch(q) {
+      this.$store.dispatch("dashboard/fetchSearchResearch", q)
+    }
   },
 };
 </script>

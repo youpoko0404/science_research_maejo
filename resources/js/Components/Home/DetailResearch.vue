@@ -1,30 +1,14 @@
 <template>
   <div>
     <Loading :loading="loading" />
-    <v-select :items="parameter.branch_group" item-text="value_ref" item-value="value" label="branch_group"></v-select>
-    <v-select :items="parameter.test" item-text="value_ref" item-value="value" label="test"></v-select>
-    <v-container>
+    <v-container v-if="!loading">
       <v-row justify="space-between">
         <v-col>
           <p class="h3">รายละเอียดงานวิจัย</p>
         </v-col>
-        <v-col>
-          <v-row>
-            <v-col cols="10 text-right">
-              <div>หากท่านต้องการลบงานวิจัยนี้ออกจากระบบ</div>
-              <div>
-                (หากลบงานวิจัยใด ๆ
-                ออกจากระบบแล้วจะไม่สามารถเรียกข้อมูลงานวิจัยนั้นกลับมาได้อีก)
-              </div>
-            </v-col>
-            <v-col cols="2">
-              <v-btn color="error" dark>ลบงานวิจัยนี้</v-btn>
-            </v-col>
-          </v-row>
-        </v-col>
       </v-row>
       <v-divider></v-divider>
-      <v-row> ฟหกฟ </v-row>
+      {{ search_research_by_id }}
     </v-container>
   </div>
 </template>
@@ -41,17 +25,19 @@ export default {
   }),
   computed: {
     ...mapState({
-      loading: (state) => state.parameter.loading,
-      parameter: (state) => state.parameter,
+      loading: (state) => state.dashboard.loading,
+      search_research_by_id: (state) => state.dashboard.search_research_by_id,
     }),
   },
   created() {
-    this.fetchParameter(['branch_group', 'test'])
+    this.fetchParameter(this.$route.query.id)
   },
 
   methods: {
-    fetchParameter(group_name) {
-      this.$store.dispatch("parameter/fetchParameter", group_name)
+    fetchParameter(id) {
+      if (id) {
+        this.$store.dispatch("dashboard/fetchSearchResearchById", id)
+      }
     },
   },
 };

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class DashBoardController extends Controller
 {
-    public function fetch()
+    public function fetchDashboard()
     {
         $collection = collect();
         $branch_group = Parameter::where([
@@ -35,6 +35,41 @@ class DashBoardController extends Controller
             'success' => true,
             'message' => 'Successfully',
             'payload' =>  $collection
+        ], 200);
+    }
+
+    public function fetchSearchById($id)
+    {
+        $research = Researchs::find($id);
+        if ($research) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $research
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Not found',
+                'payload' =>  null
+            ], 404);
+        }
+    }
+
+    public function fetchSearch(Request $request)
+    {
+        $q = $request->q;
+
+        $result = Researchs::where([
+            ['research_name', 'LIKE', '%' . $q . '%'],
+            ['university_code', 'LIKE', '%' . $q . '%'],
+            ['is_deleted', '=', 0]
+        ])->orderBy('created_at')->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Successfully',
+            'payload' =>  $result
         ], 200);
     }
 }

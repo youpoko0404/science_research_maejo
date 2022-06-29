@@ -5311,6 +5311,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -5958,6 +5959,16 @@ var API_PATH = "/api";
 var DashboardService = {
   fetchDashboard: function fetchDashboard() {
     return httpRequest.get("".concat(API_PATH, "/dashboard"));
+  },
+  fetchSearchResearch: function fetchSearchResearch(q) {
+    return httpRequest.get("".concat(API_PATH, "/search-research"), {
+      params: {
+        q: q
+      }
+    });
+  },
+  fetchSearchResearchById: function fetchSearchResearchById(id) {
+    return httpRequest.get("".concat(API_PATH, "/search-research/").concat(id));
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DashboardService);
@@ -6191,8 +6202,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   dashboard: null,
-  loading: false,
-  to: "123"
+  search_research: null,
+  search_research_by_id: null,
+  loading: false
 };
 var getters = {};
 var actions = {
@@ -6204,7 +6216,7 @@ var actions = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                state.loading = true;
+                commit("LOADING_SET", true);
                 _context.next = 3;
                 return _Service_Dashboard_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchDashboard().then(function (response) {
                   if (response.data.success) {
@@ -6216,7 +6228,7 @@ var actions = {
                 });
 
               case 3:
-                state.loading = false;
+                commit("LOADING_SET", false);
 
               case 4:
               case "end":
@@ -6230,11 +6242,90 @@ var actions = {
         return _ref2.apply(this, arguments);
       };
     }());
+  },
+  fetchSearchResearch: function fetchSearchResearch(_ref3, q) {
+    var commit = _ref3.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context2.next = 3;
+                return _Service_Dashboard_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchSearchResearch(q).then(function (response) {
+                  if (response.data.success) {
+                    commit("SEARCH_RESEARCH_SET", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x3, _x4) {
+        return _ref4.apply(this, arguments);
+      };
+    }());
+  },
+  fetchSearchResearchById: function fetchSearchResearchById(_ref5, id) {
+    var commit = _ref5.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context3.next = 3;
+                return _Service_Dashboard_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchSearchResearchById(id).then(function (response) {
+                  if (response.data.success) {
+                    commit("SEARCH_RESEARCH_BY_ID_SET", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x5, _x6) {
+        return _ref6.apply(this, arguments);
+      };
+    }());
   }
 };
 var mutations = {
   DASHBOARD_SET: function DASHBOARD_SET(state, response) {
     state.dashboard = response;
+  },
+  SEARCH_RESEARCH_SET: function SEARCH_RESEARCH_SET(state, response) {
+    state.search_research = response;
+  },
+  SEARCH_RESEARCH_BY_ID_SET: function SEARCH_RESEARCH_BY_ID_SET(state, response) {
+    state.search_research_by_id = response;
+  },
+  LOADING_SET: function LOADING_SET(state, response) {
+    state.loading = response;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -43727,6 +43818,23 @@ var render = function () {
                                       type: "password",
                                       placeholder: " ",
                                       "persistent-placeholder": "",
+                                    },
+                                    on: {
+                                      keyup: function ($event) {
+                                        if (
+                                          !$event.type.indexOf("key") &&
+                                          _vm._k(
+                                            $event.keyCode,
+                                            "enter",
+                                            13,
+                                            $event.key,
+                                            "Enter"
+                                          )
+                                        ) {
+                                          return null
+                                        }
+                                        return _vm.login()
+                                      },
                                     },
                                     model: {
                                       value: _vm.password,

@@ -683,9 +683,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -698,6 +695,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       valid: false,
       editedIndex: -1,
       dialog: {
+        dialogDelete: false,
         dialog_part_2: false,
         dialog_part_10: false
       },
@@ -811,6 +809,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     fetchParameter: function fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+    deleteItemConfirm: function deleteItemConfirm(id) {
+      if (id) {
+        this.$store.dispatch("research/delete", id).then(function (response) {
+          if (response.success) {
+            window.location.href = "/my-research";
+          }
+        });
+      }
     },
     fetchResearchById: function fetchResearchById(id) {
       var _this = this;
@@ -1171,7 +1178,14 @@ var render = function () {
                                   [
                                     _c(
                                       "v-btn",
-                                      { attrs: { color: "error", dark: "" } },
+                                      {
+                                        attrs: { color: "error", dark: "" },
+                                        on: {
+                                          click: function ($event) {
+                                            _vm.dialog.dialogDelete = true
+                                          },
+                                        },
+                                      },
                                       [_vm._v("ลบงานวิจัยนี้")]
                                     ),
                                   ],
@@ -3612,25 +3626,21 @@ var render = function () {
           _c(
             "v-dialog",
             {
-              attrs: { width: "300" },
+              attrs: { "max-width": "500px" },
               model: {
-                value: _vm.valid,
+                value: _vm.dialog.dialogDelete,
                 callback: function ($$v) {
-                  _vm.valid = $$v
+                  _vm.$set(_vm.dialog, "dialogDelete", $$v)
                 },
-                expression: "valid",
+                expression: "dialog.dialogDelete",
               },
             },
             [
               _c(
                 "v-card",
                 [
-                  _c("v-card-title", { staticClass: "grey lighten-2 mb-2" }, [
-                    _vm._v(" แจ้งเตือน "),
-                  ]),
-                  _vm._v(" "),
-                  _c("v-card-text", [
-                    _vm._v("\n          กรุณากรอกข้อมูลให้ครบ\n        "),
+                  _c("v-card-title", [
+                    _vm._v("คุณยืนยันที่จะลบข้อมูลงานวิจัยนี้"),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -3641,15 +3651,30 @@ var render = function () {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "primary", text: "" },
+                          attrs: { color: "blue darken-1", text: "" },
                           on: {
                             click: function ($event) {
-                              _vm.valid = false
+                              _vm.dialog.dialogDelete = false
                             },
                           },
                         },
-                        [_vm._v("\n            ตกลง\n          ")]
+                        [_vm._v("ยกเลิก")]
                       ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", text: "" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteItemConfirm(_vm.research_id)
+                            },
+                          },
+                        },
+                        [_vm._v("ตกลง")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer"),
                     ],
                     1
                   ),

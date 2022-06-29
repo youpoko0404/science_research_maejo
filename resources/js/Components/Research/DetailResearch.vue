@@ -23,7 +23,7 @@
                   </div>
                 </v-col>
                 <v-col cols="2">
-                  <v-btn color="error" dark>ลบงานวิจัยนี้</v-btn>
+                  <v-btn color="error" dark @click="dialog.dialogDelete = true">ลบงานวิจัยนี้</v-btn>
                 </v-col>
               </v-row>
             </v-col>
@@ -633,17 +633,14 @@
     </div>
 
     <div class="text-center">
-      <v-dialog v-model="valid" width="300">
+      <v-dialog v-model="dialog.dialogDelete" max-width="500px">
         <v-card>
-          <v-card-title class="grey lighten-2 mb-2"> แจ้งเตือน </v-card-title>
-          <v-card-text>
-            กรุณากรอกข้อมูลให้ครบ
-          </v-card-text>
+          <v-card-title>คุณยืนยันที่จะลบข้อมูลงานวิจัยนี้</v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="valid = false">
-              ตกลง
-            </v-btn>
+            <v-btn color="blue darken-1" text @click="dialog.dialogDelete = false">ยกเลิก</v-btn>
+            <v-btn color="blue darken-1" text @click="deleteItemConfirm(research_id)">ตกลง</v-btn>
+            <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -664,6 +661,7 @@ export default {
     valid: false,
     editedIndex: -1,
     dialog: {
+      dialogDelete: false,
       dialog_part_2: false,
       dialog_part_10: false,
     },
@@ -765,6 +763,16 @@ export default {
   methods: {
     fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+
+    deleteItemConfirm(id) {
+      if (id) {
+        this.$store.dispatch("research/delete", id).then((response) => {
+          if (response.success) {
+            window.location.href = `/my-research`
+          }
+        });
+      }
     },
 
     fetchResearchById(id) {

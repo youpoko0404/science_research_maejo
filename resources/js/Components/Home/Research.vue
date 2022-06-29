@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>ผลการค้นหา {{ "3" }} รายการ</p>
-    <v-data-table :headers="headers" :items="items" :page.sync="page" :items-per-page="itemsPerPage" hide-default-footer
-      @click:row="heddleOnClick" class="elevation-1 row-pointer" @page-count="pageCount = $event">
+    <p>ผลการค้นหา {{ research ? research.length : 0 }} รายการ</p>
+    <v-data-table :headers="headers" :items="research ? research : []" :page.sync="page" :items-per-page="itemsPerPage"
+      hide-default-footer @click:row="heddleOnClick" class="elevation-1 row-pointer" @page-count="pageCount = $event">
       <template v-slot:[`item.index`]="{ index }">
         {{ index + 1 }}
       </template>
@@ -18,9 +18,11 @@
 export default {
   name: "Research",
   props: {
-    research: Array,
+    research: {
+      type: Array,
+      default: () => [],
+    },
   },
-  components: {},
   data() {
     return {
       page: 1,
@@ -37,35 +39,12 @@ export default {
         {
           text: "ชื่อผลงาน",
           align: "start",
-          sortable: false,
-          value: "name",
+          value: "research_name",
         },
         {
           text: "ชื่อผู้แต่ง",
           align: "start",
-          sortable: false,
           value: "calories",
-          width: "400px",
-        },
-      ],
-      items: [
-        {
-          id: 1,
-          name: "Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: "1%",
-        },
-        {
-          id: 2,
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: "1%",
         },
       ],
     };
