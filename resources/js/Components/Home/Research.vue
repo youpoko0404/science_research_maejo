@@ -6,6 +6,9 @@
       <template v-slot:[`item.index`]="{ index }">
         {{ index + 1 }}
       </template>
+      <template v-slot:[`item.name`]="{ item }">
+        {{ item.part_2.map(e => { return e.name }).join(", ") }}
+      </template>
       <template v-slot:no-data> ไม่พบผลการค้นหา </template>
     </v-data-table>
     <div class="text-center pt-2">
@@ -34,17 +37,19 @@ export default {
           align: "center",
           sortable: false,
           value: "index",
-          width: "100px",
+          width: "5%",
         },
         {
           text: "ชื่อผลงาน",
           align: "start",
           value: "research_name",
+          width: "70%",
         },
         {
           text: "ชื่อผู้แต่ง",
           align: "start",
-          value: "calories",
+          value: "name",
+          width: "25%",
         },
       ],
     };

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ResearchUsers;
 
 class Researchs extends Model
 {
@@ -35,4 +36,9 @@ class Researchs extends Model
         "created_at",
         "updated_at"
     ];
+
+    public function research_users()
+    {
+        return $this->belongsToMany(ResearchUsers::class, 'researchs', 'id', 'id');
+    }
 }

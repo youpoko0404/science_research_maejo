@@ -188,6 +188,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Research",
   props: {
@@ -208,15 +211,17 @@ __webpack_require__.r(__webpack_exports__);
         align: "center",
         sortable: false,
         value: "index",
-        width: "100px"
+        width: "5%"
       }, {
         text: "ชื่อผลงาน",
         align: "start",
-        value: "research_name"
+        value: "research_name",
+        width: "70%"
       }, {
         text: "ชื่อผู้แต่ง",
         align: "start",
-        value: "calories"
+        value: "name",
+        width: "25%"
       }]
     };
   },
@@ -14502,6 +14507,25 @@ var render = function () {
               fn: function (ref) {
                 var index = ref.index
                 return [_vm._v("\n      " + _vm._s(index + 1) + "\n    ")]
+              },
+            },
+            {
+              key: "item.name",
+              fn: function (ref) {
+                var item = ref.item
+                return [
+                  _vm._v(
+                    "\n      " +
+                      _vm._s(
+                        item.part_2
+                          .map(function (e) {
+                            return e.name
+                          })
+                          .join(", ")
+                      ) +
+                      "\n    "
+                  ),
+                ]
               },
             },
             {

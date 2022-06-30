@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading :loading="loading" />
+    <Loading :loading="loading || loadingUser" />
     <v-container>
       <v-form ref="request" lazy-validation>
         <v-row justify="space-between">
@@ -454,7 +454,6 @@
         </div>
       </v-form>
     </v-container>
-
     <div class="text-center">
       <v-dialog v-model="dialog.dialog_part_2" width="900">
         <v-form ref="form_part_2">
@@ -503,7 +502,7 @@
                   <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field color="green darken-3" v-model="part_2.part_2_responsibility"
+                  <v-text-field type="number" color="green darken-3" v-model="part_2.part_2_responsibility"
                     label="ร้อยละความรับผิดชอบ" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
@@ -698,7 +697,7 @@ export default {
       part_2_structure: "",
       part_2_branch: "",
       part_2_position: "",
-      part_2_responsibility: "",
+      part_2_responsibility: 0,
     },
     part_10: {
       part_10_type: "",
@@ -739,6 +738,8 @@ export default {
     ...mapState({
       loading: (state) => state.parameter.loading,
       parameter: (state) => state.parameter,
+      user: (state) => state.auth.user,
+      loadingUser: (state) => state.auth.loading,
     }),
     research_id() {
       return this.$route.query.id;
@@ -748,7 +749,6 @@ export default {
   created() {
     this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
     this.fetchResearchById(this.$route.query.id)
-
   },
 
   watch: {
@@ -850,6 +850,7 @@ export default {
     },
 
     onClickSave() {
+      console.log(this.request.part_2)
       let formData = new FormData();
       formData.append("research_name", this.request.research_name);
       formData.append("university_code", this.request.university_code);
@@ -862,7 +863,7 @@ export default {
       formData.append("research_status", this.request.research_status);
       formData.append("research_project_type", this.request.research_project_type);
       formData.append("research_nature", this.request.research_nature);
-      formData.append("part_2", this.request.part_2);
+      formData.append("part_2", JSON.stringify(this.request.part_2));
       formData.append("part_3", this.request.part_3);
       formData.append("part_4", this.request.part_4);
       formData.append("part_5", this.request.part_5);

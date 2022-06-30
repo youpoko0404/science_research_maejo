@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Researchs;
+use App\Models\ResearchUsers;
 
 class ResearchController extends Controller
 {
@@ -65,6 +66,19 @@ class ResearchController extends Controller
                 'ref_file' => $this->uploadFile($request->file('ref_file'), $research->id)['name'] ?? null,
             ]
         );
+
+        if ($request->part_2) {
+            foreach (json_decode($request->part_2) as $research_user) {
+                $researchUsersModels = new ResearchUsers;
+                $researchUsersModels->research_id = $research->id;
+                $researchUsersModels->name = $research_user->part_2_name;
+                $researchUsersModels->agency = $research_user->part_2_structure;
+                $researchUsersModels->branch = $research_user->part_2_branch;
+                $researchUsersModels->research_position = $research_user->part_2_position;
+                $researchUsersModels->percen_responsibility = $research_user->part_2_responsibility;
+                $researchUsersModels->save();
+            }
+        }
 
         return response()->json([
             'success' => true,

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Parameter;
 use App\Models\Researchs;
+use App\Models\ResearchUsers;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
@@ -60,16 +62,33 @@ class DashBoardController extends Controller
     {
         $q = $request->q;
 
-        $result = Researchs::where([
-            ['research_name', 'LIKE', '%' . $q . '%'],
-            ['university_code', 'LIKE', '%' . $q . '%'],
-            ['is_deleted', '=', 0]
-        ])->orderBy('created_at')->get();
+        $results = Researchs::where('is_deleted', '=', 0)
+            ->orderBy('created_at')
+            ->get();
+
+        foreach ($results as $result) {
+            $researchs_user = ResearchUsers::where('research_id', '=', $result->id)->get();
+            $result['part_2'] = $researchs_user;
+        }
+
+        $collection = collect($results);
+
+        $filtered = $collection->filter(function ($value, $key) use ($q) {
+            $filtered_arr = array_filter(
+                json_decode($value->part_2),
+                function ($obj) use ($q) {
+                    return str_contains(strtolower($obj->name), strtolower($q));
+                }
+            );
+            return str_contains(strtolower($value->research_name), strtolower($q)) || str_contains(strtolower($value->university_code), strtolower($q)) || $filtered_arr;
+        });
+
+        $filtered->all();
 
         return response()->json([
             'success' => true,
             'message' => 'Successfully',
-            'payload' =>  $result
+            'payload' =>  $filtered
         ], 200);
     }
 }

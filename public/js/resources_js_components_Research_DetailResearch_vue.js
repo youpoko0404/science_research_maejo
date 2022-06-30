@@ -682,7 +682,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -732,7 +731,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         part_2_structure: "",
         part_2_branch: "",
         part_2_position: "",
-        part_2_responsibility: ""
+        part_2_responsibility: 0
       },
       part_10: {
         part_10_type: "",
@@ -788,6 +787,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     parameter: function parameter(state) {
       return state.parameter;
+    },
+    user: function user(state) {
+      return state.auth.user;
+    },
+    loadingUser: function loadingUser(state) {
+      return state.auth.loading;
     }
   })), {}, {
     research_id: function research_id() {
@@ -902,6 +907,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     onClickSave: function onClickSave() {
+      console.log(this.request.part_2);
       var formData = new FormData();
       formData.append("research_name", this.request.research_name);
       formData.append("university_code", this.request.university_code);
@@ -914,7 +920,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData.append("research_status", this.request.research_status);
       formData.append("research_project_type", this.request.research_project_type);
       formData.append("research_nature", this.request.research_nature);
-      formData.append("part_2", this.request.part_2);
+      formData.append("part_2", JSON.stringify(this.request.part_2));
       formData.append("part_3", this.request.part_3);
       formData.append("part_4", this.request.part_4);
       formData.append("part_5", this.request.part_5);
@@ -1120,7 +1126,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("Loading", { attrs: { loading: _vm.loading } }),
+      _c("Loading", { attrs: { loading: _vm.loading || _vm.loadingUser } }),
       _vm._v(" "),
       _c(
         "v-container",
@@ -3027,6 +3033,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
+                                      type: "number",
                                       color: "green darken-3",
                                       label: "ร้อยละความรับผิดชอบ",
                                       rules: _vm.rules.required,
