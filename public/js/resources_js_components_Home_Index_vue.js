@@ -87,11 +87,11 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
     },
     width: {
       type: Number,
-      "default": 400
+      "default": 500
     },
     height: {
       type: Number,
-      "default": 400
+      "default": 500
     },
     cssClasses: {
       "default": "",
@@ -172,6 +172,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
 //
 //
 //
@@ -14507,6 +14511,17 @@ var render = function () {
               fn: function (ref) {
                 var index = ref.index
                 return [_vm._v("\n      " + _vm._s(index + 1) + "\n    ")]
+              },
+            },
+            {
+              key: "item.research_name",
+              fn: function (ref) {
+                var item = ref.item
+                return [
+                  _vm._v("\n      " + _vm._s(item.research_name_th)),
+                  _c("br"),
+                  _vm._v("\n      " + _vm._s(item.research_name_en) + "\n    "),
+                ]
               },
             },
             {

@@ -15,6 +15,10 @@
           <template v-slot:[`item.index`]="{ index }">
             {{ index + 1 }}
           </template>
+          <template v-slot:[`item.research_name`]="{ item }">
+            {{ item.research_name_th }}<br />
+            {{ item.research_name_en }}
+          </template>
           <template v-slot:[`item.edit`]="{ item }">
             <v-btn color="warning" dark @click="heddleOnClickButton(item.id)">แก้ไข</v-btn>
           </template>

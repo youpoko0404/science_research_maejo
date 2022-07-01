@@ -11,7 +11,9 @@ class Researchs extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'research_name',
+        'research_name_th',
+        'research_name_en',
+        'research_code',
         'university_code',
         'research_period',
         'research_format',

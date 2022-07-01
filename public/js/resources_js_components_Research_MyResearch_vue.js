@@ -50,6 +50,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -256,6 +260,23 @@ var render = function () {
                         return [
                           _vm._v(
                             "\n          " + _vm._s(index + 1) + "\n        "
+                          ),
+                        ]
+                      },
+                    },
+                    {
+                      key: "item.research_name",
+                      fn: function (ref) {
+                        var item = ref.item
+                        return [
+                          _vm._v(
+                            "\n          " + _vm._s(item.research_name_th)
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(item.research_name_en) +
+                              "\n        "
                           ),
                         ]
                       },

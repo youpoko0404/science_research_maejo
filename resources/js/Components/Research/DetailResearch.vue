@@ -34,17 +34,28 @@
           <template v-if="research_id == 0">
             <v-row>
               <v-col cols="auto">
-                <v-subheader class="mt-2">ชื่อผลงานวิจัย : </v-subheader>
+                <v-subheader class="mt-2">ชื่อผลงานวิจัยภาษาไทย : </v-subheader>
               </v-col>
               <v-col>
-                <v-text-field label="ชื่อผลงานวิจัย" color="green darken-3" v-model="request.research_name"
+                <v-text-field label="ชื่อผลงานวิจัยภาษาไทย" color="green darken-3" v-model="request.research_name_th"
+                  :rules="rules.required" required>
+                </v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="auto">
+                <v-subheader class="mt-2">ชื่อผลงานวิจัยภาษาอังกฤษ : </v-subheader>
+              </v-col>
+              <v-col>
+                <v-text-field label="ชื่อผลงานวิจัยภาษาอังกฤษ" color="green darken-3" v-model="request.research_name_en"
                   :rules="rules.required" required>
                 </v-text-field>
               </v-col>
             </v-row>
           </template>
           <template v-else>
-            <p class="h3 ml-4">{{ request.research_name }}</p>
+            <p class="h3 ml-4">{{ request.research_name_th }}</p>
+            <p class="h4 ml-4">{{ request.research_name_en }}</p>
           </template>
           <v-row>
             <v-col cols="auto">
@@ -174,12 +185,12 @@
                         dialog.dialog_part_2 = true
                       }"> แก้ไข</v-btn>
                     </div>
-                    <v-subheader> {{ `ชื่อนักวิจัย : ${part_2.part_2_name || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `สังกัด : ${part_2.part_2_structure || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `สาขา : ${part_2.part_2_branch || '-- ไม่ระบุ --'}` }}</v-subheader>
-                    <v-subheader> {{ `ตำแหน่งงานวิจัย : ${part_2.part_2_position || '-- ไม่ระบุ --'}` }}
+                    <v-subheader> {{ `ชื่อนักวิจัย : ${part_2.name || '-- ไม่ระบุ --'}` }}</v-subheader>
+                    <v-subheader> {{ `สังกัด : ${part_2.agency || '-- ไม่ระบุ --'}` }}</v-subheader>
+                    <v-subheader> {{ `สาขา : ${part_2.branch || '-- ไม่ระบุ --'}` }}</v-subheader>
+                    <v-subheader> {{ `ตำแหน่งงานวิจัย : ${part_2.research_position || '-- ไม่ระบุ --'}` }}
                     </v-subheader>
-                    <v-subheader> {{ `ร้อยละความรับผิดชอบ : ${part_2.part_2_responsibility || '-- ไม่ระบุ --'}`
+                    <v-subheader> {{ `ร้อยละความรับผิดชอบ : ${part_2.percen_responsibility || '-- ไม่ระบุ --'}`
                     }}
                     </v-subheader>
                   </v-row>
@@ -333,10 +344,10 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 11 เอกสารประกอบงานวิจัย</p>
-            <v-btn color="primary"> เอกสารประกอบ </v-btn>
+            <v-btn color="primary" @click="$refs.part_11.$refs.input.click()"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input color="green darken-3" v-model="request.part_11" label="เอกสารประกอบงานวิจัย">
+            <v-file-input ref="part_11" color="green darken-3" v-model="request.part_11" label="เอกสารประกอบงานวิจัย">
             </v-file-input>
           </v-row>
         </div>
@@ -434,21 +445,22 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">แนบไฟล์เอกสารอ้างอิง</p>
-            <v-btn color="primary"> เอกสารประกอบ </v-btn>
+            <v-btn color="primary" @click="$refs.ref_file.$refs.input.click()"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input color="green darken-3" v-model="request.ref_file" label="เอกสารอ้างอิง"></v-file-input>
+            <v-file-input ref="ref_file" color="green darken-3" v-model="request.ref_file" label="เอกสารอ้างอิง">
+            </v-file-input>
           </v-row>
         </div>
         <div class="pa-4">
           <v-row>
             <v-btn color="primary" dark @click="() => {
-              onClickSave()
-              // if (this.$refs.request.validate()) {
-              //   onClickSave()
-              // } else {
-              //   valid = true
-              // }
+              // onClickSave()
+              if (this.$refs.request.validate()) {
+                onClickSave()
+              } else {
+                valid = true
+              }
             }">บันทึกงานวิจัย</v-btn>
           </v-row>
         </div>
@@ -465,7 +477,7 @@
                   <v-subheader class="mt-2">ชื่อนักวิจัย : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field color="green darken-3" v-model="part_2.part_2_name" label="ชื่อนักวิจัย"
+                  <v-text-field color="green darken-3" v-model="part_2.name" label="ชื่อนักวิจัย"
                     :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
@@ -475,16 +487,16 @@
                   <v-subheader class="mt-2">สังกัด : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field color="green darken-3" v-model="part_2.part_2_structure" label="สังกัด"
-                    :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_2.agency" label="สังกัด" :rules="rules.required"
+                    required>
                   </v-text-field>
                 </v-col>
                 <v-col cols="auto">
                   <v-subheader class="mt-2">สาขา : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field color="green darken-3" v-model="part_2.part_2_branch" label="สาขา"
-                    :rules="rules.required" required>
+                  <v-text-field color="green darken-3" v-model="part_2.branch" label="สาขา" :rules="rules.required"
+                    required>
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -493,7 +505,7 @@
                   <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field color="green darken-3" v-model="part_2.part_2_position" label="ตำแหน่งงานวิจัย"
+                  <v-text-field color="green darken-3" v-model="part_2.research_position" label="ตำแหน่งงานวิจัย"
                     :rules="rules.required" required></v-text-field>
                 </v-col>
               </v-row>
@@ -502,7 +514,7 @@
                   <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
                 </v-col>
                 <v-col>
-                  <v-text-field type="number" color="green darken-3" v-model="part_2.part_2_responsibility"
+                  <v-text-field type="number" color="green darken-3" v-model="part_2.percen_responsibility"
                     label="ร้อยละความรับผิดชอบ" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
@@ -644,6 +656,23 @@
         </v-card>
       </v-dialog>
     </div>
+
+    <div class="text-center">
+      <v-dialog v-model="valid" width="300">
+        <v-card>
+          <v-card-title class="grey lighten-2 mb-2"> แจ้งเตือน </v-card-title>
+          <v-card-text>
+            กรุณากรอกข้อมูลให้ครบ
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="valid = false">
+              ตกลง
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
   </div>
 </template>
 
@@ -665,7 +694,9 @@ export default {
       dialog_part_10: false,
     },
     request: {
-      research_name: "",
+      research_name_th: "",
+      research_name_en: "",
+      research_code: "",
       university_code: "",
       research_period: "",
       research_format: "",
@@ -693,11 +724,11 @@ export default {
       ref_file: null
     },
     part_2: {
-      part_2_name: "",
-      part_2_structure: "",
-      part_2_branch: "",
-      part_2_position: "",
-      part_2_responsibility: 0,
+      agency: "",
+      branch: "",
+      name: "",
+      percen_responsibility: 0,
+      research_position: "",
     },
     part_10: {
       part_10_type: "",
@@ -798,12 +829,9 @@ export default {
     },
 
     onClickPart_2() {
-      const part_2 = {
-        part_2_name: this.part_2.part_2_name,
-        part_2_structure: this.part_2.part_2_structure,
-        part_2_branch: this.part_2.part_2_branch,
-        part_2_position: this.part_2.part_2_position,
-        part_2_responsibility: this.part_2.part_2_responsibility,
+      const part_2 = {}
+      for (const [key, value] of Object.entries(this.part_2)) {
+        part_2[key] = value
       }
       if (this.editedIndex > -1) {
         Object.assign(this.request.part_2[this.editedIndex], this.part_2)
@@ -852,7 +880,9 @@ export default {
     onClickSave() {
       console.log(this.request.part_2)
       let formData = new FormData();
-      formData.append("research_name", this.request.research_name);
+      formData.append("research_name_th", this.request.research_name_th);
+      formData.append("research_name_en", this.request.research_name_en);
+      formData.append("research_code", this.request.research_code);
       formData.append("university_code", this.request.university_code);
       formData.append("research_period", this.request.research_period);
       formData.append("research_format", this.request.research_format);
@@ -881,7 +911,7 @@ export default {
       if (this.$route.query.id == 0) {
         this.$store.dispatch("research/save", formData).then((response) => {
           if (response.success) {
-            // window.location.href = `/detail-research?id=${response.payload}`;
+            window.location.href = `/detail-research?id=${response.payload}`;
           }
         });
       } else {
@@ -890,7 +920,7 @@ export default {
           research: formData
         }).then((response) => {
           if (response.success) {
-            // window.location.href = `/detail-research?id=${response.payload}`;
+            window.location.href = `/detail-research?id=${response.payload}`;
           }
         });
       }

@@ -5727,6 +5727,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Router_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Router/index */ "./resources/js/Router/index.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -5734,6 +5735,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5757,16 +5759,21 @@ var HttpRequest = /*#__PURE__*/function () {
       return response;
     }, function (error) {
       if (error.response === undefined) {
-        setTimeout(function () {// window.location.href ='/error500'
+        setTimeout(function () {
+          _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push('/error500'); // window.location.href ='/error500'
         });
       } else if (error.response.status === 401) {
         setTimeout(function () {// window.location.href ='/login'
         });
       } else if (error.response.status === 404) {
-        setTimeout(function () {// window.location.href = '/error404'
+        setTimeout(function () {
+          if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {
+            _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push('/');
+          }
         });
       } else if (error.response.status === 500) {
-        setTimeout(function () {// window.location.href = '/error500'
+        setTimeout(function () {
+          _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push('/error500'); // window.location.href = '/error500'
         });
       }
 

@@ -74,16 +74,20 @@ class DashBoardController extends Controller
         $collection = collect($results);
 
         $filtered = $collection->filter(function ($value, $key) use ($q) {
-            $filtered_arr = array_filter(
+            $filtered_name = array_filter(
                 json_decode($value->part_2),
                 function ($obj) use ($q) {
                     return str_contains(strtolower($obj->name), strtolower($q));
                 }
             );
-            return str_contains(strtolower($value->research_name), strtolower($q)) || str_contains(strtolower($value->university_code), strtolower($q)) || $filtered_arr;
-        });
+            return
+                str_contains(strtolower($value->research_code), strtolower($q)) ||
+                str_contains(strtolower($value->research_name_th), strtolower($q)) ||
+                str_contains(strtolower($value->research_name_en), strtolower($q)) ||
+                // str_contains(strtolower($value->university_code), strtolower($q)) ||
+                $filtered_name;
+        })->values();
 
-        $filtered->all();
 
         return response()->json([
             'success' => true,

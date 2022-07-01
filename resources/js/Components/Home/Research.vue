@@ -6,6 +6,10 @@
       <template v-slot:[`item.index`]="{ index }">
         {{ index + 1 }}
       </template>
+      <template v-slot:[`item.research_name`]="{ item }">
+        {{ item.research_name_th }}<br />
+        {{ item.research_name_en }}
+      </template>
       <template v-slot:[`item.name`]="{ item }">
         {{ item.part_2.map(e => { return e.name }).join(", ") }}
       </template>

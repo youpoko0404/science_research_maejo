@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../Router/index';
 class HttpRequest {
     axiosInstance
     constructor(url) {
@@ -24,6 +25,7 @@ class HttpRequest {
             (error) => {
                 if (error.response === undefined) {
                     setTimeout(() => {
+                        router.push('/error500');
                         // window.location.href ='/error500'
                     })
                 } else if (error.response.status === 401) {
@@ -32,10 +34,13 @@ class HttpRequest {
                     })
                 } else if (error.response.status === 404) {
                     setTimeout(() => {
-                        // window.location.href = '/error404'
+                        if (window.confirm(`มีบางอย่างผิดพลาด โปรดกด 'OK' เพื่อกลับไปยังหน้าแรก`)) {
+                            router.push('/');
+                        }
                     })
                 } else if (error.response.status === 500) {
                     setTimeout(() => {
+                        router.push('/error500');
                         // window.location.href = '/error500'
                     })
                 }

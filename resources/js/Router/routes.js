@@ -20,7 +20,6 @@ const routes = [{
         component: () =>
             import ("../components/Account/Account.vue"),
         meta: { title: "โปรไฟล์" },
-
     },
     {
         path: "/my-research",
@@ -28,7 +27,6 @@ const routes = [{
         component: () =>
             import ("../components/Research/MyResearch.vue"),
         meta: { title: "งานวิจัยของฉัน" },
-
     },
     {
         path: "/detail-research",
@@ -36,7 +34,6 @@ const routes = [{
         component: () =>
             import ("../components/Research/DetailResearch.vue"),
         meta: { title: "รายละเอียดงานวิจัย" },
-
     },
     {
         path: "/research",
@@ -44,7 +41,6 @@ const routes = [{
         component: () =>
             import ("../components/Home/DetailResearch.vue"),
         meta: { title: "รายละเอียดงานวิจัย" },
-
     },
 ];
 

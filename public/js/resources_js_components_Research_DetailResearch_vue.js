@@ -682,6 +682,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -699,7 +728,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dialog_part_10: false
       },
       request: {
-        research_name: "",
+        research_name_th: "",
+        research_name_en: "",
+        research_code: "",
         university_code: "",
         research_period: "",
         research_format: "",
@@ -727,11 +758,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         ref_file: null
       },
       part_2: {
-        part_2_name: "",
-        part_2_structure: "",
-        part_2_branch: "",
-        part_2_position: "",
-        part_2_responsibility: 0
+        agency: "",
+        branch: "",
+        name: "",
+        percen_responsibility: 0,
+        research_position: ""
       },
       part_10: {
         part_10_type: "",
@@ -853,13 +884,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     onClickPart_2: function onClickPart_2() {
-      var part_2 = {
-        part_2_name: this.part_2.part_2_name,
-        part_2_structure: this.part_2.part_2_structure,
-        part_2_branch: this.part_2.part_2_branch,
-        part_2_position: this.part_2.part_2_position,
-        part_2_responsibility: this.part_2.part_2_responsibility
-      };
+      var part_2 = {};
+
+      for (var _i2 = 0, _Object$entries2 = Object.entries(this.part_2); _i2 < _Object$entries2.length; _i2++) {
+        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+            key = _Object$entries2$_i[0],
+            value = _Object$entries2$_i[1];
+
+        part_2[key] = value;
+      }
 
       if (this.editedIndex > -1) {
         Object.assign(this.request.part_2[this.editedIndex], this.part_2);
@@ -909,7 +942,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     onClickSave: function onClickSave() {
       console.log(this.request.part_2);
       var formData = new FormData();
-      formData.append("research_name", this.request.research_name);
+      formData.append("research_name_th", this.request.research_name_th);
+      formData.append("research_name_en", this.request.research_name_en);
+      formData.append("research_code", this.request.research_code);
       formData.append("university_code", this.request.university_code);
       formData.append("research_period", this.request.research_period);
       formData.append("research_format", this.request.research_format);
@@ -938,7 +973,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.$route.query.id == 0) {
         this.$store.dispatch("research/save", formData).then(function (response) {
-          if (response.success) {// window.location.href = `/detail-research?id=${response.payload}`;
+          if (response.success) {
+            window.location.href = "/detail-research?id=".concat(response.payload);
           }
         });
       } else {
@@ -946,7 +982,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           id: this.$route.query.id,
           research: formData
         }).then(function (response) {
-          if (response.success) {// window.location.href = `/detail-research?id=${response.payload}`;
+          if (response.success) {
+            window.location.href = "/detail-research?id=".concat(response.payload);
           }
         });
       }
@@ -1224,7 +1261,7 @@ var render = function () {
                               { attrs: { cols: "auto" } },
                               [
                                 _c("v-subheader", { staticClass: "mt-2" }, [
-                                  _vm._v("ชื่อผลงานวิจัย : "),
+                                  _vm._v("ชื่อผลงานวิจัยภาษาไทย : "),
                                 ]),
                               ],
                               1
@@ -1235,21 +1272,64 @@ var render = function () {
                               [
                                 _c("v-text-field", {
                                   attrs: {
-                                    label: "ชื่อผลงานวิจัย",
+                                    label: "ชื่อผลงานวิจัยภาษาไทย",
                                     color: "green darken-3",
                                     rules: _vm.rules.required,
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name,
+                                    value: _vm.request.research_name_th,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name",
+                                        "research_name_th",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name",
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ชื่อผลงานวิจัยภาษาอังกฤษ : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ชื่อผลงานวิจัยภาษาอังกฤษ",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_en,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_en",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_en",
                                   },
                                 }),
                               ],
@@ -1261,7 +1341,11 @@ var render = function () {
                       ]
                     : [
                         _c("p", { staticClass: "h3 ml-4" }, [
-                          _vm._v(_vm._s(_vm.request.research_name)),
+                          _vm._v(_vm._s(_vm.request.research_name_th)),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "h4 ml-4" }, [
+                          _vm._v(_vm._s(_vm.request.research_name_en)),
                         ]),
                       ],
                   _vm._v(" "),
@@ -1777,7 +1861,7 @@ var render = function () {
                                             " " +
                                               _vm._s(
                                                 "ชื่อนักวิจัย : " +
-                                                  (part_2.part_2_name ||
+                                                  (part_2.name ||
                                                     "-- ไม่ระบุ --")
                                               )
                                           ),
@@ -1788,7 +1872,7 @@ var render = function () {
                                             " " +
                                               _vm._s(
                                                 "สังกัด : " +
-                                                  (part_2.part_2_structure ||
+                                                  (part_2.agency ||
                                                     "-- ไม่ระบุ --")
                                               )
                                           ),
@@ -1799,7 +1883,7 @@ var render = function () {
                                             " " +
                                               _vm._s(
                                                 "สาขา : " +
-                                                  (part_2.part_2_branch ||
+                                                  (part_2.branch ||
                                                     "-- ไม่ระบุ --")
                                               )
                                           ),
@@ -1810,7 +1894,7 @@ var render = function () {
                                             " " +
                                               _vm._s(
                                                 "ตำแหน่งงานวิจัย : " +
-                                                  (part_2.part_2_position ||
+                                                  (part_2.research_position ||
                                                     "-- ไม่ระบุ --")
                                               ) +
                                               "\n                  "
@@ -1822,7 +1906,7 @@ var render = function () {
                                             " " +
                                               _vm._s(
                                                 "ร้อยละความรับผิดชอบ : " +
-                                                  (part_2.part_2_responsibility ||
+                                                  (part_2.percen_responsibility ||
                                                     "-- ไม่ระบุ --")
                                               ) +
                                               "\n                  "
@@ -2464,9 +2548,18 @@ var render = function () {
                         _vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย"),
                       ]),
                       _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "primary" } }, [
-                        _vm._v(" เอกสารประกอบ "),
-                      ]),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$refs.part_11.$refs.input.click()
+                            },
+                          },
+                        },
+                        [_vm._v(" เอกสารประกอบ ")]
+                      ),
                     ],
                     1
                   ),
@@ -2475,6 +2568,7 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-file-input", {
+                        ref: "part_11",
                         attrs: {
                           color: "green darken-3",
                           label: "เอกสารประกอบงานวิจัย",
@@ -2752,9 +2846,18 @@ var render = function () {
                         _vm._v("แนบไฟล์เอกสารอ้างอิง"),
                       ]),
                       _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "primary" } }, [
-                        _vm._v(" เอกสารประกอบ "),
-                      ]),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$refs.ref_file.$refs.input.click()
+                            },
+                          },
+                        },
+                        [_vm._v(" เอกสารประกอบ ")]
+                      ),
                     ],
                     1
                   ),
@@ -2763,6 +2866,7 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-file-input", {
+                        ref: "ref_file",
                         attrs: {
                           color: "green darken-3",
                           label: "เอกสารอ้างอิง",
@@ -2795,12 +2899,12 @@ var render = function () {
                           attrs: { color: "primary", dark: "" },
                           on: {
                             click: function () {
-                              _vm.onClickSave()
-                              // if (this.$refs.request.validate()) {
-                              //   onClickSave()
-                              // } else {
-                              //   valid = true
-                              // }
+                              // onClickSave()
+                              if (this$1.$refs.request.validate()) {
+                                _vm.onClickSave()
+                              } else {
+                                _vm.valid = true
+                              }
                             },
                           },
                         },
@@ -2877,11 +2981,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_2.part_2_name,
+                                      value: _vm.part_2.name,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_2, "part_2_name", $$v)
+                                        _vm.$set(_vm.part_2, "name", $$v)
                                       },
-                                      expression: "part_2.part_2_name",
+                                      expression: "part_2.name",
                                     },
                                   }),
                                 ],
@@ -2916,15 +3020,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_2.part_2_structure,
+                                      value: _vm.part_2.agency,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_2,
-                                          "part_2_structure",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_2, "agency", $$v)
                                       },
-                                      expression: "part_2.part_2_structure",
+                                      expression: "part_2.agency",
                                     },
                                   }),
                                 ],
@@ -2953,15 +3053,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_2.part_2_branch,
+                                      value: _vm.part_2.branch,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_2,
-                                          "part_2_branch",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_2, "branch", $$v)
                                       },
-                                      expression: "part_2.part_2_branch",
+                                      expression: "part_2.branch",
                                     },
                                   }),
                                 ],
@@ -2996,15 +3092,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_2.part_2_position,
+                                      value: _vm.part_2.research_position,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.part_2,
-                                          "part_2_position",
+                                          "research_position",
                                           $$v
                                         )
                                       },
-                                      expression: "part_2.part_2_position",
+                                      expression: "part_2.research_position",
                                     },
                                   }),
                                 ],
@@ -3040,16 +3136,16 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_2.part_2_responsibility,
+                                      value: _vm.part_2.percen_responsibility,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.part_2,
-                                          "part_2_responsibility",
+                                          "percen_responsibility",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "part_2.part_2_responsibility",
+                                        "part_2.percen_responsibility",
                                     },
                                   }),
                                 ],
@@ -3682,6 +3778,64 @@ var render = function () {
                       ),
                       _vm._v(" "),
                       _c("v-spacer"),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "text-center" },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { width: "300" },
+              model: {
+                value: _vm.valid,
+                callback: function ($$v) {
+                  _vm.valid = $$v
+                },
+                expression: "valid",
+              },
+            },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", { staticClass: "grey lighten-2 mb-2" }, [
+                    _vm._v(" แจ้งเตือน "),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-card-text", [
+                    _vm._v("\n          กรุณากรอกข้อมูลให้ครบ\n        "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary", text: "" },
+                          on: {
+                            click: function ($event) {
+                              _vm.valid = false
+                            },
+                          },
+                        },
+                        [_vm._v("\n            ตกลง\n          ")]
+                      ),
                     ],
                     1
                   ),
