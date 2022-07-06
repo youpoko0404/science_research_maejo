@@ -11,9 +11,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Utili/dayJs */ "./resources/js/components/Utili/dayJs.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Utili_dayJs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utili/dayJs */ "./resources/js/components/Utili/dayJs.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Loading/Loading */ "./resources/js/Components/Loading/Loading.vue");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -711,12 +713,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -765,15 +771,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         research_position: ""
       },
       part_10: {
-        part_10_type: "",
-        part_10_source: "",
-        part_10_level: "",
-        part_10_year: "",
-        part_10_start_date: "",
-        part_10_end_date: "",
-        part_10_amount: 0,
-        part_10_description: "",
-        part_10_send: ""
+        type: "",
+        source: "",
+        level: "",
+        year: "",
+        start_date: "",
+        end_date: "",
+        amount: 0,
+        description: "",
+        send: ""
       },
       part_12: {},
       part_13: {},
@@ -812,7 +818,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
     loading: function loading(state) {
       return state.parameter.loading;
     },
@@ -836,10 +842,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   watch: {
     dateNow_date_1: function dateNow_date_1() {
-      this.part_10.part_10_start_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_1);
+      this.part_10.part_10_start_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_1__["default"].formatDate(this.dateNow_date_1);
     },
     dateNow_date_2: function dateNow_date_2() {
-      this.part_10.part_10_end_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_2);
+      this.part_10.part_10_end_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_1__["default"].formatDate(this.dateNow_date_2);
     }
   },
   methods: {
@@ -911,17 +917,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     onClickPart_10: function onClickPart_10() {
-      var part_10 = {
-        part_10_type: this.part_10.part_10_type,
-        part_10_source: this.part_10.part_10_source,
-        part_10_level: this.part_10.part_10_level,
-        part_10_year: this.part_10.part_10_year,
-        part_10_start_date: this.part_10.part_10_start_date,
-        part_10_end_date: this.part_10.part_10_end_date,
-        part_10_amount: this.part_10.part_10_amount,
-        part_10_description: this.part_10.part_10_description,
-        part_10_send: this.part_10.part_10_send
-      };
+      var part_10 = {};
+
+      for (var _i3 = 0, _Object$entries3 = Object.entries(this.part_10); _i3 < _Object$entries3.length; _i3++) {
+        var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
+            key = _Object$entries3$_i[0],
+            value = _Object$entries3$_i[1];
+
+        part_10[key] = value;
+      }
 
       if (this.editedIndex > -1) {
         Object.assign(this.request.part_10[this.editedIndex], this.part_10);
@@ -987,6 +991,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
       }
+    },
+    downloadFile: function downloadFile(item) {
+      var req = {
+        id: item.id,
+        filename: item.part_11.name
+      };
+      this.$store.dispatch("research/downloadFile", req).then(function (response) {
+        var blob = new Blob([response], {
+          type: 'application/pdf'
+        });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.target = '_blank';
+        link.click();
+      });
     }
   }
 });
@@ -2358,7 +2377,7 @@ var render = function () {
                                                     _vm.fetchParameterDATA(
                                                       _vm.parameter,
                                                       "funding_type_group",
-                                                      item.part_10_type
+                                                      item.type
                                                     ).value_ref
                                                   )
                                                 ),
@@ -2370,8 +2389,8 @@ var render = function () {
                                                   _vm._s(
                                                     _vm.fetchParameterDATA(
                                                       _vm.parameter,
-                                                      item.part_10_type,
-                                                      item.part_10_source
+                                                      item.type,
+                                                      item.source
                                                     ).value_ref
                                                   ) +
                                                   " "
@@ -2383,7 +2402,7 @@ var render = function () {
                                                     _vm.fetchParameterDATA(
                                                       _vm.parameter,
                                                       "funding_level_group",
-                                                      item.part_10_level
+                                                      item.level
                                                     ).value_ref
                                                   ) +
                                                   "\n                "
@@ -2398,19 +2417,15 @@ var render = function () {
                                             return [
                                               _vm._v(
                                                 "\n                  " +
-                                                  _vm._s(item.part_10_year) +
+                                                  _vm._s(item.year) +
                                                   " "
                                               ),
                                               _c("br"),
                                               _vm._v(
                                                 " " +
-                                                  _vm._s(
-                                                    item.part_10_start_date
-                                                  ) +
+                                                  _vm._s(item.start_date) +
                                                   " - " +
-                                                  _vm._s(
-                                                    item.part_10_end_date
-                                                  ) +
+                                                  _vm._s(item.end_date) +
                                                   "\n                "
                                               ),
                                             ]
@@ -2423,7 +2438,7 @@ var render = function () {
                                             return [
                                               _vm._v(
                                                 "\n                  " +
-                                                  _vm._s(item.part_10_amount) +
+                                                  _vm._s(item.amount) +
                                                   "\n                "
                                               ),
                                             ]
@@ -2473,7 +2488,7 @@ var render = function () {
                                       ],
                                       null,
                                       false,
-                                      3197536720
+                                      2883867472
                                     ),
                                   },
                                   [
@@ -2571,6 +2586,7 @@ var render = function () {
                         ref: "part_11",
                         attrs: {
                           color: "green darken-3",
+                          accept: "application/pdf",
                           label: "เอกสารประกอบงานวิจัย",
                         },
                         model: {
@@ -2869,6 +2885,7 @@ var render = function () {
                         ref: "ref_file",
                         attrs: {
                           color: "green darken-3",
+                          accept: "application/pdf",
                           label: "เอกสารอ้างอิง",
                         },
                         model: {
@@ -3262,15 +3279,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_type,
+                                      value: _vm.part_10.type,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_10,
-                                          "part_10_type",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_10, "type", $$v)
                                       },
-                                      expression: "part_10.part_10_type",
+                                      expression: "part_10.type",
                                     },
                                   }),
                                 ],
@@ -3284,8 +3297,7 @@ var render = function () {
                                   _c("v-select", {
                                     attrs: {
                                       color: "green darken-3",
-                                      items:
-                                        _vm.parameter[_vm.part_10.part_10_type],
+                                      items: _vm.parameter[_vm.part_10.type],
                                       "item-text": "value_ref",
                                       "item-value": "value",
                                       rules: _vm.rules.required,
@@ -3293,15 +3305,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_source,
+                                      value: _vm.part_10.source,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_10,
-                                          "part_10_source",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_10, "source", $$v)
                                       },
-                                      expression: "part_10.part_10_source",
+                                      expression: "part_10.source",
                                     },
                                   }),
                                 ],
@@ -3329,15 +3337,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_level,
+                                      value: _vm.part_10.level,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_10,
-                                          "part_10_level",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_10, "level", $$v)
                                       },
-                                      expression: "part_10.part_10_level",
+                                      expression: "part_10.level",
                                     },
                                   }),
                                 ],
@@ -3363,15 +3367,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_year,
+                                      value: _vm.part_10.year,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_10,
-                                          "part_10_year",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_10, "year", $$v)
                                       },
-                                      expression: "part_10.part_10_year",
+                                      expression: "part_10.year",
                                     },
                                   }),
                                 ],
@@ -3417,18 +3417,18 @@ var render = function () {
                                                       model: {
                                                         value:
                                                           _vm.part_10
-                                                            .part_10_start_date,
+                                                            .start_date,
                                                         callback: function (
                                                           $$v
                                                         ) {
                                                           _vm.$set(
                                                             _vm.part_10,
-                                                            "part_10_start_date",
+                                                            "start_date",
                                                             $$v
                                                           )
                                                         },
                                                         expression:
-                                                          "part_10.part_10_start_date",
+                                                          "part_10.start_date",
                                                       },
                                                     },
                                                     "v-text-field",
@@ -3512,19 +3512,18 @@ var render = function () {
                                                       },
                                                       model: {
                                                         value:
-                                                          _vm.part_10
-                                                            .part_10_end_date,
+                                                          _vm.part_10.end_date,
                                                         callback: function (
                                                           $$v
                                                         ) {
                                                           _vm.$set(
                                                             _vm.part_10,
-                                                            "part_10_end_date",
+                                                            "end_date",
                                                             $$v
                                                           )
                                                         },
                                                         expression:
-                                                          "part_10.part_10_end_date",
+                                                          "part_10.end_date",
                                                       },
                                                     },
                                                     "v-text-field",
@@ -3590,15 +3589,11 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_amount,
+                                      value: _vm.part_10.amount,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_10,
-                                          "part_10_amount",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_10, "amount", $$v)
                                       },
-                                      expression: "part_10.part_10_amount",
+                                      expression: "part_10.amount",
                                     },
                                   }),
                                 ],
@@ -3617,15 +3612,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_description,
+                                      value: _vm.part_10.description,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.part_10,
-                                          "part_10_description",
+                                          "description",
                                           $$v
                                         )
                                       },
-                                      expression: "part_10.part_10_description",
+                                      expression: "part_10.description",
                                     },
                                   }),
                                 ],
@@ -3648,15 +3643,11 @@ var render = function () {
                                       label: "วันที่ส่งมอบงานวิจัย",
                                     },
                                     model: {
-                                      value: _vm.part_10.part_10_send,
+                                      value: _vm.part_10.send,
                                       callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_10,
-                                          "part_10_send",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.part_10, "send", $$v)
                                       },
-                                      expression: "part_10.part_10_send",
+                                      expression: "part_10.send",
                                     },
                                   }),
                                 ],

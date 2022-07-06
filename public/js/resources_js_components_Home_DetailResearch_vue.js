@@ -35,6 +35,229 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -49,17 +272,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.dashboard.loading;
     },
     search_research_by_id: function search_research_by_id(state) {
-      return state.dashboard.search_research_by_id;
+      return state.dashboard.search_research_by_id || [];
+    },
+    loadingParameter: function loadingParameter(state) {
+      return state.parameter.loading;
+    },
+    parameter: function parameter(state) {
+      return state.parameter || [];
     }
   })),
   created: function created() {
-    this.fetchParameter(this.$route.query.id);
+    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
+    this.fetchSearchResearchById(this.$route.query.id);
   },
   methods: {
-    fetchParameter: function fetchParameter(id) {
+    fetchSearchResearchById: function fetchSearchResearchById(id) {
       if (id) {
         this.$store.dispatch("dashboard/fetchSearchResearchById", id);
       }
+    },
+    fetchParameterDATA: function fetchParameterDATA(items, group, key) {
+      if (items) {
+        return items[group].find(function (e) {
+          return e.value == key;
+        });
+      }
+    },
+    fetchParameter: function fetchParameter(group_name) {
+      this.$store.dispatch("parameter/fetchParameter", group_name);
+    },
+    downloadFile: function downloadFile(id, filename) {
+      var req = {
+        id: id,
+        filename: filename || ""
+      };
+      this.$store.dispatch("dashboard/downloadFile", req).then(function (response) {
+        var blob = new Blob([response], {
+          type: 'application/pdf'
+        });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.target = '_blank';
+        link.click();
+      });
     }
   }
 });
@@ -153,7 +408,9 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("Loading", { attrs: { loading: _vm.loading } }),
+      _c("Loading", {
+        attrs: { loading: _vm.loading || _vm.loadingParameter },
+      }),
       _vm._v(" "),
       !_vm.loading
         ? _c(
@@ -173,7 +430,838 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("v-divider"),
-              _vm._v("\n    " + _vm._s(_vm.search_research_by_id) + "\n  "),
+              _vm._v(" "),
+              _c("p", { staticClass: "h3 ml-4" }, [
+                _vm._v(_vm._s(_vm.search_research_by_id.research_name_th)),
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "h4 ml-4" }, [
+                _vm._v(_vm._s(_vm.search_research_by_id.research_name_en)),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
+                _c(
+                  "div",
+                  { staticClass: "pa-4 grey lighten-1 rounded-lg" },
+                  [
+                    _c(
+                      "v-container",
+                      [
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", [
+                              _c("b", [_vm._v("รหัสอ้างอิงมหาวิทยาลัย : ")]),
+                              _vm._v(
+                                " " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.university_code ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col", [
+                              _c("b", [_vm._v("รหัสอ้างอิง วช. :")]),
+                              _vm._v(
+                                " " + _vm._s("-- ไม่ระบุ --") + "\n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col", [
+                              _c("b", [_vm._v("สถานะการดำเนินงาน :")]),
+                              _vm._v(
+                                " " + _vm._s("-- ไม่ระบุ --") + "\n            "
+                              ),
+                            ]),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", [
+                              _c("b", [_vm._v("วันที่ดำเนินงาน :")]),
+                              _vm._v(
+                                " " + _vm._s("-- ไม่ระบุ --") + "\n            "
+                              ),
+                            ]),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
+                _c(
+                  "div",
+                  { staticClass: "pa-4 grey  lighten-5 rounded-lg" },
+                  [
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 1 ข้อมูลทั่วไป")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", [
+                              _c("p", [
+                                _c("b", [_vm._v("ข้อมูลทั่วไป ภาษาไทย")]),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "d-flex flex-column" },
+                                [
+                                  _c("v-col", [
+                                    _c("b", [_vm._v("หัวข้อ :")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.search_research_by_id
+                                            .research_name_th || "-- ไม่ระบุ --"
+                                        ) +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-col", [
+                                    _c("b", [_vm._v("บทคัดย่อ :")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s("-- ไม่ระบุ --") +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-col", [
+                                    _c("b", [_vm._v("คำสำคัญ :")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s("-- ไม่ระบุ --") +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                ],
+                                1
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col", [
+                              _c("p", [
+                                _c("b", [_vm._v("ข้อมูลทั่วไป ภาษาอังกฤษ")]),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "d-flex flex-column" },
+                                [
+                                  _c("v-col", [
+                                    _c("b", [_vm._v("Title :")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.search_research_by_id
+                                            .research_name_en || "-- ไม่ระบุ --"
+                                        ) +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-col", [
+                                    _c("b", [_vm._v("Abstract :")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s("-- ไม่ระบุ --") +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-col", [
+                                    _c("b", [_vm._v("Keyword :")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s("-- ไม่ระบุ --") +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                ],
+                                1
+                              ),
+                            ]),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", [
+                              _c("b", [_vm._v("รูปแบบงานวิจัย :")]),
+                              _vm._v(
+                                " " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.research_format ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col", [
+                              _c("b", [_vm._v("ประเภทงานวิจัย :")]),
+                              _vm._v(
+                                " " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.research_type ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col", [
+                              _c("b", [_vm._v("สาขางานวิจัย :")]),
+                              _vm._v(
+                                _vm._s(
+                                  _vm.fetchParameterDATA(
+                                    _vm.parameter,
+                                    "branch_group",
+                                    _vm.search_research_by_id.research_branch
+                                  ).value_ref || "-- ไม่ระบุ --"
+                                ) + "\n            "
+                              ),
+                            ]),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c("v-col", [
+                              _c("b", [_vm._v("กิจกรรมที่เกี่ยวข้อง :")]),
+                              _vm._v(
+                                " " +
+                                  _vm._s(
+                                    _vm.search_research_by_id
+                                      .related_activities || "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col", [
+                              _c("b", [_vm._v("Road map :")]),
+                              _vm._v(
+                                " " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.road_map ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("v-col"),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 2 นักวิจัย")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_2 ||
+                                        "ไม่มีข้อมูลนักวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.fetchParameterDATA(
+                                        _vm.parameter,
+                                        "research_consultant",
+                                        _vm.search_research_by_id.part_3
+                                      ).value_ref ||
+                                        "ไม่มีข้อมูลที่ปรึกษางานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_4 ||
+                                        "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_5 ||
+                                        "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_6 ||
+                                        "ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_7 ||
+                                        "ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_8 ||
+                                        "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_9 ||
+                                        "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_10 ||
+                                        "ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            staticClass: "ma-3",
+                            attrs: {
+                              outlined: "",
+                              color: "indigo",
+                              disabled:
+                                _vm.search_research_by_id.part_11 == null,
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.downloadFile(
+                                  _vm.search_research_by_id.id,
+                                  _vm.search_research_by_id.part_11
+                                )
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n            ดาวน์โหลดเอกสารประกอบงานวิจัย\n            "
+                            ),
+                            _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                              _vm._v(
+                                "\n              mdi-download-outline\n            "
+                              ),
+                            ]),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [_vm._v("ส่วนที่ 12 การนำเสนองานวิจัย")]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_12 ||
+                                        "ไม่มีข้อมูลการนำเสนองานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_13 ||
+                                        "ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_14 ||
+                                        "ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("p", { staticClass: "h4" }, [
+                          _c("b", [
+                            _vm._v("ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง"),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.part_15 ||
+                                        "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "d-flex flex-row-reverse",
+                            attrs: { flat: "", tile: "" },
+                          },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "ma-3",
+                                attrs: {
+                                  outlined: "",
+                                  color: "indigo",
+                                  disabled:
+                                    _vm.search_research_by_id.ref_file == null,
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.downloadFile(
+                                      _vm.search_research_by_id.id,
+                                      _vm.search_research_by_id.ref_file
+                                    )
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              ดาวน์โหลดเอกสารอ้างอิง\n              "
+                                ),
+                                _c(
+                                  "v-icon",
+                                  { attrs: { right: "", dark: "" } },
+                                  [
+                                    _vm._v(
+                                      "\n                mdi-download-outline\n              "
+                                    ),
+                                  ]
+                                ),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ]),
             ],
             1
           )

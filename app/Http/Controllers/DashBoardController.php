@@ -6,6 +6,7 @@ use App\Models\Parameter;
 use App\Models\Researchs;
 use App\Models\ResearchUsers;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -94,5 +95,17 @@ class DashBoardController extends Controller
             'message' => 'Successfully',
             'payload' =>  $filtered
         ], 200);
+    }
+
+    public function downloadFile(Request $request)
+    {
+        if (Storage::get('public/files/' . $request->id . '/' . $request->filename)) {
+            return Storage::download('public/files/' . $request->id . '/' . $request->filename);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Not Found',
+            'payload' =>  null
+        ], 404);;
     }
 }

@@ -17,7 +17,16 @@ const DashboardService = {
     },
     fetchSearchResearchById: (id) => {
         return httpRequest.get(`${API_PATH}/search-research/${id}`)
-    }
+    },
+    downloadFile: (item) => {
+        return httpRequest.get(`${API_PATH}/download-file`, {
+            params: {
+                id: item.id,
+                filename: item.filename
+            },
+            responseType: 'blob'
+        })
+    },
 }
 
 export default DashboardService

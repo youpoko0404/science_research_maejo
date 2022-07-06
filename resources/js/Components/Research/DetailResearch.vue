@@ -301,16 +301,16 @@
                     {{ index + 1 }}
                   </template>
                   <template v-slot:item.title="{ item }">
-                    <strong>{{ fetchParameterDATA(parameter, "funding_type_group", item.part_10_type).value_ref
+                    <strong>{{ fetchParameterDATA(parameter, "funding_type_group", item.type).value_ref
                     }}</strong> <br />
-                    {{ fetchParameterDATA(parameter, item.part_10_type, item.part_10_source).value_ref }} <br />
-                    {{ fetchParameterDATA(parameter, "funding_level_group", item.part_10_level).value_ref }}
+                    {{ fetchParameterDATA(parameter, item.type, item.source).value_ref }} <br />
+                    {{ fetchParameterDATA(parameter, "funding_level_group", item.level).value_ref }}
                   </template>
                   <template v-slot:item.year="{ item }">
-                    {{ item.part_10_year }} <br /> {{ item.part_10_start_date }} - {{ item.part_10_end_date }}
+                    {{ item.year }} <br /> {{ item.start_date }} - {{ item.end_date }}
                   </template>
                   <template v-slot:item.price="{ item }">
-                    {{ item.part_10_amount }}
+                    {{ item.amount }}
                   </template>
                   <template v-slot:item.actions="{ item }">
                     <v-btn class="pa-2 error mr-2" @click="() => {
@@ -347,7 +347,8 @@
             <v-btn color="primary" @click="$refs.part_11.$refs.input.click()"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input ref="part_11" color="green darken-3" v-model="request.part_11" label="เอกสารประกอบงานวิจัย">
+            <v-file-input ref="part_11" color="green darken-3" accept="application/pdf" v-model="request.part_11"
+              label="เอกสารประกอบงานวิจัย">
             </v-file-input>
           </v-row>
         </div>
@@ -448,7 +449,8 @@
             <v-btn color="primary" @click="$refs.ref_file.$refs.input.click()"> เอกสารประกอบ </v-btn>
           </div>
           <v-row>
-            <v-file-input ref="ref_file" color="green darken-3" v-model="request.ref_file" label="เอกสารอ้างอิง">
+            <v-file-input ref="ref_file" color="green darken-3" accept="application/pdf" v-model="request.ref_file"
+              label="เอกสารอ้างอิง">
             </v-file-input>
           </v-row>
         </div>
@@ -552,13 +554,13 @@
               <v-row>
                 <v-col cols="6">
                   <v-select color="green darken-3" :items="parameter.funding_type_group" item-text="value_ref"
-                    item-value="value" :rules="rules.required" v-model="part_10.part_10_type" label="ประเภททุนสนับสนุน"
+                    item-value="value" :rules="rules.required" v-model="part_10.type" label="ประเภททุนสนับสนุน"
                     required>
                   </v-select>
                 </v-col>
                 <v-col cols="6">
-                  <v-select color="green darken-3" :items="parameter[part_10.part_10_type]" item-text="value_ref"
-                    item-value="value" :rules="rules.required" v-model="part_10.part_10_source" label="แหล่งทุนสนับสนุน"
+                  <v-select color="green darken-3" :items="parameter[part_10.type]" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_10.source" label="แหล่งทุนสนับสนุน"
                     required>
                   </v-select>
                 </v-col>
@@ -566,14 +568,13 @@
               <v-row>
                 <v-col cols="12">
                   <v-select color="green darken-3" :items="parameter.funding_level_group" item-text="value_ref"
-                    item-value="value" :rules="rules.required" v-model="part_10.part_10_level" label="ระดับแหล่งทุน"
-                    required>
+                    item-value="value" :rules="rules.required" v-model="part_10.level" label="ระดับแหล่งทุน" required>
                   </v-select>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="3">
-                  <v-text-field color="green darken-3" v-model="part_10.part_10_year" type="number" label="ปีการศึกษา"
+                  <v-text-field color="green darken-3" v-model="part_10.year" type="number" label="ปีการศึกษา"
                     :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
@@ -581,41 +582,43 @@
                   <v-menu v-model="datePicker_date1" :close-on-content-click="false" transition="scale-transition"
                     offset-y max-width="290px" min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field color="green darken-3" v-model="part_10.part_10_start_date" label="Date"
+                      <v-text-field color="green darken-3" v-model="part_10.start_date" label="Date"
                         prepend-icon="mdi-calendar" v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
                       </v-text-field>
                     </template>
-                    <v-date-picker v-model="dateNow_date_1" no-title @input="datePicker_date1 = false"></v-date-picker>
+                    <v-date-picker v-model="dateNow_date_1" no-title @input="datePicker_date1 = false">
+                    </v-date-picker>
                   </v-menu>
                 </v-col>
                 <v-col cols="3">
                   <v-menu v-model="datePicker_date2" :close-on-content-click="false" transition="scale-transition"
                     offset-y max-width="290px" min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field color="green darken-3" v-model="part_10.part_10_end_date" label="Date2"
+                      <v-text-field color="green darken-3" v-model="part_10.end_date" label="Date2"
                         prepend-icon="mdi-calendar" v-bind="attrs" v-on="on" :rules="rules.requiredDateTime" required>
                       </v-text-field>
                     </template>
-                    <v-date-picker v-model="dateNow_date_2" no-title @input="datePicker_date2 = false"></v-date-picker>
+                    <v-date-picker v-model="dateNow_date_2" no-title @input="datePicker_date2 = false">
+                    </v-date-picker>
                   </v-menu>
                 </v-col>
               </v-row>
 
               <v-row>
                 <v-col cols="5">
-                  <v-text-field color="green darken-3" v-model="part_10.part_10_amount" type="number"
+                  <v-text-field color="green darken-3" v-model="part_10.amount" type="number"
                     label="จำนวนเงินที่สนับสนุน" onfocus="this.select()" :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
                 <v-col cols="7">
-                  <v-text-field color="green darken-3" v-model="part_10.part_10_description" label="คำอธิบายเพิ่มเติม"
+                  <v-text-field color="green darken-3" v-model="part_10.description" label="คำอธิบายเพิ่มเติม"
                     :rules="rules.required" required>
                   </v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="4">
-                  <v-text-field color="green darken-3" v-model="part_10.part_10_send" label="วันที่ส่งมอบงานวิจัย">
+                  <v-text-field color="green darken-3" v-model="part_10.send" label="วันที่ส่งมอบงานวิจัย">
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -678,6 +681,7 @@
 
 
 <script>
+import axios from 'axios'
 import dayJs from "../Utili/dayJs";
 import { mapState } from "vuex";
 import Loading from "../../Components/Loading/Loading";
@@ -731,15 +735,15 @@ export default {
       research_position: "",
     },
     part_10: {
-      part_10_type: "",
-      part_10_source: "",
-      part_10_level: "",
-      part_10_year: "",
-      part_10_start_date: "",
-      part_10_end_date: "",
-      part_10_amount: 0,
-      part_10_description: "",
-      part_10_send: "",
+      type: "",
+      source: "",
+      level: "",
+      year: "",
+      start_date: "",
+      end_date: "",
+      amount: 0,
+      description: "",
+      send: "",
     },
     part_12: {},
     part_13: {},
@@ -850,16 +854,9 @@ export default {
     },
 
     onClickPart_10() {
-      const part_10 = {
-        part_10_type: this.part_10.part_10_type,
-        part_10_source: this.part_10.part_10_source,
-        part_10_level: this.part_10.part_10_level,
-        part_10_year: this.part_10.part_10_year,
-        part_10_start_date: this.part_10.part_10_start_date,
-        part_10_end_date: this.part_10.part_10_end_date,
-        part_10_amount: this.part_10.part_10_amount,
-        part_10_description: this.part_10.part_10_description,
-        part_10_send: this.part_10.part_10_send,
+      const part_10 = {}
+      for (const [key, value] of Object.entries(this.part_10)) {
+        part_10[key] = value
       }
       if (this.editedIndex > -1) {
         Object.assign(this.request.part_10[this.editedIndex], this.part_10)
@@ -924,9 +921,24 @@ export default {
           }
         });
       }
+    },
 
-    }
+    downloadFile(item) {
+      let req = {
+        id: item.id,
+        filename: item.part_11.name
+      }
+      this.$store.dispatch("research/downloadFile", req).then((response) => {
+        let blob = new Blob([response], { type: 'application/pdf' })
+        let link = document.createElement('a')
+        link.href = window.URL.createObjectURL(blob)
+        link.target = '_blank';
+        link.click()
+      });
+    },
+
   },
+
 };
 </script>
 

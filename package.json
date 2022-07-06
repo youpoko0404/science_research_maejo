@@ -13,6 +13,7 @@
         "@popperjs/core": "^2.9.2",
         "axios": "^0.21",
         "bootstrap": "^5.0.0-beta3",
+        "chart.js": "3.8.0",
         "css-loader": "^6.2.0",
         "jquery": "^3.6",
         "laravel-mix": "^6.0.26",
@@ -25,17 +26,20 @@
         "sass-loader": "^11.0.1",
         "stylus-loader": "^6.1.0",
         "vue": "^2.6.14",
+        "vue-chartjs": "^4.0.0",
         "vue-loader": "^15.9.7",
         "vue-router": "^3.5.2",
         "vue-template-compiler": "^2.6.12",
         "vuetify": "^2.5.6",
         "vuex": "^3.6.2",
         "webpack": "^5.46.0",
-        "webpack-cli": "^4.7.2",
-        "chart.js": "3.8.0",
-        "vue-chartjs": "^4.0.0"
+        "webpack-cli": "^4.7.2"
     },
     "dependencies": {
-        "dayjs": "^1.10.7"
+        "@morioh/v-smooth-scrollbar": "^1.0.3",
+        "dayjs": "^1.10.7",
+        "history": "^5.3.0",
+        "smooth-scrollbar": "^8.7.4",
+        "vue-smooth-scrollbar": "^1.0.3"
     }
 }

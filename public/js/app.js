@@ -5759,8 +5759,8 @@ var HttpRequest = /*#__PURE__*/function () {
       return response;
     }, function (error) {
       if (error.response === undefined) {
-        setTimeout(function () {
-          _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push('/error500'); // window.location.href ='/error500'
+        setTimeout(function () {// router.push('/error500');
+          // window.location.href ='/error500'
         });
       } else if (error.response.status === 401) {
         setTimeout(function () {// window.location.href ='/login'
@@ -5772,8 +5772,8 @@ var HttpRequest = /*#__PURE__*/function () {
           }
         });
       } else if (error.response.status === 500) {
-        setTimeout(function () {
-          _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push('/error500'); // window.location.href = '/error500'
+        setTimeout(function () {// router.push('/error500');
+          // window.location.href = '/error500'
         });
       }
 
@@ -5976,6 +5976,15 @@ var DashboardService = {
   },
   fetchSearchResearchById: function fetchSearchResearchById(id) {
     return httpRequest.get("".concat(API_PATH, "/search-research/").concat(id));
+  },
+  downloadFile: function downloadFile(item) {
+    return httpRequest.get("".concat(API_PATH, "/download-file"), {
+      params: {
+        id: item.id,
+        filename: item.filename
+      },
+      responseType: 'blob'
+    });
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DashboardService);
@@ -6317,6 +6326,34 @@ var actions = {
 
       return function (_x5, _x6) {
         return _ref6.apply(this, arguments);
+      };
+    }());
+  },
+  downloadFile: function downloadFile(_ref7, item) {
+    var commit = _ref7.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _Service_Dashboard_service__WEBPACK_IMPORTED_MODULE_0__["default"].downloadFile(item).then(function (response) {
+                  resolve(response.data);
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function (_x7, _x8) {
+        return _ref8.apply(this, arguments);
       };
     }());
   }

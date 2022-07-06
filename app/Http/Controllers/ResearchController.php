@@ -97,8 +97,8 @@ class ResearchController extends Controller
     {
         $research = Researchs::find($id);
         $research->university_code = $request->university_code;
-        $research->part_11 = $this->uploadFile($request->file('part_11'),  $id)['name'] ?? null;
-        $research->ref_file = $this->uploadFile($request->file('ref_file'), $id)['name'] ?? null;
+        $research->part_11 = $this->updateFile($request->file('part_11'), $research->part_11,  $id)['name'] ?? null;
+        $research->ref_file = $this->updateFile($request->file('ref_file'), $research->ref_file, $id)['name'] ?? null;
         $research->update();
 
         if ($request->part_2) {
@@ -169,20 +169,22 @@ class ResearchController extends Controller
         return null;
     }
 
-    // public function updateFile($request, $oldFilename, $id)
-    // {
-    //     if ($request && $request->getSize() != 0) {
-    //         if (Storage::exists('public/files/' . $id . '/' . $oldFilename)) {
-    //             Storage::delete('public/files/' . $id . '/' . $oldFilename);
-    //         }
-    //         $filename = $request->getClientOriginalName();
-    //         $path = $request->storeAs('public/files/' . $id . '/', $filename);
-    //         $response = [
-    //             'path' => $path,
-    //             'name' => $filename
-    //         ];
-    //         return $response;
-    //     }
-    //     return null;
-    // }
+    public function updateFile($request, $oldFilename, $id)
+    {
+        if ($request && $request->getSize() != 0) {
+            $filename = $request->getClientOriginalName();
+            $path = $request->storeAs('public/files/' . $id . '/', $filename);
+            $response = [
+                'path' => $path,
+                'name' => $filename
+            ];
+            return $response;
+        } else if ($request && $request->getSize() == 0) {
+            $response = [
+                'name' => $oldFilename
+            ];
+            return $response;
+        }
+        return null;
+    }
 }

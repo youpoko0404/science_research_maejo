@@ -57,6 +57,17 @@ const actions = {
             commit("LOADING_SET", false);
         });
     },
+
+    downloadFile({ commit }, item) {
+        return new Promise(async(resolve, reject) => {
+            await DashboardService.downloadFile(item)
+                .then((response) => {
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                })
+        });
+    },
 };
 
 const mutations = {

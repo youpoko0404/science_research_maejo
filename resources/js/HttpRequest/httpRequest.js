@@ -25,7 +25,7 @@ class HttpRequest {
             (error) => {
                 if (error.response === undefined) {
                     setTimeout(() => {
-                        router.push('/error500');
+                        // router.push('/error500');
                         // window.location.href ='/error500'
                     })
                 } else if (error.response.status === 401) {
@@ -40,7 +40,7 @@ class HttpRequest {
                     })
                 } else if (error.response.status === 500) {
                     setTimeout(() => {
-                        router.push('/error500');
+                        // router.push('/error500');
                         // window.location.href = '/error500'
                     })
                 }
