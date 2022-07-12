@@ -115,7 +115,7 @@
             <p class="h4"><b>ส่วนที่ 4 แนวทางการดำเนินงานวิจัย</b></p>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_4 || "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย" }}
+                <div v-html="showText(search_research_by_id.part_4) || 'ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย'"></div>
               </v-card>
             </v-col>
           </v-container>
@@ -124,7 +124,7 @@
             <p class="h4"><b>ส่วนที่ 5 วัตถุประสงค์งานวิจัย</b></p>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_5 || "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย" }}
+                <div v-html="showText(search_research_by_id.part_5) || 'ไม่มีข้อมูลวัตถุประสงค์งานวิจัย'"></div>
               </v-card>
             </v-col>
           </v-container>
@@ -133,7 +133,7 @@
             <p class="h4"><b>ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ</b></p>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_6 || "ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ" }}
+                <div v-html="showText(search_research_by_id.part_6) || 'ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ'"></div>
               </v-card>
             </v-col>
           </v-container>
@@ -142,7 +142,7 @@
             <p class="h4"><b>ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ</b></p>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_7 || "ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ" }}
+                <div v-html="showText(search_research_by_id.part_7) || 'ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ'"></div>
               </v-card>
             </v-col>
           </v-container>
@@ -151,7 +151,7 @@
             <p class="h4"><b>ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย</b></p>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_8 || "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย" }}
+                <div v-html="showText(search_research_by_id.part_8) || 'ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย'"></div>
               </v-card>
             </v-col>
           </v-container>
@@ -160,7 +160,7 @@
             <p class="h4"><b>ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง</b></p>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_9 || "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง" }}
+                <div v-html="showText(search_research_by_id.part_9) || 'ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"></div>
               </v-card>
             </v-col>
           </v-container>
@@ -290,6 +290,11 @@ export default {
         link.click()
       });
     },
+
+    showText(item) {
+      if (item) return item.replace(/\n/g, "<br />")
+      return ""
+    }
   },
 };
 </script>

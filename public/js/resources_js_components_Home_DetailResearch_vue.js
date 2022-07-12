@@ -315,6 +315,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         link.target = '_blank';
         link.click();
       });
+    },
+    showText: function showText(item) {
+      if (item) return item.replace(/\n/g, "<br />");
+      return "";
     }
   }
 });
@@ -778,14 +782,15 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id.part_4 ||
-                                        "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย"
-                                    ) +
-                                    "\n            "
-                                ),
+                                _c("div", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.showText(
+                                        _vm.search_research_by_id.part_4
+                                      ) || "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย"
+                                    ),
+                                  },
+                                }),
                               ]
                             ),
                           ],
@@ -814,14 +819,15 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id.part_5 ||
-                                        "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย"
-                                    ) +
-                                    "\n            "
-                                ),
+                                _c("div", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.showText(
+                                        _vm.search_research_by_id.part_5
+                                      ) || "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย"
+                                    ),
+                                  },
+                                }),
                               ]
                             ),
                           ],
@@ -852,14 +858,16 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id.part_6 ||
+                                _c("div", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.showText(
+                                        _vm.search_research_by_id.part_6
+                                      ) ||
                                         "ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ"
-                                    ) +
-                                    "\n            "
-                                ),
+                                    ),
+                                  },
+                                }),
                               ]
                             ),
                           ],
@@ -890,14 +898,16 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id.part_7 ||
+                                _c("div", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.showText(
+                                        _vm.search_research_by_id.part_7
+                                      ) ||
                                         "ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ"
-                                    ) +
-                                    "\n            "
-                                ),
+                                    ),
+                                  },
+                                }),
                               ]
                             ),
                           ],
@@ -926,14 +936,15 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id.part_8 ||
-                                        "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย"
-                                    ) +
-                                    "\n            "
-                                ),
+                                _c("div", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.showText(
+                                        _vm.search_research_by_id.part_8
+                                      ) || "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย"
+                                    ),
+                                  },
+                                }),
                               ]
                             ),
                           ],
@@ -964,14 +975,16 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id.part_9 ||
+                                _c("div", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.showText(
+                                        _vm.search_research_by_id.part_9
+                                      ) ||
                                         "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง"
-                                    ) +
-                                    "\n            "
-                                ),
+                                    ),
+                                  },
+                                }),
                               ]
                             ),
                           ],
