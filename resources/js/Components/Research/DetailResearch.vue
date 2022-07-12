@@ -352,8 +352,8 @@
             </v-file-input>
           </v-row>
         </div>
-        <br />
 
+        <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
             <p class="h3 pa-2 mr-auto">ส่วนที่ 12 การนำเสนองานวิจัย</p>
@@ -384,17 +384,23 @@
 
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
-          <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย</p>
-            <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
+          <div class="d-flex mb-6" color="grey lighten-2" flat tile>
+            <p class="h3 pa-2 mr-auto">ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย</p>
+            <template v-if="request.part_13.length > 0">
+              <v-btn class="pa-2 error mr-2" @click="request.part_13 = []"> ล้างค่า </v-btn>
+            </template>
+            <template v-else>
+              <v-btn class="pa-2 primary" @click="() => {
+                editedIndex = -1
+                dialog.dialog_part_13 = true
+              }
+              "> เพิ่มข้อมูล</v-btn>
+            </template>
           </div>
           <v-row>
             <template v-if="request.part_13.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                <div v-for="part_13 in request.part_13" :key="part_13.id">
-                  <v-row>
-                  </v-row>
-                </div>
+                {{ request.part_13 }}
               </div>
             </template>
             <template v-else>
@@ -404,20 +410,26 @@
             </template>
           </v-row>
         </div>
+
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
-          <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์</p>
-            <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
+          <div class="d-flex mb-6" color="grey lighten-2" flat tile>
+            <p class="h3 pa-2 mr-auto">ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์</p>
+            <template v-if="request.part_14.length > 0">
+              <v-btn class="pa-2 error mr-2" @click="request.part_14 = []"> ล้างค่า </v-btn>
+            </template>
+            <template v-else>
+              <v-btn class="pa-2 primary" @click="() => {
+                editedIndex = -1
+                dialog.dialog_part_14 = true
+              }
+              "> เพิ่มข้อมูล</v-btn>
+            </template>
           </div>
           <v-row>
             <template v-if="request.part_14.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                <div v-for="part_14 in request.part_14" :key="part_14.id">
-                  <v-row>
-
-                  </v-row>
-                </div>
+                {{ request.part_14 }}
               </div>
             </template>
             <template v-else>
@@ -427,6 +439,7 @@
             </template>
           </v-row>
         </div>
+
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
@@ -438,7 +451,6 @@
               <div class="pa-4 grey lighten-2 rounded-lg">
                 <div v-for="part_15 in request.part_15" :key="part_15.id">
                   <v-row>
-
                   </v-row>
                 </div>
               </div>
@@ -450,6 +462,7 @@
             </template>
           </v-row>
         </div>
+
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
@@ -465,7 +478,6 @@
         <div class="pa-4">
           <v-row>
             <v-btn color="primary" dark @click="() => {
-              // onClickSave()
               if (this.$refs.request.validate()) {
                 onClickSave()
               } else {
@@ -732,6 +744,154 @@
     </div>
 
     <div class="text-center">
+      <v-dialog v-model="dialog.dialog_part_13" width="900">
+        <v-form ref="form_part_13">
+          <v-card>
+            <v-card-title class="grey lighten-2 mb-2"> แบบฟอร์มการจัดการตีพิมพ์งานวิจัย </v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_13.reference"
+                    label="การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ" :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-select color="green darken-3" :items="parameter.funding_type_group" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_13.presentation_level"
+                    label="ระดับการนำเสนอ" required>
+                  </v-select>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_13.thai_article_title"
+                    label="ชื่อบทความภาษาไทย/อังกฤษ" :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_13.english_article_title"
+                    label="ชื่อบทความภาษาอังกฤษ" :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="4">
+                  <v-text-field color="green darken-3" v-model="part_13.date_publication"
+                    label="วัน เดือน ปี ที่ตีพิมพ์" :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="8">
+                  <v-text-field color="green darken-3" v-model="part_13.no" label="ฉบับที่" :rules="rules.required"
+                    required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_13.page_number" label="เลขหน้า"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_13.printer_website" label="โรงพิมพ์/เว็บไซต์"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="() => {
+                this.$refs.form_part_13.reset()
+                dialog.dialog_part_13 = !dialog.dialog_part_13
+              }">
+                ยกเลิก
+              </v-btn>
+              <v-btn color="primary" text @click="() => {
+                this.$refs.form_part_13.validate()
+                if (this.$refs.form_part_13.validate()) {
+                  onClickPart_13()
+                  dialog.dialog_part_13 = !dialog.dialog_part_13
+                }
+              }">
+                ยืนยัน
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-form>
+      </v-dialog>
+    </div>
+
+    <div class="text-center">
+      <v-dialog v-model="dialog.dialog_part_14" width="900">
+        <v-form ref="form_part_14">
+          <v-card>
+            <v-card-title class="grey lighten-2 mb-2"> แบบฟอร์มการจัดการข้อมูลการถูกอ้างอิงงานวิจัย </v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field color="green darken-3" v-model="part_14.date_reference" label="วันที่ถูกอ้างอิง"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field color="green darken-3" v-model="part_14.name_researcher" label="ชื่อผู้วิจัยที่นำไปอ้างอิง"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_14.thai_name" label="ชื่อภาษาไทย"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_14.link_url" label="URL เชื่อมโยง"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_14.reference_journal" label="การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="() => {
+                this.$refs.form_part_14.reset()
+                dialog.dialog_part_14 = !dialog.dialog_part_14
+              }">
+                ยกเลิก
+              </v-btn>
+              <v-btn color="primary" text @click="() => {
+                this.$refs.form_part_14.validate()
+                if (this.$refs.form_part_14.validate()) {
+                  onClickPart_14()
+                  dialog.dialog_part_14 = !dialog.dialog_part_14
+                }
+              }">
+                ยืนยัน
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-form>
+      </v-dialog>
+    </div>
+
+    <div class="text-center">
       <v-dialog v-model="dialog.dialogDelete" max-width="500px">
         <v-card>
           <v-card-title>คุณยืนยันที่จะลบข้อมูลงานวิจัยนี้</v-card-title>
@@ -781,6 +941,8 @@ export default {
       dialog_part_2: false,
       dialog_part_10: false,
       dialog_part_12: false,
+      dialog_part_13: false,
+      dialog_part_14: false,
     },
     request: {
       research_name_th: "",
@@ -839,8 +1001,23 @@ export default {
       present_level: "",
       organization_name: "",
     },
-    part_13: {},
-    part_14: {},
+    part_13: {
+      reference: "",
+      presentation_level: "",
+      thai_article_title: "",
+      english_article_title: "",
+      date_publication: "",
+      no: "",
+      page_number: "",
+      printer_website: "",
+    },
+    part_14: {
+      date_reference: "",
+      name_researcher: "",
+      thai_name: "",
+      link_url: "",
+      reference_journal: ""
+    },
     part_15: {},
     rules: {
       required: [val => !!val || 'กรอกข้อมูลไม่ครบถ้วน'],
@@ -988,8 +1165,49 @@ export default {
       }
     },
 
+    onClickPart_13() {
+      const part_13 = {}
+      for (const [key, value] of Object.entries(this.part_13)) {
+        part_13[key] = value
+      }
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.part_13[this.editedIndex], this.part_13)
+      } else {
+        this.request.part_13.push(part_13)
+      }
+      this.$refs.form_part_13.reset()
+    },
+
+    ManageItemPart_13(item, action) {
+      this.editedIndex = this.request.part_13.indexOf(item)
+      this.part_13 = Object.assign({}, item)
+      if (action == 'delete') {
+        this.request.part_13.splice(this.editedIndex, 1)
+      }
+    },
+
+    onClickPart_14() {
+      const part_14 = {}
+      for (const [key, value] of Object.entries(this.part_14)) {
+        part_14[key] = value
+      }
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.part_14[this.editedIndex], this.part_14)
+      } else {
+        this.request.part_14.push(part_14)
+      }
+      this.$refs.form_part_14.reset()
+    },
+
+    ManageItemPart_14(item, action) {
+      this.editedIndex = this.request.part_14.indexOf(item)
+      this.part_14 = Object.assign({}, item)
+      if (action == 'delete') {
+        this.request.part_14.splice(this.editedIndex, 1)
+      }
+    },
+
     onClickSave() {
-      console.log(this.request.part_2)
       let formData = new FormData();
       formData.append("research_name_th", this.request.research_name_th);
       formData.append("research_name_en", this.request.research_name_en);
@@ -1012,11 +1230,11 @@ export default {
       formData.append("part_7", this.request.part_7);
       formData.append("part_8", this.request.part_8);
       formData.append("part_9", this.request.part_9);
-      formData.append("part_10", this.request.part_10);
+      formData.append("part_10", JSON.stringify(this.request.part_10));
       formData.append("part_11", this.request.part_11);
-      formData.append("part_12", this.request.part_12);
-      formData.append("part_13", this.request.part_13);
-      formData.append("part_14", this.request.part_14);
+      formData.append("part_12", JSON.stringify(this.request.part_12));
+      formData.append("part_13", JSON.stringify(this.request.part_13));
+      formData.append("part_14", JSON.stringify(this.request.part_14));
       formData.append("part_15", this.request.part_15);
       formData.append("ref_file", this.request.ref_file);
       if (this.$route.query.id == 0) {

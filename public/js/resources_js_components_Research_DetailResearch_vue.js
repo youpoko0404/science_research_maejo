@@ -799,6 +799,166 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -814,7 +974,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dialogDelete: false,
         dialog_part_2: false,
         dialog_part_10: false,
-        dialog_part_12: false
+        dialog_part_12: false,
+        dialog_part_13: false,
+        dialog_part_14: false
       },
       request: {
         research_name_th: "",
@@ -873,8 +1035,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         present_level: "",
         organization_name: ""
       },
-      part_13: {},
-      part_14: {},
+      part_13: {
+        reference: "",
+        presentation_level: "",
+        thai_article_title: "",
+        english_article_title: "",
+        date_publication: "",
+        no: "",
+        page_number: "",
+        printer_website: ""
+      },
+      part_14: {
+        date_reference: "",
+        name_researcher: "",
+        thai_name: "",
+        link_url: "",
+        reference_journal: ""
+      },
       part_15: {},
       rules: {
         required: [function (val) {
@@ -1061,8 +1238,61 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.request.part_12.splice(this.editedIndex, 1);
       }
     },
+    onClickPart_13: function onClickPart_13() {
+      var part_13 = {};
+
+      for (var _i5 = 0, _Object$entries5 = Object.entries(this.part_13); _i5 < _Object$entries5.length; _i5++) {
+        var _Object$entries5$_i = _slicedToArray(_Object$entries5[_i5], 2),
+            key = _Object$entries5$_i[0],
+            value = _Object$entries5$_i[1];
+
+        part_13[key] = value;
+      }
+
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.part_13[this.editedIndex], this.part_13);
+      } else {
+        this.request.part_13.push(part_13);
+      }
+
+      this.$refs.form_part_13.reset();
+    },
+    ManageItemPart_13: function ManageItemPart_13(item, action) {
+      this.editedIndex = this.request.part_13.indexOf(item);
+      this.part_13 = Object.assign({}, item);
+
+      if (action == 'delete') {
+        this.request.part_13.splice(this.editedIndex, 1);
+      }
+    },
+    onClickPart_14: function onClickPart_14() {
+      var part_14 = {};
+
+      for (var _i6 = 0, _Object$entries6 = Object.entries(this.part_14); _i6 < _Object$entries6.length; _i6++) {
+        var _Object$entries6$_i = _slicedToArray(_Object$entries6[_i6], 2),
+            key = _Object$entries6$_i[0],
+            value = _Object$entries6$_i[1];
+
+        part_14[key] = value;
+      }
+
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.part_14[this.editedIndex], this.part_14);
+      } else {
+        this.request.part_14.push(part_14);
+      }
+
+      this.$refs.form_part_14.reset();
+    },
+    ManageItemPart_14: function ManageItemPart_14(item, action) {
+      this.editedIndex = this.request.part_14.indexOf(item);
+      this.part_14 = Object.assign({}, item);
+
+      if (action == 'delete') {
+        this.request.part_14.splice(this.editedIndex, 1);
+      }
+    },
     onClickSave: function onClickSave() {
-      console.log(this.request.part_2);
       var formData = new FormData();
       formData.append("research_name_th", this.request.research_name_th);
       formData.append("research_name_en", this.request.research_name_en);
@@ -1085,11 +1315,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData.append("part_7", this.request.part_7);
       formData.append("part_8", this.request.part_8);
       formData.append("part_9", this.request.part_9);
-      formData.append("part_10", this.request.part_10);
+      formData.append("part_10", JSON.stringify(this.request.part_10));
       formData.append("part_11", this.request.part_11);
-      formData.append("part_12", this.request.part_12);
-      formData.append("part_13", this.request.part_13);
-      formData.append("part_14", this.request.part_14);
+      formData.append("part_12", JSON.stringify(this.request.part_12));
+      formData.append("part_13", JSON.stringify(this.request.part_13));
+      formData.append("part_14", JSON.stringify(this.request.part_14));
       formData.append("part_15", this.request.part_15);
       formData.append("ref_file", this.request.ref_file);
 
@@ -2756,17 +2986,47 @@ var render = function () {
                 [
                   _c(
                     "div",
-                    { staticClass: "d-flex justify-space-between" },
+                    {
+                      staticClass: "d-flex mb-6",
+                      attrs: { color: "grey lighten-2", flat: "", tile: "" },
+                    },
                     [
-                      _c("p", { staticClass: "h3 ml-4" }, [
+                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
                         _vm._v("ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย"),
                       ]),
                       _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "primary" } }, [
-                        _vm._v(" เพิ่มข้อมูล "),
-                      ]),
+                      _vm.request.part_13.length > 0
+                        ? [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "pa-2 error mr-2",
+                                on: {
+                                  click: function ($event) {
+                                    _vm.request.part_13 = []
+                                  },
+                                },
+                              },
+                              [_vm._v(" ล้างค่า ")]
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "pa-2 primary",
+                                on: {
+                                  click: function () {
+                                    _vm.editedIndex = -1
+                                    _vm.dialog.dialog_part_13 = true
+                                  },
+                                },
+                              },
+                              [_vm._v(" เพิ่มข้อมูล")]
+                            ),
+                          ],
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
@@ -2777,15 +3037,13 @@ var render = function () {
                             _c(
                               "div",
                               { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              _vm._l(_vm.request.part_13, function (part_13) {
-                                return _c(
-                                  "div",
-                                  { key: part_13.id },
-                                  [_c("v-row")],
-                                  1
-                                )
-                              }),
-                              0
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(_vm.request.part_13) +
+                                    "\n            "
+                                ),
+                              ]
                             ),
                           ]
                         : [
@@ -2817,17 +3075,47 @@ var render = function () {
                 [
                   _c(
                     "div",
-                    { staticClass: "d-flex justify-space-between" },
+                    {
+                      staticClass: "d-flex mb-6",
+                      attrs: { color: "grey lighten-2", flat: "", tile: "" },
+                    },
                     [
-                      _c("p", { staticClass: "h3 ml-4" }, [
+                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
                         _vm._v("ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์"),
                       ]),
                       _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "primary" } }, [
-                        _vm._v(" เพิ่มข้อมูล "),
-                      ]),
+                      _vm.request.part_14.length > 0
+                        ? [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "pa-2 error mr-2",
+                                on: {
+                                  click: function ($event) {
+                                    _vm.request.part_14 = []
+                                  },
+                                },
+                              },
+                              [_vm._v(" ล้างค่า ")]
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "pa-2 primary",
+                                on: {
+                                  click: function () {
+                                    _vm.editedIndex = -1
+                                    _vm.dialog.dialog_part_14 = true
+                                  },
+                                },
+                              },
+                              [_vm._v(" เพิ่มข้อมูล")]
+                            ),
+                          ],
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
@@ -2838,15 +3126,13 @@ var render = function () {
                             _c(
                               "div",
                               { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              _vm._l(_vm.request.part_14, function (part_14) {
-                                return _c(
-                                  "div",
-                                  { key: part_14.id },
-                                  [_c("v-row")],
-                                  1
-                                )
-                              }),
-                              0
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(_vm.request.part_14) +
+                                    "\n            "
+                                ),
+                              ]
                             ),
                           ]
                         : [
@@ -2999,7 +3285,6 @@ var render = function () {
                           attrs: { color: "primary", dark: "" },
                           on: {
                             click: function () {
-                              // onClickSave()
                               if (this$1.$refs.request.validate()) {
                                 _vm.onClickSave()
                               } else {
@@ -4086,6 +4371,595 @@ var render = function () {
                                     _vm.onClickPart_12()
                                     _vm.dialog.dialog_part_12 =
                                       !_vm.dialog.dialog_part_12
+                                  }
+                                },
+                              },
+                            },
+                            [_vm._v("\n              ยืนยัน\n            ")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "text-center" },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { width: "900" },
+              model: {
+                value: _vm.dialog.dialog_part_13,
+                callback: function ($$v) {
+                  _vm.$set(_vm.dialog, "dialog_part_13", $$v)
+                },
+                expression: "dialog.dialog_part_13",
+              },
+            },
+            [
+              _c(
+                "v-form",
+                { ref: "form_part_13" },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-card-title",
+                        { staticClass: "grey lighten-2 mb-2" },
+                        [_vm._v(" แบบฟอร์มการจัดการตีพิมพ์งานวิจัย ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label:
+                                        "การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.reference,
+                                      callback: function ($$v) {
+                                        _vm.$set(_vm.part_13, "reference", $$v)
+                                      },
+                                      expression: "part_13.reference",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      items: _vm.parameter.funding_type_group,
+                                      "item-text": "value_ref",
+                                      "item-value": "value",
+                                      rules: _vm.rules.required,
+                                      label: "ระดับการนำเสนอ",
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.presentation_level,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_13,
+                                          "presentation_level",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_13.presentation_level",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "ชื่อบทความภาษาไทย/อังกฤษ",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.thai_article_title,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_13,
+                                          "thai_article_title",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_13.thai_article_title",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "ชื่อบทความภาษาอังกฤษ",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.english_article_title,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_13,
+                                          "english_article_title",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "part_13.english_article_title",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "4" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "วัน เดือน ปี ที่ตีพิมพ์",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.date_publication,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_13,
+                                          "date_publication",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_13.date_publication",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "8" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "ฉบับที่",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.no,
+                                      callback: function ($$v) {
+                                        _vm.$set(_vm.part_13, "no", $$v)
+                                      },
+                                      expression: "part_13.no",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "เลขหน้า",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.page_number,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_13,
+                                          "page_number",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_13.page_number",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "โรงพิมพ์/เว็บไซต์",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_13.printer_website,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_13,
+                                          "printer_website",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_13.printer_website",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", text: "" },
+                              on: {
+                                click: function () {
+                                  this$1.$refs.form_part_13.reset()
+                                  _vm.dialog.dialog_part_13 =
+                                    !_vm.dialog.dialog_part_13
+                                },
+                              },
+                            },
+                            [_vm._v("\n              ยกเลิก\n            ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", text: "" },
+                              on: {
+                                click: function () {
+                                  this$1.$refs.form_part_13.validate()
+                                  if (this$1.$refs.form_part_13.validate()) {
+                                    _vm.onClickPart_13()
+                                    _vm.dialog.dialog_part_13 =
+                                      !_vm.dialog.dialog_part_13
+                                  }
+                                },
+                              },
+                            },
+                            [_vm._v("\n              ยืนยัน\n            ")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "text-center" },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { width: "900" },
+              model: {
+                value: _vm.dialog.dialog_part_14,
+                callback: function ($$v) {
+                  _vm.$set(_vm.dialog, "dialog_part_14", $$v)
+                },
+                expression: "dialog.dialog_part_14",
+              },
+            },
+            [
+              _c(
+                "v-form",
+                { ref: "form_part_14" },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-card-title",
+                        { staticClass: "grey lighten-2 mb-2" },
+                        [
+                          _vm._v(
+                            " แบบฟอร์มการจัดการข้อมูลการถูกอ้างอิงงานวิจัย "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "6" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "วันที่ถูกอ้างอิง",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_14.date_reference,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_14,
+                                          "date_reference",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_14.date_reference",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "6" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "ชื่อผู้วิจัยที่นำไปอ้างอิง",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_14.name_researcher,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_14,
+                                          "name_researcher",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_14.name_researcher",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "ชื่อภาษาไทย",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_14.thai_name,
+                                      callback: function ($$v) {
+                                        _vm.$set(_vm.part_14, "thai_name", $$v)
+                                      },
+                                      expression: "part_14.thai_name",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label: "URL เชื่อมโยง",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_14.link_url,
+                                      callback: function ($$v) {
+                                        _vm.$set(_vm.part_14, "link_url", $$v)
+                                      },
+                                      expression: "part_14.link_url",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      color: "green darken-3",
+                                      label:
+                                        "การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.part_14.reference_journal,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.part_14,
+                                          "reference_journal",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "part_14.reference_journal",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", text: "" },
+                              on: {
+                                click: function () {
+                                  this$1.$refs.form_part_14.reset()
+                                  _vm.dialog.dialog_part_14 =
+                                    !_vm.dialog.dialog_part_14
+                                },
+                              },
+                            },
+                            [_vm._v("\n              ยกเลิก\n            ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", text: "" },
+                              on: {
+                                click: function () {
+                                  this$1.$refs.form_part_14.validate()
+                                  if (this$1.$refs.form_part_14.validate()) {
+                                    _vm.onClickPart_14()
+                                    _vm.dialog.dialog_part_14 =
+                                      !_vm.dialog.dialog_part_14
                                   }
                                 },
                               },
