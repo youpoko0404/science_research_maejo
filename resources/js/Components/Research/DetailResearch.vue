@@ -169,7 +169,7 @@
               editedIndex = -1
               dialog.dialog_part_2 = true
             }
-            "> นักวิจัย</v-btn>
+            "> เพิ่มนักวิจัย</v-btn>
           </div>
           <v-row>
             <template v-if="request.part_2.length > 0">
@@ -209,7 +209,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 3 ที่ปรึกษางานวิจัย</p>
-            <v-btn color="primary"> ที่ปรึกษางานวิจัย </v-btn>
+            <!-- <v-btn color="primary"> ที่ปรึกษางานวิจัย </v-btn> -->
           </div>
           <v-row>
             <v-select :items="parameter.research_consultant" color="green darken-3" item-text="value_ref"
@@ -221,7 +221,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 4 แนวทางการดำเนินงานวิจัย</p>
-            <v-btn color="primary"> แนวทางการทำวิจัย </v-btn>
+            <!-- <v-btn color="primary"> แนวทางการทำวิจัย </v-btn> -->
           </div>
           <v-row>
             <v-textarea color="green darken-3" label="แนวทางการทำวิจัย" v-model="request.part_4"></v-textarea>
@@ -231,7 +231,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 5 วัตถุประสงค์งานวิจัย</p>
-            <v-btn color="primary"> วัตถุประสงค์ </v-btn>
+            <!-- <v-btn color="primary"> วัตถุประสงค์ </v-btn> -->
           </div>
           <v-row>
             <v-textarea color="green darken-3" label="วัตถุประสงค์" v-model="request.part_5"></v-textarea>
@@ -241,7 +241,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ</p>
-            <v-btn color="primary"> ประโยชน์ที่จะได้รับ </v-btn>
+            <!-- <v-btn color="primary"> ประโยชน์ที่จะได้รับ </v-btn> -->
           </div>
           <v-row>
             <v-textarea color="green darken-3" label="ประโยชน์ที่จะได้รับ" v-model="request.part_6"></v-textarea>
@@ -251,7 +251,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ</p>
-            <v-btn color="primary"> ผลสำเร็จที่จะได้รับ </v-btn>
+            <!-- <v-btn color="primary"> ผลสำเร็จที่จะได้รับ </v-btn> -->
           </div>
           <v-row>
             <v-textarea color="green darken-3" label="ผลสำเร็จที่จะได้รับ" v-model="request.part_7"></v-textarea>
@@ -261,7 +261,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย</p>
-            <v-btn color="primary"> พื้นที่ดำเนินงานวิจัย </v-btn>
+            <!-- <v-btn color="primary"> พื้นที่ดำเนินงานวิจัย </v-btn> -->
           </div>
           <v-row>
             <v-textarea color="green darken-3" label="พื้นที่ดำเนินงานวิจัย" v-model="request.part_8"></v-textarea>
@@ -271,8 +271,8 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
             <p class="h3 pa-2 mr-auto">ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง</p>
-            <v-btn class="pa-2 primary mr-2"> งานวิจัยหลัก</v-btn>
-            <v-btn class="pa-2 primary"> งานวิจัยย่อย </v-btn>
+            <!-- <v-btn class="pa-2 primary mr-2"> งานวิจัยหลัก</v-btn>
+            <v-btn class="pa-2 primary"> งานวิจัยย่อย </v-btn> -->
           </div>
           <v-row>
             <v-textarea color="green darken-3" label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง" v-model="request.part_9">
@@ -344,7 +344,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">ส่วนที่ 11 เอกสารประกอบงานวิจัย</p>
-            <v-btn color="primary" @click="$refs.part_11.$refs.input.click()"> เอกสารประกอบ </v-btn>
+            <v-btn color="primary" @click="$refs.part_11.$refs.input.click()"> เพิ่มเอกสารประกอบ </v-btn>
           </div>
           <v-row>
             <v-file-input ref="part_11" color="green darken-3" accept="application/pdf" v-model="request.part_11"
@@ -353,18 +353,25 @@
           </v-row>
         </div>
         <br />
+
         <div class="pa-4 grey lighten-5 rounded-lg">
-          <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 12 การนำเสนองานวิจัย</p>
-            <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
+          <div class="d-flex mb-6" color="grey lighten-2" flat tile>
+            <p class="h3 pa-2 mr-auto">ส่วนที่ 12 การนำเสนองานวิจัย</p>
+            <template v-if="request.part_12.length > 0">
+              <v-btn class="pa-2 error mr-2" @click="request.part_12 = []"> ล้างค่า </v-btn>
+            </template>
+            <template v-else>
+              <v-btn class="pa-2 primary" @click="() => {
+                editedIndex = -1
+                dialog.dialog_part_12 = true
+              }
+              "> เพิ่มข้อมูล</v-btn>
+            </template>
           </div>
           <v-row>
             <template v-if="request.part_12.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                <div v-for="part_12 in request.part_12" :key="part_12.id">
-                  <v-row>
-                  </v-row>
-                </div>
+                {{ request.part_12 }}
               </div>
             </template>
             <template v-else>
@@ -374,6 +381,7 @@
             </template>
           </v-row>
         </div>
+
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
@@ -446,7 +454,7 @@
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <p class="h3 ml-4">แนบไฟล์เอกสารอ้างอิง</p>
-            <v-btn color="primary" @click="$refs.ref_file.$refs.input.click()"> เอกสารประกอบ </v-btn>
+            <v-btn color="primary" @click="$refs.ref_file.$refs.input.click()"> เพิ่มเอกสารประกอบ </v-btn>
           </div>
           <v-row>
             <v-file-input ref="ref_file" color="green darken-3" accept="application/pdf" v-model="request.ref_file"
@@ -468,6 +476,7 @@
         </div>
       </v-form>
     </v-container>
+
     <div class="text-center">
       <v-dialog v-model="dialog.dialog_part_2" width="900">
         <v-form ref="form_part_2">
@@ -647,6 +656,82 @@
     </div>
 
     <div class="text-center">
+      <v-dialog v-model="dialog.dialog_part_12" width="900">
+        <v-form ref="form_part_12">
+          <v-card>
+            <v-card-title class="grey lighten-2 mb-2"> แบบฟอร์มการจัดการนำเสนองานวิจัย </v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field color="green darken-3" v-model="part_12.research_present_date"
+                    label="วันที่นำเสนองานวิจัย" :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-select color="green darken-3" :items="parameter.funding_type_group" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_12.presentation_style"
+                    label="รูปแบบการนำเสนอ" required>
+                  </v-select>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-select color="green darken-3" :items="parameter.funding_type_group" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_12.academic_work" label="ประเภทงานวิชาการ"
+                    required>
+                  </v-select>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field color="green darken-3" v-model="part_12.academic_name" label="ชื่อวิชาการ"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field color="green darken-3" v-model="part_12.presentation_place" label="สถานที่นำเสนอ"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-select color="green darken-3" :items="parameter.funding_type_group" item-text="value_ref"
+                    item-value="value" :rules="rules.required" v-model="part_12.present_level" label="ระดับการนำเสนอ"
+                    required>
+                  </v-select>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field color="green darken-3" v-model="part_12.organization_name" label="ชื่อหน่วยงานที่จัด"
+                    :rules="rules.required" required>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="() => {
+                this.$refs.form_part_12.reset()
+                dialog.dialog_part_12 = !dialog.dialog_part_12
+              }">
+                ยกเลิก
+              </v-btn>
+              <v-btn color="primary" text @click="() => {
+                this.$refs.form_part_12.validate()
+                if (this.$refs.form_part_12.validate()) {
+                  onClickPart_12()
+                  dialog.dialog_part_12 = !dialog.dialog_part_12
+                }
+              }">
+                ยืนยัน
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-form>
+      </v-dialog>
+    </div>
+
+    <div class="text-center">
       <v-dialog v-model="dialog.dialogDelete" max-width="500px">
         <v-card>
           <v-card-title>คุณยืนยันที่จะลบข้อมูลงานวิจัยนี้</v-card-title>
@@ -681,7 +766,6 @@
 
 
 <script>
-import axios from 'axios'
 import dayJs from "../Utili/dayJs";
 import { mapState } from "vuex";
 import Loading from "../../Components/Loading/Loading";
@@ -696,6 +780,7 @@ export default {
       dialogDelete: false,
       dialog_part_2: false,
       dialog_part_10: false,
+      dialog_part_12: false,
     },
     request: {
       research_name_th: "",
@@ -745,7 +830,15 @@ export default {
       description: "",
       send: "",
     },
-    part_12: {},
+    part_12: {
+      research_present_date: "",
+      presentation_style: "",
+      academic_work: "",
+      academic_name: "",
+      presentation_place: "",
+      present_level: "",
+      organization_name: "",
+    },
     part_13: {},
     part_14: {},
     part_15: {},
@@ -871,6 +964,27 @@ export default {
       this.part_10 = Object.assign({}, item)
       if (action == 'delete') {
         this.request.part_10.splice(this.editedIndex, 1)
+      }
+    },
+
+    onClickPart_12() {
+      const part_12 = {}
+      for (const [key, value] of Object.entries(this.part_12)) {
+        part_12[key] = value
+      }
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.part_12[this.editedIndex], this.part_12)
+      } else {
+        this.request.part_12.push(part_12)
+      }
+      this.$refs.form_part_12.reset()
+    },
+
+    ManageItemPart_12(item, action) {
+      this.editedIndex = this.request.part_12.indexOf(item)
+      this.part_12 = Object.assign({}, item)
+      if (action == 'delete') {
+        this.request.part_12.splice(this.editedIndex, 1)
       }
     },
 

@@ -260,11 +260,13 @@ export default {
   },
 
   methods: {
+    
     fetchSearchResearchById(id) {
       if (id) {
         this.$store.dispatch("dashboard/fetchSearchResearchById", id)
       }
     },
+
     fetchParameterDATA(items, group, key) {
       if (items) {
         return items[group].find(e => e.value == key)
@@ -274,6 +276,7 @@ export default {
     fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
     },
+
     downloadFile(id, filename) {
       let req = {
         id: id,
