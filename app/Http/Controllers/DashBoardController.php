@@ -16,7 +16,7 @@ class DashBoardController extends Controller
     {
         $collection = collect();
         $branch_group = Parameter::where([
-            ['group_name', '=', 'branch_group'],
+            ['group_name', '=', 'bachelor_degree_branch_group'],
             ['is_deleted', '=', 0]
         ])->orderBy('sort_order')->get();
 

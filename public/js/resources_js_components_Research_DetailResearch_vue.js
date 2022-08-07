@@ -959,6 +959,533 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1055,12 +1582,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       part_15: {},
       rules: {
         required: [function (val) {
-          return !!val || 'กรอกข้อมูลไม่ครบถ้วน';
+          return !!val || "กรอกข้อมูลไม่ครบถ้วน";
         }],
         requiredDateTime: [function (v) {
-          return !!v || 'กรอกข้อมูลไม่ครบถ้วน';
+          return !!v || "กรอกข้อมูลไม่ครบถ้วน";
         }, function (v) {
-          return /^\d{2}\/\d{2}\/\d{4}$/.test(v) || 'ข้อมูลไม่ถูกต้อง';
+          return /^\d{2}\/\d{2}\/\d{4}$/.test(v) || "ข้อมูลไม่ถูกต้อง";
         }]
       },
       dateNow_date_1: "",
@@ -1068,21 +1595,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dateNow_date_2: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
       datePicker_date2: false,
       headers_part_10: [{
-        text: '',
-        value: 'count'
+        text: "",
+        value: "count"
       }, {
-        text: 'ประมาณทุนสนับสนุน',
-        value: 'title'
+        text: "ประมาณทุนสนับสนุน",
+        value: "title"
       }, {
-        text: 'ปีงบประมาณ',
-        value: 'year',
-        align: 'center'
+        text: "ปีงบประมาณ",
+        value: "year",
+        align: "center"
       }, {
-        text: 'จำนวนเงิน (บาท)',
-        value: 'price'
+        text: "จำนวนเงิน (บาท)",
+        value: "price"
       }, {
-        text: 'จัดการ',
-        value: 'actions'
+        text: "จัดการ",
+        value: "actions"
       }]
     };
   },
@@ -1105,7 +1632,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
+    this.fetchParameter(["bachelor_degree_branch_group", "master_degree_branch_group", "doctor_degree_branch_group"]);
     this.fetchResearchById(this.$route.query.id);
   },
   watch: {
@@ -1141,7 +1668,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   value = _Object$entries$_i[1];
 
               if (value) {
-                if (key == 'ref_file' || key == 'part_11') {
+                if (key == "ref_file" || key == "part_11") {
                   _this.request[key] = new File([""], value);
                 } else {
                   _this.request[key] = value;
@@ -1180,7 +1707,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.editedIndex = this.request.part_2.indexOf(item);
       this.part_2 = Object.assign({}, item);
 
-      if (action == 'delete') {
+      if (action == "delete") {
         this.request.part_2.splice(this.editedIndex, 1);
       }
     },
@@ -1207,7 +1734,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.editedIndex = this.request.part_10.indexOf(item);
       this.part_10 = Object.assign({}, item);
 
-      if (action == 'delete') {
+      if (action == "delete") {
         this.request.part_10.splice(this.editedIndex, 1);
       }
     },
@@ -1234,7 +1761,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.editedIndex = this.request.part_12.indexOf(item);
       this.part_12 = Object.assign({}, item);
 
-      if (action == 'delete') {
+      if (action == "delete") {
         this.request.part_12.splice(this.editedIndex, 1);
       }
     },
@@ -1261,7 +1788,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.editedIndex = this.request.part_13.indexOf(item);
       this.part_13 = Object.assign({}, item);
 
-      if (action == 'delete') {
+      if (action == "delete") {
         this.request.part_13.splice(this.editedIndex, 1);
       }
     },
@@ -1288,7 +1815,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.editedIndex = this.request.part_14.indexOf(item);
       this.part_14 = Object.assign({}, item);
 
-      if (action == 'delete') {
+      if (action == "delete") {
         this.request.part_14.splice(this.editedIndex, 1);
       }
     },
@@ -1347,11 +1874,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       this.$store.dispatch("research/downloadFile", req).then(function (response) {
         var blob = new Blob([response], {
-          type: 'application/pdf'
+          type: "application/pdf"
         });
-        var link = document.createElement('a');
+        var link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
-        link.target = '_blank';
+        link.target = "_blank";
         link.click();
       });
     }
@@ -1671,7 +2198,9 @@ var render = function () {
                               { attrs: { cols: "auto" } },
                               [
                                 _c("v-subheader", { staticClass: "mt-2" }, [
-                                  _vm._v("ชื่อผลงานวิจัยภาษาอังกฤษ : "),
+                                  _vm._v(
+                                    "ชื่อผลงานวิจัยภาษาอังกฤษ :\n              "
+                                  ),
                                 ]),
                               ],
                               1
@@ -1891,7 +2420,7 @@ var render = function () {
                         [
                           _c("v-select", {
                             attrs: {
-                              items: _vm.parameter.branch_group,
+                              items: _vm.parameter.bachelor_degree_branch_group,
                               color: "green darken-3",
                               "item-text": "value_ref",
                               "item-value": "value",
@@ -2145,7 +2674,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" ล้างค่า ")]
+                              [_vm._v("\n              ล้างค่า\n            ")]
                             ),
                           ]
                         : _vm._e(),
@@ -2161,7 +2690,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v(" เพิ่มนักวิจัย")]
+                        [_vm._v("\n            เพิ่มนักวิจัย")]
                       ),
                     ],
                     2
@@ -2200,7 +2729,11 @@ var render = function () {
                                                   },
                                                 },
                                               },
-                                              [_vm._v(" ลบ")]
+                                              [
+                                                _vm._v(
+                                                  "\n                      ลบ"
+                                                ),
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c(
@@ -2217,7 +2750,11 @@ var render = function () {
                                                   },
                                                 },
                                               },
-                                              [_vm._v(" แก้ไข")]
+                                              [
+                                                _vm._v(
+                                                  "\n                      แก้ไข"
+                                                ),
+                                              ]
                                             ),
                                           ],
                                           1
@@ -2225,7 +2762,7 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("v-subheader", [
                                           _vm._v(
-                                            " " +
+                                            "\n                    " +
                                               _vm._s(
                                                 "ชื่อนักวิจัย : " +
                                                   (part_2.name ||
@@ -2236,7 +2773,7 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("v-subheader", [
                                           _vm._v(
-                                            " " +
+                                            "\n                    " +
                                               _vm._s(
                                                 "สังกัด : " +
                                                   (part_2.agency ||
@@ -2247,7 +2784,7 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("v-subheader", [
                                           _vm._v(
-                                            " " +
+                                            "\n                    " +
                                               _vm._s(
                                                 "สาขา : " +
                                                   (part_2.branch ||
@@ -2258,7 +2795,7 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("v-subheader", [
                                           _vm._v(
-                                            " " +
+                                            "\n                    " +
                                               _vm._s(
                                                 "ตำแหน่งงานวิจัย : " +
                                                   (part_2.research_position ||
@@ -2270,7 +2807,7 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("v-subheader", [
                                           _vm._v(
-                                            " " +
+                                            "\n                    " +
                                               _vm._s(
                                                 "ร้อยละความรับผิดชอบ : " +
                                                   (part_2.percen_responsibility ||
@@ -2334,8 +2871,6 @@ var render = function () {
                           "item-text": "value_ref",
                           "item-value": "value",
                           label: "ที่ปรึกษางานวิจัย",
-                          rules: _vm.rules.required,
-                          required: "",
                         },
                         model: {
                           value: _vm.request.part_3,
@@ -2541,7 +3076,9 @@ var render = function () {
                     },
                     [
                       _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v("ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"),
+                        _vm._v(
+                          "\n            ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง\n          "
+                        ),
                       ]),
                     ]
                   ),
@@ -2598,7 +3135,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" ล้างค่า ")]
+                              [_vm._v("\n              ล้างค่า\n            ")]
                             ),
                           ]
                         : _vm._e(),
@@ -2614,7 +3151,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v(" เพิ่มแหล่งทุนสนับสนุน")]
+                        [_vm._v("\n            เพิ่มแหล่งทุนสนับสนุน")]
                       ),
                     ],
                     2
@@ -2678,7 +3215,7 @@ var render = function () {
                                                       item.source
                                                     ).value_ref
                                                   ) +
-                                                  " "
+                                                  "\n                  "
                                               ),
                                               _c("br"),
                                               _vm._v(
@@ -2707,7 +3244,7 @@ var render = function () {
                                               ),
                                               _c("br"),
                                               _vm._v(
-                                                " " +
+                                                "\n                  " +
                                                   _vm._s(item.start_date) +
                                                   " - " +
                                                   _vm._s(item.end_date) +
@@ -2748,7 +3285,11 @@ var render = function () {
                                                     },
                                                   },
                                                 },
-                                                [_vm._v(" ลบ")]
+                                                [
+                                                  _vm._v(
+                                                    "\n                    ลบ"
+                                                  ),
+                                                ]
                                               ),
                                               _vm._v(" "),
                                               _c(
@@ -2765,7 +3306,11 @@ var render = function () {
                                                     },
                                                   },
                                                 },
-                                                [_vm._v(" แก้ไข")]
+                                                [
+                                                  _vm._v(
+                                                    "\n                    แก้ไข"
+                                                  ),
+                                                ]
                                               ),
                                             ]
                                           },
@@ -2773,7 +3318,7 @@ var render = function () {
                                       ],
                                       null,
                                       false,
-                                      2883867472
+                                      3786492961
                                     ),
                                   },
                                   [
@@ -2792,16 +3337,19 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("th", [
                                           _vm._v(
-                                            _vm._s(
-                                              _vm.request.part_10.reduce(
-                                                function (t, n) {
-                                                  return (
-                                                    t + Number(n.part_10_amount)
-                                                  )
-                                                },
-                                                0
-                                              )
-                                            )
+                                            "\n                      " +
+                                              _vm._s(
+                                                _vm.request.part_10.reduce(
+                                                  function (t, n) {
+                                                    return (
+                                                      t +
+                                                      Number(n.part_10_amount)
+                                                    )
+                                                  },
+                                                  0
+                                                )
+                                              ) +
+                                              "\n                    "
                                           ),
                                         ]),
                                       ]),
@@ -2858,7 +3406,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v(" เพิ่มเอกสารประกอบ ")]
+                        [_vm._v("\n            เพิ่มเอกสารประกอบ\n          ")]
                       ),
                     ],
                     1
@@ -2918,7 +3466,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" ล้างค่า ")]
+                              [_vm._v("\n              ล้างค่า\n            ")]
                             ),
                           ]
                         : [
@@ -2933,7 +3481,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" เพิ่มข้อมูล")]
+                              [_vm._v("\n              เพิ่มข้อมูล")]
                             ),
                           ],
                     ],
@@ -3007,7 +3555,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" ล้างค่า ")]
+                              [_vm._v("\n              ล้างค่า\n            ")]
                             ),
                           ]
                         : [
@@ -3022,7 +3570,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" เพิ่มข้อมูล")]
+                              [_vm._v("\n              เพิ่มข้อมูล")]
                             ),
                           ],
                     ],
@@ -3096,7 +3644,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" ล้างค่า ")]
+                              [_vm._v("\n              ล้างค่า\n            ")]
                             ),
                           ]
                         : [
@@ -3111,7 +3659,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v(" เพิ่มข้อมูล")]
+                              [_vm._v("\n              เพิ่มข้อมูล")]
                             ),
                           ],
                     ],
@@ -3241,7 +3789,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v(" เพิ่มเอกสารประกอบ ")]
+                        [_vm._v("\n            เพิ่มเอกสารประกอบ\n          ")]
                       ),
                     ],
                     1
@@ -3623,7 +4171,11 @@ var render = function () {
                       _c(
                         "v-card-title",
                         { staticClass: "grey lighten-2 mb-2" },
-                        [_vm._v(" แบบฟอร์มจัดการงบประมาณ ")]
+                        [
+                          _vm._v(
+                            "\n            แบบฟอร์มจัดการงบประมาณ\n          "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -4108,7 +4660,11 @@ var render = function () {
                       _c(
                         "v-card-title",
                         { staticClass: "grey lighten-2 mb-2" },
-                        [_vm._v(" แบบฟอร์มการจัดการนำเสนองานวิจัย ")]
+                        [
+                          _vm._v(
+                            "\n            แบบฟอร์มการจัดการนำเสนองานวิจัย\n          "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -4420,7 +4976,11 @@ var render = function () {
                       _c(
                         "v-card-title",
                         { staticClass: "grey lighten-2 mb-2" },
-                        [_vm._v(" แบบฟอร์มการจัดการตีพิมพ์งานวิจัย ")]
+                        [
+                          _vm._v(
+                            "\n            แบบฟอร์มการจัดการตีพิมพ์งานวิจัย\n          "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -4766,7 +5326,7 @@ var render = function () {
                         { staticClass: "grey lighten-2 mb-2" },
                         [
                           _vm._v(
-                            " แบบฟอร์มการจัดการข้อมูลการถูกอ้างอิงงานวิจัย "
+                            "\n            แบบฟอร์มการจัดการข้อมูลการถูกอ้างอิงงานวิจัย\n          "
                           ),
                         ]
                       ),
@@ -5075,9 +5635,7 @@ var render = function () {
                     _vm._v(" แจ้งเตือน "),
                   ]),
                   _vm._v(" "),
-                  _c("v-card-text", [
-                    _vm._v("\n          กรุณากรอกข้อมูลให้ครบ\n        "),
-                  ]),
+                  _c("v-card-text", [_vm._v(" กรุณากรอกข้อมูลให้ครบ ")]),
                   _vm._v(" "),
                   _c(
                     "v-card-actions",
@@ -5094,7 +5652,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("\n            ตกลง\n          ")]
+                        [_vm._v(" ตกลง ")]
                       ),
                     ],
                     1

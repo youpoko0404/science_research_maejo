@@ -17,7 +17,7 @@ class CreateResearchsTable extends Migration
             $table->id();
             $table->longText('research_name_th');
             $table->longText('research_name_en');
-            $table->longText('research_code')->unique()->nullable()->default(null);
+            $table->string('research_code')->unique()->nullable()->default(null);
             $table->longText('university_code')->nullable()->default(null);
             $table->longText('research_period')->nullable()->default(null);
             $table->longText('research_format')->nullable()->default(null);

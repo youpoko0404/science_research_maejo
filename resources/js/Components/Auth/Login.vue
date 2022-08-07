@@ -1,36 +1,62 @@
 <template>
   <v-app>
-    <GuestTopBar></GuestTopBar>
     <Loading :loading="loading" />
-    <v-main class="background">
-      <v-container fill-height fluid>
-        <v-row align="center" justify="center">
-          <v-layout align-center justify-center>
-            <v-flex xs12 sm10 md6>
-              <v-card class="elevation-12">
-                <v-toolbar dark color="primary">
-                  <v-toolbar-title>Log In</v-toolbar-title>
-                  <v-spacer></v-spacer>
-                </v-toolbar>
-                <v-card-text>
-                  <v-text-field prepend-icon="person" v-model="email" name="email" label="Email" type="text"
-                    placeholder=" " persistent-placeholder></v-text-field>
-                  <v-text-field id="password" v-model="password" prepend-icon="lock" name="password" label="Password"
-                    v-on:keyup.enter="login()" type="password" placeholder=" " persistent-placeholder>
-                  </v-text-field>
-                </v-card-text>
-                <v-layout justify-center>
-                  <v-card-actions class="mb-4">
-                    <div class="text-center">
-                      <v-btn @click="login()">LOGIN</v-btn>
-                    </div>
-                  </v-card-actions>
-                </v-layout>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-row>
-      </v-container>
+    <v-main>
+      <div class="limiter">
+        <div class="container-login100">
+          <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+              <img src="/images/login.png" alt="IMG" />
+            </div>
+            <dev>
+              <span class="login100-form-title"> Login </span>
+              <div
+                class="wrap-input100 validate-input"
+                data-validate="Valid email is required: ex@abc.xyz"
+              >
+                <input
+                  v-model="email"
+                  class="input100"
+                  type="email"
+                  placeholder="Email"
+                />
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div
+                class="wrap-input100 validate-input"
+                data-validate="Password is required"
+              >
+                <input
+                  v-model="password"
+                  class="input100"
+                  type="password"
+                  placeholder="Password"
+                  v-on:keyup.enter="login()"
+                />
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="container-login100-form-btn">
+                <button class="login100-form-btn" @click="login()">
+                  Login
+                </button>
+              </div>
+              <div class="text-center p-t-12">
+                <span class="txt1"> </span>
+                <a class="txt2" href="#"> </a>
+              </div>
+              <div class="text-center p-t-136">
+                <a class="txt2" href="#"> </a>
+              </div>
+            </dev>
+          </div>
+        </div>
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -69,4 +95,8 @@ export default {
 };
 </script>
 
-
+<style>
+@import "./login.css";
+@import "./util.css";
+@import "./fonts/font-awesome-4.7.0/css/font-awesome.min.css";
+</style>

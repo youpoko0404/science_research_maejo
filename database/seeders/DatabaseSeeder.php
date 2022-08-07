@@ -29,163 +29,135 @@ class ParametersTableSeeder extends Seeder
     {
         $rows = [
             [
-                'group_name' => "research_consultant",
-                'value' => "inside",
-                'value_ref' => "ภายใน",
-                'sort_order' => "1",
-            ],
-            [
-                'group_name' => "research_consultant",
-                'value' => "outside",
-                'value_ref' => "ภายนอน",
-                'sort_order' => "2",
-            ],
-
-            [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "materials",
                 'value_ref' => "สาขาวิชาวัสดุศาสตร์",
                 'sort_order' => "1",
-                'remark' => "rgba(255, 99, 132, 0.2)"
+                'remark' => "#CC99CC"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "biotechnology",
                 'value_ref' => "สาขาวิชาเทคโนโลยีชีวภาพ",
                 'sort_order' => "2",
-                'remark' => "rgba(255, 99, 132, 0.2)"
-
+                'remark' => "#CC0000"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "mathematics",
                 'value_ref' => "สาขาวิชาคณิตศาสตร์",
                 'sort_order' => "3",
-                'remark' => "rgba(255, 99, 132, 0.2)"
-
+                'remark' => "#FF99CC"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "computer_science",
                 'value_ref' => "สาขาวิชาวิทยาการคอมพิวเตอร์",
                 'sort_order' => "4",
-                'remark' => "rgba(255, 99, 132, 0.2)"
-
+                'remark' => "#66CCFF"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "physics",
                 'value_ref' => "สาขาวิชาฟิสิกส์ประยุกต์",
                 'sort_order' => "5",
-                'remark' => "rgba(255, 99, 132, 0.2)"
+                'remark' => "#3366CC"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "chemistry",
                 'value_ref' => "สาขาวิชาเคมี",
                 'sort_order' => "6",
-                'remark' => "rgba(255, 99, 132, 0.2)"
+                'remark' => "#CCCCCC"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "industrial_chemistry_and_textile_technology",
                 'value_ref' => "สาขาวิชาเคมีอุตสาหกรรมและเทคโนโลยีสิ่งทอ",
                 'sort_order' => "7",
-                'remark' => ""
+                'remark' => "#339966"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "statistics",
                 'value_ref' => "สาขาวิชาสถิติ",
                 'sort_order' => "8",
-                'remark' => ""
+                'remark' => "#FFCC66"
             ],
             [
-                'group_name' => "branch_group",
+                'group_name' => "bachelor_degree_branch_group",
                 'value' => "information_technology",
                 'value_ref' => "สาขาวิชาเทคโนโลยีสารสนเทศ",
                 'sort_order' => "9",
-                'remark' => ""
+                'remark' => "#66CC66"
             ],
-
             [
-                'group_name' => "funding_type_group",
-                'value' => "external_institution_budget_group",
-                'value_ref' => "งบประมาณภายนอกสถาบัน",
+                'group_name' => "master_degree_branch_group",
+                'value' => "applied_chemistry",
+                'value_ref' => "สาขาวิชาเคมีประยุกต์",
                 'sort_order' => "1",
+                'remark' => "#FF9966"
             ],
             [
-                'group_name' => "funding_type_group",
-                'value' => "institutional_budget_group",
-                'value_ref' => "งบประมาณภายในสถาบัน",
+                'group_name' => "master_degree_branch_group",
+                'value' => "department_of_science",
+                'value_ref' => "สาขาวิชาวิทยาศาสตร์และเทคโนโลยีนาโน",
                 'sort_order' => "2",
+                'remark' => "#FF9999"
             ],
             [
-                'group_name' => "funding_type_group",
-                'value' => "personal_budget_group",
-                'value_ref' => "ทุนส่วนตัว",
+                'group_name' => "master_degree_branch_group",
+                'value' => "biotechnology",
+                'value_ref' => "สาขาวิชาเทคโนโลยีชีวะภาพ",
                 'sort_order' => "3",
+                'remark' => "#99CC66"
             ],
             [
-                'group_name' => "funding_type_group",
-                'value' => "other",
-                'value_ref' => "อื่นๆ",
+                'group_name' => "master_degree_branch_group",
+                'value' => "department_of_environmental",
+                'value_ref' => "สาขาวิชาเทคโนโลยีสิ่งแวดล้อม",
                 'sort_order' => "4",
-            ],
-
-            [
-                'group_name' => "institutional_budget_group",
-                'value' => "research_budget",
-                'value_ref' => "กองทุนวิจัย มหาวิทยาลัยแม่โจ้",
-                'sort_order' => "1",
+                'remark' => "#669966"
             ],
             [
-                'group_name' => "institutional_budget_group",
-                'value' => "university_budget",
-                'value_ref' => "งบภายในมหาวิทยาลัยแม่โจ้",
-                'sort_order' => "2",
-            ],
-            [
-                'group_name' => "institutional_budget_group",
-                'value' => "agency_budget",
-                'value_ref' => "งบภายในหน่วยงาน",
-                'sort_order' => "3",
-            ],
-
-            [
-                'group_name' => "funding_level_group",
-                'value' => "faculty_office_level",
-                'value_ref' => "ระดับคณะ/สำนักงาน",
-                'sort_order' => "1",
-            ],
-            [
-                'group_name' => "funding_level_group",
-                'value' => "university_level",
-                'value_ref' => "ระดับมหาวิทยาลัย",
-                'sort_order' => "2",
-            ],
-            [
-                'group_name' => "funding_level_group",
-                'value' => "national_level",
-                'value_ref' => "ระดับชาติ",
-                'sort_order' => "3",
-            ],
-            [
-                'group_name' => "funding_level_group",
-                'value' => "international_level",
-                'value_ref' => "ระดับนานาชาติ",
-                'sort_order' => "4",
-            ],
-            [
-                'group_name' => "funding_level_group",
-                'value' => "other",
-                'value_ref' => "อื่นๆ",
+                'group_name' => "master_degree_branch_group",
+                'value' => "department_of_genetics",
+                'value_ref' => "สาขาวิชาพันธุศาสตร์",
                 'sort_order' => "5",
+                'remark' => "#336699"
             ],
-
+            [
+                'group_name' => "master_degree_branch_group",
+                'value' => "digital_technology",
+                'value_ref' => "สาขาวิชานวัตกรรมเทคโนโลยีดิจิตอล",
+                'sort_order' => "6",
+                'remark' => "#3399CC"
+            ],
+            [
+                'group_name' => "doctor_degree_branch_group",
+                'value' => "biotechnology",
+                'value_ref' => "สาขาวิชาเทคโนโลยีชีวภาพ",
+                'sort_order' => "1",
+                'remark' => "#669900"
+            ],
+            [
+                'group_name' => "doctor_degree_branch_group",
+                'value' => "department_of_genetics",
+                'value_ref' => "สาขาวิชาพันธุศาสตร์",
+                'sort_order' => "2",
+                'remark' => "#006699"
+            ],
+            [
+                'group_name' => "doctor_degree_branch_group",
+                'value' => "applied_chemistry",
+                'value_ref' => "สาขาวิชาเคมีประยุกต์",
+                'sort_order' => "3",
+                'remark' => "#FF9900"
+            ],
 
         ];
 
+        // branch_group
         foreach ($rows as $row) {
             Parameter::create($row);
         }
