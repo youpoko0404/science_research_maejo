@@ -27,7 +27,6 @@ class ParametersTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('Parameters')->truncate();
         $rows = [
             [
                 'group_name' => "research_consultant",
