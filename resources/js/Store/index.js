@@ -5,6 +5,7 @@ import auth from "./auth";
 import parameter from "./parameter";
 import dashboard from "./dashboard";
 import research from "./research";
+import user from "./user";
 
 import snackbar from "./helper/snackbar";
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
         parameter,
         snackbar,
         research,
+        user,
     },
 });

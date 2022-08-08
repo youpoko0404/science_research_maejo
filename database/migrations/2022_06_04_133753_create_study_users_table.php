@@ -13,17 +13,17 @@ class CreateStudyUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('study_users', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->string('level')->nullable()->default(null);
-            $table->string('educational')->nullable()->default(null);
-            $table->string('university')->nullable()->default(null);
-            $table->timestamps();
+        // Schema::create('study_users', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->bigInteger('user_id')->unsigned();
+        //     $table->string('level')->nullable()->default(null);
+        //     $table->string('educational')->nullable()->default(null);
+        //     $table->string('university')->nullable()->default(null);
+        //     $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-        });
+        // });
     }
 
     /**

@@ -6,12 +6,12 @@
         <v-row justify="space-between">
           <template v-if="research_id == 0">
             <v-col>
-              <p class="h3">เพิ่มงานวิจัย</p>
+              <dev style="font-size: 30px">เพิ่มงานวิจัย</dev>
             </v-col>
           </template>
           <template v-else>
             <v-col>
-              <p class="h3 mt-6">รายละเอียดงานวิจัย</p>
+              <div style="font-size: 30px">รายละเอียดงานวิจัย</div>
             </v-col>
             <v-col>
               <v-row>
@@ -68,8 +68,8 @@
             </v-row>
           </template>
           <template v-else>
-            <p class="h3 ml-4">{{ request.research_name_th }}</p>
-            <p class="h4 ml-4">{{ request.research_name_en }}</p>
+            <div style="font-size: 30px">{{ request.research_name_th }}</div>
+            <div style="font-size: 30px">{{ request.research_name_en }}</div>
           </template>
           <v-row>
             <v-col cols="auto">
@@ -233,7 +233,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
-            <p class="h3 pa-2 mr-auto">ส่วนที่ 2 นักวิจัย</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              ส่วนที่ 2 นักวิจัย
+            </div>
             <template v-if="request.part_2.length > 0">
               <v-btn class="pa-2 error mr-2" @click="request.part_2 = []">
                 ล้างค่า
@@ -323,7 +325,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 3 ที่ปรึกษางานวิจัย</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              ส่วนที่ 3 ที่ปรึกษางานวิจัย
+            </div>
           </div>
           <v-row>
             <v-select
@@ -340,7 +344,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 4 แนวทางการดำเนินงานวิจัย</p>
+            <div class="h3 ml-4" style="font-size: 30px">
+              ส่วนที่ 4 แนวทางการดำเนินงานวิจัย
+            </div>
             <!-- <v-btn color="primary"> แนวทางการทำวิจัย </v-btn> -->
           </div>
           <v-row>
@@ -354,7 +360,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 5 วัตถุประสงค์งานวิจัย</p>
+            <div class="h3 ml-4" style="font-size: 30px">
+              ส่วนที่ 5 วัตถุประสงค์งานวิจัย
+            </div>
             <!-- <v-btn color="primary"> วัตถุประสงค์ </v-btn> -->
           </div>
           <v-row>
@@ -368,7 +376,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ</p>
+            <div class="h3 ml-4" style="font-size: 30px">
+              ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ
+            </div>
             <!-- <v-btn color="primary"> ประโยชน์ที่จะได้รับ </v-btn> -->
           </div>
           <v-row>
@@ -382,7 +392,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ</p>
+            <div class="h3 ml-4" style="font-size: 30px">
+              ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ
+            </div>
             <!-- <v-btn color="primary"> ผลสำเร็จที่จะได้รับ </v-btn> -->
           </div>
           <v-row>
@@ -396,7 +408,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย</p>
+            <div class="h3 pa-4" style="font-size: 30px">
+              ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย
+            </div>
             <!-- <v-btn color="primary"> พื้นที่ดำเนินงานวิจัย </v-btn> -->
           </div>
           <v-row>
@@ -410,9 +424,10 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
-            <p class="h3 pa-2 mr-auto">
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง
-            </p>
+            </div>
+
             <!-- <v-btn class="pa-2 primary mr-2"> งานวิจัยหลัก</v-btn>
             <v-btn class="pa-2 primary"> งานวิจัยย่อย </v-btn> -->
           </div>
@@ -429,7 +444,9 @@
 
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
-            <p class="h3 pa-2 mr-auto">ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย
+            </div>
             <template v-if="request.part_10.length > 0">
               <v-btn class="pa-2 error mr-2" @click="request.part_10 = []">
                 ล้างค่า
@@ -538,7 +555,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 11 เอกสารประกอบงานวิจัย</p>
+            <div class="h3 pa-2" style="font-size: 30px">
+              ส่วนที่ 11 เอกสารประกอบงานวิจัย
+            </div>
             <v-btn color="primary" @click="$refs.part_11.$refs.input.click()">
               เพิ่มเอกสารประกอบ
             </v-btn>
@@ -558,7 +577,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
-            <p class="h3 pa-2 mr-auto">ส่วนที่ 12 การนำเสนองานวิจัย</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              ส่วนที่ 12 การนำเสนองานวิจัย
+            </div>
             <template v-if="request.part_12.length > 0">
               <v-btn class="pa-2 error mr-2" @click="request.part_12 = []">
                 ล้างค่า
@@ -595,7 +616,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
-            <p class="h3 pa-2 mr-auto">ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย
+            </div>
             <template v-if="request.part_13.length > 0">
               <v-btn class="pa-2 error mr-2" @click="request.part_13 = []">
                 ล้างค่า
@@ -632,7 +655,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex mb-6" color="grey lighten-2" flat tile>
-            <p class="h3 pa-2 mr-auto">ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์
+            </div>
             <template v-if="request.part_14.length > 0">
               <v-btn class="pa-2 error mr-2" @click="request.part_14 = []">
                 ล้างค่า
@@ -669,7 +694,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง</p>
+            <div class="h3 ml-4" style="font-size: 30px">
+              ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง
+            </div>
             <v-btn color="primary"> เพิ่มข้อมูล </v-btn>
           </div>
           <v-row>
@@ -691,7 +718,9 @@
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
-            <p class="h3 ml-4">แนบไฟล์เอกสารอ้างอิง</p>
+            <div class="h3 pa-2 mr-auto" style="font-size: 30px">
+              แนบไฟล์เอกสารอ้างอิง
+            </div>
             <v-btn color="primary" @click="$refs.ref_file.$refs.input.click()">
               เพิ่มเอกสารประกอบ
             </v-btn>

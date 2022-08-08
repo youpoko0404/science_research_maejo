@@ -16,12 +16,12 @@
             </div>
           </template>
           <div class="pa-3">
-            <template v-if="user != null">
+            <!-- <template v-if="user != null">
               <v-btn text to="/account">
                 บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
               </v-btn>
-            </template>
-            <template v-else>
+            </template> -->
+            <template v-if="user == null">
               <v-btn text @click="redirect('/login')">
                 บุคลากร(เข้าสู่ระบบ)
               </v-btn>

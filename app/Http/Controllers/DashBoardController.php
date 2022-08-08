@@ -15,12 +15,15 @@ class DashBoardController extends Controller
     public function fetchDashboard()
     {
         $collection = collect();
-        $branch_group = Parameter::where([
+
+        $bachelor_degree_branch_group = Parameter::where([
             ['group_name', '=', 'bachelor_degree_branch_group'],
             ['is_deleted', '=', 0]
-        ])->orderBy('sort_order')->get();
+        ])->orWhere('group_name', '=', 'master_degree_branch_group')
+            ->orWhere('group_name', '=', 'doctor_degree_branch_group')
+            ->orderBy('sort_order')->get();
 
-        foreach ($branch_group as $group_name) {
+        foreach ($bachelor_degree_branch_group as $group_name) {
             $researchs = Researchs::where([
                 ['research_branch', '=', $group_name->value], ['is_deleted', '=', 0]
             ])->get();

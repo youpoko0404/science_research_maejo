@@ -9,8 +9,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\UserController;
 use App\Models\StudyUser;
-use App\Models\ExpertiseUser;
+use App\Models\UserExpertise;
 
 
 
@@ -31,12 +32,12 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('/user', function (Request $request) {
         $user = $request->user();
-        $study = StudyUser::where('user_id', '=', $user->id)->get();
-        $expertise = ExpertiseUser::where('user_id', '=', $user->id)->get();
+        // $study = StudyUser::where('user_id', '=', $user->id)->get();
+        $expertise = UserExpertise::where('user_id', '=', $user->id)->get();
 
         $collection = collect($user);
-        $result = $collection->put("study", $study)->all();
-        $result = $collection->put("service", [])->all();
+        // $result = $collection->put("study", $study)->all();
+        // $result = $collection->put("service", [])->all();
         $result = $collection->put("expertise", $expertise)->all();
 
         return response()->json(['success' => true, 'user' => $result]);
@@ -63,5 +64,13 @@ Route::controller(ResearchController::class)->group(function () {
         Route::get('/research', 'fetchAll');
         Route::get('/research/{id}', 'fetchById');
         Route::delete('/research/{id}', 'delete');
+    });
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/user-expertise', 'fetchExpertiseAll');
+        Route::post('/user-expertise', 'insertExpertise');
+        Route::delete('/user-expertise/{id}', 'deleteUserExpertise');
     });
 });

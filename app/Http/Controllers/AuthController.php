@@ -52,41 +52,41 @@ class AuthController extends Controller
 
             $user = User::updateOrCreate($userWhere, $userData);
 
-            if ($data->study) {
-                foreach ($data->study as $study) {
-                    $studyWhere = [
-                        'user_id' => $user->id,
-                        'level' => $study->level,
-                        'educational' => $study->educational,
-                        'university' => $study->university,
-                    ];
+            // if ($data->study) {
+            //     foreach ($data->study as $study) {
+            //         $studyWhere = [
+            //             'user_id' => $user->id,
+            //             'level' => $study->level,
+            //             'educational' => $study->educational,
+            //             'university' => $study->university,
+            //         ];
 
-                    $studyData = [
-                        'user_id' => $user->id,
-                        'level' => $study->level,
-                        'educational' => $study->educational,
-                        'university' => $study->university,
-                    ];
-                    StudyUser::updateOrCreate($studyWhere, $studyData);
-                }
-            }
+            //         $studyData = [
+            //             'user_id' => $user->id,
+            //             'level' => $study->level,
+            //             'educational' => $study->educational,
+            //             'university' => $study->university,
+            //         ];
+            //         StudyUser::updateOrCreate($studyWhere, $studyData);
+            //     }
+            // }
 
-            if ($data->expertise) {
-                foreach ($data->expertise as $expertise) {
-                    $expertiseWhere = [
-                        'user_id' => $user->id,
-                        'group' => $expertise->text,
-                        'value' => $expertise->value,
-                    ];
+            // if ($data->expertise) {
+            //     foreach ($data->expertise as $expertise) {
+            //         $expertiseWhere = [
+            //             'user_id' => $user->id,
+            //             'group' => $expertise->text,
+            //             'value' => $expertise->value,
+            //         ];
 
-                    $expertiseData = [
-                        'user_id' => $user->id,
-                        'group' => $expertise->text,
-                        'value' => $expertise->value,
-                    ];
-                    ExpertiseUser::updateOrCreate($expertiseWhere, $expertiseData);
-                }
-            }
+            //         $expertiseData = [
+            //             'user_id' => $user->id,
+            //             'group' => $expertise->text,
+            //             'value' => $expertise->value,
+            //         ];
+            //         ExpertiseUser::updateOrCreate($expertiseWhere, $expertiseData);
+            //     }
+            // }
 
             if ($user) {
                 Auth::login($user);

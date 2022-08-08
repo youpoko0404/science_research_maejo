@@ -2,11 +2,15 @@
   <div>
     <Loading :loading="loading" />
     <v-container>
-      <p class="h3">ข้อมูลงานวิจัย</p>
+      <div style="font-size: 30px">ข้อมูลงานวิจัย</div>
       <v-divider></v-divider>
       <v-row>
-        <v-text-field label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย" solo
-          v-model="query_param" v-on:keyup.enter="heddleOnClickSearch">
+        <v-text-field
+          label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
+          solo
+          v-model="query_param"
+          v-on:keyup.enter="heddleOnClickSearch"
+        >
           <template v-slot:append>
             <v-btn color="primary" @click="heddleOnClickSearch"> SEARCH </v-btn>
           </template>
@@ -41,7 +45,7 @@ export default {
   created() {
     if (this.$route.query.q) {
       this.query_param = this.$route.query.q;
-      this.fetchSearchResearch(this.$route.query.q)
+      this.fetchSearchResearch(this.$route.query.q);
     }
   },
   computed: {
@@ -58,15 +62,15 @@ export default {
             q: this.query_param,
           },
         },
-        () => { }
+        () => {}
       );
       if (this.query_param) {
-        this.fetchSearchResearch(this.query_param)
+        this.fetchSearchResearch(this.query_param);
       }
     },
     fetchSearchResearch(q) {
-      this.$store.dispatch("dashboard/fetchSearchResearch", q)
-    }
+      this.$store.dispatch("dashboard/fetchSearchResearch", q);
+    },
   },
 };
 </script>

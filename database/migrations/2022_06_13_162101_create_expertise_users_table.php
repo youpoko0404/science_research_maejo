@@ -13,11 +13,13 @@ class CreateExpertiseUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('expertise_users', function (Blueprint $table) {
+        Schema::create('user_expertises', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->string('group')->nullable()->default(null);
-            $table->string('value')->nullable()->default(null);
+            $table->string('type')->nullable()->default(null);
+            // $table->string('group')->nullable()->default(null);
+            // $table->string('value')->nullable()->default(null);
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -31,6 +33,6 @@ class CreateExpertiseUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expertises');
+        Schema::dropIfExists('user_expertises');
     }
 }

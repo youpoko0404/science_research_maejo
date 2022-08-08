@@ -1486,6 +1486,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2072,15 +2101,21 @@ var render = function () {
                 [
                   _vm.research_id == 0
                     ? [
-                        _c("v-col", [
-                          _c("p", { staticClass: "h3" }, [
-                            _vm._v("เพิ่มงานวิจัย"),
-                          ]),
-                        ]),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "dev",
+                              { staticStyle: { "font-size": "30px" } },
+                              [_vm._v("เพิ่มงานวิจัย")]
+                            ),
+                          ],
+                          1
+                        ),
                       ]
                     : [
                         _c("v-col", [
-                          _c("p", { staticClass: "h3 mt-6" }, [
+                          _c("div", { staticStyle: { "font-size": "30px" } }, [
                             _vm._v("รายละเอียดงานวิจัย"),
                           ]),
                         ]),
@@ -2236,11 +2271,11 @@ var render = function () {
                         ),
                       ]
                     : [
-                        _c("p", { staticClass: "h3 ml-4" }, [
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
                           _vm._v(_vm._s(_vm.request.research_name_th)),
                         ]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "h4 ml-4" }, [
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
                           _vm._v(_vm._s(_vm.request.research_name_en)),
                         ]),
                       ],
@@ -2658,9 +2693,14 @@ var render = function () {
                       attrs: { color: "grey lighten-2", flat: "", tile: "" },
                     },
                     [
-                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v("ส่วนที่ 2 นักวิจัย"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [_vm._v("\n            ส่วนที่ 2 นักวิจัย\n          ")]
+                      ),
                       _vm._v(" "),
                       _vm.request.part_2.length > 0
                         ? [
@@ -2856,9 +2896,18 @@ var render = function () {
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
                   _c("div", { staticClass: "d-flex justify-space-between" }, [
-                    _c("p", { staticClass: "h3 ml-4" }, [
-                      _vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย"),
-                    ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 pa-2 mr-auto",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 3 ที่ปรึกษางานวิจัย\n          "
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -2894,9 +2943,18 @@ var render = function () {
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
                   _c("div", { staticClass: "d-flex justify-space-between" }, [
-                    _c("p", { staticClass: "h3 ml-4" }, [
-                      _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
-                    ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 ml-4",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 4 แนวทางการดำเนินงานวิจัย\n          "
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -2929,9 +2987,18 @@ var render = function () {
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
                   _c("div", { staticClass: "d-flex justify-space-between" }, [
-                    _c("p", { staticClass: "h3 ml-4" }, [
-                      _vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย"),
-                    ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 ml-4",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 5 วัตถุประสงค์งานวิจัย\n          "
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -2964,9 +3031,18 @@ var render = function () {
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
                   _c("div", { staticClass: "d-flex justify-space-between" }, [
-                    _c("p", { staticClass: "h3 ml-4" }, [
-                      _vm._v("ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ"),
-                    ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 ml-4",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ\n          "
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -2999,9 +3075,18 @@ var render = function () {
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
                   _c("div", { staticClass: "d-flex justify-space-between" }, [
-                    _c("p", { staticClass: "h3 ml-4" }, [
-                      _vm._v("ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ"),
-                    ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 ml-4",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ\n          "
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -3034,9 +3119,18 @@ var render = function () {
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
                   _c("div", { staticClass: "d-flex justify-space-between" }, [
-                    _c("p", { staticClass: "h3 ml-4" }, [
-                      _vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย"),
-                    ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 pa-4",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย\n          "
+                        ),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -3075,11 +3169,18 @@ var render = function () {
                       attrs: { color: "grey lighten-2", flat: "", tile: "" },
                     },
                     [
-                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v(
-                          "\n            ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง\n          "
-                        ),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง\n          "
+                          ),
+                        ]
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -3119,9 +3220,18 @@ var render = function () {
                       attrs: { color: "grey lighten-2", flat: "", tile: "" },
                     },
                     [
-                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v("ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _vm.request.part_10.length > 0
                         ? [
@@ -3392,9 +3502,18 @@ var render = function () {
                     "div",
                     { staticClass: "d-flex justify-space-between" },
                     [
-                      _c("p", { staticClass: "h3 ml-4" }, [
-                        _vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 11 เอกสารประกอบงานวิจัย\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-btn",
@@ -3450,9 +3569,18 @@ var render = function () {
                       attrs: { color: "grey lighten-2", flat: "", tile: "" },
                     },
                     [
-                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v("ส่วนที่ 12 การนำเสนองานวิจัย"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 12 การนำเสนองานวิจัย\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _vm.request.part_12.length > 0
                         ? [
@@ -3539,9 +3667,18 @@ var render = function () {
                       attrs: { color: "grey lighten-2", flat: "", tile: "" },
                     },
                     [
-                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v("ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _vm.request.part_13.length > 0
                         ? [
@@ -3628,9 +3765,18 @@ var render = function () {
                       attrs: { color: "grey lighten-2", flat: "", tile: "" },
                     },
                     [
-                      _c("p", { staticClass: "h3 pa-2 mr-auto" }, [
-                        _vm._v("ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _vm.request.part_14.length > 0
                         ? [
@@ -3714,9 +3860,18 @@ var render = function () {
                     "div",
                     { staticClass: "d-flex justify-space-between" },
                     [
-                      _c("p", { staticClass: "h3 ml-4" }, [
-                        _vm._v("ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 ml-4",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _c("v-btn", { attrs: { color: "primary" } }, [
                         _vm._v(" เพิ่มข้อมูล "),
@@ -3775,9 +3930,18 @@ var render = function () {
                     "div",
                     { staticClass: "d-flex justify-space-between" },
                     [
-                      _c("p", { staticClass: "h3 ml-4" }, [
-                        _vm._v("แนบไฟล์เอกสารอ้างอิง"),
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "h3 pa-2 mr-auto",
+                          staticStyle: { "font-size": "30px" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            แนบไฟล์เอกสารอ้างอิง\n          "
+                          ),
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-btn",

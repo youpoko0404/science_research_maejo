@@ -126,7 +126,11 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
       return state.dashboard.loading;
     },
     dashboard: function dashboard(state) {
-      return state.dashboard.dashboard;
+      var _state$dashboard$dash;
+
+      return (_state$dashboard$dash = state.dashboard.dashboard) === null || _state$dashboard$dash === void 0 ? void 0 : _state$dashboard$dash.filter(function (e) {
+        return e.count > 0;
+      });
     }
   })),
   created: function created() {
@@ -265,6 +269,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -14607,7 +14615,9 @@ var render = function () {
       _c(
         "v-container",
         [
-          _c("p", { staticClass: "h3" }, [_vm._v("ข้อมูลงานวิจัย")]),
+          _c("div", { staticStyle: { "font-size": "30px" } }, [
+            _vm._v("ข้อมูลงานวิจัย"),
+          ]),
           _vm._v(" "),
           _c("v-divider"),
           _vm._v(" "),
