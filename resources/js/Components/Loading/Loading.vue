@@ -5,7 +5,7 @@
         <v-progress-circular
           :size="50"
           indeterminate
-          :color="this.color ? this.color : 'primary'"
+          :color="this.color ? this.color : 'green'"
         ></v-progress-circular>
       </v-overlay>
     </div>

@@ -44522,7 +44522,7 @@ var render = function () {
                   attrs: {
                     size: 50,
                     indeterminate: "",
-                    color: this.color ? this.color : "primary",
+                    color: this.color ? this.color : "green",
                   },
                 }),
               ],
