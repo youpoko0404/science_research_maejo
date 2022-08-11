@@ -6117,6 +6117,9 @@ var UserService = {
   },
   deleteUserExpertise: function deleteUserExpertise(id) {
     return httpRequest["delete"]("".concat(API_PATH, "/user-expertise/").concat(id));
+  },
+  UpdateExpertise: function UpdateExpertise(user_expertise) {
+    return httpRequest.post("".concat(API_PATH, "/edit-user-expertise"), user_expertise);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserService);
@@ -6958,6 +6961,40 @@ var actions = {
 
       return function (_x5, _x6) {
         return _ref6.apply(this, arguments);
+      };
+    }());
+  },
+  UpdateExpertise: function UpdateExpertise(_ref7, user_expertise) {
+    var commit = _ref7.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context4.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].UpdateExpertise(user_expertise).then(function (response) {
+                  if (response.data.success) {
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function (_x7, _x8) {
+        return _ref8.apply(this, arguments);
       };
     }());
   }
@@ -44304,7 +44341,10 @@ var render = function () {
                     _c("div", { staticClass: "container-login100" }, [
                       _c(
                         "div",
-                        { staticClass: "wrap-login100" },
+                        {
+                          staticClass: "wrap-login100",
+                          staticStyle: { "justify-content": "space-around" },
+                        },
                         [
                           _c(
                             "div",
@@ -44727,9 +44767,11 @@ var render = function () {
                   "div",
                   { staticClass: "pa-3" },
                   [
-                    _c("v-btn", { attrs: { text: "", to: "/" } }, [
-                      _vm._v(" หน้าแรก "),
-                    ]),
+                    _c(
+                      "v-btn",
+                      { attrs: { text: "", to: "/", styles: "selected" } },
+                      [_vm._v(" หน้าแรก ")]
+                    ),
                   ],
                   1
                 ),
@@ -44765,6 +44807,29 @@ var render = function () {
                   "div",
                   { staticClass: "pa-3" },
                   [
+                    _vm.user != null
+                      ? [
+                          _c(
+                            "v-btn",
+                            {
+                              staticStyle: { cursor: "auto" },
+                              attrs: { text: "" },
+                            },
+                            [
+                              _vm._v(
+                                "\n              บุคลากร (" +
+                                  _vm._s(
+                                    _vm.user.first_name +
+                                      " " +
+                                      _vm.user.last_name
+                                  ) +
+                                  ")\n            "
+                              ),
+                            ]
+                          ),
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
                     _vm.user == null
                       ? [
                           _c(

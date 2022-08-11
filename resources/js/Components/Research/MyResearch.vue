@@ -1,83 +1,92 @@
 <template>
-  <div>
+  <v-container>
     <Loading :loading="loading" />
-    <v-container>
-      <div class="d-flex justify-space-between">
-        <div style="font-size: 30px">งานวิจัยของฉัน</div>
-        <v-btn color="primary" @click="heddleOnClickButton(0)">
-          เพิ่มข้อมูล
-        </v-btn>
+    <div class="d-flex justify-space-between">
+      <div style="font-size: 30px">งานวิจัยของฉัน</div>
+      <v-btn color="primary" @click="heddleOnClickButton(0)">
+        เพิ่มข้อมูล
+      </v-btn>
+    </div>
+    <v-divider></v-divider>
+    <v-row>
+      <v-data-table
+        :headers="headers"
+        :items="researchAll"
+        :page.sync="page"
+        :items-per-page="itemsPerPage"
+        hide-default-footer
+        class="elevation-1"
+        @page-count="pageCount = $event"
+      >
+        <template v-slot:[`item.index`]="{ index }">
+          {{ index + 1 }}
+        </template>
+        <template v-slot:[`item.research_name`]="{ item }">
+          {{ item.research_name_th }}<br />
+          {{ item.research_name_en }}
+        </template>
+        <template v-slot:[`item.edit`]="{ item }">
+          <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
+            >แก้ไข</v-btn
+          >
+        </template>
+        <template v-slot:no-data> ไม่พบผลการค้นหา </template>
+      </v-data-table>
+      <div class="text-center pt-2">
+        <v-pagination v-model="page" :length="pageCount"></v-pagination>
       </div>
-      <v-divider></v-divider>
-      <v-row>
-        <v-data-table
-          :headers="headers"
-          :items="researchAll"
-          :page.sync="page"
-          :items-per-page="itemsPerPage"
-          hide-default-footer
-          class="elevation-1"
-          @page-count="pageCount = $event"
-        >
-          <template v-slot:[`item.index`]="{ index }">
-            {{ index + 1 }}
-          </template>
-          <template v-slot:[`item.research_name`]="{ item }">
-            {{ item.research_name_th }}<br />
-            {{ item.research_name_en }}
-          </template>
-          <template v-slot:[`item.edit`]="{ item }">
-            <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
-              >แก้ไข</v-btn
-            >
-          </template>
-          <template v-slot:no-data> ไม่พบผลการค้นหา </template>
-        </v-data-table>
-        <div class="text-center pt-2">
-          <v-pagination v-model="page" :length="pageCount"></v-pagination>
-        </div>
-      </v-row>
-      <div class="d-flex justify-space-between">
-        <dev style="font-size: 30px">ความเชี่ยวชาญของฉัน</dev>
-        <v-btn color="primary" @click="dialog.user_expertise = true">
-          เพิ่มข้อมูล
-        </v-btn>
+    </v-row>
+    <div class="d-flex justify-space-between">
+      <div style="font-size: 30px">ความเชี่ยวชาญของฉัน</div>
+      <v-btn color="primary" @click="dialog.user_expertise = true">
+        เพิ่มข้อมูล
+      </v-btn>
+    </div>
+    <v-divider></v-divider>
+    <v-row>
+      <v-data-table
+        :headers="headers1"
+        :items="expertiseAll"
+        :page.sync="page"
+        :items-per-page="itemsPerPage"
+        hide-default-footer
+        class="elevation-1"
+        @page-count="pageCount = $event"
+      >
+        <template v-slot:[`item.index`]="{ index }">
+          {{ index + 1 }}
+        </template>
+        <template v-slot:[`item.edit`]="{ item }">
+          <v-btn
+            color="warning"
+            dark
+            @click="
+              () => {
+                dialog.user_expertise = true;
+                id_user_expertise = item.id;
+                user_expertise = item.type;
+              }
+            "
+            >แก้ไข</v-btn
+          >
+          <v-btn
+            color="error"
+            dark
+            @click="
+              () => {
+                deleteId = item.id;
+                dialog.dialogDelete = true;
+              }
+            "
+            >ลบ</v-btn
+          >
+        </template>
+        <template v-slot:no-data> ไม่พบผลการค้นหา </template>
+      </v-data-table>
+      <div class="text-center pt-2">
+        <v-pagination v-model="page" :length="pageCount"></v-pagination>
       </div>
-      <v-divider></v-divider>
-      <v-row>
-        <v-data-table
-          :headers="headers1"
-          :items="expertiseAll"
-          :page.sync="page"
-          :items-per-page="itemsPerPage"
-          hide-default-footer
-          class="elevation-1"
-          @page-count="pageCount = $event"
-        >
-          <template v-slot:[`item.index`]="{ index }">
-            {{ index + 1 }}
-          </template>
-          <template v-slot:[`item.edit`]="{ item }">
-            <v-btn color="warning" dark @click="() => {}">แก้ไข</v-btn>
-            <v-btn
-              color="error"
-              dark
-              @click="
-                () => {
-                  deleteId = item.id;
-                  dialog.dialogDelete = true;
-                }
-              "
-              >ลบ</v-btn
-            >
-          </template>
-          <template v-slot:no-data> ไม่พบผลการค้นหา </template>
-        </v-data-table>
-        <div class="text-center pt-2">
-          <v-pagination v-model="page" :length="pageCount"></v-pagination>
-        </div>
-      </v-row>
-    </v-container>
+    </v-row>
 
     <div class="text-center">
       <v-dialog v-model="dialog.user_expertise" width="900">
@@ -150,7 +159,7 @@
         </v-card>
       </v-dialog>
     </div>
-  </div>
+  </v-container>
 </template>
 
 
@@ -170,6 +179,7 @@ export default {
     page: 1,
     pageCount: 0,
     itemsPerPage: 10,
+    id_user_expertise: 0,
     user_expertise: "",
     headers: [
       {
@@ -249,16 +259,30 @@ export default {
     },
 
     heddleOnClickSaveUserExpertise() {
-      let user_expertise = {
-        user_expertise: this.user_expertise,
-      };
-      this.$store
-        .dispatch("user/InsertExpertise", user_expertise)
-        .then((response) => {
-          if (response.success) {
-            this.dialog.user_expertise = false;
-          }
-        });
+      if (this.id_user_expertise != 0) {
+        let user_expertise = {
+          id: this.id_user_expertise,
+          user_expertise: this.user_expertise,
+        };
+        this.$store
+          .dispatch("user/UpdateExpertise", user_expertise)
+          .then((response) => {
+            if (response.success) {
+              location.reload();
+            }
+          });
+      } else {
+        let user_expertise = {
+          user_expertise: this.user_expertise,
+        };
+        this.$store
+          .dispatch("user/InsertExpertise", user_expertise)
+          .then((response) => {
+            if (response.success) {
+              this.dialog.user_expertise = false;
+            }
+          });
+      }
     },
 
     deleteUseExpertiseItemConfirm(id) {

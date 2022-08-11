@@ -17,21 +17,22 @@
         :height="height"
       />
     </v-card>
+    <div v-if="dashboard.length > 0">
+      <div class="mt-5">
+        <v-card>
+          <v-list>
+            <v-list-item v-for="item in dashboard" :key="item.id">
+              <v-list-item-content>
+                <v-list-item-title v-text="item.branch"></v-list-item-title>
+              </v-list-item-content>
 
-    <div class="mt-5">
-      <v-card>
-        <v-list>
-          <v-list-item v-for="item in dashboard" :key="item.id">
-            <v-list-item-content>
-              <v-list-item-title v-text="item.branch"></v-list-item-title>
-            </v-list-item-content>
-
-            <v-list-item-avatar>
-              {{ item.count }}
-            </v-list-item-avatar>
-          </v-list-item>
-        </v-list>
-      </v-card>
+              <v-list-item-avatar>
+                {{ item.count }}
+              </v-list-item-avatar>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </div>
     </div>
     <v-alert dense border="left" type="warning" class="mt-5" icon="mdi-alert">
       <strong>หมายเหตุ : </strong> ผลรวมจำนวนงานที่จำแนกตามสาขา

@@ -60,7 +60,34 @@ class UserController extends Controller
     {
         $item = UserExpertise::find($id);
         if ($item) {
-            $item->is_deleted = 1;
+            $item->update(
+                [
+                    'is_deleted' => 1
+                ]
+            );
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  null
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'File not found',
+                'payload' =>  null
+            ], 404);
+        }
+    }
+
+    public function updateExpertise(Request $request)
+    {
+        $item = UserExpertise::find($request->id);
+        if ($item) {
+            $item->update(
+                [
+                    'type' => $request->user_expertise
+                ]
+            );
             return response()->json([
                 'success' => true,
                 'message' => 'Successfully',

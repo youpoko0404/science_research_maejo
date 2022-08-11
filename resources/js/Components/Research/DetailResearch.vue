@@ -6,7 +6,7 @@
         <v-row justify="space-between">
           <template v-if="research_id == 0">
             <v-col>
-              <dev style="font-size: 30px">เพิ่มงานวิจัย</dev>
+              <div style="font-size: 30px">สร้างงานวิจัย</div>
             </v-col>
           </template>
           <template v-else>
@@ -33,44 +33,121 @@
         </v-row>
         <v-divider></v-divider>
         <div class="pa-4 grey lighten-5 rounded-lg">
-          <template v-if="research_id == 0">
-            <v-row>
-              <v-col cols="auto">
-                <v-subheader class="mt-2">ชื่อผลงานวิจัยภาษาไทย : </v-subheader>
-              </v-col>
-              <v-col>
-                <v-text-field
-                  label="ชื่อผลงานวิจัยภาษาไทย"
-                  color="green darken-3"
-                  v-model="request.research_name_th"
-                  :rules="rules.required"
-                  required
-                >
-                </v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="auto">
-                <v-subheader class="mt-2"
-                  >ชื่อผลงานวิจัยภาษาอังกฤษ :
-                </v-subheader>
-              </v-col>
-              <v-col>
-                <v-text-field
-                  label="ชื่อผลงานวิจัยภาษาอังกฤษ"
-                  color="green darken-3"
-                  v-model="request.research_name_en"
-                  :rules="rules.required"
-                  required
-                >
-                </v-text-field>
-              </v-col>
-            </v-row>
-          </template>
-          <template v-else>
-            <div style="font-size: 30px">{{ request.research_name_th }}</div>
-            <div style="font-size: 30px">{{ request.research_name_en }}</div>
-          </template>
+          <v-row>
+            <v-col cols="6">
+              <div style="font-size: 20px">ส่วนที่ 1 ข้อมูลทั่วไปภาษาไทย</div>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">หัวข้อ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="หัวข้อ"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">บทคัดย่อ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="บทคัดย่อ"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">คำสำคัญ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="คำสำคัญ"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-col>
+            <v-col cols="6">
+              <div style="font-size: 20px">
+                ส่วนที่ 1 ข้อมูลทั่วไปภาษาอังกฤษ
+              </div>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">Title : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Title"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">Abstract : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Abstract"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">Keyword : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Keyword"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="auto">
+              <v-subheader class="mt-2">รหัสอ้างอิงวช. : </v-subheader>
+            </v-col>
+            <v-col>
+              <v-text-field
+                label="รหัสอ้างอิงวช."
+                color="green darken-3"
+                v-model="request.university_code"
+                :rules="rules.required"
+                required
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
           <v-row>
             <v-col cols="auto">
               <v-subheader class="mt-2">รหัสอ้างอิงมหาวิทยาลัย : </v-subheader>
@@ -136,11 +213,6 @@
               <v-subheader class="mt-2">สาขางานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <!-- :items="[
-                  parameter.bachelor_degree_branch_group,
-                  parameter.master_degree_branch_group,
-                  parameter.doctor_degree_branch_group,
-                ]" -->
               <v-select
                 :items="parameter.bachelor_degree_branch_group"
                 color="green darken-3"
@@ -232,95 +304,139 @@
         </div>
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
-          <div class="d-flex mb-6" color="grey lighten-2" flat tile>
+          <div>
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 2 นักวิจัย
             </div>
-            <template v-if="request.part_2.length > 0">
-              <v-btn class="pa-2 error mr-2" @click="request.part_2 = []">
-                ล้างค่า
-              </v-btn>
-            </template>
-            <v-btn
-              class="pa-2 primary"
-              @click="
-                () => {
-                  editedIndex = -1;
-                  dialog.dialog_part_2 = true;
-                }
-              "
-            >
-              เพิ่มนักวิจัย</v-btn
-            >
           </div>
-          <v-row>
-            <template v-if="request.part_2.length > 0">
-              <div class="pa-4 grey lighten-2 rounded-lg">
-                <div v-for="part_2 in request.part_2" :key="part_2.id">
-                  <v-row>
-                    <div class="d-flex justify-end">
-                      <v-btn
-                        class="pa-2 error mr-2"
-                        @click="
-                          () => {
-                            ManageItemPart_2(part_2, 'delete');
-                          }
-                        "
-                      >
-                        ลบ</v-btn
-                      >
-                      <v-btn
-                        class="pa-2 primary"
-                        @click="
-                          () => {
-                            ManageItemPart_2(part_2, null);
-                            dialog.dialog_part_2 = true;
-                          }
-                        "
-                      >
-                        แก้ไข</v-btn
-                      >
-                    </div>
-                    <v-subheader>
-                      {{
-                        `ชื่อนักวิจัย : ${part_2.name || "-- ไม่ระบุ --"}`
-                      }}</v-subheader
-                    >
-                    <v-subheader>
-                      {{
-                        `สังกัด : ${part_2.agency || "-- ไม่ระบุ --"}`
-                      }}</v-subheader
-                    >
-                    <v-subheader>
-                      {{
-                        `สาขา : ${part_2.branch || "-- ไม่ระบุ --"}`
-                      }}</v-subheader
-                    >
-                    <v-subheader>
-                      {{
-                        `ตำแหน่งงานวิจัย : ${
-                          part_2.research_position || "-- ไม่ระบุ --"
-                        }`
-                      }}
-                    </v-subheader>
-                    <v-subheader>
-                      {{
-                        `ร้อยละความรับผิดชอบ : ${
-                          part_2.percen_responsibility || "-- ไม่ระบุ --"
-                        }`
-                      }}
-                    </v-subheader>
-                  </v-row>
-                  <v-divider></v-divider>
-                </div>
-              </div>
-            </template>
-            <template v-else>
-              <div class="pa-4 grey lighten-2 rounded-lg text-center">
-                -- ไม่ระบุ --
-              </div>
-            </template>
-          </v-row>
+          <div>
+            <v-col>
+              <div style="font-size: 20px">ผู้วิจัยหลัก</div>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ชื่อผู้วิจัย : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ชื่อผู้วิจัย"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">สังกัด : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="สังกัด"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ตำแหน่งงานวิจัย"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ร้อยละความรับผิดชอบ"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-col>
+            <v-col>
+              <div style="font-size: 20px">ผู้วิจัยรอง</div>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ชื่อผู้วิจัย : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ชื่อผู้วิจัย"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">สังกัด : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="สังกัด"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ตำแหน่งงานวิจัย"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ร้อยละความรับผิดชอบ"
+                    color="green darken-3"
+                    v-model="request.research_name_th"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-col>
+          </div>
         </div>
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
@@ -330,15 +446,14 @@
             </div>
           </div>
           <v-row>
-            <v-select
-              :items="parameter.research_consultant"
-              color="green darken-3"
-              item-text="value_ref"
-              item-value="value"
+            <v-text-field
               label="ที่ปรึกษางานวิจัย"
-              v-model="request.part_3"
+              color="green darken-3"
+              v-model="request.research_name_th"
+              :rules="rules.required"
+              required
             >
-            </v-select>
+            </v-text-field>
           </v-row>
         </div>
         <br />
@@ -347,12 +462,11 @@
             <div class="h3 ml-4" style="font-size: 30px">
               ส่วนที่ 4 แนวทางการดำเนินงานวิจัย
             </div>
-            <!-- <v-btn color="primary"> แนวทางการทำวิจัย </v-btn> -->
           </div>
           <v-row>
             <v-textarea
               color="green darken-3"
-              label="แนวทางการทำวิจัย"
+              label="แนวทางการดำเนินงานวิจัย"
               v-model="request.part_4"
             ></v-textarea>
           </v-row>
@@ -363,12 +477,11 @@
             <div class="h3 ml-4" style="font-size: 30px">
               ส่วนที่ 5 วัตถุประสงค์งานวิจัย
             </div>
-            <!-- <v-btn color="primary"> วัตถุประสงค์ </v-btn> -->
           </div>
           <v-row>
             <v-textarea
               color="green darken-3"
-              label="วัตถุประสงค์"
+              label="วัตถุประสงค์งานวิจัย"
               v-model="request.part_5"
             ></v-textarea>
           </v-row>
@@ -379,12 +492,11 @@
             <div class="h3 ml-4" style="font-size: 30px">
               ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ
             </div>
-            <!-- <v-btn color="primary"> ประโยชน์ที่จะได้รับ </v-btn> -->
           </div>
           <v-row>
             <v-textarea
               color="green darken-3"
-              label="ประโยชน์ที่จะได้รับ"
+              label="ประโยชน์ที่คาดว่าจะได้รับ"
               v-model="request.part_6"
             ></v-textarea>
           </v-row>
@@ -395,12 +507,11 @@
             <div class="h3 ml-4" style="font-size: 30px">
               ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ
             </div>
-            <!-- <v-btn color="primary"> ผลสำเร็จที่จะได้รับ </v-btn> -->
           </div>
           <v-row>
             <v-textarea
               color="green darken-3"
-              label="ผลสำเร็จที่จะได้รับ"
+              label="ผลสำเร็จที่คาดว่าจะได้รับ"
               v-model="request.part_7"
             ></v-textarea>
           </v-row>
@@ -411,7 +522,6 @@
             <div class="h3 pa-4" style="font-size: 30px">
               ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย
             </div>
-            <!-- <v-btn color="primary"> พื้นที่ดำเนินงานวิจัย </v-btn> -->
           </div>
           <v-row>
             <v-textarea
@@ -427,17 +537,19 @@
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง
             </div>
-
-            <!-- <v-btn class="pa-2 primary mr-2"> งานวิจัยหลัก</v-btn>
-            <v-btn class="pa-2 primary"> งานวิจัยย่อย </v-btn> -->
           </div>
           <v-row>
-            <v-textarea
+            <v-select
+              :items="[]"
               color="green darken-3"
+              item-text="value_ref"
+              item-value="value"
               label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"
-              v-model="request.part_9"
+              v-model="request.research_branch"
+              :rules="rules.required"
+              required
             >
-            </v-textarea>
+            </v-select>
           </v-row>
         </div>
         <br />
@@ -1374,7 +1486,7 @@
                   <v-text-field
                     color="green darken-3"
                     v-model="part_14.thai_name"
-                    label="ชื่อภาษาไทย"
+                    label="ชื่อภาษาไทย/Research Name"
                     :rules="rules.required"
                     required
                   >

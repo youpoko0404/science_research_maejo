@@ -1515,6 +1515,118 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2101,17 +2213,11 @@ var render = function () {
                 [
                   _vm.research_id == 0
                     ? [
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "dev",
-                              { staticStyle: { "font-size": "30px" } },
-                              [_vm._v("เพิ่มงานวิจัย")]
-                            ),
-                          ],
-                          1
-                        ),
+                        _c("v-col", [
+                          _c("div", { staticStyle: { "font-size": "30px" } }, [
+                            _vm._v("สร้างงานวิจัย"),
+                          ]),
+                        ]),
                       ]
                     : [
                         _c("v-col", [
@@ -2180,105 +2286,332 @@ var render = function () {
                 "div",
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
-                  _vm.research_id == 0
-                    ? [
-                        _c(
-                          "v-row",
-                          [
-                            _c(
-                              "v-col",
-                              { attrs: { cols: "auto" } },
-                              [
-                                _c("v-subheader", { staticClass: "mt-2" }, [
-                                  _vm._v("ชื่อผลงานวิจัยภาษาไทย : "),
-                                ]),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-col",
-                              [
-                                _c("v-text-field", {
-                                  attrs: {
-                                    label: "ชื่อผลงานวิจัยภาษาไทย",
-                                    color: "green darken-3",
-                                    rules: _vm.rules.required,
-                                    required: "",
-                                  },
-                                  model: {
-                                    value: _vm.request.research_name_th,
-                                    callback: function ($$v) {
-                                      _vm.$set(
-                                        _vm.request,
-                                        "research_name_th",
-                                        $$v
-                                      )
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("div", { staticStyle: { "font-size": "20px" } }, [
+                            _vm._v("ส่วนที่ 1 ข้อมูลทั่วไปภาษาไทย"),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c("v-subheader", { staticClass: "mt-2" }, [
+                                    _vm._v("หัวข้อ : "),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "หัวข้อ",
+                                      color: "green darken-3",
+                                      rules: _vm.rules.required,
+                                      required: "",
                                     },
-                                    expression: "request.research_name_th",
-                                  },
-                                }),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-row",
-                          [
-                            _c(
-                              "v-col",
-                              { attrs: { cols: "auto" } },
-                              [
-                                _c("v-subheader", { staticClass: "mt-2" }, [
-                                  _vm._v(
-                                    "ชื่อผลงานวิจัยภาษาอังกฤษ :\n              "
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-col",
-                              [
-                                _c("v-text-field", {
-                                  attrs: {
-                                    label: "ชื่อผลงานวิจัยภาษาอังกฤษ",
-                                    color: "green darken-3",
-                                    rules: _vm.rules.required,
-                                    required: "",
-                                  },
-                                  model: {
-                                    value: _vm.request.research_name_en,
-                                    callback: function ($$v) {
-                                      _vm.$set(
-                                        _vm.request,
-                                        "research_name_en",
-                                        $$v
-                                      )
+                                    model: {
+                                      value: _vm.request.research_name_th,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.request,
+                                          "research_name_th",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "request.research_name_th",
                                     },
-                                    expression: "request.research_name_en",
-                                  },
-                                }),
-                              ],
-                              1
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c("v-subheader", { staticClass: "mt-2" }, [
+                                    _vm._v("บทคัดย่อ : "),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "บทคัดย่อ",
+                                      color: "green darken-3",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.request.research_name_th,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.request,
+                                          "research_name_th",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "request.research_name_th",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c("v-subheader", { staticClass: "mt-2" }, [
+                                    _vm._v("คำสำคัญ : "),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "คำสำคัญ",
+                                      color: "green darken-3",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.request.research_name_th,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.request,
+                                          "research_name_th",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "request.research_name_th",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("div", { staticStyle: { "font-size": "20px" } }, [
+                            _vm._v(
+                              "\n              ส่วนที่ 1 ข้อมูลทั่วไปภาษาอังกฤษ\n            "
                             ),
-                          ],
-                          1
-                        ),
-                      ]
-                    : [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(_vm._s(_vm.request.research_name_th)),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(_vm._s(_vm.request.research_name_en)),
-                        ]),
-                      ],
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c("v-subheader", { staticClass: "mt-2" }, [
+                                    _vm._v("Title : "),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Title",
+                                      color: "green darken-3",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.request.research_name_th,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.request,
+                                          "research_name_th",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "request.research_name_th",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c("v-subheader", { staticClass: "mt-2" }, [
+                                    _vm._v("Abstract : "),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Abstract",
+                                      color: "green darken-3",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.request.research_name_th,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.request,
+                                          "research_name_th",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "request.research_name_th",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c("v-subheader", { staticClass: "mt-2" }, [
+                                    _vm._v("Keyword : "),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Keyword",
+                                      color: "green darken-3",
+                                      rules: _vm.rules.required,
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.request.research_name_th,
+                                      callback: function ($$v) {
+                                        _vm.$set(
+                                          _vm.request,
+                                          "research_name_th",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "request.research_name_th",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "auto" } },
+                        [
+                          _c("v-subheader", { staticClass: "mt-2" }, [
+                            _vm._v("รหัสอ้างอิงวช. : "),
+                          ]),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "รหัสอ้างอิงวช.",
+                              color: "green darken-3",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.university_code,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.request, "university_code", $$v)
+                              },
+                              expression: "request.university_code",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "v-row",
@@ -2677,217 +3010,393 @@ var render = function () {
                     1
                   ),
                 ],
-                2
+                1
               ),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "pa-4 grey lighten-5 rounded-lg" },
-                [
+              _c("div", { staticClass: "pa-4 grey lighten-5 rounded-lg" }, [
+                _c("div", [
                   _c(
                     "div",
                     {
-                      staticClass: "d-flex mb-6",
-                      attrs: { color: "grey lighten-2", flat: "", tile: "" },
+                      staticClass: "h3 pa-2 mr-auto",
+                      staticStyle: { "font-size": "30px" },
                     },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "h3 pa-2 mr-auto",
-                          staticStyle: { "font-size": "30px" },
-                        },
-                        [_vm._v("\n            ส่วนที่ 2 นักวิจัย\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _vm.request.part_2.length > 0
-                        ? [
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "pa-2 error mr-2",
-                                on: {
-                                  click: function ($event) {
-                                    _vm.request.part_2 = []
-                                  },
-                                },
-                              },
-                              [_vm._v("\n              ล้างค่า\n            ")]
-                            ),
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "pa-2 primary",
-                          on: {
-                            click: function () {
-                              _vm.editedIndex = -1
-                              _vm.dialog.dialog_part_2 = true
-                            },
-                          },
-                        },
-                        [_vm._v("\n            เพิ่มนักวิจัย")]
-                      ),
-                    ],
-                    2
+                    [_vm._v("\n            ส่วนที่ 2 นักวิจัย\n          ")]
                   ),
-                  _vm._v(" "),
-                  _c(
-                    "v-row",
-                    [
-                      _vm.request.part_2.length > 0
-                        ? [
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "v-col",
+                      [
+                        _c("div", { staticStyle: { "font-size": "20px" } }, [
+                          _vm._v("ผู้วิจัยหลัก"),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
                             _c(
-                              "div",
-                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              _vm._l(_vm.request.part_2, function (part_2) {
-                                return _c(
-                                  "div",
-                                  { key: part_2.id },
-                                  [
-                                    _c(
-                                      "v-row",
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "d-flex justify-end" },
-                                          [
-                                            _c(
-                                              "v-btn",
-                                              {
-                                                staticClass: "pa-2 error mr-2",
-                                                on: {
-                                                  click: function () {
-                                                    _vm.ManageItemPart_2(
-                                                      part_2,
-                                                      "delete"
-                                                    )
-                                                  },
-                                                },
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                      ลบ"
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-btn",
-                                              {
-                                                staticClass: "pa-2 primary",
-                                                on: {
-                                                  click: function () {
-                                                    _vm.ManageItemPart_2(
-                                                      part_2,
-                                                      null
-                                                    )
-                                                    _vm.dialog.dialog_part_2 = true
-                                                  },
-                                                },
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                      แก้ไข"
-                                                ),
-                                              ]
-                                            ),
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-subheader", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                "ชื่อนักวิจัย : " +
-                                                  (part_2.name ||
-                                                    "-- ไม่ระบุ --")
-                                              )
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("v-subheader", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                "สังกัด : " +
-                                                  (part_2.agency ||
-                                                    "-- ไม่ระบุ --")
-                                              )
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("v-subheader", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                "สาขา : " +
-                                                  (part_2.branch ||
-                                                    "-- ไม่ระบุ --")
-                                              )
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("v-subheader", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                "ตำแหน่งงานวิจัย : " +
-                                                  (part_2.research_position ||
-                                                    "-- ไม่ระบุ --")
-                                              ) +
-                                              "\n                  "
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("v-subheader", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                "ร้อยละความรับผิดชอบ : " +
-                                                  (part_2.percen_responsibility ||
-                                                    "-- ไม่ระบุ --")
-                                              ) +
-                                              "\n                  "
-                                          ),
-                                        ]),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c("v-divider"),
-                                  ],
-                                  1
-                                )
-                              }),
-                              0
-                            ),
-                          ]
-                        : [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "pa-4 grey lighten-2 rounded-lg text-center",
-                              },
+                              "v-col",
+                              { attrs: { cols: "auto" } },
                               [
-                                _vm._v(
-                                  "\n              -- ไม่ระบุ --\n            "
-                                ),
-                              ]
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ชื่อผู้วิจัย : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ชื่อผู้วิจัย",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
                             ),
                           ],
-                    ],
-                    2
-                  ),
-                ],
-                1
-              ),
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("สังกัด : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "สังกัด",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ตำแหน่งงานวิจัย : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ตำแหน่งงานวิจัย",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ร้อยละความรับผิดชอบ : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ร้อยละความรับผิดชอบ",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c("div", { staticStyle: { "font-size": "20px" } }, [
+                          _vm._v("ผู้วิจัยรอง"),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ชื่อผู้วิจัย : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ชื่อผู้วิจัย",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("สังกัด : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "สังกัด",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ตำแหน่งงานวิจัย : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ตำแหน่งงานวิจัย",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c("v-subheader", { staticClass: "mt-2" }, [
+                                  _vm._v("ร้อยละความรับผิดชอบ : "),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    label: "ร้อยละความรับผิดชอบ",
+                                    color: "green darken-3",
+                                    rules: _vm.rules.required,
+                                    required: "",
+                                  },
+                                  model: {
+                                    value: _vm.request.research_name_th,
+                                    callback: function ($$v) {
+                                      _vm.$set(
+                                        _vm.request,
+                                        "research_name_th",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "request.research_name_th",
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -2913,20 +3422,19 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _c("v-select", {
+                      _c("v-text-field", {
                         attrs: {
-                          items: _vm.parameter.research_consultant,
-                          color: "green darken-3",
-                          "item-text": "value_ref",
-                          "item-value": "value",
                           label: "ที่ปรึกษางานวิจัย",
+                          color: "green darken-3",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_3,
+                          value: _vm.request.research_name_th,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_3", $$v)
+                            _vm.$set(_vm.request, "research_name_th", $$v)
                           },
-                          expression: "request.part_3",
+                          expression: "request.research_name_th",
                         },
                       }),
                     ],
@@ -2963,7 +3471,7 @@ var render = function () {
                       _c("v-textarea", {
                         attrs: {
                           color: "green darken-3",
-                          label: "แนวทางการทำวิจัย",
+                          label: "แนวทางการดำเนินงานวิจัย",
                         },
                         model: {
                           value: _vm.request.part_4,
@@ -3007,7 +3515,7 @@ var render = function () {
                       _c("v-textarea", {
                         attrs: {
                           color: "green darken-3",
-                          label: "วัตถุประสงค์",
+                          label: "วัตถุประสงค์งานวิจัย",
                         },
                         model: {
                           value: _vm.request.part_5,
@@ -3051,7 +3559,7 @@ var render = function () {
                       _c("v-textarea", {
                         attrs: {
                           color: "green darken-3",
-                          label: "ประโยชน์ที่จะได้รับ",
+                          label: "ประโยชน์ที่คาดว่าจะได้รับ",
                         },
                         model: {
                           value: _vm.request.part_6,
@@ -3095,7 +3603,7 @@ var render = function () {
                       _c("v-textarea", {
                         attrs: {
                           color: "green darken-3",
-                          label: "ผลสำเร็จที่จะได้รับ",
+                          label: "ผลสำเร็จที่คาดว่าจะได้รับ",
                         },
                         model: {
                           value: _vm.request.part_7,
@@ -3187,17 +3695,22 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _c("v-textarea", {
+                      _c("v-select", {
                         attrs: {
+                          items: [],
                           color: "green darken-3",
+                          "item-text": "value_ref",
+                          "item-value": "value",
                           label: "งานวิจัยอื่น ๆ ที่เกี่ยวข้อง",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_9,
+                          value: _vm.request.research_branch,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_9", $$v)
+                            _vm.$set(_vm.request, "research_branch", $$v)
                           },
-                          expression: "request.part_9",
+                          expression: "request.research_branch",
                         },
                       }),
                     ],
@@ -5568,7 +6081,7 @@ var render = function () {
                                   _c("v-text-field", {
                                     attrs: {
                                       color: "green darken-3",
-                                      label: "ชื่อภาษาไทย",
+                                      label: "ชื่อภาษาไทย/Research Name",
                                       rules: _vm.rules.required,
                                       required: "",
                                     },

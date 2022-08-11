@@ -57,6 +57,22 @@ const actions = {
             commit("LOADING_SET", false);
         });
     },
+
+    UpdateExpertise({ commit }, user_expertise) {
+        return new Promise(async (resolve, reject) => {
+            commit("LOADING_SET", true);
+            await UserService.UpdateExpertise(user_expertise)
+                .then((response) => {
+                    if (response.data.success) {
+                        resolve(response.data);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            commit("LOADING_SET", false);
+        });
+    },
 };
 
 const mutations = {

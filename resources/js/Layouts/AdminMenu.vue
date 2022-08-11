@@ -6,7 +6,7 @@
       <v-col align-self="end">
         <div class="d-flex justify-end">
           <div class="pa-3">
-            <v-btn text to="/"> หน้าแรก </v-btn>
+            <v-btn text to="/" styles="selected"> หน้าแรก </v-btn>
           </div>
           <template v-if="user != null">
             <div class="pa-3">
@@ -16,11 +16,11 @@
             </div>
           </template>
           <div class="pa-3">
-            <!-- <template v-if="user != null">
-              <v-btn text to="/account">
+            <template v-if="user != null">
+              <v-btn style="cursor: auto" text>
                 บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
               </v-btn>
-            </template> -->
+            </template>
             <template v-if="user == null">
               <v-btn text @click="redirect('/login')">
                 บุคลากร(เข้าสู่ระบบ)

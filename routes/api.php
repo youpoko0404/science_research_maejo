@@ -72,5 +72,6 @@ Route::controller(UserController::class)->group(function () {
         Route::get('/user-expertise', 'fetchExpertiseAll');
         Route::post('/user-expertise', 'insertExpertise');
         Route::delete('/user-expertise/{id}', 'deleteUserExpertise');
+        Route::post('/edit-user-expertise', 'updateExpertise');
     });
 });

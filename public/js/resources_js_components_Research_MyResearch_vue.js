@@ -175,6 +175,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -191,6 +200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
+      id_user_expertise: 0,
       user_expertise: "",
       headers: [{
         text: "ลำดับ",
@@ -272,14 +282,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     heddleOnClickSaveUserExpertise: function heddleOnClickSaveUserExpertise() {
       var _this = this;
 
-      var user_expertise = {
-        user_expertise: this.user_expertise
-      };
-      this.$store.dispatch("user/InsertExpertise", user_expertise).then(function (response) {
-        if (response.success) {
-          _this.dialog.user_expertise = false;
-        }
-      });
+      if (this.id_user_expertise != 0) {
+        var user_expertise = {
+          id: this.id_user_expertise,
+          user_expertise: this.user_expertise
+        };
+        this.$store.dispatch("user/UpdateExpertise", user_expertise).then(function (response) {
+          if (response.success) {
+            location.reload();
+          }
+        });
+      } else {
+        var _user_expertise = {
+          user_expertise: this.user_expertise
+        };
+        this.$store.dispatch("user/InsertExpertise", _user_expertise).then(function (response) {
+          if (response.success) {
+            _this.dialog.user_expertise = false;
+          }
+        });
+      }
     },
     deleteUseExpertiseItemConfirm: function deleteUseExpertiseItemConfirm(id) {
       if (id) {
@@ -381,262 +403,256 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-container",
     [
       _c("Loading", { attrs: { loading: _vm.loading } }),
       _vm._v(" "),
       _c(
-        "v-container",
+        "div",
+        { staticClass: "d-flex justify-space-between" },
         [
+          _c("div", { staticStyle: { "font-size": "30px" } }, [
+            _vm._v("งานวิจัยของฉัน"),
+          ]),
+          _vm._v(" "),
           _c(
-            "div",
-            { staticClass: "d-flex justify-space-between" },
-            [
-              _c("div", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v("งานวิจัยของฉัน"),
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-btn",
+            "v-btn",
+            {
+              attrs: { color: "primary" },
+              on: {
+                click: function ($event) {
+                  return _vm.heddleOnClickButton(0)
+                },
+              },
+            },
+            [_vm._v("\n      เพิ่มข้อมูล\n    ")]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-divider"),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        [
+          _c("v-data-table", {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.researchAll,
+              page: _vm.page,
+              "items-per-page": _vm.itemsPerPage,
+              "hide-default-footer": "",
+            },
+            on: {
+              "update:page": function ($event) {
+                _vm.page = $event
+              },
+              "page-count": function ($event) {
+                _vm.pageCount = $event
+              },
+            },
+            scopedSlots: _vm._u(
+              [
                 {
-                  attrs: { color: "primary" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.heddleOnClickButton(0)
-                    },
+                  key: "item.index",
+                  fn: function (ref) {
+                    var index = ref.index
+                    return [
+                      _vm._v("\n        " + _vm._s(index + 1) + "\n      "),
+                    ]
                   },
                 },
-                [_vm._v("\n        เพิ่มข้อมูล\n      ")]
-              ),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
-              _c("v-data-table", {
-                staticClass: "elevation-1",
-                attrs: {
-                  headers: _vm.headers,
-                  items: _vm.researchAll,
-                  page: _vm.page,
-                  "items-per-page": _vm.itemsPerPage,
-                  "hide-default-footer": "",
-                },
-                on: {
-                  "update:page": function ($event) {
-                    _vm.page = $event
-                  },
-                  "page-count": function ($event) {
-                    _vm.pageCount = $event
+                {
+                  key: "item.research_name",
+                  fn: function (ref) {
+                    var item = ref.item
+                    return [
+                      _vm._v("\n        " + _vm._s(item.research_name_th)),
+                      _c("br"),
+                      _vm._v(
+                        "\n        " +
+                          _vm._s(item.research_name_en) +
+                          "\n      "
+                      ),
+                    ]
                   },
                 },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "item.index",
-                      fn: function (ref) {
-                        var index = ref.index
-                        return [
-                          _vm._v(
-                            "\n          " + _vm._s(index + 1) + "\n        "
-                          ),
-                        ]
-                      },
-                    },
-                    {
-                      key: "item.research_name",
-                      fn: function (ref) {
-                        var item = ref.item
-                        return [
-                          _vm._v(
-                            "\n          " + _vm._s(item.research_name_th)
-                          ),
-                          _c("br"),
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(item.research_name_en) +
-                              "\n        "
-                          ),
-                        ]
-                      },
-                    },
-                    {
-                      key: "item.edit",
-                      fn: function (ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "warning", dark: "" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.heddleOnClickButton(item.id)
-                                },
-                              },
+                {
+                  key: "item.edit",
+                  fn: function (ref) {
+                    var item = ref.item
+                    return [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "warning", dark: "" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.heddleOnClickButton(item.id)
                             },
-                            [_vm._v("แก้ไข")]
-                          ),
-                        ]
-                      },
-                    },
-                    {
-                      key: "no-data",
-                      fn: function () {
-                        return [_vm._v(" ไม่พบผลการค้นหา ")]
-                      },
-                      proxy: true,
-                    },
-                  ],
-                  null,
-                  true
-                ),
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "text-center pt-2" },
-                [
-                  _c("v-pagination", {
-                    attrs: { length: _vm.pageCount },
-                    model: {
-                      value: _vm.page,
-                      callback: function ($$v) {
-                        _vm.page = $$v
-                      },
-                      expression: "page",
-                    },
-                  }),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
+                          },
+                        },
+                        [_vm._v("แก้ไข")]
+                      ),
+                    ]
+                  },
+                },
+                {
+                  key: "no-data",
+                  fn: function () {
+                    return [_vm._v(" ไม่พบผลการค้นหา ")]
+                  },
+                  proxy: true,
+                },
+              ],
+              null,
+              true
+            ),
+          }),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "d-flex justify-space-between" },
+            { staticClass: "text-center pt-2" },
             [
-              _c("dev", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v("ความเชี่ยวชาญของฉัน"),
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "primary" },
-                  on: {
-                    click: function ($event) {
-                      _vm.dialog.user_expertise = true
-                    },
+              _c("v-pagination", {
+                attrs: { length: _vm.pageCount },
+                model: {
+                  value: _vm.page,
+                  callback: function ($$v) {
+                    _vm.page = $$v
                   },
+                  expression: "page",
                 },
-                [_vm._v("\n        เพิ่มข้อมูล\n      ")]
-              ),
+              }),
             ],
             1
           ),
-          _vm._v(" "),
-          _c("v-divider"),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "d-flex justify-space-between" },
+        [
+          _c("div", { staticStyle: { "font-size": "30px" } }, [
+            _vm._v("ความเชี่ยวชาญของฉัน"),
+          ]),
           _vm._v(" "),
           _c(
-            "v-row",
+            "v-btn",
+            {
+              attrs: { color: "primary" },
+              on: {
+                click: function ($event) {
+                  _vm.dialog.user_expertise = true
+                },
+              },
+            },
+            [_vm._v("\n      เพิ่มข้อมูล\n    ")]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-divider"),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        [
+          _c("v-data-table", {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers1,
+              items: _vm.expertiseAll,
+              page: _vm.page,
+              "items-per-page": _vm.itemsPerPage,
+              "hide-default-footer": "",
+            },
+            on: {
+              "update:page": function ($event) {
+                _vm.page = $event
+              },
+              "page-count": function ($event) {
+                _vm.pageCount = $event
+              },
+            },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "item.index",
+                  fn: function (ref) {
+                    var index = ref.index
+                    return [
+                      _vm._v("\n        " + _vm._s(index + 1) + "\n      "),
+                    ]
+                  },
+                },
+                {
+                  key: "item.edit",
+                  fn: function (ref) {
+                    var item = ref.item
+                    return [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "warning", dark: "" },
+                          on: {
+                            click: function () {
+                              _vm.dialog.user_expertise = true
+                              _vm.id_user_expertise = item.id
+                              _vm.user_expertise = item.type
+                            },
+                          },
+                        },
+                        [_vm._v("แก้ไข")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "error", dark: "" },
+                          on: {
+                            click: function () {
+                              _vm.deleteId = item.id
+                              _vm.dialog.dialogDelete = true
+                            },
+                          },
+                        },
+                        [_vm._v("ลบ")]
+                      ),
+                    ]
+                  },
+                },
+                {
+                  key: "no-data",
+                  fn: function () {
+                    return [_vm._v(" ไม่พบผลการค้นหา ")]
+                  },
+                  proxy: true,
+                },
+              ],
+              null,
+              true
+            ),
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-center pt-2" },
             [
-              _c("v-data-table", {
-                staticClass: "elevation-1",
-                attrs: {
-                  headers: _vm.headers1,
-                  items: _vm.expertiseAll,
-                  page: _vm.page,
-                  "items-per-page": _vm.itemsPerPage,
-                  "hide-default-footer": "",
-                },
-                on: {
-                  "update:page": function ($event) {
-                    _vm.page = $event
+              _c("v-pagination", {
+                attrs: { length: _vm.pageCount },
+                model: {
+                  value: _vm.page,
+                  callback: function ($$v) {
+                    _vm.page = $$v
                   },
-                  "page-count": function ($event) {
-                    _vm.pageCount = $event
-                  },
+                  expression: "page",
                 },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "item.index",
-                      fn: function (ref) {
-                        var index = ref.index
-                        return [
-                          _vm._v(
-                            "\n          " + _vm._s(index + 1) + "\n        "
-                          ),
-                        ]
-                      },
-                    },
-                    {
-                      key: "item.edit",
-                      fn: function (ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "warning", dark: "" },
-                              on: { click: function () {} },
-                            },
-                            [_vm._v("แก้ไข")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "error", dark: "" },
-                              on: {
-                                click: function () {
-                                  _vm.deleteId = item.id
-                                  _vm.dialog.dialogDelete = true
-                                },
-                              },
-                            },
-                            [_vm._v("ลบ")]
-                          ),
-                        ]
-                      },
-                    },
-                    {
-                      key: "no-data",
-                      fn: function () {
-                        return [_vm._v(" ไม่พบผลการค้นหา ")]
-                      },
-                      proxy: true,
-                    },
-                  ],
-                  null,
-                  true
-                ),
               }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "text-center pt-2" },
-                [
-                  _c("v-pagination", {
-                    attrs: { length: _vm.pageCount },
-                    model: {
-                      value: _vm.page,
-                      callback: function ($$v) {
-                        _vm.page = $$v
-                      },
-                      expression: "page",
-                    },
-                  }),
-                ],
-                1
-              ),
             ],
             1
           ),

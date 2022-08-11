@@ -65,6 +65,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -176,6 +177,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14397,47 +14414,55 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "mt-5" },
-        [
-          _c(
-            "v-card",
-            [
-              _c(
-                "v-list",
-                _vm._l(_vm.dashboard, function (item) {
-                  return _c(
-                    "v-list-item",
-                    { key: item.id },
-                    [
-                      _c(
-                        "v-list-item-content",
-                        [
-                          _c("v-list-item-title", {
-                            domProps: { textContent: _vm._s(item.branch) },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-list-item-avatar", [
-                        _vm._v(
-                          "\n            " + _vm._s(item.count) + "\n          "
-                        ),
-                      ]),
-                    ],
-                    1
-                  )
-                }),
-                1
-              ),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
+      _vm.dashboard.length > 0
+        ? _c("div", [
+            _c(
+              "div",
+              { staticClass: "mt-5" },
+              [
+                _c(
+                  "v-card",
+                  [
+                    _c(
+                      "v-list",
+                      _vm._l(_vm.dashboard, function (item) {
+                        return _c(
+                          "v-list-item",
+                          { key: item.id },
+                          [
+                            _c(
+                              "v-list-item-content",
+                              [
+                                _c("v-list-item-title", {
+                                  domProps: {
+                                    textContent: _vm._s(item.branch),
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-list-item-avatar", [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.count) +
+                                  "\n            "
+                              ),
+                            ]),
+                          ],
+                          1
+                        )
+                      }),
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "v-alert",
@@ -14486,13 +14511,17 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("p", [
-        _vm._v(
-          "ผลการค้นหา " +
-            _vm._s(_vm.research ? _vm.research.length : 0) +
-            " รายการ"
-        ),
-      ]),
+      _c(
+        "div",
+        { staticStyle: { "font-size": "15px", "margin-bottom": "10px" } },
+        [
+          _vm._v(
+            "\n    ผลการค้นหา " +
+              _vm._s(_vm.research ? _vm.research.length : 0) +
+              " รายการ\n  "
+          ),
+        ]
+      ),
       _vm._v(" "),
       _c("v-data-table", {
         staticClass: "elevation-1 row-pointer",

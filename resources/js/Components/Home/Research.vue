@@ -1,8 +1,18 @@
 <template>
   <div>
-    <p>ผลการค้นหา {{ research ? research.length : 0 }} รายการ</p>
-    <v-data-table :headers="headers" :items="research ? research : []" :page.sync="page" :items-per-page="itemsPerPage"
-      hide-default-footer @click:row="heddleOnClick" class="elevation-1 row-pointer" @page-count="pageCount = $event">
+    <div style="font-size: 15px;margin-bottom: 10px;">
+      ผลการค้นหา {{ research ? research.length : 0 }} รายการ
+    </div>
+    <v-data-table
+      :headers="headers"
+      :items="research ? research : []"
+      :page.sync="page"
+      :items-per-page="itemsPerPage"
+      hide-default-footer
+      @click:row="heddleOnClick"
+      class="elevation-1 row-pointer"
+      @page-count="pageCount = $event"
+    >
       <template v-slot:[`item.index`]="{ index }">
         {{ index + 1 }}
       </template>
@@ -11,7 +21,13 @@
         {{ item.research_name_en }}
       </template>
       <template v-slot:[`item.name`]="{ item }">
-        {{ item.part_2.map(e => { return e.name }).join(", ") }}
+        {{
+          item.part_2
+            .map((e) => {
+              return e.name;
+            })
+            .join(", ")
+        }}
       </template>
       <template v-slot:no-data> ไม่พบผลการค้นหา </template>
     </v-data-table>
@@ -72,7 +88,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.row-pointer>>>tbody tr :hover {
+.row-pointer >>> tbody tr :hover {
   cursor: pointer;
 }
 </style>

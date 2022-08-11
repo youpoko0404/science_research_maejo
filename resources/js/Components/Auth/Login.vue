@@ -6,7 +6,7 @@
         <v-layout align-center justify-center>
           <div class="limiter">
             <div class="container-login100">
-              <div class="wrap-login100">
+              <div class="wrap-login100" style="justify-content: space-around">
                 <div class="login100-pic js-tilt" data-tilt>
                   <img src="/images/login.png" alt="IMG" />
                 </div>

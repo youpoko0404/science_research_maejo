@@ -14,6 +14,12 @@ const UserService = {
     deleteUserExpertise: (id) => {
         return httpRequest.delete(`${API_PATH}/user-expertise/${id}`);
     },
+    UpdateExpertise: (user_expertise) => {
+        return httpRequest.post(
+            `${API_PATH}/edit-user-expertise`,
+            user_expertise
+        );
+    },
 };
 
 export default UserService;
