@@ -16,6 +16,7 @@ class UserController extends Controller
     public function fetchExpertiseAll()
     {
         $research = UserExpertise::where([
+            ['user_id', '=', auth()->user()->id],
             ['is_deleted', '=', 0]
         ])->get();
 

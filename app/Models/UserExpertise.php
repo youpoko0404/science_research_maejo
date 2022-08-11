@@ -10,6 +10,7 @@ class UserExpertise extends Model
     use HasFactory;
     protected $fillable = [
         'id',
+        'user_id',
         "created_at",
         "updated_at",
         "is_deleted",

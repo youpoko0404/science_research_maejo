@@ -1627,6 +1627,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -4507,7 +4508,7 @@ var render = function () {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "primary", dark: "" },
+                          attrs: { color: "primary", dark: "", disabled: "" },
                           on: {
                             click: function () {
                               if (this$1.$refs.request.validate()) {

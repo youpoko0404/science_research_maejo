@@ -853,6 +853,7 @@
             <v-btn
               color="primary"
               dark
+              disabled
               @click="
                 () => {
                   if (this.$refs.request.validate()) {
