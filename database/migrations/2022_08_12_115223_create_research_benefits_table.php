@@ -15,7 +15,15 @@ class CreateResearchBenefitsTable extends Migration
     {
         Schema::create('research_benefits', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('date_reference')->nullable()->default(null);
+            $table->string('research_name_reference')->nullable()->default(null);
+            $table->string('research_name')->nullable()->default(null);
+            $table->string('url')->nullable()->default(null);
+            $table->string('reference')->nullable()->default(null);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

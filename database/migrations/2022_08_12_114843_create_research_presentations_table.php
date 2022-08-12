@@ -15,7 +15,17 @@ class CreateResearchPresentationsTable extends Migration
     {
         Schema::create('research_presentations', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('research_presentation_date')->nullable()->default(null);
+            $table->string('presentation_style')->nullable()->default(null);
+            $table->string('academic_work')->nullable()->default(null);
+            $table->string('academic_name')->nullable()->default(null);
+            $table->string('place_presentation')->nullable()->default(null);
+            $table->string('presentation_level')->nullable()->default(null);
+            $table->string('organization_name')->nullable()->default(null);
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

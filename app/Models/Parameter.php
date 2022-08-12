@@ -13,6 +13,7 @@ class Parameter extends Model
         'group_name',
         'value',
         'value_ref',
+        'remark',
         'sort_order',
         'is_deleted',
         "created_at",
