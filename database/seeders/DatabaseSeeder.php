@@ -27,6 +27,37 @@ class ParametersTableSeeder extends Seeder
 {
     public function run()
     {
+        Parameter::query()->truncate();
+
+        $branch_main_group = [
+            [
+                'group_name' => "branch_main_group",
+                'value' => "bachelor_degree_branch_group",
+                'value_ref' => "ปริญญาตรี",
+                'sort_order' => "1",
+                'remark' => ""
+            ],
+            [
+                'group_name' => "branch_main_group",
+                'value' => "master_degree_branch_group",
+                'value_ref' => "ปริญญาโท",
+                'sort_order' => "2",
+                'remark' => ""
+            ],
+            [
+                'group_name' => "branch_main_group",
+                'value' => "doctor_degree_branch_group",
+                'value_ref' => "ปริญญาเอก",
+                'sort_order' => "3",
+                'remark' => ""
+            ],
+        ];
+
+        // branch_main_group
+        foreach ($branch_main_group as $row) {
+            Parameter::create($row);
+        }
+
         $branch_group = [
             [
                 'group_name' => "bachelor_degree_branch_group",
@@ -154,11 +185,300 @@ class ParametersTableSeeder extends Seeder
                 'sort_order' => "3",
                 'remark' => "#FF9900"
             ],
-
         ];
 
         // branch_group
         foreach ($branch_group as $row) {
+            Parameter::create($row);
+        }
+
+        $research_other_group = [
+            [
+                'group_name' => "research_other_group",
+                'value' => "research_main",
+                'value_ref' => "งานวิจัยหลัก",
+                'sort_order' => "1",
+                'remark' => ""
+            ],
+            [
+                'group_name' => "research_other_group",
+                'value' => "research_sub",
+                'value_ref' => "งานวิจัยย่อย",
+                'sort_order' => "2",
+                'remark' => ""
+            ],
+        ];
+
+        // research_other_group
+        foreach ($research_other_group as $row) {
+            Parameter::create($row);
+        }
+
+        $funding_type_group = [
+            [
+                'group_name' => "funding_type_group",
+                'value' => "external_institution_budget_group",
+                'value_ref' => "งบประมาณภายนอกสถาบัน",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "funding_type_group",
+                'value' => "institutional_budget_group",
+                'value_ref' => "งบประมาณภายในสถาบัน",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "funding_type_group",
+                'value' => "personal_budget_group",
+                'value_ref' => "ทุนส่วนตัว",
+                'sort_order' => "3",
+            ],
+            [
+                'group_name' => "funding_type_group",
+                'value' => "other",
+                'value_ref' => "อื่นๆ",
+                'sort_order' => "4",
+            ],
+        ];
+
+        // funding_type_group
+        foreach ($funding_type_group as $row) {
+            Parameter::create($row);
+        }
+
+        $external_institution_budget_group = [
+            [
+                'group_name' => "external_institution_budget_group",
+                'value' => "national_level",
+                'value_ref' => "งานวิจัยระดับชาติ",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "external_institution_budget_group",
+                'value' => "local_level",
+                'value_ref' => "งานวิจัยระดับท้องถิ่น",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "external_institution_budget_group",
+                'value' => "international_level",
+                'value_ref' => "งานวิจัยระดับนานาชาติ",
+                'sort_order' => "3",
+            ],
+            [
+                'group_name' => "external_institution_budget_group",
+                'value' => "private_company",
+                'value_ref' => "บริษัทเอกชน",
+                'sort_order' => "4",
+            ],
+            [
+                'group_name' => "external_institution_budget_group",
+                'value' => "agency",
+                'value_ref' => "หน่วยงานให้ทุนวิจัย",
+                'sort_order' => "5",
+            ],
+            [
+                'group_name' => "external_institution_budget_group",
+                'value' => "other",
+                'value_ref' => "อื่นๆ",
+                'sort_order' => "6",
+            ],
+        ];
+
+        // external_institution_budget_group
+        foreach ($external_institution_budget_group as $row) {
+            Parameter::create($row);
+        }
+
+        $institutional_budget_group = [
+            [
+                'group_name' => "institutional_budget_group",
+                'value' => "research_budget",
+                'value_ref' => "กองทุนวิจัย มหาวิทยาลัยแม่โจ้",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "institutional_budget_group",
+                'value' => "university_budget",
+                'value_ref' => "งบภายในมหาวิทยาลัยแม่โจ้",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "institutional_budget_group",
+                'value' => "agency_budget",
+                'value_ref' => "งบภายในหน่วยงาน",
+                'sort_order' => "3",
+            ],
+        ];
+
+        // institutional_budget_group
+        foreach ($institutional_budget_group as $row) {
+            Parameter::create($row);
+        }
+
+        $personal_budget_group = [
+            [
+                'group_name' => "personal_budget_group",
+                'value' => "research_budget_private",
+                'value_ref' => "ส่วนตัวของผู้วิจัย",
+                'sort_order' => "1",
+            ]
+        ];
+
+        // personal_budget_group
+        foreach ($personal_budget_group as $row) {
+            Parameter::create($row);
+        }
+
+        $funding_level_group = [
+            [
+                'group_name' => "funding_level_group",
+                'value' => "faculty_office_level",
+                'value_ref' => "ระดับคณะ/สำนักงาน",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "university_level",
+                'value_ref' => "ระดับมหาวิทยาลัย",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "national_level",
+                'value_ref' => "ระดับชาติ",
+                'sort_order' => "3",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "international_level",
+                'value_ref' => "ระดับนานาชาติ",
+                'sort_order' => "4",
+            ],
+            [
+                'group_name' => "funding_level_group",
+                'value' => "other",
+                'value_ref' => "อื่นๆ",
+                'sort_order' => "4",
+            ],
+        ];
+
+        // institutional_budget_group
+        foreach ($funding_level_group as $row) {
+            Parameter::create($row);
+        }
+
+        $presentations_type_group = [
+            [
+                'group_name' => "presentations_type_group",
+                'value' => "describe",
+                'value_ref' => "การบรรยาย",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "presentations_type_group",
+                'value' => "poster",
+                'value_ref' => "โปสเตอร์",
+                'sort_order' => "2",
+            ]
+        ];
+
+        // presentations_type_group
+        foreach ($presentations_type_group as $row) {
+            Parameter::create($row);
+        }
+
+        $presentations_academic_type_group = [
+            [
+                'group_name' => "presentations_academic_type_group",
+                'value' => "academic_conference",
+                'value_ref' => "การประชุมทางวิชาการ",
+                'sort_order' => "1",
+            ]
+        ];
+
+        // presentations_academic_type_group
+        foreach ($presentations_academic_type_group as $row) {
+            Parameter::create($row);
+        }
+
+        $presentation_level_group = [
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "department_level",
+                'value_ref' => "ระดับกรม",
+                'sort_order' => "1",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "ministry_level",
+                'value_ref' => "ระดับกระทรวง",
+                'sort_order' => "2",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "international_cooperation_level",
+                'value_ref' => "ระดับความร่วมมือระหว่างประเทศ",
+                'sort_order' => "3",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "provincial_level",
+                'value_ref' => "ระดับจังหวัด",
+                'sort_order' => "4",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "national",
+                'value_ref' => "ระดับชาติ",
+                'sort_order' => "5",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "local_level",
+                'value_ref' => "ระดับท้องถิ่น",
+                'sort_order' => "6",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "international_level",
+                'value_ref' => "ระดับนานาชาติ",
+                'sort_order' => "7",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "asia_region",
+                'value_ref' => "ระดับภูมิภาคเอเชีย",
+                'sort_order' => "8",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "department_level",
+                'value_ref' => "ระดับหน่วยงาน",
+                'sort_order' => "9",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "public_organization",
+                'value_ref' => "องค์กรมหาชน",
+                'sort_order' => "10",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "private_organization",
+                'value_ref' => "องค์กรเอกชน",
+                'sort_order' => "11",
+            ],
+            [
+                'group_name' => "presentation_level_group",
+                'value' => "other",
+                'value_ref' => "อื่นๆ",
+                'sort_order' => "12",
+            ],
+        ];
+
+        // presentation_level_group
+        foreach ($presentation_level_group as $row) {
             Parameter::create($row);
         }
     }

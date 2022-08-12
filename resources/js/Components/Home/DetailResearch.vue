@@ -4,229 +4,340 @@
     <v-container v-if="!loading">
       <v-row justify="space-between">
         <v-col>
-          <p class="h3">รายละเอียดงานวิจัย</p>
+          <div style="font-size: 30px">รายละเอียดงานวิจัย</div>
         </v-col>
       </v-row>
       <v-divider></v-divider>
-      <p class="h3 ml-4">{{ search_research_by_id.research_name_th }}</p>
-      <p class="h4 ml-4">{{ search_research_by_id.research_name_en }}</p>
+      <div style="font-size: 30px">
+        {{ search_research_by_id.title_name_th }}
+      </div>
+      <div style="font-size: 30px">
+        {{ search_research_by_id.title_name_en }}
+      </div>
       <div class="pa-md-4 mx-lg-auto">
         <div class="pa-4 grey lighten-1 rounded-lg">
           <v-container>
             <v-row>
               <v-col>
-                <b>รหัสอ้างอิงมหาวิทยาลัย : </b> {{ search_research_by_id.university_code || "-- ไม่ระบุ --" }}
+                <b>รหัสอ้างอิงมหาวิทยาลัย : </b>
+                {{
+                  search_research_by_id.ref_code_university || "-- ไม่ระบุ --"
+                }}
               </v-col>
               <v-col>
-                <b>รหัสอ้างอิง วช. :</b> {{ "-- ไม่ระบุ --" }}
+                <b>รหัสอ้างอิง วช. :</b>
+                {{ search_research_by_id.ref_code_nr || "-- ไม่ระบุ --" }}
               </v-col>
               <v-col>
-                <b>สถานะการดำเนินงาน :</b> {{ "-- ไม่ระบุ --" }}
+                <b>สถานะการดำเนินงาน :</b>
+                {{ search_research_by_id.research_status || "-- ไม่ระบุ --" }}
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <b>วันที่ดำเนินงาน :</b> {{ "-- ไม่ระบุ --" }}
+                <b>วันที่ดำเนินงาน :</b>
+                {{ search_research_by_id.research_period || "-- ไม่ระบุ --" }}
               </v-col>
             </v-row>
           </v-container>
         </div>
       </div>
       <div class="pa-md-4 mx-lg-auto">
-        <div class="pa-4 grey  lighten-5 rounded-lg">
+        <div class="pa-4 grey lighten-5 rounded-lg">
           <v-container>
-            <p class="h4"><b>ส่วนที่ 1 ข้อมูลทั่วไป</b></p>
+            <div style="font-size: 30px">ส่วนที่ 1 ข้อมูลทั่วไป</div>
             <v-row>
               <v-col>
-                <p><b>ข้อมูลทั่วไป ภาษาไทย</b></p>
+                <div style="font-size: 20px">ข้อมูลทั่วไป ภาษาไทย</div>
                 <div class="d-flex flex-column">
                   <v-col>
-                    <b>หัวข้อ :</b> {{ search_research_by_id.research_name_th || "-- ไม่ระบุ --" }}
+                    <b>หัวข้อ :</b>
+                    {{ search_research_by_id.title_name_th || "-- ไม่ระบุ --" }}
                   </v-col>
                   <v-col>
-                    <b>บทคัดย่อ :</b> {{ "-- ไม่ระบุ --" }}
+                    <b>บทคัดย่อ :</b>
+                    {{
+                      search_research_by_id.abstract_name_th || "-- ไม่ระบุ --"
+                    }}
                   </v-col>
                   <v-col>
-                    <b>คำสำคัญ :</b> {{ "-- ไม่ระบุ --" }}
+                    <b>คำสำคัญ :</b>
+                    {{
+                      search_research_by_id.keyword_name_th || "-- ไม่ระบุ --"
+                    }}
                   </v-col>
                 </div>
               </v-col>
               <v-col>
-                <p><b>ข้อมูลทั่วไป ภาษาอังกฤษ</b></p>
+                <div style="font-size: 20px">ข้อมูลทั่วไป ภาษาอังกฤษ</div>
                 <div class="d-flex flex-column">
                   <v-col>
-                    <b>Title :</b> {{ search_research_by_id.research_name_en || "-- ไม่ระบุ --" }}
+                    <b>Title :</b>
+                    {{ search_research_by_id.title_name_en || "-- ไม่ระบุ --" }}
                   </v-col>
                   <v-col>
-                    <b>Abstract :</b> {{ "-- ไม่ระบุ --" }}
+                    <b>Abstract :</b>
+                    {{
+                      search_research_by_id.abstract_name_en || "-- ไม่ระบุ --"
+                    }}
                   </v-col>
                   <v-col>
-                    <b>Keyword :</b> {{ "-- ไม่ระบุ --" }}
+                    <b>Keyword :</b>
+                    {{
+                      search_research_by_id.keyword_name_en || "-- ไม่ระบุ --"
+                    }}
                   </v-col>
                 </div>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <b>รูปแบบงานวิจัย :</b> {{ search_research_by_id.research_format || "-- ไม่ระบุ --" }}
+                <b>รูปแบบงานวิจัย :</b>
+                {{ search_research_by_id.research_model || "-- ไม่ระบุ --" }}
               </v-col>
               <v-col>
-                <b>ประเภทงานวิจัย :</b> {{ search_research_by_id.research_type || "-- ไม่ระบุ --" }}
+                <b>ประเภทงานวิจัย :</b>
+                {{ search_research_by_id.research_type || "-- ไม่ระบุ --" }}
               </v-col>
               <v-col>
-                <b>สาขางานวิจัย :</b>{{ fetchParameterDATA(parameter, "branch_group",
-                    search_research_by_id.research_branch).value_ref || "-- ไม่ระบุ --"
+                <b>สาขางานวิจัย :</b>
+                {{
+                  fetchParameterByGroupKey(
+                    parameter,
+                    "branch_group",
+                    search_research_by_id.research_branch_main
+                  ) || "-- ไม่ระบุ --"
                 }}
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <b>กิจกรรมที่เกี่ยวข้อง :</b> {{ search_research_by_id.related_activities || "-- ไม่ระบุ --" }}
+                <b>กิจกรรมที่เกี่ยวข้อง :</b>
+                {{
+                  search_research_by_id.research_activities || "-- ไม่ระบุ --"
+                }}
               </v-col>
               <v-col>
-                <b>Road map :</b> {{ search_research_by_id.road_map || "-- ไม่ระบุ --" }}
+                <b>Road map :</b>
+                {{ search_research_by_id.road_map || "-- ไม่ระบุ --" }}
               </v-col>
-              <v-col>
-              </v-col>
+              <v-col> </v-col>
             </v-row>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 2 นักวิจัย</b></p>
+            <div style="font-size: 30px">ส่วนที่ 2 นักวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_2 || "ไม่มีข้อมูลนักวิจัย" }}
-              </v-card>
-            </v-col>
-          </v-container>
-          <v-divider></v-divider>
-          <v-container>
-            <p class="h4"><b>ส่วนที่ 3 ที่ปรึกษางานวิจัย</b></p>
-            <v-col>
-              <v-card class="pa-2" outlined tile>
-                {{ fetchParameterDATA(parameter, "research_consultant", search_research_by_id.part_3).value_ref ||
-                    "ไม่มีข้อมูลที่ปรึกษางานวิจัย"
+                {{
+                  search_research_by_id.research_project_type || "-- ไม่ระบุ --"
                 }}
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 4 แนวทางการดำเนินงานวิจัย</b></p>
+            <div style="font-size: 30px">ส่วนที่ 3 ที่ปรึกษางานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div v-html="showText(search_research_by_id.part_4) || 'ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย'"></div>
+                {{
+                  search_research_by_id.research_consultant || "-- ไม่ระบุ --"
+                }}
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 5 วัตถุประสงค์งานวิจัย</b></p>
+            <div style="font-size: 30px">ส่วนที่ 4 แนวทางการดำเนินงานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div v-html="showText(search_research_by_id.part_5) || 'ไม่มีข้อมูลวัตถุประสงค์งานวิจัย'"></div>
+                <div
+                  v-html="
+                    showText(search_research_by_id.research_operation) ||
+                    'ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย'
+                  "
+                ></div>
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ</b></p>
+            <div style="font-size: 30px">ส่วนที่ 5 วัตถุประสงค์งานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div v-html="showText(search_research_by_id.part_6) || 'ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ'"></div>
+                <div
+                  v-html="
+                    showText(search_research_by_id.research_objective) ||
+                    'ไม่มีข้อมูลวัตถุประสงค์งานวิจัย'
+                  "
+                ></div>
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ</b></p>
+            <div style="font-size: 30px">
+              ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ
+            </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div v-html="showText(search_research_by_id.part_7) || 'ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ'"></div>
+                <div
+                  v-html="
+                    showText(search_research_by_id.research_benefit) ||
+                    'ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ'
+                  "
+                ></div>
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย</b></p>
+            <div style="font-size: 30px">
+              ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ
+            </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div v-html="showText(search_research_by_id.part_8) || 'ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย'"></div>
+                <div
+                  v-html="
+                    showText(search_research_by_id.research_achievements) ||
+                    'ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ'
+                  "
+                ></div>
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง</b></p>
+            <div style="font-size: 30px">ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div v-html="showText(search_research_by_id.part_9) || 'ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"></div>
+                <div
+                  v-html="
+                    showText(search_research_by_id.research_area) ||
+                    'ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย'
+                  "
+                ></div>
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย</b></p>
+            <div style="font-size: 30px">
+              ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง
+            </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_10 || "ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย" }}
+                {{
+                  fetchParameterByGroupKey(
+                    parameter,
+                    "research_other_group",
+                    search_research_by_id.research_other
+                  ) || "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"
+                }}
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 11 เอกสารประกอบงานวิจัย</b></p>
-            <v-btn class="ma-3" @click="downloadFile(search_research_by_id.id, search_research_by_id.part_11)" outlined
-              color="indigo" :disabled="search_research_by_id.part_11 == null">
+            <div style="font-size: 30px">
+              ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย
+            </div>
+            <v-col>
+              <v-card class="pa-2" outlined tile>
+                {{
+                  search_research_by_id.research_fundings ||
+                  "ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย"
+                }}
+              </v-card>
+            </v-col>
+          </v-container>
+          <v-divider></v-divider>
+          <v-container>
+            <div style="font-size: 30px">ส่วนที่ 11 เอกสารประกอบงานวิจัย</div>
+            <v-btn
+              class="ma-3"
+              @click="
+                downloadFile(
+                  search_research_by_id.id,
+                  search_research_by_id.research_papers_path
+                )
+              "
+              outlined
+              color="indigo"
+              :disabled="search_research_by_id.research_papers_path == null"
+            >
               ดาวน์โหลดเอกสารประกอบงานวิจัย
-              <v-icon right dark>
-                mdi-download-outline
-              </v-icon>
+              <v-icon right dark> mdi-download-outline </v-icon>
             </v-btn>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 12 การนำเสนองานวิจัย</b></p>
+            <div style="font-size: 30px">ส่วนที่ 12 การนำเสนองานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_12 || "ไม่มีข้อมูลการนำเสนองานวิจัย" }}
+                {{
+                  search_research_by_id.research_presentations ||
+                  "ไม่มีข้อมูลการนำเสนองานวิจัย"
+                }}
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย</b></p>
+            <div style="font-size: 30px">
+              ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย
+            </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_13 || "ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย" }}
-              </v-card>
-            </v-col>
-
-          </v-container>
-          <v-divider></v-divider>
-          <v-container>
-            <p class="h4"><b>ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์</b></p>
-            <v-col>
-              <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_14 || "ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์" }}
+                {{
+                  search_research_by_id.research_publications ||
+                  "ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย"
+                }}
               </v-card>
             </v-col>
           </v-container>
           <v-divider></v-divider>
           <v-container>
-            <p class="h4"><b>ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง</b></p>
+            <div style="font-size: 30px">
+              ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์
+            </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{ search_research_by_id.part_15 || "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง" }}
+                {{
+                  search_research_by_id.research_benefits ||
+                  "ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์"
+                }}
+              </v-card>
+            </v-col>
+          </v-container>
+          <v-divider></v-divider>
+          <v-container>
+            <div style="font-size: 30px">ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง</div>
+            <v-col>
+              <v-card class="pa-2" outlined tile>
+                {{
+                  search_research_by_id.research_reference ||
+                  "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
+                }}
               </v-card>
             </v-col>
             <div class="d-flex flex-row-reverse" flat tile>
-              <v-btn class="ma-3" @click="downloadFile(search_research_by_id.id, search_research_by_id.ref_file)"
-                outlined color="indigo" :disabled="search_research_by_id.ref_file == null">
+              <v-btn
+                class="ma-3"
+                @click="
+                  downloadFile(
+                    search_research_by_id.id,
+                    search_research_by_id.research_reference_path
+                  )
+                "
+                outlined
+                color="indigo"
+                :disabled="
+                  search_research_by_id.research_reference_path == null
+                "
+              >
                 ดาวน์โหลดเอกสารอ้างอิง
-                <v-icon right dark>
-                  mdi-download-outline
-                </v-icon>
+                <v-icon right dark> mdi-download-outline </v-icon>
               </v-btn>
             </div>
           </v-container>
@@ -244,32 +355,46 @@ export default {
   components: {
     Loading,
   },
-  data: () => ({
-  }),
+  data: () => ({}),
   computed: {
     ...mapState({
       loading: (state) => state.dashboard.loading,
-      search_research_by_id: (state) => state.dashboard.search_research_by_id || [],
+      search_research_by_id: (state) =>
+        state.dashboard.search_research_by_id || [],
       loadingParameter: (state) => state.parameter.loading,
       parameter: (state) => state.parameter || [],
     }),
   },
   created() {
-    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
-    this.fetchSearchResearchById(this.$route.query.id)
+    this.fetchParameter([
+      "bachelor_degree_branch_group",
+      "master_degree_branch_group",
+      "doctor_degree_branch_group",
+      "research_other_group",
+      "branch_main_group",
+      "funding_type_group",
+      "external_institution_budget_group",
+      "institutional_budget_group",
+      "personal_budget_group",
+      "funding_level_group",
+      "presentations_type_group",
+      "presentations_academic_type_group",
+      "presentation_level_group",
+    ]);
+    this.fetchSearchResearchById(this.$route.query.id);
   },
 
   methods: {
-    
     fetchSearchResearchById(id) {
       if (id) {
-        this.$store.dispatch("dashboard/fetchSearchResearchById", id)
+        this.$store.dispatch("dashboard/fetchSearchResearchById", id);
       }
     },
 
-    fetchParameterDATA(items, group, key) {
-      if (items) {
-        return items[group].find(e => e.value == key)
+    fetchParameterByGroupKey(items, group, key) {
+      if (items && group && key) {
+        const param = items[group]?.find((e) => e.value == key);
+        if (param) return param.value_ref;
       }
     },
 
@@ -280,21 +405,21 @@ export default {
     downloadFile(id, filename) {
       let req = {
         id: id,
-        filename: filename || ""
-      }
+        filename: filename || "",
+      };
       this.$store.dispatch("dashboard/downloadFile", req).then((response) => {
-        let blob = new Blob([response], { type: 'application/pdf' })
-        let link = document.createElement('a')
-        link.href = window.URL.createObjectURL(blob)
-        link.target = '_blank';
-        link.click()
+        let blob = new Blob([response], { type: "application/pdf" });
+        let link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.target = "_blank";
+        link.click();
       });
     },
 
     showText(item) {
-      if (item) return item.replace(/\n/g, "<br />")
-      return ""
-    }
+      if (item) return item.replace(/\n/g, "<br />");
+      return "";
+    },
   },
 };
 </script>

@@ -15,7 +15,7 @@ class CreateResearchPublicationsTable extends Migration
     {
         Schema::create('research_publications', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('research_id')->unsigned();
             $table->string('reference')->nullable()->default(null);
             $table->string('presentation_level')->nullable()->default(null);
             $table->string('title_en')->nullable()->default(null);
@@ -26,7 +26,7 @@ class CreateResearchPublicationsTable extends Migration
             $table->string('printing_website')->default(false);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('research_id')->references('id')->on('researchs')->onDelete('cascade');
         });
     }
 

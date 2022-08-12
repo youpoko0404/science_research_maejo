@@ -169,26 +169,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var dayJs = {
   formatDateTH: function formatDateTH(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale('th').add(543, 'year').format('วันที่ DD เดือน MMMM พศ. YYYY');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("th").add(543, "year").format("วันที่ DD เดือน MMMM พศ. YYYY");
   },
   formatDateEN: function formatDateEN(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale('en').format('DD MMMM YYYY');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("en").format("DD MMMM YYYY");
   },
   formatDate: function formatDate(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).add(543, 'year').format('DD/MM/YYYY');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format("MM/DD/YYYY");
   },
   parseDate: function parseDate(date) {
     if (!date) return null;
 
-    var _date$split = date.split('/'),
+    var _date$split = date.split("/"),
         _date$split2 = _slicedToArray(_date$split, 3),
         month = _date$split2[0],
         day = _date$split2[1],
         year = _date$split2[2];
 
-    return "".concat(year - 543, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
+    return "".concat(year, "-").concat(month.padStart(2, "0"), "-").concat(day.padStart(2, "0"));
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dayJs);

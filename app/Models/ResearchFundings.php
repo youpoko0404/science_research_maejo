@@ -10,7 +10,7 @@ class ResearchFundings extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'user_id',
+        'research_id',
         'type',
         'other_type',
         'source_capital',

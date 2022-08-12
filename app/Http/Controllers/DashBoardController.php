@@ -7,6 +7,10 @@ use App\Models\Researchs;
 use App\Models\ResearchUsers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Models\ResearchFundings;
+use App\Models\ResearchPresentations;
+use App\Models\ResearchPublications;
+use App\Models\ResearchBenefits;
 
 use Illuminate\Http\Request;
 
@@ -47,7 +51,16 @@ class DashBoardController extends Controller
     public function fetchSearchById($id)
     {
         $research = Researchs::find($id);
-        if ($research) {
+        $research_funding = ResearchFundings::where('research_id', '=', $id)->get();
+        $research_presentations = ResearchPresentations::where('research_id', '=', $id)->get();
+        $research_publications = ResearchPublications::where('research_id', '=', $id)->get();
+        $research_benefits = ResearchBenefits::where('research_id', '=', $id)->get();
+
+        if ($research && $research->created_by == auth()->user()->id) {
+            $research['research_fundings'] = $research_funding;
+            $research['research_presentations'] = $research_presentations;
+            $research['research_publications'] = $research_publications;
+            $research['research_benefits'] = $research_benefits;
             return response()->json([
                 'success' => true,
                 'message' => 'Successfully',
@@ -70,26 +83,29 @@ class DashBoardController extends Controller
             ->orderBy('created_at')
             ->get();
 
-        foreach ($results as $result) {
-            $researchs_user = ResearchUsers::where('research_id', '=', $result->id)->get();
-            $result['part_2'] = $researchs_user;
-        }
+        // foreach ($results as $result) {
+        //     $researchs_user = ResearchUsers::where('research_id', '=', $result->id)->get();
+        //     $result['part_2'] = $researchs_user;
+        // }
 
         $collection = collect($results);
 
         $filtered = $collection->filter(function ($value, $key) use ($q) {
-            $filtered_name = array_filter(
-                json_decode($value->part_2),
-                function ($obj) use ($q) {
-                    return str_contains(strtolower($obj->name), strtolower($q));
-                }
-            );
+            // $filtered_name = array_filter(
+            //     json_decode($value->part_2),
+            //     function ($obj) use ($q) {
+            //         return str_contains(strtolower($obj->name), strtolower($q));
+            //     }
+            // );
             return
-                str_contains(strtolower($value->research_code), strtolower($q)) ||
-                str_contains(strtolower($value->research_name_th), strtolower($q)) ||
-                str_contains(strtolower($value->research_name_en), strtolower($q)) ||
-                // str_contains(strtolower($value->university_code), strtolower($q)) ||
-                $filtered_name;
+                str_contains(strtolower($value->ref_code_university), strtolower($q)) ||
+                str_contains(strtolower($value->title_name_th), strtolower($q)) ||
+                str_contains(strtolower($value->title_name_en), strtolower($q)) ||
+                str_contains(strtolower($value->research_main_name), strtolower($q)) ||
+                str_contains(strtolower($value->research_second_name), strtolower($q));
+
+            // str_contains(strtolower($value->university_code), strtolower($q)) ||
+            // $filtered_name;
         })->values();
 
 

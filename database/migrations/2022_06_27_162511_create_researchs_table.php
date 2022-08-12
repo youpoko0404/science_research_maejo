@@ -27,6 +27,7 @@ class CreateResearchsTable extends Migration
             $table->longText('research_model')->nullable()->default(null);
             $table->longText('research_type')->nullable()->default(null);
             $table->longText('research_branch')->nullable()->default(null);
+            $table->longText('research_branch_main')->nullable()->default(null);
             $table->longText('research_activities')->nullable()->default(null);
             $table->longText('road_map')->nullable()->default(null);
             $table->longText('research_status')->nullable()->default(null);
@@ -47,6 +48,7 @@ class CreateResearchsTable extends Migration
             $table->longText('research_achievements')->nullable()->default(null);
             $table->longText('research_area')->nullable()->default(null);
             $table->longText('research_other')->nullable()->default(null);
+            $table->longText('research_reference')->nullable()->default(null);
             $table->string('research_papers_path')->nullable()->default(null);
             $table->string('research_reference_path')->nullable()->default(null);
             $table->boolean('is_deleted')->default(false);

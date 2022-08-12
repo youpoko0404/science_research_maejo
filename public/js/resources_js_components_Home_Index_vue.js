@@ -242,10 +242,16 @@ __webpack_require__.r(__webpack_exports__);
         align: "start",
         value: "research_name",
         width: "70%"
-      }, {
+      }, // {
+      //   text: "ชื่อผู้แต่ง",
+      //   align: "start",
+      //   value: "name",
+      //   width: "25%",
+      // },
+      {
         text: "ชื่อผู้แต่ง",
         align: "start",
-        value: "name",
+        value: "research_main_name",
         width: "25%"
       }]
     };
@@ -14555,28 +14561,9 @@ var render = function () {
               fn: function (ref) {
                 var item = ref.item
                 return [
-                  _vm._v("\n      " + _vm._s(item.research_name_th)),
+                  _vm._v("\n      " + _vm._s(item.title_name_th)),
                   _c("br"),
-                  _vm._v("\n      " + _vm._s(item.research_name_en) + "\n    "),
-                ]
-              },
-            },
-            {
-              key: "item.name",
-              fn: function (ref) {
-                var item = ref.item
-                return [
-                  _vm._v(
-                    "\n      " +
-                      _vm._s(
-                        item.part_2
-                          .map(function (e) {
-                            return e.name
-                          })
-                          .join(", ")
-                      ) +
-                      "\n    "
-                  ),
+                  _vm._v("\n      " + _vm._s(item.title_name_en) + "\n    "),
                 ]
               },
             },

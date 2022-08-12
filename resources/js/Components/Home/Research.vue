@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="font-size: 15px;margin-bottom: 10px;">
+    <div style="font-size: 15px; margin-bottom: 10px">
       ผลการค้นหา {{ research ? research.length : 0 }} รายการ
     </div>
     <v-data-table
@@ -17,10 +17,10 @@
         {{ index + 1 }}
       </template>
       <template v-slot:[`item.research_name`]="{ item }">
-        {{ item.research_name_th }}<br />
-        {{ item.research_name_en }}
+        {{ item.title_name_th }}<br />
+        {{ item.title_name_en }}
       </template>
-      <template v-slot:[`item.name`]="{ item }">
+      <!-- <template v-slot:[`item.name`]="{ item }">
         {{
           item.part_2
             .map((e) => {
@@ -28,7 +28,7 @@
             })
             .join(", ")
         }}
-      </template>
+      </template> -->
       <template v-slot:no-data> ไม่พบผลการค้นหา </template>
     </v-data-table>
     <div class="text-center pt-2">
@@ -65,10 +65,16 @@ export default {
           value: "research_name",
           width: "70%",
         },
+        // {
+        //   text: "ชื่อผู้แต่ง",
+        //   align: "start",
+        //   value: "name",
+        //   width: "25%",
+        // },
         {
           text: "ชื่อผู้แต่ง",
           align: "start",
-          value: "name",
+          value: "research_main_name",
           width: "25%",
         },
       ],

@@ -475,12 +475,10 @@ var render = function () {
                   fn: function (ref) {
                     var item = ref.item
                     return [
-                      _vm._v("\n        " + _vm._s(item.research_name_th)),
+                      _vm._v("\n        " + _vm._s(item.title_name_th)),
                       _c("br"),
                       _vm._v(
-                        "\n        " +
-                          _vm._s(item.research_name_en) +
-                          "\n      "
+                        "\n        " + _vm._s(item.title_name_en) + "\n      "
                       ),
                     ]
                   },

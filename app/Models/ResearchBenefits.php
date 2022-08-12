@@ -10,7 +10,7 @@ class ResearchBenefits extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        "user_id",
+        "research_id",
         "date_reference",
         "research_name_reference",
         "research_name",

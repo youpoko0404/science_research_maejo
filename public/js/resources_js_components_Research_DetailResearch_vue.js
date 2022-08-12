@@ -1628,6 +1628,341 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1636,107 +1971,110 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Loading: _Components_Loading_Loading__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
+    var _request;
+
     return {
       valid: false,
       editedIndex: -1,
       dialog: {
         dialogDelete: false,
-        dialog_part_2: false,
-        dialog_part_10: false,
-        dialog_part_12: false,
-        dialog_part_13: false,
-        dialog_part_14: false
+        research_fundings: false,
+        research_presentations: false,
+        research_publications: false,
+        research_benefits: false
       },
-      request: {
-        research_name_th: "",
-        research_name_en: "",
-        research_code: "",
-        university_code: "",
+      request: (_request = {
+        id: 0,
+        title_name_th: "",
+        abstract_name_th: "",
+        keyword_name_th: "",
+        title_name_en: "",
+        abstract_name_en: "",
+        keyword_name_en: "",
+        ref_code_nr: "",
+        ref_code_university: "",
         research_period: "",
-        research_format: "",
+        research_model: "",
         research_type: "",
         research_branch: "",
-        related_activities: "",
+        research_branch_main: "",
+        research_activities: "",
         road_map: "",
         research_status: "",
         research_project_type: "",
         research_nature: "",
-        part_2: [],
-        part_3: "",
-        part_4: "",
-        part_5: "",
-        part_6: "",
-        part_7: "",
-        part_8: "",
-        part_9: "",
-        part_10: [],
-        part_11: null,
-        part_12: [],
-        part_13: [],
-        part_14: [],
-        part_15: [],
-        ref_file: null
-      },
-      part_2: {
-        agency: "",
-        branch: "",
-        name: "",
-        percen_responsibility: 0,
-        research_position: ""
-      },
-      part_10: {
+        research_main_name: "",
+        research_main_address: "",
+        research_main_position: "",
+        research_main_responsible: "",
+        research_second_name: "",
+        research_second_address: "",
+        research_second_position: "",
+        research_second_responsible: "",
+        research_consultant: "",
+        research_operation: "",
+        research_objective: "",
+        research_benefit: "",
+        research_achievements: "",
+        research_area: "",
+        research_other: "",
+        research_papers_path: null,
+        research_reference_path: null,
+        research_benefits: [],
+        research_fundings: [],
+        research_presentations: [],
+        research_publications: []
+      }, _defineProperty(_request, "research_publications", []), _defineProperty(_request, "research_reference", ""), _request),
+      research_fundings: {
         type: "",
-        source: "",
-        level: "",
+        other_type: "",
+        source_capital: "",
+        capital_level: "",
         year: "",
-        start_date: "",
-        end_date: "",
+        date1: "",
+        date2: "",
         amount: 0,
         description: "",
-        send: ""
+        delivery_date: ""
       },
-      part_12: {
-        research_present_date: "",
+      research_presentations: {
+        research_presentation_date: "",
         presentation_style: "",
         academic_work: "",
         academic_name: "",
-        presentation_place: "",
-        present_level: "",
+        place_presentation: "",
+        presentation_level: "",
         organization_name: ""
       },
-      part_13: {
+      research_publications: {
         reference: "",
         presentation_level: "",
-        thai_article_title: "",
-        english_article_title: "",
-        date_publication: "",
+        title_th: "",
+        title_en: "",
+        publication_date: "",
         no: "",
         page_number: "",
-        printer_website: ""
+        printing_website: ""
       },
-      part_14: {
+      research_benefits: {
         date_reference: "",
-        name_researcher: "",
-        thai_name: "",
-        link_url: "",
-        reference_journal: ""
+        research_name_reference: "",
+        research_name: "",
+        url: "",
+        reference: ""
       },
-      part_15: {},
+      research_reference: {},
       rules: {
         required: [function (val) {
-          return !!val || "กรอกข้อมูลไม่ครบถ้วน";
+          return !!val || "โปรดกรอกข้อมูลให้ครบถ้วน";
         }],
         requiredDateTime: [function (v) {
-          return !!v || "กรอกข้อมูลไม่ครบถ้วน";
+          return !!v || "โปรดกรอกข้อมูลให้ครบถ้วน";
         }, function (v) {
           return /^\d{2}\/\d{2}\/\d{4}$/.test(v) || "ข้อมูลไม่ถูกต้อง";
         }]
       },
-      dateNow_date_1: "",
-      datePicker_date1: false,
-      dateNow_date_2: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
-      datePicker_date2: false,
-      headers_part_10: [{
+      headers_research_fundings: [{
         text: "",
         value: "count"
       }, {
@@ -1744,15 +2082,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "title"
       }, {
         text: "ปีงบประมาณ",
-        value: "year",
-        align: "center"
+        value: "year"
       }, {
-        text: "จำนวนเงิน (บาท)",
+        text: "จำนวนเงิน/บาท",
         value: "price"
       }, {
         text: "จัดการ",
         value: "actions"
-      }]
+      }],
+      dateNow_date_1: "",
+      datePicker_date1: false,
+      dateNow_date_2: "",
+      datePicker_date2: false,
+      dateNow_date_3: "",
+      datePicker_date3: false,
+      dateNow_date_4: "",
+      datePicker_date4: false,
+      dateNow_date_5: "",
+      datePicker_date5: false,
+      dateNow_date_6: "",
+      datePicker_date6: false
     };
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
@@ -1773,29 +2122,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$route.query.id;
     }
   }),
-  created: function created() {
-    this.fetchParameter(["bachelor_degree_branch_group", "master_degree_branch_group", "doctor_degree_branch_group"]);
-    this.fetchResearchById(this.$route.query.id);
-  },
   watch: {
     dateNow_date_1: function dateNow_date_1() {
-      this.part_10.part_10_start_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_1);
+      this.research_fundings.date1 = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_1);
     },
     dateNow_date_2: function dateNow_date_2() {
-      this.part_10.part_10_end_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_2);
+      this.research_fundings.date2 = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_2);
+    },
+    dateNow_date_3: function dateNow_date_3() {
+      this.research_fundings.delivery_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_3);
+    },
+    dateNow_date_4: function dateNow_date_4() {
+      this.research_presentations.research_presentation_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_4);
+    },
+    dateNow_date_5: function dateNow_date_5() {
+      this.research_publications.publication_date = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_5);
+    },
+    dateNow_date_6: function dateNow_date_6() {
+      this.research_benefits.date_reference = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(this.dateNow_date_6);
     }
   },
+  created: function created() {
+    this.fetchParameter(["bachelor_degree_branch_group", "master_degree_branch_group", "doctor_degree_branch_group", "research_other_group", "branch_main_group", "funding_type_group", "external_institution_budget_group", "institutional_budget_group", "personal_budget_group", "funding_level_group", "presentations_type_group", "presentations_academic_type_group", "presentation_level_group"]);
+    this.fetchResearchById(this.$route.query.id);
+  },
   methods: {
+    formatDate: function formatDate(date) {
+      return _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(date);
+    },
     fetchParameter: function fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
     },
-    deleteItemConfirm: function deleteItemConfirm(id) {
-      if (id) {
-        this.$store.dispatch("research/delete", id).then(function (response) {
-          if (response.success) {
-            window.location.href = "/my-research";
-          }
+    fetchParameterByGroupKey: function fetchParameterByGroupKey(items, group, key) {
+      if (items && group && key) {
+        var _items$group;
+
+        var param = (_items$group = items[group]) === null || _items$group === void 0 ? void 0 : _items$group.find(function (e) {
+          return e.value == key;
         });
+        if (param) return param.value_ref;
       }
     },
     fetchResearchById: function fetchResearchById(id) {
@@ -1810,7 +2175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   value = _Object$entries$_i[1];
 
               if (value) {
-                if (key == "ref_file" || key == "part_11") {
+                if (key == "research_reference_path" || key == "research_papers_path") {
                   _this.request[key] = new File([""], value);
                 } else {
                   _this.request[key] = value;
@@ -1821,176 +2186,209 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
     },
-    fetchParameterDATA: function fetchParameterDATA(items, group, key) {
-      return items[group].find(function (e) {
-        return e.value == key;
-      });
+    deleteItemConfirm: function deleteItemConfirm(id) {
+      if (id) {
+        this.$store.dispatch("research/delete", id).then(function (response) {
+          if (response.success) window.location.href = "/my-research";
+        });
+      }
     },
-    onClickPart_2: function onClickPart_2() {
-      var part_2 = {};
+    onClickResearchFundings: function onClickResearchFundings() {
+      var research_fundings = {};
 
-      for (var _i2 = 0, _Object$entries2 = Object.entries(this.part_2); _i2 < _Object$entries2.length; _i2++) {
+      for (var _i2 = 0, _Object$entries2 = Object.entries(this.research_fundings); _i2 < _Object$entries2.length; _i2++) {
         var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
             key = _Object$entries2$_i[0],
             value = _Object$entries2$_i[1];
 
-        part_2[key] = value;
+        if (key == "date1" || key == "date2" || key == "delivery_date") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].parseDate(value);
+          research_fundings[key] = value;
+        } else {
+          research_fundings[key] = value;
+        }
       }
 
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_2[this.editedIndex], this.part_2);
+        Object.assign(this.request.research_fundings[this.editedIndex], this.research_fundings);
       } else {
-        this.request.part_2.push(part_2);
+        this.request.research_fundings.push(research_fundings);
       }
 
-      this.$refs.form_part_2.reset();
+      this.$refs.research_fundings.reset();
     },
-    ManageItemPart_2: function ManageItemPart_2(item, action) {
-      this.editedIndex = this.request.part_2.indexOf(item);
-      this.part_2 = Object.assign({}, item);
-
+    onClickManageResearchFunding: function onClickManageResearchFunding(item, action) {
       if (action == "delete") {
-        this.request.part_2.splice(this.editedIndex, 1);
-      }
-    },
-    onClickPart_10: function onClickPart_10() {
-      var part_10 = {};
+        this.editedIndex = this.request.research_fundings.indexOf(item); // this.research_fundings = Object.assign({}, item);
 
-      for (var _i3 = 0, _Object$entries3 = Object.entries(this.part_10); _i3 < _Object$entries3.length; _i3++) {
-        var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
-            key = _Object$entries3$_i[0],
-            value = _Object$entries3$_i[1];
-
-        part_10[key] = value;
-      }
-
-      if (this.editedIndex > -1) {
-        Object.assign(this.request.part_10[this.editedIndex], this.part_10);
+        this.request.research_fundings.splice(this.editedIndex, 1);
       } else {
-        this.request.part_10.push(part_10);
+        for (var _i3 = 0, _Object$entries3 = Object.entries(item); _i3 < _Object$entries3.length; _i3++) {
+          var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
+              key = _Object$entries3$_i[0],
+              value = _Object$entries3$_i[1];
+
+          if (key == "date1" || key == "date2" || key == "delivery_date") {
+            value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(value);
+            item[key] = value;
+          } else {
+            item[key] = value;
+          }
+        }
+
+        this.editedIndex = this.request.research_fundings.indexOf(item);
+        this.research_fundings = Object.assign({}, item);
       }
-
-      this.$refs.form_part_10.reset();
     },
-    ManageItemPart_10: function ManageItemPart_10(item, action) {
-      this.editedIndex = this.request.part_10.indexOf(item);
-      this.part_10 = Object.assign({}, item);
+    onClickResearchPresentations: function onClickResearchPresentations() {
+      var research_presentations = {};
 
-      if (action == "delete") {
-        this.request.part_10.splice(this.editedIndex, 1);
-      }
-    },
-    onClickPart_12: function onClickPart_12() {
-      var part_12 = {};
-
-      for (var _i4 = 0, _Object$entries4 = Object.entries(this.part_12); _i4 < _Object$entries4.length; _i4++) {
+      for (var _i4 = 0, _Object$entries4 = Object.entries(this.research_presentations); _i4 < _Object$entries4.length; _i4++) {
         var _Object$entries4$_i = _slicedToArray(_Object$entries4[_i4], 2),
             key = _Object$entries4$_i[0],
             value = _Object$entries4$_i[1];
 
-        part_12[key] = value;
+        if (key == "research_presentation_date") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].parseDate(value);
+          research_presentations[key] = value;
+        } else {
+          research_presentations[key] = value;
+        }
       }
 
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_12[this.editedIndex], this.part_12);
+        Object.assign(this.request.research_presentations[this.editedIndex], this.research_presentations);
       } else {
-        this.request.part_12.push(part_12);
+        this.request.research_presentations.push(research_presentations);
       }
 
-      this.$refs.form_part_12.reset();
+      this.$refs.research_presentations.reset();
     },
-    ManageItemPart_12: function ManageItemPart_12(item, action) {
-      this.editedIndex = this.request.part_12.indexOf(item);
-      this.part_12 = Object.assign({}, item);
-
-      if (action == "delete") {
-        this.request.part_12.splice(this.editedIndex, 1);
-      }
-    },
-    onClickPart_13: function onClickPart_13() {
-      var part_13 = {};
-
-      for (var _i5 = 0, _Object$entries5 = Object.entries(this.part_13); _i5 < _Object$entries5.length; _i5++) {
+    onClickManageResearchPresentations: function onClickManageResearchPresentations(item, action) {
+      for (var _i5 = 0, _Object$entries5 = Object.entries(item); _i5 < _Object$entries5.length; _i5++) {
         var _Object$entries5$_i = _slicedToArray(_Object$entries5[_i5], 2),
             key = _Object$entries5$_i[0],
             value = _Object$entries5$_i[1];
 
-        part_13[key] = value;
+        if (key == "research_presentation_date") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(value);
+          item[key] = value;
+        } else {
+          item[key] = value;
+        }
       }
 
-      if (this.editedIndex > -1) {
-        Object.assign(this.request.part_13[this.editedIndex], this.part_13);
-      } else {
-        this.request.part_13.push(part_13);
-      }
-
-      this.$refs.form_part_13.reset();
-    },
-    ManageItemPart_13: function ManageItemPart_13(item, action) {
-      this.editedIndex = this.request.part_13.indexOf(item);
-      this.part_13 = Object.assign({}, item);
+      this.editedIndex = this.request.research_presentations.indexOf(item);
+      this.research_presentations = Object.assign({}, item);
 
       if (action == "delete") {
-        this.request.part_13.splice(this.editedIndex, 1);
+        this.request.research_presentations.splice(this.editedIndex, 1);
       }
     },
-    onClickPart_14: function onClickPart_14() {
-      var part_14 = {};
+    onClickResearchPublications: function onClickResearchPublications() {
+      var research_publications = {};
 
-      for (var _i6 = 0, _Object$entries6 = Object.entries(this.part_14); _i6 < _Object$entries6.length; _i6++) {
+      for (var _i6 = 0, _Object$entries6 = Object.entries(this.research_publications); _i6 < _Object$entries6.length; _i6++) {
         var _Object$entries6$_i = _slicedToArray(_Object$entries6[_i6], 2),
             key = _Object$entries6$_i[0],
             value = _Object$entries6$_i[1];
 
-        part_14[key] = value;
+        if (key == "publication_date") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].parseDate(value);
+          research_publications[key] = value;
+        } else {
+          research_publications[key] = value;
+        }
       }
 
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_14[this.editedIndex], this.part_14);
+        Object.assign(this.request.research_publications[this.editedIndex], this.research_publications);
       } else {
-        this.request.part_14.push(part_14);
+        this.request.research_publications.push(research_publications);
       }
 
-      this.$refs.form_part_14.reset();
+      this.$refs.research_publications.reset();
     },
-    ManageItemPart_14: function ManageItemPart_14(item, action) {
-      this.editedIndex = this.request.part_14.indexOf(item);
-      this.part_14 = Object.assign({}, item);
+    onClickManageResearchPublications: function onClickManageResearchPublications(item, action) {
+      for (var _i7 = 0, _Object$entries7 = Object.entries(item); _i7 < _Object$entries7.length; _i7++) {
+        var _Object$entries7$_i = _slicedToArray(_Object$entries7[_i7], 2),
+            key = _Object$entries7$_i[0],
+            value = _Object$entries7$_i[1];
+
+        if (key == "publication_date") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(value);
+          item[key] = value;
+        } else {
+          item[key] = value;
+        }
+      }
+
+      this.editedIndex = this.request.research_publications.indexOf(item);
+      this.research_publications = Object.assign({}, item);
 
       if (action == "delete") {
-        this.request.part_14.splice(this.editedIndex, 1);
+        this.request.research_publications.splice(this.editedIndex, 1);
+      }
+    },
+    onClickResearchBenefits: function onClickResearchBenefits() {
+      var research_benefits = {};
+
+      for (var _i8 = 0, _Object$entries8 = Object.entries(this.research_benefits); _i8 < _Object$entries8.length; _i8++) {
+        var _Object$entries8$_i = _slicedToArray(_Object$entries8[_i8], 2),
+            key = _Object$entries8$_i[0],
+            value = _Object$entries8$_i[1];
+
+        if (key == "date_reference") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].parseDate(value);
+          research_benefits[key] = value;
+        } else {
+          research_benefits[key] = value;
+        }
+      }
+
+      if (this.editedIndex > -1) {
+        Object.assign(this.request.research_benefits[this.editedIndex], this.research_benefits);
+      } else {
+        this.request.research_benefits.push(research_benefits);
+      }
+
+      this.$refs.research_benefits.reset();
+    },
+    onClickManageResearchBenefits: function onClickManageResearchBenefits(item, action) {
+      for (var _i9 = 0, _Object$entries9 = Object.entries(item); _i9 < _Object$entries9.length; _i9++) {
+        var _Object$entries9$_i = _slicedToArray(_Object$entries9[_i9], 2),
+            key = _Object$entries9$_i[0],
+            value = _Object$entries9$_i[1];
+
+        if (key == "date_reference") {
+          value = _Utili_dayJs__WEBPACK_IMPORTED_MODULE_0__["default"].formatDate(value);
+          item[key] = value;
+        } else {
+          item[key] = value;
+        }
+      }
+
+      this.editedIndex = this.request.research_benefits.indexOf(item);
+      this.research_benefits = Object.assign({}, item);
+
+      if (action == "delete") {
+        this.request.research_benefits.splice(this.editedIndex, 1);
       }
     },
     onClickSave: function onClickSave() {
       var formData = new FormData();
-      formData.append("research_name_th", this.request.research_name_th);
-      formData.append("research_name_en", this.request.research_name_en);
-      formData.append("research_code", this.request.research_code);
-      formData.append("university_code", this.request.university_code);
-      formData.append("research_period", this.request.research_period);
-      formData.append("research_format", this.request.research_format);
-      formData.append("research_type", this.request.research_type);
-      formData.append("research_branch", this.request.research_branch);
-      formData.append("related_activities", this.request.related_activities);
-      formData.append("road_map", this.request.road_map);
-      formData.append("research_status", this.request.research_status);
-      formData.append("research_project_type", this.request.research_project_type);
-      formData.append("research_nature", this.request.research_nature);
-      formData.append("part_2", JSON.stringify(this.request.part_2));
-      formData.append("part_3", this.request.part_3);
-      formData.append("part_4", this.request.part_4);
-      formData.append("part_5", this.request.part_5);
-      formData.append("part_6", this.request.part_6);
-      formData.append("part_7", this.request.part_7);
-      formData.append("part_8", this.request.part_8);
-      formData.append("part_9", this.request.part_9);
-      formData.append("part_10", JSON.stringify(this.request.part_10));
-      formData.append("part_11", this.request.part_11);
-      formData.append("part_12", JSON.stringify(this.request.part_12));
-      formData.append("part_13", JSON.stringify(this.request.part_13));
-      formData.append("part_14", JSON.stringify(this.request.part_14));
-      formData.append("part_15", this.request.part_15);
-      formData.append("ref_file", this.request.ref_file);
+
+      for (var _i10 = 0, _Object$entries10 = Object.entries(this.request); _i10 < _Object$entries10.length; _i10++) {
+        var _Object$entries10$_i = _slicedToArray(_Object$entries10[_i10], 2),
+            key = _Object$entries10$_i[0],
+            value = _Object$entries10$_i[1];
+
+        if (key == "research_benefits" || key == "research_fundings" || key == "research_presentations" || key == "research_publications") {
+          if (value) formData.append(key, JSON.stringify(value));
+        } else {
+          formData.append(key, value);
+        }
+      }
 
       if (this.$route.query.id == 0) {
         this.$store.dispatch("research/save", formData).then(function (response) {
@@ -2061,26 +2459,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var dayJs = {
   formatDateTH: function formatDateTH(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale('th').add(543, 'year').format('วันที่ DD เดือน MMMM พศ. YYYY');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("th").add(543, "year").format("วันที่ DD เดือน MMMM พศ. YYYY");
   },
   formatDateEN: function formatDateEN(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale('en').format('DD MMMM YYYY');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("en").format("DD MMMM YYYY");
   },
   formatDate: function formatDate(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).add(543, 'year').format('DD/MM/YYYY');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format("MM/DD/YYYY");
   },
   parseDate: function parseDate(date) {
     if (!date) return null;
 
-    var _date$split = date.split('/'),
+    var _date$split = date.split("/"),
         _date$split2 = _slicedToArray(_date$split, 3),
         month = _date$split2[0],
         day = _date$split2[1],
         year = _date$split2[2];
 
-    return "".concat(year - 543, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
+    return "".concat(year, "-").concat(month.padStart(2, "0"), "-").concat(day.padStart(2, "0"));
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dayJs);
@@ -2323,15 +2721,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.request.research_name_th,
+                                      value: _vm.request.title_name_th,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.request,
-                                          "research_name_th",
+                                          "title_name_th",
                                           $$v
                                         )
                                       },
-                                      expression: "request.research_name_th",
+                                      expression: "request.title_name_th",
                                     },
                                   }),
                                 ],
@@ -2366,15 +2764,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.request.research_name_th,
+                                      value: _vm.request.abstract_name_th,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.request,
-                                          "research_name_th",
+                                          "abstract_name_th",
                                           $$v
                                         )
                                       },
-                                      expression: "request.research_name_th",
+                                      expression: "request.abstract_name_th",
                                     },
                                   }),
                                 ],
@@ -2409,15 +2807,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.request.research_name_th,
+                                      value: _vm.request.keyword_name_th,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.request,
-                                          "research_name_th",
+                                          "keyword_name_th",
                                           $$v
                                         )
                                       },
-                                      expression: "request.research_name_th",
+                                      expression: "request.keyword_name_th",
                                     },
                                   }),
                                 ],
@@ -2465,15 +2863,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.request.research_name_th,
+                                      value: _vm.request.title_name_en,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.request,
-                                          "research_name_th",
+                                          "title_name_en",
                                           $$v
                                         )
                                       },
-                                      expression: "request.research_name_th",
+                                      expression: "request.title_name_en",
                                     },
                                   }),
                                 ],
@@ -2508,15 +2906,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.request.research_name_th,
+                                      value: _vm.request.abstract_name_en,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.request,
-                                          "research_name_th",
+                                          "abstract_name_en",
                                           $$v
                                         )
                                       },
-                                      expression: "request.research_name_th",
+                                      expression: "request.abstract_name_en",
                                     },
                                   }),
                                 ],
@@ -2551,15 +2949,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.request.research_name_th,
+                                      value: _vm.request.keyword_name_en,
                                       callback: function ($$v) {
                                         _vm.$set(
                                           _vm.request,
-                                          "research_name_th",
+                                          "keyword_name_en",
                                           $$v
                                         )
                                       },
-                                      expression: "request.research_name_th",
+                                      expression: "request.keyword_name_en",
                                     },
                                   }),
                                 ],
@@ -2583,7 +2981,7 @@ var render = function () {
                         { attrs: { cols: "auto" } },
                         [
                           _c("v-subheader", { staticClass: "mt-2" }, [
-                            _vm._v("รหัสอ้างอิงวช. : "),
+                            _vm._v("รหัสอ้างอิง วช. : "),
                           ]),
                         ],
                         1
@@ -2594,17 +2992,17 @@ var render = function () {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "รหัสอ้างอิงวช.",
+                              label: "รหัสอ้างอิง วช.",
                               color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
                             },
                             model: {
-                              value: _vm.request.university_code,
+                              value: _vm.request.ref_code_nr,
                               callback: function ($$v) {
-                                _vm.$set(_vm.request, "university_code", $$v)
+                                _vm.$set(_vm.request, "ref_code_nr", $$v)
                               },
-                              expression: "request.university_code",
+                              expression: "request.ref_code_nr",
                             },
                           }),
                         ],
@@ -2639,11 +3037,15 @@ var render = function () {
                               required: "",
                             },
                             model: {
-                              value: _vm.request.university_code,
+                              value: _vm.request.ref_code_university,
                               callback: function ($$v) {
-                                _vm.$set(_vm.request, "university_code", $$v)
+                                _vm.$set(
+                                  _vm.request,
+                                  "ref_code_university",
+                                  $$v
+                                )
                               },
-                              expression: "request.university_code",
+                              expression: "request.ref_code_university",
                             },
                           }),
                         ],
@@ -2717,11 +3119,11 @@ var render = function () {
                               required: "",
                             },
                             model: {
-                              value: _vm.request.research_format,
+                              value: _vm.request.research_model,
                               callback: function ($$v) {
-                                _vm.$set(_vm.request, "research_format", $$v)
+                                _vm.$set(_vm.request, "research_model", $$v)
                               },
-                              expression: "request.research_format",
+                              expression: "request.research_model",
                             },
                           }),
                         ],
@@ -2778,6 +3180,46 @@ var render = function () {
                         { attrs: { cols: "auto" } },
                         [
                           _c("v-subheader", { staticClass: "mt-2" }, [
+                            _vm._v("ระดับสาขางานวิจัย : "),
+                          ]),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.parameter.branch_main_group,
+                              color: "green darken-3",
+                              "item-text": "value_ref",
+                              "item-value": "value",
+                              label: "สาขางานวิจัย",
+                              rules: _vm.rules.required,
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.request.research_branch_main,
+                              callback: function ($$v) {
+                                _vm.$set(
+                                  _vm.request,
+                                  "research_branch_main",
+                                  $$v
+                                )
+                              },
+                              expression: "request.research_branch_main",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "auto" } },
+                        [
+                          _c("v-subheader", { staticClass: "mt-2" }, [
                             _vm._v("สาขางานวิจัย : "),
                           ]),
                         ],
@@ -2789,11 +3231,13 @@ var render = function () {
                         [
                           _c("v-select", {
                             attrs: {
-                              items: _vm.parameter.bachelor_degree_branch_group,
+                              items:
+                                _vm.parameter[_vm.request.research_branch_main],
                               color: "green darken-3",
                               "item-text": "value_ref",
                               "item-value": "value",
                               label: "สาขางานวิจัย",
+                              disabled: _vm.request.branch_main_group == "",
                               rules: _vm.rules.required,
                               required: "",
                             },
@@ -2837,11 +3281,15 @@ var render = function () {
                               required: "",
                             },
                             model: {
-                              value: _vm.request.related_activities,
+                              value: _vm.request.research_activities,
                               callback: function ($$v) {
-                                _vm.$set(_vm.request, "related_activities", $$v)
+                                _vm.$set(
+                                  _vm.request,
+                                  "research_activities",
+                                  $$v
+                                )
                               },
-                              expression: "request.related_activities",
+                              expression: "request.research_activities",
                             },
                           }),
                         ],
@@ -3063,15 +3511,15 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value: _vm.request.research_main_name,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_main_name",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression: "request.research_main_name",
                                   },
                                 }),
                               ],
@@ -3106,15 +3554,15 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value: _vm.request.research_main_address,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_main_address",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression: "request.research_main_address",
                                   },
                                 }),
                               ],
@@ -3149,15 +3597,16 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value: _vm.request.research_main_position,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_main_position",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression:
+                                      "request.research_main_position",
                                   },
                                 }),
                               ],
@@ -3192,15 +3641,17 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value:
+                                      _vm.request.research_main_responsible,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_main_responsible",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression:
+                                      "request.research_main_responsible",
                                   },
                                 }),
                               ],
@@ -3245,15 +3696,15 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value: _vm.request.research_second_name,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_second_name",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression: "request.research_second_name",
                                   },
                                 }),
                               ],
@@ -3288,15 +3739,16 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value: _vm.request.research_second_address,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_second_address",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression:
+                                      "request.research_second_address",
                                   },
                                 }),
                               ],
@@ -3331,15 +3783,16 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value: _vm.request.research_second_position,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_second_position",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression:
+                                      "request.research_second_position",
                                   },
                                 }),
                               ],
@@ -3374,15 +3827,17 @@ var render = function () {
                                     required: "",
                                   },
                                   model: {
-                                    value: _vm.request.research_name_th,
+                                    value:
+                                      _vm.request.research_second_responsible,
                                     callback: function ($$v) {
                                       _vm.$set(
                                         _vm.request,
-                                        "research_name_th",
+                                        "research_second_responsible",
                                         $$v
                                       )
                                     },
-                                    expression: "request.research_name_th",
+                                    expression:
+                                      "request.research_second_responsible",
                                   },
                                 }),
                               ],
@@ -3431,11 +3886,11 @@ var render = function () {
                           required: "",
                         },
                         model: {
-                          value: _vm.request.research_name_th,
+                          value: _vm.request.research_consultant,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "research_name_th", $$v)
+                            _vm.$set(_vm.request, "research_consultant", $$v)
                           },
-                          expression: "request.research_name_th",
+                          expression: "request.research_consultant",
                         },
                       }),
                     ],
@@ -3473,13 +3928,15 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "แนวทางการดำเนินงานวิจัย",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_4,
+                          value: _vm.request.research_operation,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_4", $$v)
+                            _vm.$set(_vm.request, "research_operation", $$v)
                           },
-                          expression: "request.part_4",
+                          expression: "request.research_operation",
                         },
                       }),
                     ],
@@ -3517,13 +3974,15 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "วัตถุประสงค์งานวิจัย",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_5,
+                          value: _vm.request.research_objective,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_5", $$v)
+                            _vm.$set(_vm.request, "research_objective", $$v)
                           },
-                          expression: "request.part_5",
+                          expression: "request.research_objective",
                         },
                       }),
                     ],
@@ -3561,13 +4020,15 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "ประโยชน์ที่คาดว่าจะได้รับ",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_6,
+                          value: _vm.request.research_benefit,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_6", $$v)
+                            _vm.$set(_vm.request, "research_benefit", $$v)
                           },
-                          expression: "request.part_6",
+                          expression: "request.research_benefit",
                         },
                       }),
                     ],
@@ -3605,13 +4066,15 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "ผลสำเร็จที่คาดว่าจะได้รับ",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_7,
+                          value: _vm.request.research_achievements,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_7", $$v)
+                            _vm.$set(_vm.request, "research_achievements", $$v)
                           },
-                          expression: "request.part_7",
+                          expression: "request.research_achievements",
                         },
                       }),
                     ],
@@ -3649,13 +4112,15 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "พื้นที่ดำเนินงานวิจัย",
+                          rules: _vm.rules.required,
+                          required: "",
                         },
                         model: {
-                          value: _vm.request.part_8,
+                          value: _vm.request.research_area,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_8", $$v)
+                            _vm.$set(_vm.request, "research_area", $$v)
                           },
-                          expression: "request.part_8",
+                          expression: "request.research_area",
                         },
                       }),
                     ],
@@ -3698,7 +4163,7 @@ var render = function () {
                     [
                       _c("v-select", {
                         attrs: {
-                          items: [],
+                          items: _vm.parameter.research_other_group,
                           color: "green darken-3",
                           "item-text": "value_ref",
                           "item-value": "value",
@@ -3707,11 +4172,11 @@ var render = function () {
                           required: "",
                         },
                         model: {
-                          value: _vm.request.research_branch,
+                          value: _vm.request.research_other,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "research_branch", $$v)
+                            _vm.$set(_vm.request, "research_other", $$v)
                           },
-                          expression: "request.research_branch",
+                          expression: "request.research_other",
                         },
                       }),
                     ],
@@ -3747,7 +4212,7 @@ var render = function () {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.request.part_10.length > 0
+                      _vm.request.research_fundings.length > 0
                         ? [
                             _c(
                               "v-btn",
@@ -3755,7 +4220,7 @@ var render = function () {
                                 staticClass: "pa-2 error mr-2",
                                 on: {
                                   click: function ($event) {
-                                    _vm.request.part_10 = []
+                                    _vm.request.research_fundings = []
                                   },
                                 },
                               },
@@ -3771,7 +4236,7 @@ var render = function () {
                           on: {
                             click: function () {
                               _vm.editedIndex = -1
-                              _vm.dialog.dialog_part_10 = true
+                              _vm.dialog.research_fundings = true
                             },
                           },
                         },
@@ -3784,7 +4249,7 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _vm.request.part_10.length > 0
+                      _vm.request.research_fundings.length > 0
                         ? [
                             _c(
                               "div",
@@ -3794,8 +4259,8 @@ var render = function () {
                                   "v-data-table",
                                   {
                                     attrs: {
-                                      headers: _vm.headers_part_10,
-                                      items: _vm.request.part_10,
+                                      headers: _vm.headers_research_fundings,
+                                      items: _vm.request.research_fundings,
                                     },
                                     scopedSlots: _vm._u(
                                       [
@@ -3820,11 +4285,11 @@ var render = function () {
                                               _c("strong", [
                                                 _vm._v(
                                                   _vm._s(
-                                                    _vm.fetchParameterDATA(
+                                                    _vm.fetchParameterByGroupKey(
                                                       _vm.parameter,
                                                       "funding_type_group",
                                                       item.type
-                                                    ).value_ref
+                                                    )
                                                   )
                                                 ),
                                               ]),
@@ -3833,11 +4298,11 @@ var render = function () {
                                               _vm._v(
                                                 "\n                  " +
                                                   _vm._s(
-                                                    _vm.fetchParameterDATA(
+                                                    _vm.fetchParameterByGroupKey(
                                                       _vm.parameter,
                                                       item.type,
-                                                      item.source
-                                                    ).value_ref
+                                                      item.source_capital
+                                                    )
                                                   ) +
                                                   "\n                  "
                                               ),
@@ -3845,11 +4310,11 @@ var render = function () {
                                               _vm._v(
                                                 "\n                  " +
                                                   _vm._s(
-                                                    _vm.fetchParameterDATA(
+                                                    _vm.fetchParameterByGroupKey(
                                                       _vm.parameter,
                                                       "funding_level_group",
-                                                      item.level
-                                                    ).value_ref
+                                                      item.capital_level
+                                                    )
                                                   ) +
                                                   "\n                "
                                               ),
@@ -3869,9 +4334,13 @@ var render = function () {
                                               _c("br"),
                                               _vm._v(
                                                 "\n                  " +
-                                                  _vm._s(item.start_date) +
-                                                  " - " +
-                                                  _vm._s(item.end_date) +
+                                                  _vm._s(
+                                                    _vm.formatDate(item.date1)
+                                                  ) +
+                                                  " -\n                  " +
+                                                  _vm._s(
+                                                    _vm.formatDate(item.date2)
+                                                  ) +
                                                   "\n                "
                                               ),
                                             ]
@@ -3902,7 +4371,7 @@ var render = function () {
                                                     "pa-2 error mr-2",
                                                   on: {
                                                     click: function () {
-                                                      _vm.ManageItemPart_10(
+                                                      _vm.onClickManageResearchFunding(
                                                         item,
                                                         "delete"
                                                       )
@@ -3922,11 +4391,11 @@ var render = function () {
                                                   staticClass: "pa-2 primary",
                                                   on: {
                                                     click: function () {
-                                                      _vm.ManageItemPart_10(
+                                                      _vm.onClickManageResearchFunding(
                                                         item,
                                                         null
                                                       )
-                                                      _vm.dialog.dialog_part_10 = true
+                                                      _vm.dialog.research_fundings = true
                                                     },
                                                   },
                                                 },
@@ -3942,7 +4411,7 @@ var render = function () {
                                       ],
                                       null,
                                       false,
-                                      3786492961
+                                      46886031
                                     ),
                                   },
                                   [
@@ -3963,12 +4432,9 @@ var render = function () {
                                           _vm._v(
                                             "\n                      " +
                                               _vm._s(
-                                                _vm.request.part_10.reduce(
+                                                _vm.request.research_fundings.reduce(
                                                   function (t, n) {
-                                                    return (
-                                                      t +
-                                                      Number(n.part_10_amount)
-                                                    )
+                                                    return t + Number(n.amount)
                                                   },
                                                   0
                                                 )
@@ -4035,7 +4501,7 @@ var render = function () {
                           attrs: { color: "primary" },
                           on: {
                             click: function ($event) {
-                              return _vm.$refs.part_11.$refs.input.click()
+                              return _vm.$refs.research_papers_path.$refs.input.click()
                             },
                           },
                         },
@@ -4049,18 +4515,18 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-file-input", {
-                        ref: "part_11",
+                        ref: "research_papers_path",
                         attrs: {
                           color: "green darken-3",
                           accept: "application/pdf",
                           label: "เอกสารประกอบงานวิจัย",
                         },
                         model: {
-                          value: _vm.request.part_11,
+                          value: _vm.request.research_papers_path,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "part_11", $$v)
+                            _vm.$set(_vm.request, "research_papers_path", $$v)
                           },
-                          expression: "request.part_11",
+                          expression: "request.research_papers_path",
                         },
                       }),
                     ],
@@ -4096,7 +4562,7 @@ var render = function () {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.request.part_12.length > 0
+                      _vm.request.research_presentations.length > 0
                         ? [
                             _c(
                               "v-btn",
@@ -4104,7 +4570,7 @@ var render = function () {
                                 staticClass: "pa-2 error mr-2",
                                 on: {
                                   click: function ($event) {
-                                    _vm.request.part_12 = []
+                                    _vm.request.research_presentations = []
                                   },
                                 },
                               },
@@ -4119,7 +4585,7 @@ var render = function () {
                                 on: {
                                   click: function () {
                                     _vm.editedIndex = -1
-                                    _vm.dialog.dialog_part_12 = true
+                                    _vm.dialog.research_presentations = true
                                   },
                                 },
                               },
@@ -4133,18 +4599,158 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _vm.request.part_12.length > 0
+                      _vm.request.research_presentations.length > 0
                         ? [
                             _c(
                               "div",
                               { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(_vm.request.part_12) +
-                                    "\n            "
-                                ),
-                              ]
+                              _vm._l(
+                                _vm.request.research_presentations,
+                                function (research_presentations) {
+                                  return _c(
+                                    "div",
+                                    { key: research_presentations.id },
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex justify-end",
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  staticClass: "pa-2 primary",
+                                                  on: {
+                                                    click: function () {
+                                                      _vm.onClickManageResearchPresentations(
+                                                        research_presentations,
+                                                        null
+                                                      )
+                                                      _vm.dialog.research_presentations = true
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      แก้ไข"
+                                                  ),
+                                                ]
+                                              ),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "วันที่นำเสนองานวิจัย : " +
+                                                    (_vm.formatDate(
+                                                      research_presentations.research_presentation_date
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "รูปแบบการนำเสนอ : " +
+                                                    (_vm.fetchParameterByGroupKey(
+                                                      _vm.parameter,
+                                                      "presentations_type_group",
+                                                      research_presentations.presentation_style
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ประเภทงานวิชาการ : " +
+                                                    (_vm.fetchParameterByGroupKey(
+                                                      _vm.parameter,
+                                                      "presentations_academic_type_group",
+                                                      research_presentations.academic_work
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ชื่อวิชาการ : " +
+                                                    (research_presentations.academic_name ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "สถานที่นำเสนอ : " +
+                                                    (research_presentations.place_presentation ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ระดับการนำเสนอ : " +
+                                                    (_vm.fetchParameterByGroupKey(
+                                                      _vm.parameter,
+                                                      "presentation_level_group",
+                                                      research_presentations.presentation_level
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ชื่อหน่วยงานที่่จัด : " +
+                                                    (research_presentations.organization_name ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                    ],
+                                    1
+                                  )
+                                }
+                              ),
+                              0
                             ),
                           ]
                         : [
@@ -4194,7 +4800,7 @@ var render = function () {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.request.part_13.length > 0
+                      _vm.request.research_publications.length > 0
                         ? [
                             _c(
                               "v-btn",
@@ -4202,7 +4808,7 @@ var render = function () {
                                 staticClass: "pa-2 error mr-2",
                                 on: {
                                   click: function ($event) {
-                                    _vm.request.part_13 = []
+                                    _vm.request.research_publications = []
                                   },
                                 },
                               },
@@ -4217,7 +4823,7 @@ var render = function () {
                                 on: {
                                   click: function () {
                                     _vm.editedIndex = -1
-                                    _vm.dialog.dialog_part_13 = true
+                                    _vm.dialog.research_publications = true
                                   },
                                 },
                               },
@@ -4231,18 +4837,167 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _vm.request.part_13.length > 0
+                      _vm.request.research_publications.length > 0
                         ? [
                             _c(
                               "div",
                               { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(_vm.request.part_13) +
-                                    "\n            "
-                                ),
-                              ]
+                              _vm._l(
+                                _vm.request.research_publications,
+                                function (research_publications) {
+                                  return _c(
+                                    "div",
+                                    { key: research_publications.id },
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex justify-end",
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  staticClass: "pa-2 primary",
+                                                  on: {
+                                                    click: function () {
+                                                      _vm.onClickManageResearchPublications(
+                                                        research_publications,
+                                                        null
+                                                      )
+                                                      _vm.dialog.research_publications = true
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      แก้ไข"
+                                                  ),
+                                                ]
+                                              ),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : " +
+                                                    (research_publications.reference ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ระดับการนำเสนอ : " +
+                                                    (_vm.fetchParameterByGroupKey(
+                                                      _vm.parameter,
+                                                      "presentation_level_group",
+                                                      research_publications.presentation_level
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ชื่อบทความภาษาไทย/อังกฤษ : " +
+                                                    (research_publications.title_th ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ชื่อบทความภาษาอังกฤษ : " +
+                                                    (research_publications.title_en ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "วัน เดือน ปี ที่ตีพิมพ์ : " +
+                                                    (_vm.formatDate(
+                                                      research_publications.publication_date
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ฉบับที่ : " +
+                                                    (research_publications.no ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "เลขหน้า : " +
+                                                    (research_publications.page_number ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "โรงพิมพ์/เว็บไซต์ : " +
+                                                    (research_publications.printing_website ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                    ],
+                                    1
+                                  )
+                                }
+                              ),
+                              0
                             ),
                           ]
                         : [
@@ -4292,7 +5047,7 @@ var render = function () {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.request.part_14.length > 0
+                      _vm.request.research_benefits.length > 0
                         ? [
                             _c(
                               "v-btn",
@@ -4300,7 +5055,7 @@ var render = function () {
                                 staticClass: "pa-2 error mr-2",
                                 on: {
                                   click: function ($event) {
-                                    _vm.request.part_14 = []
+                                    _vm.request.research_benefits = []
                                   },
                                 },
                               },
@@ -4315,7 +5070,7 @@ var render = function () {
                                 on: {
                                   click: function () {
                                     _vm.editedIndex = -1
-                                    _vm.dialog.dialog_part_14 = true
+                                    _vm.dialog.research_benefits = true
                                   },
                                 },
                               },
@@ -4329,18 +5084,126 @@ var render = function () {
                   _c(
                     "v-row",
                     [
-                      _vm.request.part_14.length > 0
+                      _vm.request.research_benefits.length > 0
                         ? [
                             _c(
                               "div",
                               { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(_vm.request.part_14) +
-                                    "\n            "
-                                ),
-                              ]
+                              _vm._l(
+                                _vm.request.research_benefits,
+                                function (research_benefits) {
+                                  return _c(
+                                    "div",
+                                    { key: research_benefits.id },
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex justify-end",
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  staticClass: "pa-2 primary",
+                                                  on: {
+                                                    click: function () {
+                                                      _vm.onClickManageResearchBenefits(
+                                                        research_benefits,
+                                                        null
+                                                      )
+                                                      _vm.dialog.research_benefits = true
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                      แก้ไข"
+                                                  ),
+                                                ]
+                                              ),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "วันที่ถูกอ้างอิง : " +
+                                                    (_vm.formatDate(
+                                                      research_benefits.date_reference
+                                                    ) || "-- ไม่ระบุ --")
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ชื่อผู้วิจัยที่นำไปอ้างอิง : " +
+                                                    (research_benefits.research_name_reference ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "ชื่อภาษาไทย/Research Name : " +
+                                                    (research_benefits.research_name ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "URL เชื่อมโยง : " +
+                                                    (research_benefits.url ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-subheader", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  "การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : " +
+                                                    (research_benefits.reference ||
+                                                      "-- ไม่ระบุ --") +
+                                                    " \n                      "
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                    ],
+                                    1
+                                  )
+                                }
+                              ),
+                              0
                             ),
                           ]
                         : [
@@ -4370,65 +5233,41 @@ var render = function () {
                 "div",
                 { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                 [
-                  _c(
-                    "div",
-                    { staticClass: "d-flex justify-space-between" },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "h3 ml-4",
-                          staticStyle: { "font-size": "30px" },
-                        },
-                        [
-                          _vm._v(
-                            "\n            ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง\n          "
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("v-btn", { attrs: { color: "primary" } }, [
-                        _vm._v(" เพิ่มข้อมูล "),
-                      ]),
-                    ],
-                    1
-                  ),
+                  _c("div", { staticClass: "d-flex justify-space-between" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "h3 ml-4",
+                        staticStyle: { "font-size": "30px" },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง\n          "
+                        ),
+                      ]
+                    ),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-row",
                     [
-                      _vm.request.part_15.length > 0
-                        ? [
-                            _c(
-                              "div",
-                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              _vm._l(_vm.request.part_15, function (part_15) {
-                                return _c(
-                                  "div",
-                                  { key: part_15.id },
-                                  [_c("v-row")],
-                                  1
-                                )
-                              }),
-                              0
-                            ),
-                          ]
-                        : [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "pa-4 grey lighten-2 rounded-lg text-center",
-                              },
-                              [
-                                _vm._v(
-                                  "\n              -- ไม่ระบุ --\n            "
-                                ),
-                              ]
-                            ),
-                          ],
+                      _c("v-textarea", {
+                        attrs: {
+                          color: "green darken-3",
+                          label: "การนำงานวิจัยไปใช้อ้างอิง",
+                          rules: _vm.rules.required,
+                          required: "",
+                        },
+                        model: {
+                          value: _vm.request.research_reference,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.request, "research_reference", $$v)
+                          },
+                          expression: "request.research_reference",
+                        },
+                      }),
                     ],
-                    2
+                    1
                   ),
                 ],
                 1
@@ -4463,7 +5302,7 @@ var render = function () {
                           attrs: { color: "primary" },
                           on: {
                             click: function ($event) {
-                              return _vm.$refs.ref_file.$refs.input.click()
+                              return _vm.$refs.research_reference_path.$refs.input.click()
                             },
                           },
                         },
@@ -4477,18 +5316,22 @@ var render = function () {
                     "v-row",
                     [
                       _c("v-file-input", {
-                        ref: "ref_file",
+                        ref: "research_reference_path",
                         attrs: {
                           color: "green darken-3",
                           accept: "application/pdf",
                           label: "เอกสารอ้างอิง",
                         },
                         model: {
-                          value: _vm.request.ref_file,
+                          value: _vm.request.research_reference_path,
                           callback: function ($$v) {
-                            _vm.$set(_vm.request, "ref_file", $$v)
+                            _vm.$set(
+                              _vm.request,
+                              "research_reference_path",
+                              $$v
+                            )
                           },
-                          expression: "request.ref_file",
+                          expression: "request.research_reference_path",
                         },
                       }),
                     ],
@@ -4508,7 +5351,7 @@ var render = function () {
                       _c(
                         "v-btn",
                         {
-                          attrs: { color: "primary", dark: "", disabled: "" },
+                          attrs: { color: "primary", dark: "" },
                           on: {
                             click: function () {
                               if (this$1.$refs.request.validate()) {
@@ -4543,305 +5386,17 @@ var render = function () {
             {
               attrs: { width: "900" },
               model: {
-                value: _vm.dialog.dialog_part_2,
+                value: _vm.dialog.research_fundings,
                 callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "dialog_part_2", $$v)
+                  _vm.$set(_vm.dialog, "research_fundings", $$v)
                 },
-                expression: "dialog.dialog_part_2",
+                expression: "dialog.research_fundings",
               },
             },
             [
               _c(
                 "v-form",
-                { ref: "form_part_2" },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-card-title",
-                        { staticClass: "grey lighten-2 mb-2" },
-                        [_vm._v(" นักวิจัย ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-text",
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "auto" } },
-                                [
-                                  _c("v-subheader", { staticClass: "mt-2" }, [
-                                    _vm._v("ชื่อนักวิจัย : "),
-                                  ]),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "ชื่อนักวิจัย",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_2.name,
-                                      callback: function ($$v) {
-                                        _vm.$set(_vm.part_2, "name", $$v)
-                                      },
-                                      expression: "part_2.name",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "auto" } },
-                                [
-                                  _c("v-subheader", { staticClass: "mt-2" }, [
-                                    _vm._v("สังกัด : "),
-                                  ]),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "สังกัด",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_2.agency,
-                                      callback: function ($$v) {
-                                        _vm.$set(_vm.part_2, "agency", $$v)
-                                      },
-                                      expression: "part_2.agency",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "auto" } },
-                                [
-                                  _c("v-subheader", { staticClass: "mt-2" }, [
-                                    _vm._v("สาขา : "),
-                                  ]),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "สาขา",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_2.branch,
-                                      callback: function ($$v) {
-                                        _vm.$set(_vm.part_2, "branch", $$v)
-                                      },
-                                      expression: "part_2.branch",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "auto" } },
-                                [
-                                  _c("v-subheader", { staticClass: "mt-2" }, [
-                                    _vm._v("ตำแหน่งงานวิจัย : "),
-                                  ]),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "ตำแหน่งงานวิจัย",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_2.research_position,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_2,
-                                          "research_position",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "part_2.research_position",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "auto" } },
-                                [
-                                  _c("v-subheader", { staticClass: "mt-2" }, [
-                                    _vm._v("ร้อยละความรับผิดชอบ : "),
-                                  ]),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      type: "number",
-                                      color: "green darken-3",
-                                      label: "ร้อยละความรับผิดชอบ",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_2.percen_responsibility,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_2,
-                                          "percen_responsibility",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "part_2.percen_responsibility",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-actions",
-                        [
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "primary", text: "" },
-                              on: {
-                                click: function () {
-                                  this$1.$refs.form_part_2.reset()
-                                  _vm.dialog.dialog_part_2 =
-                                    !_vm.dialog.dialog_part_2
-                                },
-                              },
-                            },
-                            [_vm._v("\n              ยกเลิก\n            ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "primary", text: "" },
-                              on: {
-                                click: function () {
-                                  this$1.$refs.form_part_2.validate()
-                                  if (this$1.$refs.form_part_2.validate()) {
-                                    _vm.onClickPart_2()
-                                    _vm.dialog.dialog_part_2 =
-                                      !_vm.dialog.dialog_part_2
-                                  }
-                                },
-                              },
-                            },
-                            [_vm._v("\n              ยืนยัน\n            ")]
-                          ),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-center" },
-        [
-          _c(
-            "v-dialog",
-            {
-              attrs: { width: "900" },
-              model: {
-                value: _vm.dialog.dialog_part_10,
-                callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "dialog_part_10", $$v)
-                },
-                expression: "dialog.dialog_part_10",
-              },
-            },
-            [
-              _c(
-                "v-form",
-                { ref: "form_part_10" },
+                { ref: "research_fundings" },
                 [
                   _c(
                     "v-card",
@@ -4877,11 +5432,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.type,
+                                      value: _vm.research_fundings.type,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_10, "type", $$v)
+                                        _vm.$set(
+                                          _vm.research_fundings,
+                                          "type",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_10.type",
+                                      expression: "research_fundings.type",
                                     },
                                   }),
                                 ],
@@ -4892,26 +5451,62 @@ var render = function () {
                                 "v-col",
                                 { attrs: { cols: "6" } },
                                 [
-                                  _c("v-select", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      items: _vm.parameter[_vm.part_10.type],
-                                      "item-text": "value_ref",
-                                      "item-value": "value",
-                                      rules: _vm.rules.required,
-                                      label: "แหล่งทุนสนับสนุน",
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_10.source,
-                                      callback: function ($$v) {
-                                        _vm.$set(_vm.part_10, "source", $$v)
-                                      },
-                                      expression: "part_10.source",
-                                    },
-                                  }),
+                                  _vm.research_fundings.type == "other"
+                                    ? [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            color: "green darken-3",
+                                            label: "อื่นๆ",
+                                            rules: _vm.rules.required,
+                                            required: "",
+                                          },
+                                          model: {
+                                            value:
+                                              _vm.research_fundings.other_type,
+                                            callback: function ($$v) {
+                                              _vm.$set(
+                                                _vm.research_fundings,
+                                                "other_type",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "research_fundings.other_type",
+                                          },
+                                        }),
+                                      ]
+                                    : [
+                                        _c("v-select", {
+                                          attrs: {
+                                            color: "green darken-3",
+                                            items:
+                                              _vm.parameter[
+                                                _vm.research_fundings.type
+                                              ],
+                                            "item-text": "value_ref",
+                                            "item-value": "value",
+                                            rules: _vm.rules.required,
+                                            label: "แหล่งทุนสนับสนุน",
+                                            required: "",
+                                          },
+                                          model: {
+                                            value:
+                                              _vm.research_fundings
+                                                .source_capital,
+                                            callback: function ($$v) {
+                                              _vm.$set(
+                                                _vm.research_fundings,
+                                                "source_capital",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "research_fundings.source_capital",
+                                          },
+                                        }),
+                                      ],
                                 ],
-                                1
+                                2
                               ),
                             ],
                             1
@@ -4935,11 +5530,17 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.level,
+                                      value:
+                                        _vm.research_fundings.capital_level,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_10, "level", $$v)
+                                        _vm.$set(
+                                          _vm.research_fundings,
+                                          "capital_level",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_10.level",
+                                      expression:
+                                        "research_fundings.capital_level",
                                     },
                                   }),
                                 ],
@@ -4965,11 +5566,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.year,
+                                      value: _vm.research_fundings.year,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_10, "year", $$v)
+                                        _vm.$set(
+                                          _vm.research_fundings,
+                                          "year",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_10.year",
+                                      expression: "research_fundings.year",
                                     },
                                   }),
                                 ],
@@ -5004,7 +5609,6 @@ var render = function () {
                                                     {
                                                       attrs: {
                                                         color: "green darken-3",
-                                                        label: "Date",
                                                         "prepend-icon":
                                                           "mdi-calendar",
                                                         rules:
@@ -5014,19 +5618,19 @@ var render = function () {
                                                       },
                                                       model: {
                                                         value:
-                                                          _vm.part_10
-                                                            .start_date,
+                                                          _vm.research_fundings
+                                                            .date1,
                                                         callback: function (
                                                           $$v
                                                         ) {
                                                           _vm.$set(
-                                                            _vm.part_10,
-                                                            "start_date",
+                                                            _vm.research_fundings,
+                                                            "date1",
                                                             $$v
                                                           )
                                                         },
                                                         expression:
-                                                          "part_10.start_date",
+                                                          "research_fundings.date1",
                                                       },
                                                     },
                                                     "v-text-field",
@@ -5100,7 +5704,6 @@ var render = function () {
                                                     {
                                                       attrs: {
                                                         color: "green darken-3",
-                                                        label: "Date2",
                                                         "prepend-icon":
                                                           "mdi-calendar",
                                                         rules:
@@ -5110,18 +5713,19 @@ var render = function () {
                                                       },
                                                       model: {
                                                         value:
-                                                          _vm.part_10.end_date,
+                                                          _vm.research_fundings
+                                                            .date2,
                                                         callback: function (
                                                           $$v
                                                         ) {
                                                           _vm.$set(
-                                                            _vm.part_10,
-                                                            "end_date",
+                                                            _vm.research_fundings,
+                                                            "date2",
                                                             $$v
                                                           )
                                                         },
                                                         expression:
-                                                          "part_10.end_date",
+                                                          "research_fundings.date2",
                                                       },
                                                     },
                                                     "v-text-field",
@@ -5187,11 +5791,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.amount,
+                                      value: _vm.research_fundings.amount,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_10, "amount", $$v)
+                                        _vm.$set(
+                                          _vm.research_fundings,
+                                          "amount",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_10.amount",
+                                      expression: "research_fundings.amount",
                                     },
                                   }),
                                 ],
@@ -5210,15 +5818,16 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_10.description,
+                                      value: _vm.research_fundings.description,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_10,
+                                          _vm.research_fundings,
                                           "description",
                                           $$v
                                         )
                                       },
-                                      expression: "part_10.description",
+                                      expression:
+                                        "research_fundings.description",
                                     },
                                   }),
                                 ],
@@ -5235,19 +5844,95 @@ var render = function () {
                                 "v-col",
                                 { attrs: { cols: "4" } },
                                 [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "วันที่ส่งมอบงานวิจัย",
-                                    },
-                                    model: {
-                                      value: _vm.part_10.send,
-                                      callback: function ($$v) {
-                                        _vm.$set(_vm.part_10, "send", $$v)
+                                  _c(
+                                    "v-menu",
+                                    {
+                                      attrs: {
+                                        "close-on-content-click": false,
+                                        transition: "scale-transition",
+                                        "offset-y": "",
+                                        "max-width": "290px",
+                                        "min-width": "auto",
                                       },
-                                      expression: "part_10.send",
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "activator",
+                                          fn: function (ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-text-field",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "green darken-3",
+                                                        "prepend-icon":
+                                                          "mdi-calendar",
+                                                        label:
+                                                          "วันที่ส่งมอบงานวิจัย",
+                                                        rules:
+                                                          _vm.rules
+                                                            .requiredDateTime,
+                                                        required: "",
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.research_fundings
+                                                            .delivery_date,
+                                                        callback: function (
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            _vm.research_fundings,
+                                                            "delivery_date",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "research_fundings.delivery_date",
+                                                      },
+                                                    },
+                                                    "v-text-field",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                )
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                      ]),
+                                      model: {
+                                        value: _vm.datePicker_date3,
+                                        callback: function ($$v) {
+                                          _vm.datePicker_date3 = $$v
+                                        },
+                                        expression: "datePicker_date3",
+                                      },
                                     },
-                                  }),
+                                    [
+                                      _vm._v(" "),
+                                      _c("v-date-picker", {
+                                        attrs: { "no-title": "" },
+                                        on: {
+                                          input: function ($event) {
+                                            _vm.datePicker_date3 = false
+                                          },
+                                        },
+                                        model: {
+                                          value: _vm.dateNow_date_3,
+                                          callback: function ($$v) {
+                                            _vm.dateNow_date_3 = $$v
+                                          },
+                                          expression: "dateNow_date_3",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
                                 ],
                                 1
                               ),
@@ -5269,9 +5954,9 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_10.reset()
-                                  _vm.dialog.dialog_part_10 =
-                                    !_vm.dialog.dialog_part_10
+                                  this$1.$refs.research_fundings.reset()
+                                  _vm.dialog.research_fundings =
+                                    !_vm.dialog.research_fundings
                                 },
                               },
                             },
@@ -5284,11 +5969,13 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_10.validate()
-                                  if (this$1.$refs.form_part_10.validate()) {
-                                    _vm.onClickPart_10()
-                                    _vm.dialog.dialog_part_10 =
-                                      !_vm.dialog.dialog_part_10
+                                  this$1.$refs.research_fundings.validate()
+                                  if (
+                                    this$1.$refs.research_fundings.validate()
+                                  ) {
+                                    _vm.onClickResearchFundings()
+                                    _vm.dialog.research_fundings =
+                                      !_vm.dialog.research_fundings
                                   }
                                 },
                               },
@@ -5320,17 +6007,17 @@ var render = function () {
             {
               attrs: { width: "900" },
               model: {
-                value: _vm.dialog.dialog_part_12,
+                value: _vm.dialog.research_presentations,
                 callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "dialog_part_12", $$v)
+                  _vm.$set(_vm.dialog, "research_presentations", $$v)
                 },
-                expression: "dialog.dialog_part_12",
+                expression: "dialog.research_presentations",
               },
             },
             [
               _c(
                 "v-form",
-                { ref: "form_part_12" },
+                { ref: "research_presentations" },
                 [
                   _c(
                     "v-card",
@@ -5355,26 +6042,96 @@ var render = function () {
                                 "v-col",
                                 { attrs: { cols: "6" } },
                                 [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "วันที่นำเสนองานวิจัย",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_12.research_present_date,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_12,
-                                          "research_present_date",
-                                          $$v
-                                        )
+                                  _c(
+                                    "v-menu",
+                                    {
+                                      attrs: {
+                                        "close-on-content-click": false,
+                                        transition: "scale-transition",
+                                        "offset-y": "",
+                                        "max-width": "290px",
+                                        "min-width": "auto",
                                       },
-                                      expression:
-                                        "part_12.research_present_date",
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "activator",
+                                          fn: function (ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-text-field",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "green darken-3",
+                                                        "prepend-icon":
+                                                          "mdi-calendar",
+                                                        label:
+                                                          "วันที่นำเสนองานวิจัย",
+                                                        rules:
+                                                          _vm.rules
+                                                            .requiredDateTime,
+                                                        required: "",
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm
+                                                            .research_presentations
+                                                            .research_presentation_date,
+                                                        callback: function (
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            _vm.research_presentations,
+                                                            "research_presentation_date",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "\n                        research_presentations.research_presentation_date\n                      ",
+                                                      },
+                                                    },
+                                                    "v-text-field",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                )
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                      ]),
+                                      model: {
+                                        value: _vm.datePicker_date4,
+                                        callback: function ($$v) {
+                                          _vm.datePicker_date4 = $$v
+                                        },
+                                        expression: "datePicker_date4",
+                                      },
                                     },
-                                  }),
+                                    [
+                                      _vm._v(" "),
+                                      _c("v-date-picker", {
+                                        attrs: { "no-title": "" },
+                                        on: {
+                                          input: function ($event) {
+                                            _vm.datePicker_date4 = false
+                                          },
+                                        },
+                                        model: {
+                                          value: _vm.dateNow_date_4,
+                                          callback: function ($$v) {
+                                            _vm.dateNow_date_4 = $$v
+                                          },
+                                          expression: "dateNow_date_4",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
                                 ],
                                 1
                               ),
@@ -5386,7 +6143,8 @@ var render = function () {
                                   _c("v-select", {
                                     attrs: {
                                       color: "green darken-3",
-                                      items: _vm.parameter.funding_type_group,
+                                      items:
+                                        _vm.parameter.presentations_type_group,
                                       "item-text": "value_ref",
                                       "item-value": "value",
                                       rules: _vm.rules.required,
@@ -5394,15 +6152,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_12.presentation_style,
+                                      value:
+                                        _vm.research_presentations
+                                          .presentation_style,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_12,
+                                          _vm.research_presentations,
                                           "presentation_style",
                                           $$v
                                         )
                                       },
-                                      expression: "part_12.presentation_style",
+                                      expression:
+                                        "research_presentations.presentation_style",
                                     },
                                   }),
                                 ],
@@ -5422,7 +6183,9 @@ var render = function () {
                                   _c("v-select", {
                                     attrs: {
                                       color: "green darken-3",
-                                      items: _vm.parameter.funding_type_group,
+                                      items:
+                                        _vm.parameter
+                                          .presentations_academic_type_group,
                                       "item-text": "value_ref",
                                       "item-value": "value",
                                       rules: _vm.rules.required,
@@ -5430,15 +6193,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_12.academic_work,
+                                      value:
+                                        _vm.research_presentations
+                                          .academic_work,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_12,
+                                          _vm.research_presentations,
                                           "academic_work",
                                           $$v
                                         )
                                       },
-                                      expression: "part_12.academic_work",
+                                      expression:
+                                        "research_presentations.academic_work",
                                     },
                                   }),
                                 ],
@@ -5457,15 +6223,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_12.academic_name,
+                                      value:
+                                        _vm.research_presentations
+                                          .academic_name,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_12,
+                                          _vm.research_presentations,
                                           "academic_name",
                                           $$v
                                         )
                                       },
-                                      expression: "part_12.academic_name",
+                                      expression:
+                                        "research_presentations.academic_name",
                                     },
                                   }),
                                 ],
@@ -5490,15 +6259,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_12.presentation_place,
+                                      value:
+                                        _vm.research_presentations
+                                          .place_presentation,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_12,
-                                          "presentation_place",
+                                          _vm.research_presentations,
+                                          "place_presentation",
                                           $$v
                                         )
                                       },
-                                      expression: "part_12.presentation_place",
+                                      expression:
+                                        "research_presentations.place_presentation",
                                     },
                                   }),
                                 ],
@@ -5512,7 +6284,8 @@ var render = function () {
                                   _c("v-select", {
                                     attrs: {
                                       color: "green darken-3",
-                                      items: _vm.parameter.funding_type_group,
+                                      items:
+                                        _vm.parameter.presentation_level_group,
                                       "item-text": "value_ref",
                                       "item-value": "value",
                                       rules: _vm.rules.required,
@@ -5520,15 +6293,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_12.present_level,
+                                      value:
+                                        _vm.research_presentations
+                                          .presentation_level,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_12,
-                                          "present_level",
+                                          _vm.research_presentations,
+                                          "presentation_level",
                                           $$v
                                         )
                                       },
-                                      expression: "part_12.present_level",
+                                      expression:
+                                        "research_presentations.presentation_level",
                                     },
                                   }),
                                 ],
@@ -5553,15 +6329,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_12.organization_name,
+                                      value:
+                                        _vm.research_presentations
+                                          .organization_name,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_12,
+                                          _vm.research_presentations,
                                           "organization_name",
                                           $$v
                                         )
                                       },
-                                      expression: "part_12.organization_name",
+                                      expression:
+                                        "research_presentations.organization_name",
                                     },
                                   }),
                                 ],
@@ -5585,9 +6364,9 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_12.reset()
-                                  _vm.dialog.dialog_part_12 =
-                                    !_vm.dialog.dialog_part_12
+                                  this$1.$refs.research_presentations.reset()
+                                  _vm.dialog.research_presentations =
+                                    !_vm.dialog.research_presentations
                                 },
                               },
                             },
@@ -5600,11 +6379,13 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_12.validate()
-                                  if (this$1.$refs.form_part_12.validate()) {
-                                    _vm.onClickPart_12()
-                                    _vm.dialog.dialog_part_12 =
-                                      !_vm.dialog.dialog_part_12
+                                  this$1.$refs.research_presentations.validate()
+                                  if (
+                                    this$1.$refs.research_presentations.validate()
+                                  ) {
+                                    _vm.onClickResearchPresentations()
+                                    _vm.dialog.research_presentations =
+                                      !_vm.dialog.research_presentations
                                   }
                                 },
                               },
@@ -5636,17 +6417,17 @@ var render = function () {
             {
               attrs: { width: "900" },
               model: {
-                value: _vm.dialog.dialog_part_13,
+                value: _vm.dialog.research_publications,
                 callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "dialog_part_13", $$v)
+                  _vm.$set(_vm.dialog, "research_publications", $$v)
                 },
-                expression: "dialog.dialog_part_13",
+                expression: "dialog.research_publications",
               },
             },
             [
               _c(
                 "v-form",
-                { ref: "form_part_13" },
+                { ref: "research_publications" },
                 [
                   _c(
                     "v-card",
@@ -5680,11 +6461,17 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.reference,
+                                      value:
+                                        _vm.research_publications.reference,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_13, "reference", $$v)
+                                        _vm.$set(
+                                          _vm.research_publications,
+                                          "reference",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_13.reference",
+                                      expression:
+                                        "research_publications.reference",
                                     },
                                   }),
                                 ],
@@ -5704,7 +6491,8 @@ var render = function () {
                                   _c("v-select", {
                                     attrs: {
                                       color: "green darken-3",
-                                      items: _vm.parameter.funding_type_group,
+                                      items:
+                                        _vm.parameter.presentation_level_group,
                                       "item-text": "value_ref",
                                       "item-value": "value",
                                       rules: _vm.rules.required,
@@ -5712,15 +6500,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.presentation_level,
+                                      value:
+                                        _vm.research_publications
+                                          .presentation_level,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_13,
+                                          _vm.research_publications,
                                           "presentation_level",
                                           $$v
                                         )
                                       },
-                                      expression: "part_13.presentation_level",
+                                      expression:
+                                        "research_publications.presentation_level",
                                     },
                                   }),
                                 ],
@@ -5745,15 +6536,16 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.thai_article_title,
+                                      value: _vm.research_publications.title_th,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_13,
-                                          "thai_article_title",
+                                          _vm.research_publications,
+                                          "title_th",
                                           $$v
                                         )
                                       },
-                                      expression: "part_13.thai_article_title",
+                                      expression:
+                                        "research_publications.title_th",
                                     },
                                   }),
                                 ],
@@ -5778,16 +6570,16 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.english_article_title,
+                                      value: _vm.research_publications.title_en,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_13,
-                                          "english_article_title",
+                                          _vm.research_publications,
+                                          "title_en",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "part_13.english_article_title",
+                                        "research_publications.title_en",
                                     },
                                   }),
                                 ],
@@ -5804,25 +6596,96 @@ var render = function () {
                                 "v-col",
                                 { attrs: { cols: "4" } },
                                 [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "วัน เดือน ปี ที่ตีพิมพ์",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_13.date_publication,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_13,
-                                          "date_publication",
-                                          $$v
-                                        )
+                                  _c(
+                                    "v-menu",
+                                    {
+                                      attrs: {
+                                        "close-on-content-click": false,
+                                        transition: "scale-transition",
+                                        "offset-y": "",
+                                        "max-width": "290px",
+                                        "min-width": "auto",
                                       },
-                                      expression: "part_13.date_publication",
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "activator",
+                                          fn: function (ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-text-field",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "green darken-3",
+                                                        "prepend-icon":
+                                                          "mdi-calendar",
+                                                        label:
+                                                          "วัน เดือน ปี ที่ตีพิมพ์",
+                                                        rules:
+                                                          _vm.rules
+                                                            .requiredDateTime,
+                                                        required: "",
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm
+                                                            .research_publications
+                                                            .publication_date,
+                                                        callback: function (
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            _vm.research_publications,
+                                                            "publication_date",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "research_publications.publication_date",
+                                                      },
+                                                    },
+                                                    "v-text-field",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                )
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                      ]),
+                                      model: {
+                                        value: _vm.datePicker_date5,
+                                        callback: function ($$v) {
+                                          _vm.datePicker_date5 = $$v
+                                        },
+                                        expression: "datePicker_date5",
+                                      },
                                     },
-                                  }),
+                                    [
+                                      _vm._v(" "),
+                                      _c("v-date-picker", {
+                                        attrs: { "no-title": "" },
+                                        on: {
+                                          input: function ($event) {
+                                            _vm.datePicker_date5 = false
+                                          },
+                                        },
+                                        model: {
+                                          value: _vm.dateNow_date_5,
+                                          callback: function ($$v) {
+                                            _vm.dateNow_date_5 = $$v
+                                          },
+                                          expression: "dateNow_date_5",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
                                 ],
                                 1
                               ),
@@ -5839,11 +6702,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.no,
+                                      value: _vm.research_publications.no,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_13, "no", $$v)
+                                        _vm.$set(
+                                          _vm.research_publications,
+                                          "no",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_13.no",
+                                      expression: "research_publications.no",
                                     },
                                   }),
                                 ],
@@ -5868,15 +6735,17 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.page_number,
+                                      value:
+                                        _vm.research_publications.page_number,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_13,
+                                          _vm.research_publications,
                                           "page_number",
                                           $$v
                                         )
                                       },
-                                      expression: "part_13.page_number",
+                                      expression:
+                                        "research_publications.page_number",
                                     },
                                   }),
                                 ],
@@ -5901,15 +6770,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_13.printer_website,
+                                      value:
+                                        _vm.research_publications
+                                          .printing_website,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_13,
-                                          "printer_website",
+                                          _vm.research_publications,
+                                          "printing_website",
                                           $$v
                                         )
                                       },
-                                      expression: "part_13.printer_website",
+                                      expression:
+                                        "research_publications.printing_website",
                                     },
                                   }),
                                 ],
@@ -5933,9 +6805,9 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_13.reset()
-                                  _vm.dialog.dialog_part_13 =
-                                    !_vm.dialog.dialog_part_13
+                                  this$1.$refs.research_publications.reset()
+                                  _vm.dialog.research_publications =
+                                    !_vm.dialog.research_publications
                                 },
                               },
                             },
@@ -5948,11 +6820,13 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_13.validate()
-                                  if (this$1.$refs.form_part_13.validate()) {
-                                    _vm.onClickPart_13()
-                                    _vm.dialog.dialog_part_13 =
-                                      !_vm.dialog.dialog_part_13
+                                  this$1.$refs.research_publications.validate()
+                                  if (
+                                    this$1.$refs.research_publications.validate()
+                                  ) {
+                                    _vm.onClickResearchPublications()
+                                    _vm.dialog.research_publications =
+                                      !_vm.dialog.research_publications
                                   }
                                 },
                               },
@@ -5984,17 +6858,17 @@ var render = function () {
             {
               attrs: { width: "900" },
               model: {
-                value: _vm.dialog.dialog_part_14,
+                value: _vm.dialog.research_benefits,
                 callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "dialog_part_14", $$v)
+                  _vm.$set(_vm.dialog, "research_benefits", $$v)
                 },
-                expression: "dialog.dialog_part_14",
+                expression: "dialog.research_benefits",
               },
             },
             [
               _c(
                 "v-form",
-                { ref: "form_part_14" },
+                { ref: "research_benefits" },
                 [
                   _c(
                     "v-card",
@@ -6019,25 +6893,95 @@ var render = function () {
                                 "v-col",
                                 { attrs: { cols: "6" } },
                                 [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "วันที่ถูกอ้างอิง",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.part_14.date_reference,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.part_14,
-                                          "date_reference",
-                                          $$v
-                                        )
+                                  _c(
+                                    "v-menu",
+                                    {
+                                      attrs: {
+                                        "close-on-content-click": false,
+                                        transition: "scale-transition",
+                                        "offset-y": "",
+                                        "max-width": "290px",
+                                        "min-width": "auto",
                                       },
-                                      expression: "part_14.date_reference",
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "activator",
+                                          fn: function (ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-text-field",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        color: "green darken-3",
+                                                        "prepend-icon":
+                                                          "mdi-calendar",
+                                                        label:
+                                                          "วันที่ถูกอ้างอิง",
+                                                        rules:
+                                                          _vm.rules
+                                                            .requiredDateTime,
+                                                        required: "",
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.research_benefits
+                                                            .date_reference,
+                                                        callback: function (
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            _vm.research_benefits,
+                                                            "date_reference",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "research_benefits.date_reference",
+                                                      },
+                                                    },
+                                                    "v-text-field",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                )
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                      ]),
+                                      model: {
+                                        value: _vm.datePicker_date6,
+                                        callback: function ($$v) {
+                                          _vm.datePicker_date6 = $$v
+                                        },
+                                        expression: "datePicker_date6",
+                                      },
                                     },
-                                  }),
+                                    [
+                                      _vm._v(" "),
+                                      _c("v-date-picker", {
+                                        attrs: { "no-title": "" },
+                                        on: {
+                                          input: function ($event) {
+                                            _vm.datePicker_date6 = false
+                                          },
+                                        },
+                                        model: {
+                                          value: _vm.dateNow_date_6,
+                                          callback: function ($$v) {
+                                            _vm.dateNow_date_6 = $$v
+                                          },
+                                          expression: "dateNow_date_6",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
                                 ],
                                 1
                               ),
@@ -6054,15 +6998,18 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_14.name_researcher,
+                                      value:
+                                        _vm.research_benefits
+                                          .research_name_reference,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_14,
-                                          "name_researcher",
+                                          _vm.research_benefits,
+                                          "research_name_reference",
                                           $$v
                                         )
                                       },
-                                      expression: "part_14.name_researcher",
+                                      expression:
+                                        "research_benefits.research_name_reference",
                                     },
                                   }),
                                 ],
@@ -6087,11 +7034,17 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_14.thai_name,
+                                      value:
+                                        _vm.research_benefits.research_name,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_14, "thai_name", $$v)
+                                        _vm.$set(
+                                          _vm.research_benefits,
+                                          "research_name",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_14.thai_name",
+                                      expression:
+                                        "research_benefits.research_name",
                                     },
                                   }),
                                 ],
@@ -6116,11 +7069,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_14.link_url,
+                                      value: _vm.research_benefits.url,
                                       callback: function ($$v) {
-                                        _vm.$set(_vm.part_14, "link_url", $$v)
+                                        _vm.$set(
+                                          _vm.research_benefits,
+                                          "url",
+                                          $$v
+                                        )
                                       },
-                                      expression: "part_14.link_url",
+                                      expression: "research_benefits.url",
                                     },
                                   }),
                                 ],
@@ -6146,15 +7103,15 @@ var render = function () {
                                       required: "",
                                     },
                                     model: {
-                                      value: _vm.part_14.reference_journal,
+                                      value: _vm.research_benefits.reference,
                                       callback: function ($$v) {
                                         _vm.$set(
-                                          _vm.part_14,
-                                          "reference_journal",
+                                          _vm.research_benefits,
+                                          "reference",
                                           $$v
                                         )
                                       },
-                                      expression: "part_14.reference_journal",
+                                      expression: "research_benefits.reference",
                                     },
                                   }),
                                 ],
@@ -6178,9 +7135,9 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_14.reset()
-                                  _vm.dialog.dialog_part_14 =
-                                    !_vm.dialog.dialog_part_14
+                                  this$1.$refs.research_benefits.reset()
+                                  _vm.dialog.research_benefits =
+                                    !_vm.dialog.research_benefits
                                 },
                               },
                             },
@@ -6193,11 +7150,13 @@ var render = function () {
                               attrs: { color: "primary", text: "" },
                               on: {
                                 click: function () {
-                                  this$1.$refs.form_part_14.validate()
-                                  if (this$1.$refs.form_part_14.validate()) {
-                                    _vm.onClickPart_14()
-                                    _vm.dialog.dialog_part_14 =
-                                      !_vm.dialog.dialog_part_14
+                                  this$1.$refs.research_benefits.validate()
+                                  if (
+                                    this$1.$refs.research_benefits.validate()
+                                  ) {
+                                    _vm.onClickResearchBenefits()
+                                    _vm.dialog.research_benefits =
+                                      !_vm.dialog.research_benefits
                                   }
                                 },
                               },

@@ -10,7 +10,7 @@ class ResearchPresentations extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'user_id',
+        'research_id',
         'research_presentation_date',
         'presentation_style',
         'academic_work',

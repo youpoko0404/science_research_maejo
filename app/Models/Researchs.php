@@ -23,6 +23,7 @@ class Researchs extends Model
         'research_model',
         'research_type',
         'research_branch',
+        'research_branch_main',
         'research_activities',
         'road_map',
         'research_status',
@@ -45,14 +46,10 @@ class Researchs extends Model
         'research_other',
         'research_papers_path',
         'research_reference_path',
+        'research_reference',
         'is_deleted',
         'created_by',
         "created_at",
         "updated_at"
     ];
-
-    public function research_users()
-    {
-        return $this->belongsToMany(ResearchUsers::class, 'researchs', 'id', 'id');
-    }
 }

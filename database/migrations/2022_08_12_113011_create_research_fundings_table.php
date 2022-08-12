@@ -15,7 +15,7 @@ class CreateResearchFundingsTable extends Migration
     {
         Schema::create('research_fundings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('research_id')->unsigned();
             $table->string('type');
             $table->string('other_type')->nullable()->default(null);
             $table->string('source_capital');
@@ -28,7 +28,7 @@ class CreateResearchFundingsTable extends Migration
             $table->string('delivery_date')->nullable()->default(null);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('research_id')->references('id')->on('researchs')->onDelete('cascade');
         });
     }
 

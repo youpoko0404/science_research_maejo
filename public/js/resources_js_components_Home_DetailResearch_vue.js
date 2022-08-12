@@ -258,6 +258,117 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -282,7 +393,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    this.fetchParameter(["branch_group", "funding_type_group", "funding_level_group", "institutional_budget_group", "research_consultant"]);
+    this.fetchParameter(["bachelor_degree_branch_group", "master_degree_branch_group", "doctor_degree_branch_group", "research_other_group", "branch_main_group", "funding_type_group", "external_institution_budget_group", "institutional_budget_group", "personal_budget_group", "funding_level_group", "presentations_type_group", "presentations_academic_type_group", "presentation_level_group"]);
     this.fetchSearchResearchById(this.$route.query.id);
   },
   methods: {
@@ -291,11 +402,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.dispatch("dashboard/fetchSearchResearchById", id);
       }
     },
-    fetchParameterDATA: function fetchParameterDATA(items, group, key) {
-      if (items) {
-        return items[group].find(function (e) {
+    fetchParameterByGroupKey: function fetchParameterByGroupKey(items, group, key) {
+      if (items && group && key) {
+        var _items$group;
+
+        var param = (_items$group = items[group]) === null || _items$group === void 0 ? void 0 : _items$group.find(function (e) {
           return e.value == key;
         });
+        if (param) return param.value_ref;
       }
     },
     fetchParameter: function fetchParameter(group_name) {
@@ -308,11 +422,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       this.$store.dispatch("dashboard/downloadFile", req).then(function (response) {
         var blob = new Blob([response], {
-          type: 'application/pdf'
+          type: "application/pdf"
         });
-        var link = document.createElement('a');
+        var link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
-        link.target = '_blank';
+        link.target = "_blank";
         link.click();
       });
     },
@@ -425,7 +539,7 @@ var render = function () {
                 { attrs: { justify: "space-between" } },
                 [
                   _c("v-col", [
-                    _c("p", { staticClass: "h3" }, [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
                       _vm._v("รายละเอียดงานวิจัย"),
                     ]),
                   ]),
@@ -435,12 +549,20 @@ var render = function () {
               _vm._v(" "),
               _c("v-divider"),
               _vm._v(" "),
-              _c("p", { staticClass: "h3 ml-4" }, [
-                _vm._v(_vm._s(_vm.search_research_by_id.research_name_th)),
+              _c("div", { staticStyle: { "font-size": "30px" } }, [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.search_research_by_id.title_name_th) +
+                    "\n    "
+                ),
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "h4 ml-4" }, [
-                _vm._v(_vm._s(_vm.search_research_by_id.research_name_en)),
+              _c("div", { staticStyle: { "font-size": "30px" } }, [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.search_research_by_id.title_name_en) +
+                    "\n    "
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
@@ -457,10 +579,10 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("รหัสอ้างอิงมหาวิทยาลัย : ")]),
                               _vm._v(
-                                " " +
+                                "\n              " +
                                   _vm._s(
-                                    _vm.search_research_by_id.university_code ||
-                                      "-- ไม่ระบุ --"
+                                    _vm.search_research_by_id
+                                      .ref_code_university || "-- ไม่ระบุ --"
                                   ) +
                                   "\n            "
                               ),
@@ -469,14 +591,24 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("รหัสอ้างอิง วช. :")]),
                               _vm._v(
-                                " " + _vm._s("-- ไม่ระบุ --") + "\n            "
+                                "\n              " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.ref_code_nr ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
                               ),
                             ]),
                             _vm._v(" "),
                             _c("v-col", [
                               _c("b", [_vm._v("สถานะการดำเนินงาน :")]),
                               _vm._v(
-                                " " + _vm._s("-- ไม่ระบุ --") + "\n            "
+                                "\n              " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.research_status ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
                               ),
                             ]),
                           ],
@@ -489,7 +621,12 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("วันที่ดำเนินงาน :")]),
                               _vm._v(
-                                " " + _vm._s("-- ไม่ระบุ --") + "\n            "
+                                "\n              " +
+                                  _vm._s(
+                                    _vm.search_research_by_id.research_period ||
+                                      "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
                               ),
                             ]),
                           ],
@@ -506,22 +643,24 @@ var render = function () {
               _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
                 _c(
                   "div",
-                  { staticClass: "pa-4 grey  lighten-5 rounded-lg" },
+                  { staticClass: "pa-4 grey lighten-5 rounded-lg" },
                   [
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 1 ข้อมูลทั่วไป")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 1 ข้อมูลทั่วไป"),
                         ]),
                         _vm._v(" "),
                         _c(
                           "v-row",
                           [
                             _c("v-col", [
-                              _c("p", [
-                                _c("b", [_vm._v("ข้อมูลทั่วไป ภาษาไทย")]),
-                              ]),
+                              _c(
+                                "div",
+                                { staticStyle: { "font-size": "20px" } },
+                                [_vm._v("ข้อมูลทั่วไป ภาษาไทย")]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -530,10 +669,10 @@ var render = function () {
                                   _c("v-col", [
                                     _c("b", [_vm._v("หัวข้อ :")]),
                                     _vm._v(
-                                      " " +
+                                      "\n                  " +
                                         _vm._s(
                                           _vm.search_research_by_id
-                                            .research_name_th || "-- ไม่ระบุ --"
+                                            .title_name_th || "-- ไม่ระบุ --"
                                         ) +
                                         "\n                "
                                     ),
@@ -542,8 +681,11 @@ var render = function () {
                                   _c("v-col", [
                                     _c("b", [_vm._v("บทคัดย่อ :")]),
                                     _vm._v(
-                                      " " +
-                                        _vm._s("-- ไม่ระบุ --") +
+                                      "\n                  " +
+                                        _vm._s(
+                                          _vm.search_research_by_id
+                                            .abstract_name_th || "-- ไม่ระบุ --"
+                                        ) +
                                         "\n                "
                                     ),
                                   ]),
@@ -551,8 +693,11 @@ var render = function () {
                                   _c("v-col", [
                                     _c("b", [_vm._v("คำสำคัญ :")]),
                                     _vm._v(
-                                      " " +
-                                        _vm._s("-- ไม่ระบุ --") +
+                                      "\n                  " +
+                                        _vm._s(
+                                          _vm.search_research_by_id
+                                            .keyword_name_th || "-- ไม่ระบุ --"
+                                        ) +
                                         "\n                "
                                     ),
                                   ]),
@@ -562,9 +707,11 @@ var render = function () {
                             ]),
                             _vm._v(" "),
                             _c("v-col", [
-                              _c("p", [
-                                _c("b", [_vm._v("ข้อมูลทั่วไป ภาษาอังกฤษ")]),
-                              ]),
+                              _c(
+                                "div",
+                                { staticStyle: { "font-size": "20px" } },
+                                [_vm._v("ข้อมูลทั่วไป ภาษาอังกฤษ")]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -573,10 +720,10 @@ var render = function () {
                                   _c("v-col", [
                                     _c("b", [_vm._v("Title :")]),
                                     _vm._v(
-                                      " " +
+                                      "\n                  " +
                                         _vm._s(
                                           _vm.search_research_by_id
-                                            .research_name_en || "-- ไม่ระบุ --"
+                                            .title_name_en || "-- ไม่ระบุ --"
                                         ) +
                                         "\n                "
                                     ),
@@ -585,8 +732,11 @@ var render = function () {
                                   _c("v-col", [
                                     _c("b", [_vm._v("Abstract :")]),
                                     _vm._v(
-                                      " " +
-                                        _vm._s("-- ไม่ระบุ --") +
+                                      "\n                  " +
+                                        _vm._s(
+                                          _vm.search_research_by_id
+                                            .abstract_name_en || "-- ไม่ระบุ --"
+                                        ) +
                                         "\n                "
                                     ),
                                   ]),
@@ -594,8 +744,11 @@ var render = function () {
                                   _c("v-col", [
                                     _c("b", [_vm._v("Keyword :")]),
                                     _vm._v(
-                                      " " +
-                                        _vm._s("-- ไม่ระบุ --") +
+                                      "\n                  " +
+                                        _vm._s(
+                                          _vm.search_research_by_id
+                                            .keyword_name_en || "-- ไม่ระบุ --"
+                                        ) +
                                         "\n                "
                                     ),
                                   ]),
@@ -613,9 +766,9 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("รูปแบบงานวิจัย :")]),
                               _vm._v(
-                                " " +
+                                "\n              " +
                                   _vm._s(
-                                    _vm.search_research_by_id.research_format ||
+                                    _vm.search_research_by_id.research_model ||
                                       "-- ไม่ระบุ --"
                                   ) +
                                   "\n            "
@@ -625,7 +778,7 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("ประเภทงานวิจัย :")]),
                               _vm._v(
-                                " " +
+                                "\n              " +
                                   _vm._s(
                                     _vm.search_research_by_id.research_type ||
                                       "-- ไม่ระบุ --"
@@ -637,13 +790,16 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("สาขางานวิจัย :")]),
                               _vm._v(
-                                _vm._s(
-                                  _vm.fetchParameterDATA(
-                                    _vm.parameter,
-                                    "branch_group",
-                                    _vm.search_research_by_id.research_branch
-                                  ).value_ref || "-- ไม่ระบุ --"
-                                ) + "\n            "
+                                "\n              " +
+                                  _vm._s(
+                                    _vm.fetchParameterByGroupKey(
+                                      _vm.parameter,
+                                      "branch_group",
+                                      _vm.search_research_by_id
+                                        .research_branch_main
+                                    ) || "-- ไม่ระบุ --"
+                                  ) +
+                                  "\n            "
                               ),
                             ]),
                           ],
@@ -656,10 +812,10 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("กิจกรรมที่เกี่ยวข้อง :")]),
                               _vm._v(
-                                " " +
+                                "\n              " +
                                   _vm._s(
                                     _vm.search_research_by_id
-                                      .related_activities || "-- ไม่ระบุ --"
+                                      .research_activities || "-- ไม่ระบุ --"
                                   ) +
                                   "\n            "
                               ),
@@ -668,7 +824,7 @@ var render = function () {
                             _c("v-col", [
                               _c("b", [_vm._v("Road map :")]),
                               _vm._v(
-                                " " +
+                                "\n              " +
                                   _vm._s(
                                     _vm.search_research_by_id.road_map ||
                                       "-- ไม่ระบุ --"
@@ -690,8 +846,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 2 นักวิจัย")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 2 นักวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -707,8 +863,9 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.search_research_by_id.part_2 ||
-                                        "ไม่มีข้อมูลนักวิจัย"
+                                      _vm.search_research_by_id
+                                        .research_project_type ||
+                                        "-- ไม่ระบุ --"
                                     ) +
                                     "\n            "
                                 ),
@@ -726,8 +883,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -743,12 +900,8 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.fetchParameterDATA(
-                                        _vm.parameter,
-                                        "research_consultant",
-                                        _vm.search_research_by_id.part_3
-                                      ).value_ref ||
-                                        "ไม่มีข้อมูลที่ปรึกษางานวิจัย"
+                                      _vm.search_research_by_id
+                                        .research_consultant || "-- ไม่ระบุ --"
                                     ) +
                                     "\n            "
                                 ),
@@ -766,10 +919,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -786,7 +937,8 @@ var render = function () {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.showText(
-                                        _vm.search_research_by_id.part_4
+                                        _vm.search_research_by_id
+                                          .research_operation
                                       ) || "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย"
                                     ),
                                   },
@@ -805,8 +957,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -823,7 +975,8 @@ var render = function () {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.showText(
-                                        _vm.search_research_by_id.part_5
+                                        _vm.search_research_by_id
+                                          .research_objective
                                       ) || "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย"
                                     ),
                                   },
@@ -842,10 +995,10 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v(
+                            "\n            ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ\n          "
+                          ),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -862,7 +1015,8 @@ var render = function () {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.showText(
-                                        _vm.search_research_by_id.part_6
+                                        _vm.search_research_by_id
+                                          .research_benefit
                                       ) ||
                                         "ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ"
                                     ),
@@ -882,10 +1036,10 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v(
+                            "\n            ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ\n          "
+                          ),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -902,7 +1056,8 @@ var render = function () {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.showText(
-                                        _vm.search_research_by_id.part_7
+                                        _vm.search_research_by_id
+                                          .research_achievements
                                       ) ||
                                         "ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ"
                                     ),
@@ -922,8 +1077,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -940,7 +1095,7 @@ var render = function () {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.showText(
-                                        _vm.search_research_by_id.part_8
+                                        _vm.search_research_by_id.research_area
                                       ) || "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย"
                                     ),
                                   },
@@ -959,50 +1114,10 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _c("div", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.showText(
-                                        _vm.search_research_by_id.part_9
-                                      ) ||
-                                        "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง"
-                                    ),
-                                  },
-                                }),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v(
+                            "\n            ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง\n          "
+                          ),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -1018,7 +1133,50 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.search_research_by_id.part_10 ||
+                                      _vm.fetchParameterByGroupKey(
+                                        _vm.parameter,
+                                        "research_other_group",
+                                        _vm.search_research_by_id.research_other
+                                      ) ||
+                                        "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c(
+                      "v-container",
+                      [
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v(
+                            "\n            ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย\n          "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "pa-2",
+                                attrs: { outlined: "", tile: "" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      _vm.search_research_by_id
+                                        .research_fundings ||
                                         "ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย"
                                     ) +
                                     "\n            "
@@ -1037,8 +1195,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -1049,13 +1207,14 @@ var render = function () {
                               outlined: "",
                               color: "indigo",
                               disabled:
-                                _vm.search_research_by_id.part_11 == null,
+                                _vm.search_research_by_id
+                                  .research_papers_path == null,
                             },
                             on: {
                               click: function ($event) {
                                 return _vm.downloadFile(
                                   _vm.search_research_by_id.id,
-                                  _vm.search_research_by_id.part_11
+                                  _vm.search_research_by_id.research_papers_path
                                 )
                               },
                             },
@@ -1065,9 +1224,7 @@ var render = function () {
                               "\n            ดาวน์โหลดเอกสารประกอบงานวิจัย\n            "
                             ),
                             _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                              _vm._v(
-                                "\n              mdi-download-outline\n            "
-                              ),
+                              _vm._v(" mdi-download-outline "),
                             ]),
                           ],
                           1
@@ -1081,8 +1238,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [_vm._v("ส่วนที่ 12 การนำเสนองานวิจัย")]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 12 การนำเสนองานวิจัย"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -1098,7 +1255,8 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.search_research_by_id.part_12 ||
+                                      _vm.search_research_by_id
+                                        .research_presentations ||
                                         "ไม่มีข้อมูลการนำเสนองานวิจัย"
                                     ) +
                                     "\n            "
@@ -1117,10 +1275,10 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v(
+                            "\n            ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย\n          "
+                          ),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -1136,7 +1294,8 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.search_research_by_id.part_13 ||
+                                      _vm.search_research_by_id
+                                        .research_publications ||
                                         "ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย"
                                     ) +
                                     "\n            "
@@ -1155,10 +1314,10 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v(
+                            "\n            ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์\n          "
+                          ),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -1174,7 +1333,8 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.search_research_by_id.part_14 ||
+                                      _vm.search_research_by_id
+                                        .research_benefits ||
                                         "ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์"
                                     ) +
                                     "\n            "
@@ -1193,10 +1353,8 @@ var render = function () {
                     _c(
                       "v-container",
                       [
-                        _c("p", { staticClass: "h4" }, [
-                          _c("b", [
-                            _vm._v("ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง"),
-                          ]),
+                        _c("div", { staticStyle: { "font-size": "30px" } }, [
+                          _vm._v("ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -1212,7 +1370,8 @@ var render = function () {
                                 _vm._v(
                                   "\n              " +
                                     _vm._s(
-                                      _vm.search_research_by_id.part_15 ||
+                                      _vm.search_research_by_id
+                                        .research_reference ||
                                         "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
                                     ) +
                                     "\n            "
@@ -1238,13 +1397,15 @@ var render = function () {
                                   outlined: "",
                                   color: "indigo",
                                   disabled:
-                                    _vm.search_research_by_id.ref_file == null,
+                                    _vm.search_research_by_id
+                                      .research_reference_path == null,
                                 },
                                 on: {
                                   click: function ($event) {
                                     return _vm.downloadFile(
                                       _vm.search_research_by_id.id,
-                                      _vm.search_research_by_id.ref_file
+                                      _vm.search_research_by_id
+                                        .research_reference_path
                                     )
                                   },
                                 },
@@ -1256,11 +1417,7 @@ var render = function () {
                                 _c(
                                   "v-icon",
                                   { attrs: { right: "", dark: "" } },
-                                  [
-                                    _vm._v(
-                                      "\n                mdi-download-outline\n              "
-                                    ),
-                                  ]
+                                  [_vm._v(" mdi-download-outline ")]
                                 ),
                               ],
                               1

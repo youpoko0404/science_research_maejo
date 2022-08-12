@@ -44,7 +44,7 @@
                   <v-text-field
                     label="หัวข้อ"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.title_name_th"
                     :rules="rules.required"
                     required
                   >
@@ -59,7 +59,7 @@
                   <v-text-field
                     label="บทคัดย่อ"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.abstract_name_th"
                     :rules="rules.required"
                     required
                   >
@@ -74,7 +74,7 @@
                   <v-text-field
                     label="คำสำคัญ"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.keyword_name_th"
                     :rules="rules.required"
                     required
                   >
@@ -94,7 +94,7 @@
                   <v-text-field
                     label="Title"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.title_name_en"
                     :rules="rules.required"
                     required
                   >
@@ -109,7 +109,7 @@
                   <v-text-field
                     label="Abstract"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.abstract_name_en"
                     :rules="rules.required"
                     required
                   >
@@ -124,7 +124,7 @@
                   <v-text-field
                     label="Keyword"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.keyword_name_en"
                     :rules="rules.required"
                     required
                   >
@@ -135,13 +135,13 @@
           </v-row>
           <v-row>
             <v-col cols="auto">
-              <v-subheader class="mt-2">รหัสอ้างอิงวช. : </v-subheader>
+              <v-subheader class="mt-2">รหัสอ้างอิง วช. : </v-subheader>
             </v-col>
             <v-col>
               <v-text-field
-                label="รหัสอ้างอิงวช."
+                label="รหัสอ้างอิง วช."
                 color="green darken-3"
-                v-model="request.university_code"
+                v-model="request.ref_code_nr"
                 :rules="rules.required"
                 required
               >
@@ -156,7 +156,7 @@
               <v-text-field
                 label="รหัสอ้างอิงมหาวิทยาลัย"
                 color="green darken-3"
-                v-model="request.university_code"
+                v-model="request.ref_code_university"
                 :rules="rules.required"
                 required
               >
@@ -186,7 +186,7 @@
               <v-text-field
                 label="รูปแบบงานวิจัย"
                 color="green darken-3"
-                v-model="request.research_format"
+                v-model="request.research_model"
                 :rules="rules.required"
                 required
               >
@@ -210,15 +210,32 @@
           </v-row>
           <v-row>
             <v-col cols="auto">
-              <v-subheader class="mt-2">สาขางานวิจัย : </v-subheader>
+              <v-subheader class="mt-2">ระดับสาขางานวิจัย : </v-subheader>
             </v-col>
             <v-col>
               <v-select
-                :items="parameter.bachelor_degree_branch_group"
+                :items="parameter.branch_main_group"
                 color="green darken-3"
                 item-text="value_ref"
                 item-value="value"
                 label="สาขางานวิจัย"
+                v-model="request.research_branch_main"
+                :rules="rules.required"
+                required
+              >
+              </v-select>
+            </v-col>
+            <v-col cols="auto">
+              <v-subheader class="mt-2">สาขางานวิจัย : </v-subheader>
+            </v-col>
+            <v-col>
+              <v-select
+                :items="parameter[request.research_branch_main]"
+                color="green darken-3"
+                item-text="value_ref"
+                item-value="value"
+                label="สาขางานวิจัย"
+                :disabled="request.branch_main_group == ''"
                 v-model="request.research_branch"
                 :rules="rules.required"
                 required
@@ -234,7 +251,7 @@
               <v-text-field
                 label="กิจกรรมที่เกี่ยวข้อง"
                 color="green darken-3"
-                v-model="request.related_activities"
+                v-model="request.research_activities"
                 :rules="rules.required"
                 required
               >
@@ -320,7 +337,7 @@
                   <v-text-field
                     label="ชื่อผู้วิจัย"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_main_name"
                     :rules="rules.required"
                     required
                   >
@@ -335,7 +352,7 @@
                   <v-text-field
                     label="สังกัด"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_main_address"
                     :rules="rules.required"
                     required
                   >
@@ -350,7 +367,7 @@
                   <v-text-field
                     label="ตำแหน่งงานวิจัย"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_main_position"
                     :rules="rules.required"
                     required
                   >
@@ -365,7 +382,7 @@
                   <v-text-field
                     label="ร้อยละความรับผิดชอบ"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_main_responsible"
                     :rules="rules.required"
                     required
                   >
@@ -383,7 +400,7 @@
                   <v-text-field
                     label="ชื่อผู้วิจัย"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_second_name"
                     :rules="rules.required"
                     required
                   >
@@ -398,7 +415,7 @@
                   <v-text-field
                     label="สังกัด"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_second_address"
                     :rules="rules.required"
                     required
                   >
@@ -413,7 +430,7 @@
                   <v-text-field
                     label="ตำแหน่งงานวิจัย"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_second_position"
                     :rules="rules.required"
                     required
                   >
@@ -428,7 +445,7 @@
                   <v-text-field
                     label="ร้อยละความรับผิดชอบ"
                     color="green darken-3"
-                    v-model="request.research_name_th"
+                    v-model="request.research_second_responsible"
                     :rules="rules.required"
                     required
                   >
@@ -449,7 +466,7 @@
             <v-text-field
               label="ที่ปรึกษางานวิจัย"
               color="green darken-3"
-              v-model="request.research_name_th"
+              v-model="request.research_consultant"
               :rules="rules.required"
               required
             >
@@ -467,7 +484,9 @@
             <v-textarea
               color="green darken-3"
               label="แนวทางการดำเนินงานวิจัย"
-              v-model="request.part_4"
+              v-model="request.research_operation"
+              :rules="rules.required"
+              required
             ></v-textarea>
           </v-row>
         </div>
@@ -482,7 +501,9 @@
             <v-textarea
               color="green darken-3"
               label="วัตถุประสงค์งานวิจัย"
-              v-model="request.part_5"
+              v-model="request.research_objective"
+              :rules="rules.required"
+              required
             ></v-textarea>
           </v-row>
         </div>
@@ -497,7 +518,9 @@
             <v-textarea
               color="green darken-3"
               label="ประโยชน์ที่คาดว่าจะได้รับ"
-              v-model="request.part_6"
+              v-model="request.research_benefit"
+              :rules="rules.required"
+              required
             ></v-textarea>
           </v-row>
         </div>
@@ -512,7 +535,9 @@
             <v-textarea
               color="green darken-3"
               label="ผลสำเร็จที่คาดว่าจะได้รับ"
-              v-model="request.part_7"
+              v-model="request.research_achievements"
+              :rules="rules.required"
+              required
             ></v-textarea>
           </v-row>
         </div>
@@ -527,7 +552,9 @@
             <v-textarea
               color="green darken-3"
               label="พื้นที่ดำเนินงานวิจัย"
-              v-model="request.part_8"
+              v-model="request.research_area"
+              :rules="rules.required"
+              required
             ></v-textarea>
           </v-row>
         </div>
@@ -540,12 +567,12 @@
           </div>
           <v-row>
             <v-select
-              :items="[]"
+              :items="parameter.research_other_group"
               color="green darken-3"
               item-text="value_ref"
               item-value="value"
               label="งานวิจัยอื่น ๆ ที่เกี่ยวข้อง"
-              v-model="request.research_branch"
+              v-model="request.research_other"
               :rules="rules.required"
               required
             >
@@ -559,8 +586,11 @@
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย
             </div>
-            <template v-if="request.part_10.length > 0">
-              <v-btn class="pa-2 error mr-2" @click="request.part_10 = []">
+            <template v-if="request.research_fundings.length > 0">
+              <v-btn
+                class="pa-2 error mr-2"
+                @click="request.research_fundings = []"
+              >
                 ล้างค่า
               </v-btn>
             </template>
@@ -569,7 +599,7 @@
               @click="
                 () => {
                   editedIndex = -1;
-                  dialog.dialog_part_10 = true;
+                  dialog.research_fundings = true;
                 }
               "
             >
@@ -577,40 +607,44 @@
             >
           </div>
           <v-row>
-            <template v-if="request.part_10.length > 0">
+            <template v-if="request.research_fundings.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
                 <v-data-table
-                  :headers="headers_part_10"
-                  :items="request.part_10"
+                  :headers="headers_research_fundings"
+                  :items="request.research_fundings"
                 >
                   <template v-slot:item.count="{ index }">
                     {{ index + 1 }}
                   </template>
                   <template v-slot:item.title="{ item }">
                     <strong>{{
-                      fetchParameterDATA(
+                      fetchParameterByGroupKey(
                         parameter,
                         "funding_type_group",
                         item.type
-                      ).value_ref
+                      )
                     }}</strong>
                     <br />
                     {{
-                      fetchParameterDATA(parameter, item.type, item.source)
-                        .value_ref
+                      fetchParameterByGroupKey(
+                        parameter,
+                        item.type,
+                        item.source_capital
+                      )
                     }}
                     <br />
                     {{
-                      fetchParameterDATA(
+                      fetchParameterByGroupKey(
                         parameter,
                         "funding_level_group",
-                        item.level
-                      ).value_ref
+                        item.capital_level
+                      )
                     }}
                   </template>
                   <template v-slot:item.year="{ item }">
                     {{ item.year }} <br />
-                    {{ item.start_date }} - {{ item.end_date }}
+                    {{ formatDate(item.date1) }} -
+                    {{ formatDate(item.date2) }}
                   </template>
                   <template v-slot:item.price="{ item }">
                     {{ item.amount }}
@@ -620,7 +654,7 @@
                       class="pa-2 error mr-2"
                       @click="
                         () => {
-                          ManageItemPart_10(item, 'delete');
+                          onClickManageResearchFunding(item, 'delete');
                         }
                       "
                     >
@@ -630,8 +664,8 @@
                       class="pa-2 primary"
                       @click="
                         () => {
-                          ManageItemPart_10(item, null);
-                          dialog.dialog_part_10 = true;
+                          onClickManageResearchFunding(item, null);
+                          dialog.research_fundings = true;
                         }
                       "
                     >
@@ -645,8 +679,8 @@
                       <th>รวมทั้งหมดเป็น</th>
                       <th>
                         {{
-                          request.part_10.reduce(
-                            (t, n) => t + Number(n.part_10_amount),
+                          request.research_fundings.reduce(
+                            (t, n) => t + Number(n.amount),
                             0
                           )
                         }}
@@ -670,16 +704,19 @@
             <div class="h3 pa-2" style="font-size: 30px">
               ส่วนที่ 11 เอกสารประกอบงานวิจัย
             </div>
-            <v-btn color="primary" @click="$refs.part_11.$refs.input.click()">
+            <v-btn
+              color="primary"
+              @click="$refs.research_papers_path.$refs.input.click()"
+            >
               เพิ่มเอกสารประกอบ
             </v-btn>
           </div>
           <v-row>
             <v-file-input
-              ref="part_11"
+              ref="research_papers_path"
               color="green darken-3"
               accept="application/pdf"
-              v-model="request.part_11"
+              v-model="request.research_papers_path"
               label="เอกสารประกอบงานวิจัย"
             >
             </v-file-input>
@@ -692,8 +729,11 @@
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 12 การนำเสนองานวิจัย
             </div>
-            <template v-if="request.part_12.length > 0">
-              <v-btn class="pa-2 error mr-2" @click="request.part_12 = []">
+            <template v-if="request.research_presentations.length > 0">
+              <v-btn
+                class="pa-2 error mr-2"
+                @click="request.research_presentations = []"
+              >
                 ล้างค่า
               </v-btn>
             </template>
@@ -703,7 +743,7 @@
                 @click="
                   () => {
                     editedIndex = -1;
-                    dialog.dialog_part_12 = true;
+                    dialog.research_presentations = true;
                   }
                 "
               >
@@ -712,9 +752,114 @@
             </template>
           </div>
           <v-row>
-            <template v-if="request.part_12.length > 0">
+            <template v-if="request.research_presentations.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                {{ request.part_12 }}
+                <div
+                  v-for="research_presentations in request.research_presentations"
+                  :key="research_presentations.id"
+                >
+                  <v-row>
+                    <div class="d-flex justify-end">
+                      <!-- <v-btn
+                        class="pa-2 error mr-2"
+                        @click="
+                          () => {
+                            onClickManageResearchPresentations(
+                              research_presentations,
+                              'delete'
+                            );
+                          }
+                        "
+                      >
+                        ลบ</v-btn
+                      > -->
+                      <v-btn
+                        class="pa-2 primary"
+                        @click="
+                          () => {
+                            onClickManageResearchPresentations(
+                              research_presentations,
+                              null
+                            );
+                            dialog.research_presentations = true;
+                          }
+                        "
+                      >
+                        แก้ไข</v-btn
+                      >
+                    </div>
+                    <v-subheader>
+                      {{
+                        `วันที่นำเสนองานวิจัย : ${
+                          formatDate(
+                            research_presentations.research_presentation_date
+                          ) || "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `รูปแบบการนำเสนอ : ${
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentations_type_group",
+                            research_presentations.presentation_style
+                          ) || "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ประเภทงานวิชาการ : ${
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentations_academic_type_group",
+                            research_presentations.academic_work
+                          ) || "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ชื่อวิชาการ : ${
+                          research_presentations.academic_name ||
+                          "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `สถานที่นำเสนอ : ${
+                          research_presentations.place_presentation ||
+                          "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ระดับการนำเสนอ : ${
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentation_level_group",
+                            research_presentations.presentation_level
+                          ) || "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ชื่อหน่วยงานที่่จัด : ${
+                          research_presentations.organization_name ||
+                          "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                  </v-row>
+                  <v-divider></v-divider>
+                </div>
               </div>
             </template>
             <template v-else>
@@ -731,8 +876,11 @@
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย
             </div>
-            <template v-if="request.part_13.length > 0">
-              <v-btn class="pa-2 error mr-2" @click="request.part_13 = []">
+            <template v-if="request.research_publications.length > 0">
+              <v-btn
+                class="pa-2 error mr-2"
+                @click="request.research_publications = []"
+              >
                 ล้างค่า
               </v-btn>
             </template>
@@ -742,7 +890,7 @@
                 @click="
                   () => {
                     editedIndex = -1;
-                    dialog.dialog_part_13 = true;
+                    dialog.research_publications = true;
                   }
                 "
               >
@@ -751,9 +899,113 @@
             </template>
           </div>
           <v-row>
-            <template v-if="request.part_13.length > 0">
+            <template v-if="request.research_publications.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                {{ request.part_13 }}
+                <div
+                  v-for="research_publications in request.research_publications"
+                  :key="research_publications.id"
+                >
+                  <v-row>
+                    <div class="d-flex justify-end">
+                      <!-- <v-btn
+                        class="pa-2 error mr-2"
+                        @click="
+                          () => {
+                            onClickManageResearchPublications(
+                              research_publications,
+                              'delete'
+                            );
+                          }
+                        "
+                      >
+                        ลบ</v-btn
+                      > -->
+                      <v-btn
+                        class="pa-2 primary"
+                        @click="
+                          () => {
+                            onClickManageResearchPublications(
+                              research_publications,
+                              null
+                            );
+                            dialog.research_publications = true;
+                          }
+                        "
+                      >
+                        แก้ไข</v-btn
+                      >
+                    </div>
+                    <v-subheader>
+                      {{
+                        `การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : ${
+                          research_publications.reference || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ระดับการนำเสนอ : ${
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentation_level_group",
+                            research_publications.presentation_level
+                          ) || "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ชื่อบทความภาษาไทย/อังกฤษ : ${
+                          research_publications.title_th || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ชื่อบทความภาษาอังกฤษ : ${
+                          research_publications.title_en || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `วัน เดือน ปี ที่ตีพิมพ์ : ${
+                          formatDate(research_publications.publication_date) ||
+                          "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ฉบับที่ : ${
+                          research_publications.no || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `เลขหน้า : ${
+                          research_publications.page_number || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `โรงพิมพ์/เว็บไซต์ : ${
+                          research_publications.printing_website ||
+                          "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                  </v-row>
+                  <v-divider></v-divider>
+                </div>
               </div>
             </template>
             <template v-else>
@@ -770,8 +1022,11 @@
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์
             </div>
-            <template v-if="request.part_14.length > 0">
-              <v-btn class="pa-2 error mr-2" @click="request.part_14 = []">
+            <template v-if="request.research_benefits.length > 0">
+              <v-btn
+                class="pa-2 error mr-2"
+                @click="request.research_benefits = []"
+              >
                 ล้างค่า
               </v-btn>
             </template>
@@ -781,7 +1036,7 @@
                 @click="
                   () => {
                     editedIndex = -1;
-                    dialog.dialog_part_14 = true;
+                    dialog.research_benefits = true;
                   }
                 "
               >
@@ -790,9 +1045,86 @@
             </template>
           </div>
           <v-row>
-            <template v-if="request.part_14.length > 0">
+            <template v-if="request.research_benefits.length > 0">
               <div class="pa-4 grey lighten-2 rounded-lg">
-                {{ request.part_14 }}
+                <div
+                  v-for="research_benefits in request.research_benefits"
+                  :key="research_benefits.id"
+                >
+                  <v-row>
+                    <div class="d-flex justify-end">
+                      <!-- <v-btn
+                        class="pa-2 error mr-2"
+                        @click="
+                          () => {
+                            onClickManageResearchBenefits(
+                              research_benefits,
+                              'delete'
+                            );
+                          }
+                        "
+                      >
+                        ลบ</v-btn
+                      > -->
+                      <v-btn
+                        class="pa-2 primary"
+                        @click="
+                          () => {
+                            onClickManageResearchBenefits(
+                              research_benefits,
+                              null
+                            );
+                            dialog.research_benefits = true;
+                          }
+                        "
+                      >
+                        แก้ไข</v-btn
+                      >
+                    </div>
+                    <v-subheader>
+                      {{
+                        `วันที่ถูกอ้างอิง : ${
+                          formatDate(research_benefits.date_reference) ||
+                          "-- ไม่ระบุ --"
+                        }`
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ชื่อผู้วิจัยที่นำไปอ้างอิง : ${
+                          research_benefits.research_name_reference ||
+                          "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `ชื่อภาษาไทย/Research Name : ${
+                          research_benefits.research_name || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `URL เชื่อมโยง : ${
+                          research_benefits.url || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                    <v-subheader>
+                      {{
+                        `การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : ${
+                          research_benefits.reference || "-- ไม่ระบุ --"
+                        } 
+                        `
+                      }}
+                    </v-subheader>
+                  </v-row>
+                  <v-divider></v-divider>
+                </div>
               </div>
             </template>
             <template v-else>
@@ -804,6 +1136,24 @@
         </div>
 
         <br />
+        <div class="pa-4 grey lighten-5 rounded-lg">
+          <div class="d-flex justify-space-between">
+            <div class="h3 ml-4" style="font-size: 30px">
+              ส่วนที่ 15 การนำงานวิจัยไปใช้อ้างอิง
+            </div>
+          </div>
+          <v-row>
+            <v-textarea
+              color="green darken-3"
+              label="การนำงานวิจัยไปใช้อ้างอิง"
+              v-model="request.research_reference"
+              :rules="rules.required"
+              required
+            ></v-textarea>
+          </v-row>
+        </div>
+
+        <!-- <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
           <div class="d-flex justify-space-between">
             <div class="h3 ml-4" style="font-size: 30px">
@@ -825,7 +1175,7 @@
               </div>
             </template>
           </v-row>
-        </div>
+        </div> -->
 
         <br />
         <div class="pa-4 grey lighten-5 rounded-lg">
@@ -833,16 +1183,19 @@
             <div class="h3 pa-2 mr-auto" style="font-size: 30px">
               แนบไฟล์เอกสารอ้างอิง
             </div>
-            <v-btn color="primary" @click="$refs.ref_file.$refs.input.click()">
+            <v-btn
+              color="primary"
+              @click="$refs.research_reference_path.$refs.input.click()"
+            >
               เพิ่มเอกสารประกอบ
             </v-btn>
           </div>
           <v-row>
             <v-file-input
-              ref="ref_file"
+              ref="research_reference_path"
               color="green darken-3"
               accept="application/pdf"
-              v-model="request.ref_file"
+              v-model="request.research_reference_path"
               label="เอกสารอ้างอิง"
             >
             </v-file-input>
@@ -853,7 +1206,6 @@
             <v-btn
               color="primary"
               dark
-              disabled
               @click="
                 () => {
                   if (this.$refs.request.validate()) {
@@ -871,123 +1223,8 @@
     </v-container>
 
     <div class="text-center">
-      <v-dialog v-model="dialog.dialog_part_2" width="900">
-        <v-form ref="form_part_2">
-          <v-card>
-            <v-card-title class="grey lighten-2 mb-2"> นักวิจัย </v-card-title>
-            <v-card-text>
-              <v-row>
-                <v-col cols="auto">
-                  <v-subheader class="mt-2">ชื่อนักวิจัย : </v-subheader>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_2.name"
-                    label="ชื่อนักวิจัย"
-                    :rules="rules.required"
-                    required
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="auto">
-                  <v-subheader class="mt-2">สังกัด : </v-subheader>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_2.agency"
-                    label="สังกัด"
-                    :rules="rules.required"
-                    required
-                  >
-                  </v-text-field>
-                </v-col>
-                <v-col cols="auto">
-                  <v-subheader class="mt-2">สาขา : </v-subheader>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_2.branch"
-                    label="สาขา"
-                    :rules="rules.required"
-                    required
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="auto">
-                  <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_2.research_position"
-                    label="ตำแหน่งงานวิจัย"
-                    :rules="rules.required"
-                    required
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="auto">
-                  <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    type="number"
-                    color="green darken-3"
-                    v-model="part_2.percen_responsibility"
-                    label="ร้อยละความรับผิดชอบ"
-                    :rules="rules.required"
-                    required
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="primary"
-                text
-                @click="
-                  () => {
-                    this.$refs.form_part_2.reset();
-                    dialog.dialog_part_2 = !dialog.dialog_part_2;
-                  }
-                "
-              >
-                ยกเลิก
-              </v-btn>
-              <v-btn
-                color="primary"
-                text
-                @click="
-                  () => {
-                    this.$refs.form_part_2.validate();
-                    if (this.$refs.form_part_2.validate()) {
-                      onClickPart_2();
-                      dialog.dialog_part_2 = !dialog.dialog_part_2;
-                    }
-                  }
-                "
-              >
-                ยืนยัน
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-form>
-      </v-dialog>
-    </div>
-
-    <div class="text-center">
-      <v-dialog v-model="dialog.dialog_part_10" width="900">
-        <v-form ref="form_part_10">
+      <v-dialog v-model="dialog.research_fundings" width="900">
+        <v-form ref="research_fundings">
           <v-card>
             <v-card-title class="grey lighten-2 mb-2">
               แบบฟอร์มจัดการงบประมาณ
@@ -1001,24 +1238,36 @@
                     item-text="value_ref"
                     item-value="value"
                     :rules="rules.required"
-                    v-model="part_10.type"
+                    v-model="research_fundings.type"
                     label="ประเภททุนสนับสนุน"
                     required
                   >
                   </v-select>
                 </v-col>
                 <v-col cols="6">
-                  <v-select
-                    color="green darken-3"
-                    :items="parameter[part_10.type]"
-                    item-text="value_ref"
-                    item-value="value"
-                    :rules="rules.required"
-                    v-model="part_10.source"
-                    label="แหล่งทุนสนับสนุน"
-                    required
-                  >
-                  </v-select>
+                  <template v-if="research_fundings.type == 'other'">
+                    <v-text-field
+                      color="green darken-3"
+                      v-model="research_fundings.other_type"
+                      label="อื่นๆ"
+                      :rules="rules.required"
+                      required
+                    >
+                    </v-text-field>
+                  </template>
+                  <template v-else>
+                    <v-select
+                      color="green darken-3"
+                      :items="parameter[research_fundings.type]"
+                      item-text="value_ref"
+                      item-value="value"
+                      :rules="rules.required"
+                      v-model="research_fundings.source_capital"
+                      label="แหล่งทุนสนับสนุน"
+                      required
+                    >
+                    </v-select>
+                  </template>
                 </v-col>
               </v-row>
               <v-row>
@@ -1029,7 +1278,7 @@
                     item-text="value_ref"
                     item-value="value"
                     :rules="rules.required"
-                    v-model="part_10.level"
+                    v-model="research_fundings.capital_level"
                     label="ระดับแหล่งทุน"
                     required
                   >
@@ -1040,7 +1289,7 @@
                 <v-col cols="3">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_10.year"
+                    v-model="research_fundings.year"
                     type="number"
                     label="ปีการศึกษา"
                     :rules="rules.required"
@@ -1060,8 +1309,7 @@
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
                         color="green darken-3"
-                        v-model="part_10.start_date"
-                        label="Date"
+                        v-model="research_fundings.date1"
                         prepend-icon="mdi-calendar"
                         v-bind="attrs"
                         v-on="on"
@@ -1090,8 +1338,7 @@
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
                         color="green darken-3"
-                        v-model="part_10.end_date"
-                        label="Date2"
+                        v-model="research_fundings.date2"
                         prepend-icon="mdi-calendar"
                         v-bind="attrs"
                         v-on="on"
@@ -1114,7 +1361,7 @@
                 <v-col cols="5">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_10.amount"
+                    v-model="research_fundings.amount"
                     type="number"
                     label="จำนวนเงินที่สนับสนุน"
                     onfocus="this.select()"
@@ -1126,7 +1373,7 @@
                 <v-col cols="7">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_10.description"
+                    v-model="research_fundings.description"
                     label="คำอธิบายเพิ่มเติม"
                     :rules="rules.required"
                     required
@@ -1136,12 +1383,34 @@
               </v-row>
               <v-row>
                 <v-col cols="4">
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_10.send"
-                    label="วันที่ส่งมอบงานวิจัย"
+                  <v-menu
+                    v-model="datePicker_date3"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="auto"
                   >
-                  </v-text-field>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        color="green darken-3"
+                        v-model="research_fundings.delivery_date"
+                        prepend-icon="mdi-calendar"
+                        label="วันที่ส่งมอบงานวิจัย"
+                        v-bind="attrs"
+                        v-on="on"
+                        :rules="rules.requiredDateTime"
+                        required
+                      >
+                      </v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="dateNow_date_3"
+                      no-title
+                      @input="datePicker_date3 = false"
+                    >
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -1152,8 +1421,8 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_10.reset();
-                    dialog.dialog_part_10 = !dialog.dialog_part_10;
+                    this.$refs.research_fundings.reset();
+                    dialog.research_fundings = !dialog.research_fundings;
                   }
                 "
               >
@@ -1164,10 +1433,10 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_10.validate();
-                    if (this.$refs.form_part_10.validate()) {
-                      onClickPart_10();
-                      dialog.dialog_part_10 = !dialog.dialog_part_10;
+                    this.$refs.research_fundings.validate();
+                    if (this.$refs.research_fundings.validate()) {
+                      onClickResearchFundings();
+                      dialog.research_fundings = !dialog.research_fundings;
                     }
                   }
                 "
@@ -1181,8 +1450,8 @@
     </div>
 
     <div class="text-center">
-      <v-dialog v-model="dialog.dialog_part_12" width="900">
-        <v-form ref="form_part_12">
+      <v-dialog v-model="dialog.research_presentations" width="900">
+        <v-form ref="research_presentations">
           <v-card>
             <v-card-title class="grey lighten-2 mb-2">
               แบบฟอร์มการจัดการนำเสนองานวิจัย
@@ -1190,23 +1459,45 @@
             <v-card-text>
               <v-row>
                 <v-col cols="6">
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_12.research_present_date"
-                    label="วันที่นำเสนองานวิจัย"
-                    :rules="rules.required"
-                    required
+                  <v-menu
+                    v-model="datePicker_date4"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="auto"
                   >
-                  </v-text-field>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        color="green darken-3"
+                        v-model="
+                          research_presentations.research_presentation_date
+                        "
+                        prepend-icon="mdi-calendar"
+                        v-bind="attrs"
+                        label="วันที่นำเสนองานวิจัย"
+                        v-on="on"
+                        :rules="rules.requiredDateTime"
+                        required
+                      >
+                      </v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="dateNow_date_4"
+                      no-title
+                      @input="datePicker_date4 = false"
+                    >
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
                 <v-col cols="6">
                   <v-select
                     color="green darken-3"
-                    :items="parameter.funding_type_group"
+                    :items="parameter.presentations_type_group"
                     item-text="value_ref"
                     item-value="value"
                     :rules="rules.required"
-                    v-model="part_12.presentation_style"
+                    v-model="research_presentations.presentation_style"
                     label="รูปแบบการนำเสนอ"
                     required
                   >
@@ -1217,11 +1508,11 @@
                 <v-col cols="6">
                   <v-select
                     color="green darken-3"
-                    :items="parameter.funding_type_group"
+                    :items="parameter.presentations_academic_type_group"
                     item-text="value_ref"
                     item-value="value"
                     :rules="rules.required"
-                    v-model="part_12.academic_work"
+                    v-model="research_presentations.academic_work"
                     label="ประเภทงานวิชาการ"
                     required
                   >
@@ -1230,7 +1521,7 @@
                 <v-col cols="6">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_12.academic_name"
+                    v-model="research_presentations.academic_name"
                     label="ชื่อวิชาการ"
                     :rules="rules.required"
                     required
@@ -1242,7 +1533,7 @@
                 <v-col cols="6">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_12.presentation_place"
+                    v-model="research_presentations.place_presentation"
                     label="สถานที่นำเสนอ"
                     :rules="rules.required"
                     required
@@ -1252,11 +1543,11 @@
                 <v-col cols="6">
                   <v-select
                     color="green darken-3"
-                    :items="parameter.funding_type_group"
+                    :items="parameter.presentation_level_group"
                     item-text="value_ref"
                     item-value="value"
                     :rules="rules.required"
-                    v-model="part_12.present_level"
+                    v-model="research_presentations.presentation_level"
                     label="ระดับการนำเสนอ"
                     required
                   >
@@ -1267,7 +1558,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_12.organization_name"
+                    v-model="research_presentations.organization_name"
                     label="ชื่อหน่วยงานที่จัด"
                     :rules="rules.required"
                     required
@@ -1283,8 +1574,9 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_12.reset();
-                    dialog.dialog_part_12 = !dialog.dialog_part_12;
+                    this.$refs.research_presentations.reset();
+                    dialog.research_presentations =
+                      !dialog.research_presentations;
                   }
                 "
               >
@@ -1295,10 +1587,11 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_12.validate();
-                    if (this.$refs.form_part_12.validate()) {
-                      onClickPart_12();
-                      dialog.dialog_part_12 = !dialog.dialog_part_12;
+                    this.$refs.research_presentations.validate();
+                    if (this.$refs.research_presentations.validate()) {
+                      onClickResearchPresentations();
+                      dialog.research_presentations =
+                        !dialog.research_presentations;
                     }
                   }
                 "
@@ -1312,8 +1605,8 @@
     </div>
 
     <div class="text-center">
-      <v-dialog v-model="dialog.dialog_part_13" width="900">
-        <v-form ref="form_part_13">
+      <v-dialog v-model="dialog.research_publications" width="900">
+        <v-form ref="research_publications">
           <v-card>
             <v-card-title class="grey lighten-2 mb-2">
               แบบฟอร์มการจัดการตีพิมพ์งานวิจัย
@@ -1323,7 +1616,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_13.reference"
+                    v-model="research_publications.reference"
                     label="การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ"
                     :rules="rules.required"
                     required
@@ -1335,11 +1628,11 @@
                 <v-col cols="12">
                   <v-select
                     color="green darken-3"
-                    :items="parameter.funding_type_group"
+                    :items="parameter.presentation_level_group"
                     item-text="value_ref"
                     item-value="value"
                     :rules="rules.required"
-                    v-model="part_13.presentation_level"
+                    v-model="research_publications.presentation_level"
                     label="ระดับการนำเสนอ"
                     required
                   >
@@ -1350,7 +1643,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_13.thai_article_title"
+                    v-model="research_publications.title_th"
                     label="ชื่อบทความภาษาไทย/อังกฤษ"
                     :rules="rules.required"
                     required
@@ -1362,7 +1655,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_13.english_article_title"
+                    v-model="research_publications.title_en"
                     label="ชื่อบทความภาษาอังกฤษ"
                     :rules="rules.required"
                     required
@@ -1372,19 +1665,39 @@
               </v-row>
               <v-row>
                 <v-col cols="4">
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_13.date_publication"
-                    label="วัน เดือน ปี ที่ตีพิมพ์"
-                    :rules="rules.required"
-                    required
+                  <v-menu
+                    v-model="datePicker_date5"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="auto"
                   >
-                  </v-text-field>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        color="green darken-3"
+                        v-model="research_publications.publication_date"
+                        prepend-icon="mdi-calendar"
+                        label="วัน เดือน ปี ที่ตีพิมพ์"
+                        v-bind="attrs"
+                        v-on="on"
+                        :rules="rules.requiredDateTime"
+                        required
+                      >
+                      </v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="dateNow_date_5"
+                      no-title
+                      @input="datePicker_date5 = false"
+                    >
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
                 <v-col cols="8">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_13.no"
+                    v-model="research_publications.no"
                     label="ฉบับที่"
                     :rules="rules.required"
                     required
@@ -1396,7 +1709,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_13.page_number"
+                    v-model="research_publications.page_number"
                     label="เลขหน้า"
                     :rules="rules.required"
                     required
@@ -1408,7 +1721,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_13.printer_website"
+                    v-model="research_publications.printing_website"
                     label="โรงพิมพ์/เว็บไซต์"
                     :rules="rules.required"
                     required
@@ -1424,8 +1737,9 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_13.reset();
-                    dialog.dialog_part_13 = !dialog.dialog_part_13;
+                    this.$refs.research_publications.reset();
+                    dialog.research_publications =
+                      !dialog.research_publications;
                   }
                 "
               >
@@ -1436,10 +1750,11 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_13.validate();
-                    if (this.$refs.form_part_13.validate()) {
-                      onClickPart_13();
-                      dialog.dialog_part_13 = !dialog.dialog_part_13;
+                    this.$refs.research_publications.validate();
+                    if (this.$refs.research_publications.validate()) {
+                      onClickResearchPublications();
+                      dialog.research_publications =
+                        !dialog.research_publications;
                     }
                   }
                 "
@@ -1453,8 +1768,8 @@
     </div>
 
     <div class="text-center">
-      <v-dialog v-model="dialog.dialog_part_14" width="900">
-        <v-form ref="form_part_14">
+      <v-dialog v-model="dialog.research_benefits" width="900">
+        <v-form ref="research_benefits">
           <v-card>
             <v-card-title class="grey lighten-2 mb-2">
               แบบฟอร์มการจัดการข้อมูลการถูกอ้างอิงงานวิจัย
@@ -1462,19 +1777,39 @@
             <v-card-text>
               <v-row>
                 <v-col cols="6">
-                  <v-text-field
-                    color="green darken-3"
-                    v-model="part_14.date_reference"
-                    label="วันที่ถูกอ้างอิง"
-                    :rules="rules.required"
-                    required
+                  <v-menu
+                    v-model="datePicker_date6"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="auto"
                   >
-                  </v-text-field>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        color="green darken-3"
+                        v-model="research_benefits.date_reference"
+                        prepend-icon="mdi-calendar"
+                        v-bind="attrs"
+                        label="วันที่ถูกอ้างอิง"
+                        v-on="on"
+                        :rules="rules.requiredDateTime"
+                        required
+                      >
+                      </v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="dateNow_date_6"
+                      no-title
+                      @input="datePicker_date6 = false"
+                    >
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
                 <v-col cols="6">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_14.name_researcher"
+                    v-model="research_benefits.research_name_reference"
                     label="ชื่อผู้วิจัยที่นำไปอ้างอิง"
                     :rules="rules.required"
                     required
@@ -1486,7 +1821,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_14.thai_name"
+                    v-model="research_benefits.research_name"
                     label="ชื่อภาษาไทย/Research Name"
                     :rules="rules.required"
                     required
@@ -1498,7 +1833,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_14.link_url"
+                    v-model="research_benefits.url"
                     label="URL เชื่อมโยง"
                     :rules="rules.required"
                     required
@@ -1510,7 +1845,7 @@
                 <v-col cols="12">
                   <v-text-field
                     color="green darken-3"
-                    v-model="part_14.reference_journal"
+                    v-model="research_benefits.reference"
                     label="การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ"
                     :rules="rules.required"
                     required
@@ -1526,8 +1861,8 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_14.reset();
-                    dialog.dialog_part_14 = !dialog.dialog_part_14;
+                    this.$refs.research_benefits.reset();
+                    dialog.research_benefits = !dialog.research_benefits;
                   }
                 "
               >
@@ -1538,10 +1873,10 @@
                 text
                 @click="
                   () => {
-                    this.$refs.form_part_14.validate();
-                    if (this.$refs.form_part_14.validate()) {
-                      onClickPart_14();
-                      dialog.dialog_part_14 = !dialog.dialog_part_14;
+                    this.$refs.research_benefits.validate();
+                    if (this.$refs.research_benefits.validate()) {
+                      onClickResearchBenefits();
+                      dialog.research_benefits = !dialog.research_benefits;
                     }
                   }
                 "
@@ -1607,109 +1942,122 @@ export default {
     editedIndex: -1,
     dialog: {
       dialogDelete: false,
-      dialog_part_2: false,
-      dialog_part_10: false,
-      dialog_part_12: false,
-      dialog_part_13: false,
-      dialog_part_14: false,
+      research_fundings: false,
+      research_presentations: false,
+      research_publications: false,
+      research_benefits: false,
     },
     request: {
-      research_name_th: "",
-      research_name_en: "",
-      research_code: "",
-      university_code: "",
+      id: 0,
+      title_name_th: "",
+      abstract_name_th: "",
+      keyword_name_th: "",
+      title_name_en: "",
+      abstract_name_en: "",
+      keyword_name_en: "",
+      ref_code_nr: "",
+      ref_code_university: "",
       research_period: "",
-      research_format: "",
+      research_model: "",
       research_type: "",
       research_branch: "",
-      related_activities: "",
+      research_branch_main: "",
+      research_activities: "",
       road_map: "",
       research_status: "",
       research_project_type: "",
       research_nature: "",
-      part_2: [],
-      part_3: "",
-      part_4: "",
-      part_5: "",
-      part_6: "",
-      part_7: "",
-      part_8: "",
-      part_9: "",
-      part_10: [],
-      part_11: null,
-      part_12: [],
-      part_13: [],
-      part_14: [],
-      part_15: [],
-      ref_file: null,
+      research_main_name: "",
+      research_main_address: "",
+      research_main_position: "",
+      research_main_responsible: "",
+      research_second_name: "",
+      research_second_address: "",
+      research_second_position: "",
+      research_second_responsible: "",
+      research_consultant: "",
+      research_operation: "",
+      research_objective: "",
+      research_benefit: "",
+      research_achievements: "",
+      research_area: "",
+      research_other: "",
+      research_papers_path: null,
+      research_reference_path: null,
+      research_benefits: [],
+      research_fundings: [],
+      research_presentations: [],
+      research_publications: [],
+      research_publications: [],
+      //research_reference: [],
+      research_reference: "",
     },
-    part_2: {
-      agency: "",
-      branch: "",
-      name: "",
-      percen_responsibility: 0,
-      research_position: "",
-    },
-    part_10: {
+    research_fundings: {
       type: "",
-      source: "",
-      level: "",
+      other_type: "",
+      source_capital: "",
+      capital_level: "",
       year: "",
-      start_date: "",
-      end_date: "",
+      date1: "",
+      date2: "",
       amount: 0,
       description: "",
-      send: "",
+      delivery_date: "",
     },
-    part_12: {
-      research_present_date: "",
+    research_presentations: {
+      research_presentation_date: "",
       presentation_style: "",
       academic_work: "",
       academic_name: "",
-      presentation_place: "",
-      present_level: "",
+      place_presentation: "",
+      presentation_level: "",
       organization_name: "",
     },
-    part_13: {
+    research_publications: {
       reference: "",
       presentation_level: "",
-      thai_article_title: "",
-      english_article_title: "",
-      date_publication: "",
+      title_th: "",
+      title_en: "",
+      publication_date: "",
       no: "",
       page_number: "",
-      printer_website: "",
+      printing_website: "",
     },
-    part_14: {
+    research_benefits: {
       date_reference: "",
-      name_researcher: "",
-      thai_name: "",
-      link_url: "",
-      reference_journal: "",
+      research_name_reference: "",
+      research_name: "",
+      url: "",
+      reference: "",
     },
-    part_15: {},
+    research_reference: {},
+
     rules: {
-      required: [(val) => !!val || "กรอกข้อมูลไม่ครบถ้วน"],
+      required: [(val) => !!val || "โปรดกรอกข้อมูลให้ครบถ้วน"],
       requiredDateTime: [
-        (v) => !!v || "กรอกข้อมูลไม่ครบถ้วน",
+        (v) => !!v || "โปรดกรอกข้อมูลให้ครบถ้วน",
         (v) => /^\d{2}\/\d{2}\/\d{4}$/.test(v) || "ข้อมูลไม่ถูกต้อง",
       ],
     },
-    dateNow_date_1: "",
-    datePicker_date1: false,
-    dateNow_date_2: new Date(
-      Date.now() - new Date().getTimezoneOffset() * 60000
-    )
-      .toISOString()
-      .substr(0, 10),
-    datePicker_date2: false,
-    headers_part_10: [
+    headers_research_fundings: [
       { text: "", value: "count" },
       { text: "ประมาณทุนสนับสนุน", value: "title" },
-      { text: "ปีงบประมาณ", value: "year", align: "center" },
-      { text: "จำนวนเงิน (บาท)", value: "price" },
+      { text: "ปีงบประมาณ", value: "year" },
+      { text: "จำนวนเงิน/บาท", value: "price" },
       { text: "จัดการ", value: "actions" },
     ],
+    dateNow_date_1: "",
+    datePicker_date1: false,
+    dateNow_date_2: "",
+    datePicker_date2: false,
+    dateNow_date_3: "",
+    datePicker_date3: false,
+    dateNow_date_4: "",
+    datePicker_date4: false,
+    dateNow_date_5: "",
+    datePicker_date5: false,
+    dateNow_date_6: "",
+    datePicker_date6: false,
   }),
 
   computed: {
@@ -1724,36 +2072,66 @@ export default {
     },
   },
 
+  watch: {
+    dateNow_date_1() {
+      this.research_fundings.date1 = dayJs.formatDate(this.dateNow_date_1);
+    },
+    dateNow_date_2() {
+      this.research_fundings.date2 = dayJs.formatDate(this.dateNow_date_2);
+    },
+    dateNow_date_3() {
+      this.research_fundings.delivery_date = dayJs.formatDate(
+        this.dateNow_date_3
+      );
+    },
+    dateNow_date_4() {
+      this.research_presentations.research_presentation_date = dayJs.formatDate(
+        this.dateNow_date_4
+      );
+    },
+    dateNow_date_5() {
+      this.research_publications.publication_date = dayJs.formatDate(
+        this.dateNow_date_5
+      );
+    },
+    dateNow_date_6() {
+      this.research_benefits.date_reference = dayJs.formatDate(
+        this.dateNow_date_6
+      );
+    },
+  },
+
   created() {
     this.fetchParameter([
       "bachelor_degree_branch_group",
       "master_degree_branch_group",
       "doctor_degree_branch_group",
+      "research_other_group",
+      "branch_main_group",
+      "funding_type_group",
+      "external_institution_budget_group",
+      "institutional_budget_group",
+      "personal_budget_group",
+      "funding_level_group",
+      "presentations_type_group",
+      "presentations_academic_type_group",
+      "presentation_level_group",
     ]);
     this.fetchResearchById(this.$route.query.id);
   },
 
-  watch: {
-    dateNow_date_1() {
-      this.part_10.part_10_start_date = dayJs.formatDate(this.dateNow_date_1);
-    },
-    dateNow_date_2() {
-      this.part_10.part_10_end_date = dayJs.formatDate(this.dateNow_date_2);
-    },
-  },
-
   methods: {
+    formatDate(date) {
+      return dayJs.formatDate(date);
+    },
     fetchParameter(group_name) {
       this.$store.dispatch("parameter/fetchParameter", group_name);
     },
 
-    deleteItemConfirm(id) {
-      if (id) {
-        this.$store.dispatch("research/delete", id).then((response) => {
-          if (response.success) {
-            window.location.href = `/my-research`;
-          }
-        });
+    fetchParameterByGroupKey(items, group, key) {
+      if (items && group && key) {
+        const param = items[group]?.find((e) => e.value == key);
+        if (param) return param.value_ref;
       }
     },
 
@@ -1763,7 +2141,10 @@ export default {
           if (response.success) {
             for (const [key, value] of Object.entries(response.payload)) {
               if (value) {
-                if (key == "ref_file" || key == "part_11") {
+                if (
+                  key == "research_reference_path" ||
+                  key == "research_papers_path"
+                ) {
                   this.request[key] = new File([""], value);
                 } else {
                   this.request[key] = value;
@@ -1775,148 +2156,180 @@ export default {
       }
     },
 
-    fetchParameterDATA(items, group, key) {
-      return items[group].find((e) => e.value == key);
+    deleteItemConfirm(id) {
+      if (id) {
+        this.$store.dispatch("research/delete", id).then((response) => {
+          if (response.success) window.location.href = `/my-research`;
+        });
+      }
     },
 
-    onClickPart_2() {
-      const part_2 = {};
-      for (const [key, value] of Object.entries(this.part_2)) {
-        part_2[key] = value;
+    onClickResearchFundings() {
+      const research_fundings = {};
+      for (const [key, value] of Object.entries(this.research_fundings)) {
+        if (key == "date1" || key == "date2" || key == "delivery_date") {
+          value = dayJs.parseDate(value);
+          research_fundings[key] = value;
+        } else {
+          research_fundings[key] = value;
+        }
       }
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_2[this.editedIndex], this.part_2);
+        Object.assign(
+          this.request.research_fundings[this.editedIndex],
+          this.research_fundings
+        );
       } else {
-        this.request.part_2.push(part_2);
+        this.request.research_fundings.push(research_fundings);
       }
-      this.$refs.form_part_2.reset();
+      this.$refs.research_fundings.reset();
     },
 
-    ManageItemPart_2(item, action) {
-      this.editedIndex = this.request.part_2.indexOf(item);
-      this.part_2 = Object.assign({}, item);
+    onClickManageResearchFunding(item, action) {
       if (action == "delete") {
-        this.request.part_2.splice(this.editedIndex, 1);
+        this.editedIndex = this.request.research_fundings.indexOf(item);
+        // this.research_fundings = Object.assign({}, item);
+        this.request.research_fundings.splice(this.editedIndex, 1);
+      } else {
+        for (const [key, value] of Object.entries(item)) {
+          if (key == "date1" || key == "date2" || key == "delivery_date") {
+            value = dayJs.formatDate(value);
+            item[key] = value;
+          } else {
+            item[key] = value;
+          }
+        }
+        this.editedIndex = this.request.research_fundings.indexOf(item);
+        this.research_fundings = Object.assign({}, item);
       }
     },
 
-    onClickPart_10() {
-      const part_10 = {};
-      for (const [key, value] of Object.entries(this.part_10)) {
-        part_10[key] = value;
+    onClickResearchPresentations() {
+      const research_presentations = {};
+      for (const [key, value] of Object.entries(this.research_presentations)) {
+        if (key == "research_presentation_date") {
+          value = dayJs.parseDate(value);
+          research_presentations[key] = value;
+        } else {
+          research_presentations[key] = value;
+        }
       }
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_10[this.editedIndex], this.part_10);
+        Object.assign(
+          this.request.research_presentations[this.editedIndex],
+          this.research_presentations
+        );
       } else {
-        this.request.part_10.push(part_10);
+        this.request.research_presentations.push(research_presentations);
       }
-      this.$refs.form_part_10.reset();
+      this.$refs.research_presentations.reset();
     },
 
-    ManageItemPart_10(item, action) {
-      this.editedIndex = this.request.part_10.indexOf(item);
-      this.part_10 = Object.assign({}, item);
+    onClickManageResearchPresentations(item, action) {
+      for (const [key, value] of Object.entries(item)) {
+        if (key == "research_presentation_date") {
+          value = dayJs.formatDate(value);
+          item[key] = value;
+        } else {
+          item[key] = value;
+        }
+      }
+      this.editedIndex = this.request.research_presentations.indexOf(item);
+      this.research_presentations = Object.assign({}, item);
       if (action == "delete") {
-        this.request.part_10.splice(this.editedIndex, 1);
+        this.request.research_presentations.splice(this.editedIndex, 1);
       }
     },
 
-    onClickPart_12() {
-      const part_12 = {};
-      for (const [key, value] of Object.entries(this.part_12)) {
-        part_12[key] = value;
+    onClickResearchPublications() {
+      const research_publications = {};
+      for (const [key, value] of Object.entries(this.research_publications)) {
+        if (key == "publication_date") {
+          value = dayJs.parseDate(value);
+          research_publications[key] = value;
+        } else {
+          research_publications[key] = value;
+        }
       }
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_12[this.editedIndex], this.part_12);
+        Object.assign(
+          this.request.research_publications[this.editedIndex],
+          this.research_publications
+        );
       } else {
-        this.request.part_12.push(part_12);
+        this.request.research_publications.push(research_publications);
       }
-      this.$refs.form_part_12.reset();
+      this.$refs.research_publications.reset();
     },
 
-    ManageItemPart_12(item, action) {
-      this.editedIndex = this.request.part_12.indexOf(item);
-      this.part_12 = Object.assign({}, item);
+    onClickManageResearchPublications(item, action) {
+      for (const [key, value] of Object.entries(item)) {
+        if (key == "publication_date") {
+          value = dayJs.formatDate(value);
+          item[key] = value;
+        } else {
+          item[key] = value;
+        }
+      }
+      this.editedIndex = this.request.research_publications.indexOf(item);
+      this.research_publications = Object.assign({}, item);
       if (action == "delete") {
-        this.request.part_12.splice(this.editedIndex, 1);
+        this.request.research_publications.splice(this.editedIndex, 1);
       }
     },
 
-    onClickPart_13() {
-      const part_13 = {};
-      for (const [key, value] of Object.entries(this.part_13)) {
-        part_13[key] = value;
+    onClickResearchBenefits() {
+      const research_benefits = {};
+      for (const [key, value] of Object.entries(this.research_benefits)) {
+        if (key == "date_reference") {
+          value = dayJs.parseDate(value);
+          research_benefits[key] = value;
+        } else {
+          research_benefits[key] = value;
+        }
       }
       if (this.editedIndex > -1) {
-        Object.assign(this.request.part_13[this.editedIndex], this.part_13);
+        Object.assign(
+          this.request.research_benefits[this.editedIndex],
+          this.research_benefits
+        );
       } else {
-        this.request.part_13.push(part_13);
+        this.request.research_benefits.push(research_benefits);
       }
-      this.$refs.form_part_13.reset();
+      this.$refs.research_benefits.reset();
     },
 
-    ManageItemPart_13(item, action) {
-      this.editedIndex = this.request.part_13.indexOf(item);
-      this.part_13 = Object.assign({}, item);
+    onClickManageResearchBenefits(item, action) {
+      for (const [key, value] of Object.entries(item)) {
+        if (key == "date_reference") {
+          value = dayJs.formatDate(value);
+          item[key] = value;
+        } else {
+          item[key] = value;
+        }
+      }
+      this.editedIndex = this.request.research_benefits.indexOf(item);
+      this.research_benefits = Object.assign({}, item);
       if (action == "delete") {
-        this.request.part_13.splice(this.editedIndex, 1);
-      }
-    },
-
-    onClickPart_14() {
-      const part_14 = {};
-      for (const [key, value] of Object.entries(this.part_14)) {
-        part_14[key] = value;
-      }
-      if (this.editedIndex > -1) {
-        Object.assign(this.request.part_14[this.editedIndex], this.part_14);
-      } else {
-        this.request.part_14.push(part_14);
-      }
-      this.$refs.form_part_14.reset();
-    },
-
-    ManageItemPart_14(item, action) {
-      this.editedIndex = this.request.part_14.indexOf(item);
-      this.part_14 = Object.assign({}, item);
-      if (action == "delete") {
-        this.request.part_14.splice(this.editedIndex, 1);
+        this.request.research_benefits.splice(this.editedIndex, 1);
       }
     },
 
     onClickSave() {
       let formData = new FormData();
-      formData.append("research_name_th", this.request.research_name_th);
-      formData.append("research_name_en", this.request.research_name_en);
-      formData.append("research_code", this.request.research_code);
-      formData.append("university_code", this.request.university_code);
-      formData.append("research_period", this.request.research_period);
-      formData.append("research_format", this.request.research_format);
-      formData.append("research_type", this.request.research_type);
-      formData.append("research_branch", this.request.research_branch);
-      formData.append("related_activities", this.request.related_activities);
-      formData.append("road_map", this.request.road_map);
-      formData.append("research_status", this.request.research_status);
-      formData.append(
-        "research_project_type",
-        this.request.research_project_type
-      );
-      formData.append("research_nature", this.request.research_nature);
-      formData.append("part_2", JSON.stringify(this.request.part_2));
-      formData.append("part_3", this.request.part_3);
-      formData.append("part_4", this.request.part_4);
-      formData.append("part_5", this.request.part_5);
-      formData.append("part_6", this.request.part_6);
-      formData.append("part_7", this.request.part_7);
-      formData.append("part_8", this.request.part_8);
-      formData.append("part_9", this.request.part_9);
-      formData.append("part_10", JSON.stringify(this.request.part_10));
-      formData.append("part_11", this.request.part_11);
-      formData.append("part_12", JSON.stringify(this.request.part_12));
-      formData.append("part_13", JSON.stringify(this.request.part_13));
-      formData.append("part_14", JSON.stringify(this.request.part_14));
-      formData.append("part_15", this.request.part_15);
-      formData.append("ref_file", this.request.ref_file);
+      for (const [key, value] of Object.entries(this.request)) {
+        if (
+          key == "research_benefits" ||
+          key == "research_fundings" ||
+          key == "research_presentations" ||
+          key == "research_publications"
+        ) {
+          if (value) formData.append(key, JSON.stringify(value));
+        } else {
+          formData.append(key, value);
+        }
+      }
+
       if (this.$route.query.id == 0) {
         this.$store.dispatch("research/save", formData).then((response) => {
           if (response.success) {

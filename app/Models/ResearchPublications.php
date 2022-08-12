@@ -10,7 +10,7 @@ class ResearchPublications extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'user_id',
+        'research_id',
         'reference',
         'presentation_level',
         'title_en',
