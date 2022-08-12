@@ -34,7 +34,7 @@
         <v-divider></v-divider>
         <div class="pa-4 grey lighten-5 rounded-lg">
           <v-row>
-            <v-col cols="6">
+            <v-col md="6" sm="12">
               <div style="font-size: 20px">ส่วนที่ 1 ข้อมูลทั่วไปภาษาไทย</div>
               <v-row>
                 <v-col cols="auto">
@@ -82,7 +82,7 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col cols="6">
+            <v-col md="6" sm="12">
               <div style="font-size: 20px">
                 ส่วนที่ 1 ข้อมูลทั่วไปภาษาอังกฤษ
               </div>

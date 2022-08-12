@@ -13,18 +13,18 @@ class CreateResearchUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('research_users', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('research_id')->unsigned();
-            $table->string('name')->nullable()->default(null);
-            $table->string('agency')->nullable()->default(null);
-            $table->string('branch')->nullable()->default(null);
-            $table->string('research_position')->nullable()->default(null);
-            $table->integer('percen_responsibility')->nullable()->default(null);
-            $table->timestamps();
+        // Schema::create('research_users', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->bigInteger('research_id')->unsigned();
+        //     $table->string('name')->nullable()->default(null);
+        //     $table->string('agency')->nullable()->default(null);
+        //     $table->string('branch')->nullable()->default(null);
+        //     $table->string('research_position')->nullable()->default(null);
+        //     $table->integer('percen_responsibility')->nullable()->default(null);
+        //     $table->timestamps();
 
-            $table->foreign('research_id')->references('id')->on('researchs')->onDelete('cascade');
-        });
+        //     $table->foreign('research_id')->references('id')->on('researchs')->onDelete('cascade');
+        // });
     }
 
     /**

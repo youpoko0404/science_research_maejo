@@ -2292,7 +2292,7 @@ var render = function () {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "6" } },
+                        { attrs: { md: "6", sm: "12" } },
                         [
                           _c("div", { staticStyle: { "font-size": "20px" } }, [
                             _vm._v("ส่วนที่ 1 ข้อมูลทั่วไปภาษาไทย"),
@@ -2432,7 +2432,7 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "v-col",
-                        { attrs: { cols: "6" } },
+                        { attrs: { md: "6", sm: "12" } },
                         [
                           _c("div", { staticStyle: { "font-size": "20px" } }, [
                             _vm._v(

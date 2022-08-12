@@ -259,29 +259,33 @@ export default {
     },
 
     heddleOnClickSaveUserExpertise() {
-      if (this.id_user_expertise != 0) {
-        let user_expertise = {
-          id: this.id_user_expertise,
-          user_expertise: this.user_expertise,
-        };
-        this.$store
-          .dispatch("user/UpdateExpertise", user_expertise)
-          .then((response) => {
-            if (response.success) {
-              location.reload();
-            }
-          });
-      } else {
-        let user_expertise = {
-          user_expertise: this.user_expertise,
-        };
-        this.$store
-          .dispatch("user/InsertExpertise", user_expertise)
-          .then((response) => {
-            if (response.success) {
-              this.dialog.user_expertise = false;
-            }
-          });
+      this.$refs.form_user_expertise.validate();
+      if (this.$refs.form_user_expertise.validate()) {
+        if (this.id_user_expertise != 0) {
+          let user_expertise = {
+            id: this.id_user_expertise,
+            user_expertise: this.user_expertise,
+          };
+          this.$store
+            .dispatch("user/UpdateExpertise", user_expertise)
+            .then((response) => {
+              if (response.success) {
+                location.reload();
+              }
+            });
+        } else {
+          let user_expertise = {
+            user_expertise: this.user_expertise,
+          };
+          this.$store
+            .dispatch("user/InsertExpertise", user_expertise)
+            .then((response) => {
+              if (response.success) {
+                this.$refs.form_user_expertise.reset();
+                this.dialog.user_expertise = false;
+              }
+            });
+        }
       }
     },
 

@@ -17,8 +17,6 @@ class CreateExpertiseUsersTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('type')->nullable()->default(null);
-            // $table->string('group')->nullable()->default(null);
-            // $table->string('value')->nullable()->default(null);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
 

@@ -75,12 +75,6 @@ class RegisterController extends Controller
             'role' => 'guest'
         ]);
 
-        Classroom::create([
-            'user_id' => $user->id,
-            'course_id' => 1,
-            'guest' => 1,
-        ]);
-
         return true;
     }
 }

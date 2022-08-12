@@ -282,25 +282,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     heddleOnClickSaveUserExpertise: function heddleOnClickSaveUserExpertise() {
       var _this = this;
 
-      if (this.id_user_expertise != 0) {
-        var user_expertise = {
-          id: this.id_user_expertise,
-          user_expertise: this.user_expertise
-        };
-        this.$store.dispatch("user/UpdateExpertise", user_expertise).then(function (response) {
-          if (response.success) {
-            location.reload();
-          }
-        });
-      } else {
-        var _user_expertise = {
-          user_expertise: this.user_expertise
-        };
-        this.$store.dispatch("user/InsertExpertise", _user_expertise).then(function (response) {
-          if (response.success) {
-            _this.dialog.user_expertise = false;
-          }
-        });
+      this.$refs.form_user_expertise.validate();
+
+      if (this.$refs.form_user_expertise.validate()) {
+        if (this.id_user_expertise != 0) {
+          var user_expertise = {
+            id: this.id_user_expertise,
+            user_expertise: this.user_expertise
+          };
+          this.$store.dispatch("user/UpdateExpertise", user_expertise).then(function (response) {
+            if (response.success) {
+              location.reload();
+            }
+          });
+        } else {
+          var _user_expertise = {
+            user_expertise: this.user_expertise
+          };
+          this.$store.dispatch("user/InsertExpertise", _user_expertise).then(function (response) {
+            if (response.success) {
+              _this.$refs.form_user_expertise.reset();
+
+              _this.dialog.user_expertise = false;
+            }
+          });
+        }
       }
     },
     deleteUseExpertiseItemConfirm: function deleteUseExpertiseItemConfirm(id) {

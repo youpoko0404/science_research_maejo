@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\StudyUser;
 use App\Models\ExpertiseUser;
+use Illuminate\Support\Facades\Hash;
 use GuzzleHttp\Client;
 
 
@@ -42,12 +43,12 @@ class AuthController extends Controller
                 'first_name' => $data->firstName,
                 'last_name' => $data->lastName,
                 'username' => $data->userName,
-                'position_number' => $data->positionNumber,
-                'employment_type' => $data->employmentType,
-                'position' => $data->position,
-                'level' => $data->level,
-                'work_start_date' => $data->workStartDate,
-                'password' => null,
+                // 'position_number' => $data->positionNumber,
+                // 'employment_type' => $data->employmentType,
+                // 'position' => $data->position,
+                // 'level' => $data->level,
+                // 'work_start_date' => $data->workStartDate,
+                'password' => Hash::make($request->password)
             ];
 
             $user = User::updateOrCreate($userWhere, $userData);

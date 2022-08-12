@@ -27,7 +27,7 @@ class ParametersTableSeeder extends Seeder
 {
     public function run()
     {
-        $rows = [
+        $branch_group = [
             [
                 'group_name' => "bachelor_degree_branch_group",
                 'value' => "materials",
@@ -158,7 +158,7 @@ class ParametersTableSeeder extends Seeder
         ];
 
         // branch_group
-        foreach ($rows as $row) {
+        foreach ($branch_group as $row) {
             Parameter::create($row);
         }
     }

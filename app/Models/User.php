@@ -22,13 +22,13 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
-        'position_number',
-        'employment_type',
-        'position',
-        'level',
-        'work_start_date',
         'password',
         "username",
+        // 'position_number',
+        // 'employment_type',
+        // 'position',
+        // 'level',
+        // 'work_start_date',
     ];
 
     /**
