@@ -244,10 +244,72 @@
             </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{
-                  search_research_by_id.research_fundings ||
-                  "ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย"
-                }}
+                <template
+                  v-if="search_research_by_id.research_fundings.length > 0"
+                >
+                  <v-data-table
+                    :headers="headers_research_fundings"
+                    :items="search_research_by_id.research_fundings"
+                  >
+                    <template v-slot:item.count="{ index }">
+                      {{ index + 1 }}
+                    </template>
+                    <template v-slot:item.year="{ item }">
+                      ปีงบประมาณ : {{ item.year }} <br />
+                      {{ formatDate(item.date1) }} ถึง
+                      {{ formatDate(item.date2) }}
+                    </template>
+                    <template v-slot:item.title="{ item }">
+                      <strong>ประเภทแหล่งทุน :</strong>
+                      {{
+                        fetchParameterByGroupKey(
+                          parameter,
+                          "funding_type_group",
+                          item.type
+                        )
+                      }}
+                      <br />
+                      {{
+                        fetchParameterByGroupKey(
+                          parameter,
+                          item.type,
+                          item.source_capital
+                        )
+                      }}
+                      <br />
+                      {{
+                        fetchParameterByGroupKey(
+                          parameter,
+                          "funding_level_group",
+                          item.capital_level
+                        )
+                      }}
+                    </template>
+                    <template v-slot:item.price="{ item }">
+                      {{ item.amount }}
+                    </template>
+                    <template slot="body.append">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>รวมจำนวนเงิน</th>
+                        <th>
+                          {{
+                            search_research_by_id.research_fundings.reduce(
+                              (t, n) => t + Number(n.amount),
+                              0
+                            )
+                          }}
+                        </th>
+                      </tr>
+                    </template>
+                  </v-data-table>
+                </template>
+                <template v-else>
+                  <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                    ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย
+                  </div>
+                </template>
               </v-card>
             </v-col>
           </v-container>
@@ -288,11 +350,35 @@
               ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย
             </div>
             <v-col>
+              <v-card class="pa-2" outlined tile> </v-card>
               <v-card class="pa-2" outlined tile>
-                {{
-                  search_research_by_id.research_publications ||
-                  "ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย"
-                }}
+                <template
+                  v-if="search_research_by_id.research_publications.length > 0"
+                >
+                  <v-data-table
+                    :headers="headers_research_publications"
+                    :items="search_research_by_id.research_publications"
+                  >
+                    <template v-slot:item.count="{ index }">
+                      {{ index + 1 }}
+                    </template>
+
+                    <template v-slot:item.description="{ item }">
+                      <strong>
+                        {{ search_research_by_id.title_name_en }}</strong
+                      >
+                      <br />
+                    </template>
+                    <template v-slot:item.wight="{ item }">
+                      {{ item.amount }}
+                    </template>
+                  </v-data-table>
+                </template>
+                <template v-else>
+                  <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                    ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย
+                  </div>
+                </template>
               </v-card>
             </v-col>
           </v-container>
@@ -349,13 +435,36 @@
 
 
 <script>
+import dayJs from "../Utili/dayJs";
 import { mapState } from "vuex";
 import Loading from "../../Components/Loading/Loading";
 export default {
   components: {
     Loading,
   },
-  data: () => ({}),
+  data: () => ({
+    headers_research_fundings: [
+      { text: "", value: "count" },
+      { text: "ปีงบประมาณ / วันที่", value: "year" },
+      { text: "รายละเอียดแหล่งทุน", value: "title" },
+      { text: "จำนวนเงิน/บาท", value: "price", align: "end" },
+    ],
+    headers_research_publications: [
+      { text: "", value: "count", width: "10px" },
+      {
+        text: "วันที่ดำเนินการ",
+        value: "publication_date",
+        align: "center",
+        width: "300px",
+      },
+      { text: "รายละเอียด", value: "description" },
+      {
+        text: "น้ำหนักการตีพิมพ์",
+        value: "wight",
+        align: "center",
+      },
+    ],
+  }),
   computed: {
     ...mapState({
       loading: (state) => state.dashboard.loading,
@@ -389,6 +498,10 @@ export default {
       if (id) {
         this.$store.dispatch("dashboard/fetchSearchResearchById", id);
       }
+    },
+
+    formatDate(date) {
+      return dayJs.formatDate(date);
     },
 
     fetchParameterByGroupKey(items, group, key) {
