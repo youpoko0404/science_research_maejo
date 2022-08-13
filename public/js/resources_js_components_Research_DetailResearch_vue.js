@@ -1984,7 +1984,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         research_benefits: false
       },
       request: (_request = {
-        id: 0,
         title_name_th: "",
         abstract_name_th: "",
         keyword_name_th: "",

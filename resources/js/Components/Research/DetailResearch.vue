@@ -1948,7 +1948,6 @@ export default {
       research_benefits: false,
     },
     request: {
-      id: 0,
       title_name_th: "",
       abstract_name_th: "",
       keyword_name_th: "",
