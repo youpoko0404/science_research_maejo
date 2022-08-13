@@ -20,22 +20,24 @@ class DashBoardController extends Controller
     {
         $collection = collect();
 
-        $bachelor_degree_branch_group = Parameter::where([
+        $branch_group = Parameter::where([
             ['group_name', '=', 'bachelor_degree_branch_group'],
             ['is_deleted', '=', 0]
         ])->orWhere('group_name', '=', 'master_degree_branch_group')
             ->orWhere('group_name', '=', 'doctor_degree_branch_group')
             ->orderBy('sort_order')->get();
 
-        foreach ($bachelor_degree_branch_group as $group_name) {
-            $researchs = Researchs::where([
-                ['research_branch', '=', $group_name->value], ['is_deleted', '=', 0]
+
+        foreach ($branch_group as $branch) {
+            $research = Researchs::where([
+                ['research_branch', '=', $branch->value], ['is_deleted', '=', 0],
+                ['research_branch_main', '=', $branch->group_name], ['is_deleted', '=', 0]
             ])->get();
             $collection->push(
                 [
-                    'branch' => $group_name->value_ref,
-                    'count' =>  $researchs->count(),
-                    'color' => $group_name->remark
+                    'branch' => $branch->value_ref,
+                    'count' =>  $research->count(),
+                    'color' => $branch->remark
                 ]
             );
         }
