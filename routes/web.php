@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/research', function () {
+    return view('index');
+});
+
 Route::get('/logout', function () {
     if (Auth::user()) {
         Auth::user()->tokens()->delete();

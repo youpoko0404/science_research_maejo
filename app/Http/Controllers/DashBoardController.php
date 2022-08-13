@@ -58,7 +58,7 @@ class DashBoardController extends Controller
         $research_publications = ResearchPublications::where('research_id', '=', $id)->get();
         $research_benefits = ResearchBenefits::where('research_id', '=', $id)->get();
 
-        if ($research && $research->created_by == auth()->user()->id) {
+        if ($research) {
             $research['research_fundings'] = $research_funding;
             $research['research_presentations'] = $research_presentations;
             $research['research_publications'] = $research_publications;

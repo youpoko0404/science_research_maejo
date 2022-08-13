@@ -5946,6 +5946,15 @@ var routes = [{
     title: "หน้าแรก"
   }
 }, {
+  path: "/research",
+  name: "research",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Home_DetailResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Home/DetailResearch.vue */ "./resources/js/components/Home/DetailResearch.vue"));
+  },
+  meta: {
+    title: "รายละเอียดงานวิจัย"
+  }
+}, {
   path: "/account",
   name: "account",
   component: function component() {
@@ -5968,15 +5977,6 @@ var routes = [{
   name: "detail-research",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Research_DetailResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/DetailResearch.vue */ "./resources/js/components/Research/DetailResearch.vue"));
-  },
-  meta: {
-    title: "รายละเอียดงานวิจัย"
-  }
-}, {
-  path: "/research",
-  name: "research",
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ "resources_js_components_Home_DetailResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Home/DetailResearch.vue */ "./resources/js/components/Home/DetailResearch.vue"));
   },
   meta: {
     title: "รายละเอียดงานวิจัย"
@@ -7091,8 +7091,8 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 // Guest
+// Vue.component("GuestTopBar", require("./Layouts/GuestTopBar.vue").default);
 
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component("GuestTopBar", (__webpack_require__(/*! ./Layouts/GuestTopBar.vue */ "./resources/js/Layouts/GuestTopBar.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component("Login", (__webpack_require__(/*! ./Components/Auth/Login.vue */ "./resources/js/Components/Auth/Login.vue")["default"])); // Auth User Home
 
 /**
@@ -44806,7 +44806,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "pa-2 align-self-center" }, [
-              _c("div", { staticStyle: { "font-size": "50px" } }, [
+              _c("div", { staticStyle: { "font-size": "40px" } }, [
                 _vm._v("คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้"),
               ]),
               _vm._v(" "),
@@ -108076,7 +108076,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/jatupat/Documents
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Home_DetailResearch_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_DetailResearch_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

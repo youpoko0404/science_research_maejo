@@ -26,7 +26,7 @@ import router from "./Router/index";
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Guest
-Vue.component("GuestTopBar", require("./Layouts/GuestTopBar.vue").default);
+// Vue.component("GuestTopBar", require("./Layouts/GuestTopBar.vue").default);
 Vue.component("Login", require("./Components/Auth/Login.vue").default);
 // Auth User Home
 

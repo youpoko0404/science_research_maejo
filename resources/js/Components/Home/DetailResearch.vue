@@ -586,6 +586,7 @@ import dayJs from "../Utili/dayJs";
 import { mapState } from "vuex";
 import Loading from "../../Components/Loading/Loading";
 export default {
+  name: "DetailResearch",
   components: {
     Loading,
   },

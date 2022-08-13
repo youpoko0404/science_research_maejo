@@ -9,7 +9,7 @@
         </div>
 
         <div class="pa-2 align-self-center">
-          <div style="font-size: 50px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
+          <div style="font-size: 40px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
           <div style="font-size: 20px">
             Faculty of Science, Maejo University
           </div>

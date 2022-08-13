@@ -45,9 +45,10 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(ParameterController::class)->group(function () {
-    Route::group(['middleware' => ['auth']], function () {
-        Route::get('/parameter', 'fetch');
-    });
+    // Route::group(['middleware' => ['auth']], function () {
+    //     Route::get('/parameter', 'fetch');
+    // });
+    Route::get('/parameter', 'fetch');
 });
 
 Route::controller(DashBoardController::class)->group(function () {

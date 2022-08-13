@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class ParameterController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function fetch(Request $request)
     {
         $collection = collect();
