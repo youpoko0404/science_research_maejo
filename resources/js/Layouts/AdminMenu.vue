@@ -5,7 +5,10 @@
     <v-toolbar :height="200" dark prominent src="/images/SideBar.jpeg">
       <div class="d-flex mb-12" height="180">
         <div class="pa-2" style="align-items: center; display: flex">
-          <v-img src="/images/LogoSci.png" max-width="170"></v-img>
+          <v-img
+            src="/images/LogoSci.png"
+            style="max-width: 170px; height: auto; width: 100%"
+          ></v-img>
         </div>
 
         <div class="pa-2 align-self-center">

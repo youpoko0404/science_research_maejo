@@ -11,6 +11,7 @@ use App\Models\ResearchFundings;
 use App\Models\ResearchPresentations;
 use App\Models\ResearchPublications;
 use App\Models\ResearchBenefits;
+use App\Models\ResearchSeconds;
 
 use Illuminate\Http\Request;
 
@@ -21,17 +22,14 @@ class DashBoardController extends Controller
         $collection = collect();
 
         $branch_group = Parameter::where([
-            ['group_name', '=', 'bachelor_degree_branch_group'],
+            ['group_name', '=', 'branch_group'],
             ['is_deleted', '=', 0]
-        ])->orWhere('group_name', '=', 'master_degree_branch_group')
-            ->orWhere('group_name', '=', 'doctor_degree_branch_group')
-            ->orderBy('sort_order')->get();
+        ])->orderBy('sort_order')->get();
 
 
         foreach ($branch_group as $branch) {
             $research = Researchs::where([
                 ['research_branch', '=', $branch->value], ['is_deleted', '=', 0],
-                ['research_branch_main', '=', $branch->group_name], ['is_deleted', '=', 0]
             ])->get();
             $collection->push(
                 [
@@ -57,12 +55,14 @@ class DashBoardController extends Controller
         $research_presentations = ResearchPresentations::where('research_id', '=', $id)->get();
         $research_publications = ResearchPublications::where('research_id', '=', $id)->get();
         $research_benefits = ResearchBenefits::where('research_id', '=', $id)->get();
+        $research_seconds = ResearchSeconds::where('research_id', '=', $id)->get();
 
         if ($research) {
             $research['research_fundings'] = $research_funding;
             $research['research_presentations'] = $research_presentations;
             $research['research_publications'] = $research_publications;
             $research['research_benefits'] = $research_benefits;
+            $research['research_seconds'] = $research_seconds;
             return response()->json([
                 'success' => true,
                 'message' => 'Successfully',

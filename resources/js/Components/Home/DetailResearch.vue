@@ -36,7 +36,10 @@
             <v-row>
               <v-col>
                 <b>วันที่ดำเนินงาน :</b>
-                {{ search_research_by_id.research_period || "-- ไม่ระบุ --" }}
+                {{
+                  `${search_research_by_id.research_period_start} ถึง ${search_research_by_id.research_period_end}` ||
+                  "-- ไม่ระบุ --"
+                }}
               </v-col>
             </v-row>
           </v-container>
@@ -105,7 +108,7 @@
                   fetchParameterByGroupKey(
                     parameter,
                     "branch_group",
-                    search_research_by_id.research_branch_main
+                    search_research_by_id.research_branch
                   ) || "-- ไม่ระบุ --"
                 }}
               </v-col>
@@ -128,26 +131,27 @@
           <v-container>
             <div style="font-size: 30px">ส่วนที่ 2 นักวิจัย</div>
             <v-col>
-              <v-card class="pa-2" outlined tile>
-                <v-data-table
-                  :headers="headers_research_owner"
-                  :items="research_owner_name(search_research_by_id)"
-                >
-                  <template v-slot:[`item.count`]="{ index }">
-                    {{ index + 1 }}
-                  </template>
-                  <template v-slot:[`item.research_name`]="{ item }">
-                    <strong>{{ item.research_name }}</strong> <br />
-                    สังกัด {{ item.research_address }} <br />
-                  </template>
-                  <template v-slot:[`item.position`]="{ item }">
-                    {{ item.research_position }}
-                  </template>
-                  <template v-slot:[`item.percent`]="{ item }">
-                    {{ `${item.research_responsible}%` }}
-                  </template>
-                </v-data-table>
-              </v-card>
+              <v-data-table
+                :headers="headers_research_owner"
+                :items="research_owner_name(search_research_by_id)"
+                hide-default-footer
+              >
+                <template v-slot:[`item.count`]="{ index }">
+                  {{ index + 1 }}
+                </template>
+                <template v-slot:[`item.research_name`]="{ item }">
+                  <strong>{{ item.research_name }}</strong> <br />
+                  คณะ :{{ item.research_group }} <br />
+                  สาขา :{{ item.research_branch }} <br />
+                  ตำแหน่ง :{{ item.research_position }} <br />
+                </template>
+                <template v-slot:[`item.position`]="{ item }">
+                  {{ item.research_type }}
+                </template>
+                <template v-slot:[`item.percent`]="{ item }">
+                  {{ `${item.research_responsible}%` }}
+                </template>
+              </v-data-table>
             </v-col>
           </v-container>
           <v-divider></v-divider>
@@ -258,76 +262,75 @@
               ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย
             </div>
             <v-col>
-              <v-card class="pa-2" outlined tile>
-                <template
-                  v-if="search_research_by_id.research_fundings.length > 0"
+              <template
+                v-if="search_research_by_id.research_fundings.length > 0"
+              >
+                <v-data-table
+                  :headers="headers_research_fundings"
+                  :items="search_research_by_id.research_fundings"
+                  hide-default-footer
                 >
-                  <v-data-table
-                    :headers="headers_research_fundings"
-                    :items="search_research_by_id.research_fundings"
-                  >
-                    <template v-slot:[`item.count`]="{ index }">
-                      {{ index + 1 }}
-                    </template>
-                    <template v-slot:[`item.year`]="{ item }">
-                      ปีงบประมาณ : {{ item.year }} <br />
-                      {{ toFormatDateShortTH(item.date1) }} ถึง
-                      {{ toFormatDateShortTH(item.date2) }}
-                    </template>
-                    <template v-slot:[`item.title`]="{ item }">
-                      <strong>ประเภทแหล่งทุน :</strong>
-                      {{
-                        fetchParameterByGroupKey(
-                          parameter,
-                          "funding_type_group",
-                          item.type
-                        )
-                      }}
-                      <br />
-                      {{
-                        fetchParameterByGroupKey(
-                          parameter,
-                          item.type,
-                          item.source_capital
-                        )
-                      }}
-                      <br />
-                      {{
-                        fetchParameterByGroupKey(
-                          parameter,
-                          "funding_level_group",
-                          item.capital_level
-                        )
-                      }}
-                    </template>
-                    <template v-slot:[`item.price`]="{ item }">
-                      {{ toFixedNumber(item.amount) }}
-                    </template>
-                    <template slot="body.append">
-                      <tr>
-                        <th></th>
-                        <th></th>
-                        <th>รวมจำนวนเงิน</th>
-                        <th>
-                          {{
-                            toFixedNumber(
-                              search_research_by_id.research_fundings.reduce(
-                                (t, n) => t + Number(n.amount),
-                                0
-                              )
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:[`item.year`]="{ item }">
+                    ปีงบประมาณ : {{ item.year }} <br />
+                    {{ toFormatDateShortTH(item.date1) }} ถึง
+                    {{ toFormatDateShortTH(item.date2) }}
+                  </template>
+                  <template v-slot:[`item.title`]="{ item }">
+                    <strong>ประเภทแหล่งทุน :</strong>
+                    {{
+                      fetchParameterByGroupKey(
+                        parameter,
+                        "funding_type_group",
+                        item.type
+                      )
+                    }}
+                    <br />
+                    {{
+                      fetchParameterByGroupKey(
+                        parameter,
+                        item.type,
+                        item.source_capital
+                      )
+                    }}
+                    <br />
+                    {{
+                      fetchParameterByGroupKey(
+                        parameter,
+                        "funding_level_group",
+                        item.capital_level
+                      )
+                    }}
+                  </template>
+                  <template v-slot:[`item.price`]="{ item }">
+                    {{ toFixedNumber(item.amount) }}
+                  </template>
+                  <template slot="body.append">
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>รวมจำนวนเงิน</th>
+                      <th>
+                        {{
+                          toFixedNumber(
+                            search_research_by_id.research_fundings.reduce(
+                              (t, n) => t + Number(n.amount),
+                              0
                             )
-                          }}
-                        </th>
-                      </tr>
-                    </template>
-                  </v-data-table>
-                </template>
-                <template v-else>
-                  <div class="pa-4 grey lighten-2 rounded-lg text-center">
-                    ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย
-                  </div>
-                </template>
-              </v-card>
+                          )
+                        }}
+                      </th>
+                    </tr>
+                  </template>
+                </v-data-table>
+              </template>
+              <template v-else>
+                <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                  ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย
+                </div>
+              </template>
             </v-col>
           </v-container>
           <v-divider></v-divider>
@@ -353,86 +356,85 @@
           <v-container>
             <div style="font-size: 30px">ส่วนที่ 12 การนำเสนองานวิจัย</div>
             <v-col>
-              <v-card class="pa-2" outlined tile>
-                <template
-                  v-if="search_research_by_id.research_presentations.length > 0"
+              <template
+                v-if="search_research_by_id.research_presentations.length > 0"
+              >
+                <v-data-table
+                  :headers="headers_research_presentations"
+                  :items="search_research_by_id.research_presentations"
+                  hide-default-footer
                 >
-                  <v-data-table
-                    :headers="headers_research_presentations"
-                    :items="search_research_by_id.research_presentations"
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template
+                    v-slot:[`item.research_presentation_date`]="{ item }"
                   >
-                    <template v-slot:[`item.count`]="{ index }">
-                      {{ index + 1 }}
-                    </template>
-                    <template
-                      v-slot:[`item.research_presentation_date`]="{ item }"
-                    >
-                      {{ toFormatDateShortTH(item.research_presentation_date) }}
-                    </template>
+                    {{ toFormatDateShortTH(item.research_presentation_date) }}
+                  </template>
 
-                    <template v-slot:[`item.description`]="{ item }">
-                      <v-row>
-                        <v-col>
-                          <strong> รูปแบบการนำเสนอ : </strong
-                          >{{
-                            fetchParameterByGroupKey(
-                              parameter,
-                              "presentations_type_group",
-                              item.presentation_style
-                            )
-                          }}
-                          <br />
-                        </v-col>
-                        <v-col>
-                          <strong> ประเภทงานวิชาการ : </strong>
-                          {{
-                            fetchParameterByGroupKey(
-                              parameter,
-                              "presentations_academic_type_group",
-                              item.academic_work
-                            )
-                          }}
-                          <br />
-                        </v-col>
-                        <v-col>
-                          <strong> ชื่อวิชาการ : </strong>
-                          {{ item.academic_name }}
-                          <br />
-                        </v-col>
-                      </v-row>
-                      <v-row>
-                        <v-col>
-                          <strong> สถานที่นำเสนอ : </strong
-                          >{{ item.place_presentation }}
-                          <br />
-                        </v-col>
-                        <v-col>
-                          <strong> ระดับการนำเสนอ : </strong>
-                          {{
-                            fetchParameterByGroupKey(
-                              parameter,
-                              "presentation_level_group",
-                              item.presentation_level
-                            )
-                          }}
-                          <br />
-                        </v-col>
-                        <v-col>
-                          <strong> ชื่อหน่วยงานที่่จัด : </strong>
-                          {{ item.organization_name }}
-                          <br />
-                        </v-col>
-                      </v-row>
-                      <br />
-                    </template>
-                  </v-data-table>
-                </template>
-                <template v-else>
-                  <div class="pa-4 grey lighten-2 rounded-lg text-center">
-                    ไม่มีข้อมูลการนำเสนองานวิจัย
-                  </div>
-                </template>
-              </v-card>
+                  <template v-slot:[`item.description`]="{ item }">
+                    <v-row>
+                      <v-col>
+                        <strong> รูปแบบการนำเสนอ : </strong
+                        >{{
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentations_type_group",
+                            item.presentation_style
+                          )
+                        }}
+                        <br />
+                      </v-col>
+                      <v-col>
+                        <strong> ประเภทงานวิชาการ : </strong>
+                        {{
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentations_academic_type_group",
+                            item.academic_work
+                          )
+                        }}
+                        <br />
+                      </v-col>
+                      <v-col>
+                        <strong> ชื่อวิชาการ : </strong>
+                        {{ item.academic_name }}
+                        <br />
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col>
+                        <strong> สถานที่นำเสนอ : </strong
+                        >{{ item.place_presentation }}
+                        <br />
+                      </v-col>
+                      <v-col>
+                        <strong> ระดับการนำเสนอ : </strong>
+                        {{
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentation_level_group",
+                            item.presentation_level
+                          )
+                        }}
+                        <br />
+                      </v-col>
+                      <v-col>
+                        <strong> ชื่อหน่วยงานที่่จัด : </strong>
+                        {{ item.organization_name }}
+                        <br />
+                      </v-col>
+                    </v-row>
+                    <br />
+                  </template>
+                </v-data-table>
+              </template>
+              <template v-else>
+                <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                  ไม่มีข้อมูลการนำเสนองานวิจัย
+                </div>
+              </template>
             </v-col>
           </v-container>
           <v-divider></v-divider>
@@ -441,63 +443,62 @@
               ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย
             </div>
             <v-col>
-              <v-card class="pa-2" outlined tile>
-                <template
-                  v-if="search_research_by_id.research_publications.length > 0"
+              <template
+                v-if="search_research_by_id.research_publications.length > 0"
+              >
+                <v-data-table
+                  :headers="headers_research_publications"
+                  :items="search_research_by_id.research_publications"
+                  hide-default-footer
                 >
-                  <v-data-table
-                    :headers="headers_research_publications"
-                    :items="search_research_by_id.research_publications"
-                  >
-                    <template v-slot:[`item.count`]="{ index }">
-                      {{ index + 1 }}
-                    </template>
-                    <template v-slot:[`item.publication_date`]="{ item }">
-                      {{ toFormatDateShortTH(item.publication_date) }}
-                    </template>
-                    <template v-slot:[`item.description`]="{ item }">
-                      <strong>
-                        {{ search_research_by_id.title_name_en }}
-                      </strong>
-                      <br />
-                      <strong> วารสารที่ตีพิมพ์ : </strong> {{ item.title_th }}
-                      <br />
-                      <v-row>
-                        <v-col>
-                          <strong> ฉบับที่ : </strong>{{ item.no }}
-                          <br />
-                        </v-col>
-                        <v-col>
-                          <strong> หน้า : </strong> {{ item.page_number }}
-                          <br />
-                        </v-col>
-                        <v-col>
-                          <strong> ระดับการนำเสนอ :</strong
-                          >{{
-                            fetchParameterByGroupKey(
-                              parameter,
-                              "presentation_level_group",
-                              item.presentation_level
-                            )
-                          }}
-                          <br />
-                        </v-col>
-                      </v-row>
-                      <br />
-                      <!-- <strong> เจ้าของวารสาร</strong>
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:[`item.publication_date`]="{ item }">
+                    {{ toFormatDateShortTH(item.publication_date) }}
+                  </template>
+                  <template v-slot:[`item.description`]="{ item }">
+                    <strong>
+                      {{ search_research_by_id.title_name_en }}
+                    </strong>
+                    <br />
+                    <strong> วารสารที่ตีพิมพ์ : </strong> {{ item.title_th }}
+                    <br />
+                    <v-row>
+                      <v-col>
+                        <strong> ฉบับที่ : </strong>{{ item.no }}
+                        <br />
+                      </v-col>
+                      <v-col>
+                        <strong> หน้า : </strong> {{ item.page_number }}
+                        <br />
+                      </v-col>
+                      <v-col>
+                        <strong> ระดับการนำเสนอ :</strong
+                        >{{
+                          fetchParameterByGroupKey(
+                            parameter,
+                            "presentation_level_group",
+                            item.presentation_level
+                          )
+                        }}
+                        <br />
+                      </v-col>
+                    </v-row>
+                    <br />
+                    <!-- <strong> เจ้าของวารสาร</strong>
                       <br /> -->
-                    </template>
-                    <!-- <template v-slot:[`item.wight`]="{ item }">
+                  </template>
+                  <!-- <template v-slot:[`item.wight`]="{ item }">
                       {{ item.amount }}
                     </template> -->
-                  </v-data-table>
-                </template>
-                <template v-else>
-                  <div class="pa-4 grey lighten-2 rounded-lg text-center">
-                    ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย
-                  </div>
-                </template>
-              </v-card>
+                </v-data-table>
+              </template>
+              <template v-else>
+                <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                  ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย
+                </div>
+              </template>
             </v-col>
           </v-container>
           <v-divider></v-divider>
@@ -506,41 +507,40 @@
               ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์
             </div>
             <v-col>
-              <v-card class="pa-2" outlined tile>
-                <template
-                  v-if="search_research_by_id.research_benefits.length > 0"
+              <template
+                v-if="search_research_by_id.research_benefits.length > 0"
+              >
+                <v-data-table
+                  :headers="headers_research_benefits"
+                  :items="search_research_by_id.research_benefits"
+                  hide-default-footer
                 >
-                  <v-data-table
-                    :headers="headers_research_benefits"
-                    :items="search_research_by_id.research_benefits"
-                  >
-                    <template v-slot:[`item.count`]="{ index }">
-                      {{ index + 1 }}
-                    </template>
-                    <template v-slot:[`item.date_reference`]="{ item }">
-                      {{ toFormatDateShortTH(item.date_reference) }}
-                    </template>
-                    <template v-slot:[`item.description`]="{ item }">
-                      <strong> ชื่อผู้วิจัยที่นำไปอ้างอิง : </strong
-                      >{{ item.research_name_reference }}
-                      <br />
-                      <strong> ชื่อภาษาไทย/Research Name : </strong
-                      >{{ item.research_name }}
-                      <br />
-                      <strong> URL เชื่อมโยง : </strong>{{ item.url }}
-                      <br />
-                      <strong> การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : </strong
-                      >{{ item.reference }}
-                      <br />
-                    </template>
-                  </v-data-table>
-                </template>
-                <template v-else>
-                  <div class="pa-4 grey lighten-2 rounded-lg text-center">
-                    ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์
-                  </div>
-                </template>
-              </v-card>
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:[`item.date_reference`]="{ item }">
+                    {{ toFormatDateShortTH(item.date_reference) }}
+                  </template>
+                  <template v-slot:[`item.description`]="{ item }">
+                    <strong> ชื่อผู้วิจัยที่นำไปอ้างอิง : </strong
+                    >{{ item.research_name_reference }}
+                    <br />
+                    <strong> ชื่อภาษาไทย/Research Name : </strong
+                    >{{ item.research_name }}
+                    <br />
+                    <strong> URL เชื่อมโยง : </strong>{{ item.url }}
+                    <br />
+                    <strong> การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : </strong
+                    >{{ item.reference }}
+                    <br />
+                  </template>
+                </v-data-table>
+              </template>
+              <template v-else>
+                <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                  ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์
+                </div>
+              </template>
             </v-col>
           </v-container>
           <v-divider></v-divider>
@@ -637,7 +637,6 @@ export default {
       {
         text: "รายชื่อนักวิจัย",
         value: "research_name",
-        width: "300px",
         align: "left",
       },
       { text: "ตำแหน่งนักวิจัย", value: "position" },
@@ -655,9 +654,7 @@ export default {
   },
   created() {
     this.fetchParameter([
-      "bachelor_degree_branch_group",
-      "master_degree_branch_group",
-      "doctor_degree_branch_group",
+      "branch_group",
       "research_other_group",
       "branch_main_group",
       "funding_type_group",
@@ -724,19 +721,22 @@ export default {
           research_name: search_research_by_id.research_main_name,
           research_position: search_research_by_id.research_main_position,
           research_responsible: search_research_by_id.research_main_responsible,
-          research_address: search_research_by_id.research_main_address,
+          research_group: search_research_by_id.research_main_group,
+          research_branch: search_research_by_id.research_main_branch,
           research_type: "ผู้วิจัยหลัก",
         };
-        let second = {
-          research_name: search_research_by_id.research_second_name,
-          research_position: search_research_by_id.research_second_position,
-          research_responsible:
-            search_research_by_id.research_second_responsible,
-          research_address: search_research_by_id.research_second_address,
-          research_type: "ผู้วิจัยรอง",
-        };
         arrayOwner.push(main);
-        arrayOwner.push(second);
+        search_research_by_id.research_seconds.forEach((element) => {
+          let second = {
+            research_name: element.research_second_name,
+            research_position: element.research_second_position,
+            research_responsible: element.research_second_responsible,
+            research_group: element.research_second_group,
+            research_branch: element.research_second_branch,
+            research_type: "ผู้วิจัยรอง",
+          };
+          arrayOwner.push(second);
+        });
         return arrayOwner;
       }
     },

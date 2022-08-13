@@ -679,7 +679,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         text: "รายชื่อนักวิจัย",
         value: "research_name",
-        width: "300px",
         align: "left"
       }, {
         text: "ตำแหน่งนักวิจัย",
@@ -705,7 +704,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   created: function created() {
-    this.fetchParameter(["bachelor_degree_branch_group", "master_degree_branch_group", "doctor_degree_branch_group", "research_other_group", "branch_main_group", "funding_type_group", "external_institution_budget_group", "institutional_budget_group", "personal_budget_group", "funding_level_group", "presentations_type_group", "presentations_academic_type_group", "presentation_level_group"]);
+    this.fetchParameter(["branch_group", "research_other_group", "branch_main_group", "funding_type_group", "external_institution_budget_group", "institutional_budget_group", "personal_budget_group", "funding_level_group", "presentations_type_group", "presentations_academic_type_group", "presentation_level_group"]);
     this.fetchSearchResearchById(this.$route.query.id);
   },
   methods: {
@@ -759,18 +758,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           research_name: search_research_by_id.research_main_name,
           research_position: search_research_by_id.research_main_position,
           research_responsible: search_research_by_id.research_main_responsible,
-          research_address: search_research_by_id.research_main_address,
+          research_group: search_research_by_id.research_main_group,
+          research_branch: search_research_by_id.research_main_branch,
           research_type: "ผู้วิจัยหลัก"
         };
-        var second = {
-          research_name: search_research_by_id.research_second_name,
-          research_position: search_research_by_id.research_second_position,
-          research_responsible: search_research_by_id.research_second_responsible,
-          research_address: search_research_by_id.research_second_address,
-          research_type: "ผู้วิจัยรอง"
-        };
         arrayOwner.push(main);
-        arrayOwner.push(second);
+        search_research_by_id.research_seconds.forEach(function (element) {
+          var second = {
+            research_name: element.research_second_name,
+            research_position: element.research_second_position,
+            research_responsible: element.research_second_responsible,
+            research_group: element.research_second_group,
+            research_branch: element.research_second_branch,
+            research_type: "ผู้วิจัยรอง"
+          };
+          arrayOwner.push(second);
+        });
         return arrayOwner;
       }
     }
@@ -1049,8 +1052,11 @@ var render = function () {
                               _vm._v(
                                 "\n              " +
                                   _vm._s(
-                                    _vm.search_research_by_id.research_period ||
-                                      "-- ไม่ระบุ --"
+                                    _vm.search_research_by_id
+                                      .research_period_start +
+                                      " ถึง " +
+                                      _vm.search_research_by_id
+                                        .research_period_end || "-- ไม่ระบุ --"
                                   ) +
                                   "\n            "
                               ),
@@ -1221,8 +1227,7 @@ var render = function () {
                                     _vm.fetchParameterByGroupKey(
                                       _vm.parameter,
                                       "branch_group",
-                                      _vm.search_research_by_id
-                                        .research_branch_main
+                                      _vm.search_research_by_id.research_branch
                                     ) || "-- ไม่ระบุ --"
                                   ) +
                                   "\n            "
@@ -1279,93 +1284,93 @@ var render = function () {
                         _c(
                           "v-col",
                           [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
+                            _c("v-data-table", {
+                              attrs: {
+                                headers: _vm.headers_research_owner,
+                                items: _vm.research_owner_name(
+                                  _vm.search_research_by_id
+                                ),
+                                "hide-default-footer": "",
                               },
-                              [
-                                _c("v-data-table", {
-                                  attrs: {
-                                    headers: _vm.headers_research_owner,
-                                    items: _vm.research_owner_name(
-                                      _vm.search_research_by_id
-                                    ),
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "item.count",
+                                    fn: function (ref) {
+                                      var index = ref.index
+                                      return [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(index + 1) +
+                                            "\n              "
+                                        ),
+                                      ]
+                                    },
                                   },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "item.count",
-                                        fn: function (ref) {
-                                          var index = ref.index
-                                          return [
-                                            _vm._v(
-                                              "\n                  " +
-                                                _vm._s(index + 1) +
-                                                "\n                "
-                                            ),
-                                          ]
-                                        },
-                                      },
-                                      {
-                                        key: "item.research_name",
-                                        fn: function (ref) {
-                                          var item = ref.item
-                                          return [
-                                            _c("strong", [
-                                              _vm._v(
-                                                _vm._s(item.research_name)
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("br"),
-                                            _vm._v(
-                                              "\n                  สังกัด " +
-                                                _vm._s(item.research_address) +
-                                                " "
-                                            ),
-                                            _c("br"),
-                                          ]
-                                        },
-                                      },
-                                      {
-                                        key: "item.position",
-                                        fn: function (ref) {
-                                          var item = ref.item
-                                          return [
-                                            _vm._v(
-                                              "\n                  " +
-                                                _vm._s(item.research_position) +
-                                                "\n                "
-                                            ),
-                                          ]
-                                        },
-                                      },
-                                      {
-                                        key: "item.percent",
-                                        fn: function (ref) {
-                                          var item = ref.item
-                                          return [
-                                            _vm._v(
-                                              "\n                  " +
-                                                _vm._s(
-                                                  item.research_responsible +
-                                                    "%"
-                                                ) +
-                                                "\n                "
-                                            ),
-                                          ]
-                                        },
-                                      },
-                                    ],
-                                    null,
-                                    true
-                                  ),
-                                }),
-                              ],
-                              1
-                            ),
+                                  {
+                                    key: "item.research_name",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        _c("strong", [
+                                          _vm._v(_vm._s(item.research_name)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                คณะ :" +
+                                            _vm._s(item.research_group) +
+                                            " "
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                สาขา :" +
+                                            _vm._s(item.research_branch) +
+                                            " "
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                ตำแหน่ง :" +
+                                            _vm._s(item.research_position) +
+                                            " "
+                                        ),
+                                        _c("br"),
+                                      ]
+                                    },
+                                  },
+                                  {
+                                    key: "item.position",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(item.research_type) +
+                                            "\n              "
+                                        ),
+                                      ]
+                                    },
+                                  },
+                                  {
+                                    key: "item.percent",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(
+                                              item.research_responsible + "%"
+                                            ) +
+                                            "\n              "
+                                        ),
+                                      ]
+                                    },
+                                  },
+                                ],
+                                null,
+                                true
+                              ),
+                            }),
                           ],
                           1
                         ),
@@ -1660,203 +1665,184 @@ var render = function () {
                         _c(
                           "v-col",
                           [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _vm.search_research_by_id.research_fundings
-                                  .length > 0
-                                  ? [
-                                      _c(
-                                        "v-data-table",
-                                        {
-                                          attrs: {
-                                            headers:
-                                              _vm.headers_research_fundings,
-                                            items:
-                                              _vm.search_research_by_id
-                                                .research_fundings,
-                                          },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "item.count",
-                                                fn: function (ref) {
-                                                  var index = ref.index
-                                                  return [
-                                                    _vm._v(
-                                                      "\n                    " +
-                                                        _vm._s(index + 1) +
-                                                        "\n                  "
-                                                    ),
-                                                  ]
-                                                },
-                                              },
-                                              {
-                                                key: "item.year",
-                                                fn: function (ref) {
-                                                  var item = ref.item
-                                                  return [
-                                                    _vm._v(
-                                                      "\n                    ปีงบประมาณ : " +
-                                                        _vm._s(item.year) +
-                                                        " "
-                                                    ),
-                                                    _c("br"),
-                                                    _vm._v(
-                                                      "\n                    " +
-                                                        _vm._s(
-                                                          _vm.toFormatDateShortTH(
-                                                            item.date1
-                                                          )
-                                                        ) +
-                                                        " ถึง\n                    " +
-                                                        _vm._s(
-                                                          _vm.toFormatDateShortTH(
-                                                            item.date2
-                                                          )
-                                                        ) +
-                                                        "\n                  "
-                                                    ),
-                                                  ]
-                                                },
-                                              },
-                                              {
-                                                key: "item.title",
-                                                fn: function (ref) {
-                                                  var item = ref.item
-                                                  return [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        "ประเภทแหล่งทุน :"
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      "\n                    " +
-                                                        _vm._s(
-                                                          _vm.fetchParameterByGroupKey(
-                                                            _vm.parameter,
-                                                            "funding_type_group",
-                                                            item.type
-                                                          )
-                                                        ) +
-                                                        "\n                    "
-                                                    ),
-                                                    _c("br"),
-                                                    _vm._v(
-                                                      "\n                    " +
-                                                        _vm._s(
-                                                          _vm.fetchParameterByGroupKey(
-                                                            _vm.parameter,
-                                                            item.type,
-                                                            item.source_capital
-                                                          )
-                                                        ) +
-                                                        "\n                    "
-                                                    ),
-                                                    _c("br"),
-                                                    _vm._v(
-                                                      "\n                    " +
-                                                        _vm._s(
-                                                          _vm.fetchParameterByGroupKey(
-                                                            _vm.parameter,
-                                                            "funding_level_group",
-                                                            item.capital_level
-                                                          )
-                                                        ) +
-                                                        "\n                  "
-                                                    ),
-                                                  ]
-                                                },
-                                              },
-                                              {
-                                                key: "item.price",
-                                                fn: function (ref) {
-                                                  var item = ref.item
-                                                  return [
-                                                    _vm._v(
-                                                      "\n                    " +
-                                                        _vm._s(
-                                                          _vm.toFixedNumber(
-                                                            item.amount
-                                                          )
-                                                        ) +
-                                                        "\n                  "
-                                                    ),
-                                                  ]
-                                                },
-                                              },
-                                            ],
-                                            null,
-                                            true
-                                          ),
-                                        },
+                            _vm.search_research_by_id.research_fundings.length >
+                            0
+                              ? [
+                                  _c(
+                                    "v-data-table",
+                                    {
+                                      attrs: {
+                                        headers: _vm.headers_research_fundings,
+                                        items:
+                                          _vm.search_research_by_id
+                                            .research_fundings,
+                                        "hide-default-footer": "",
+                                      },
+                                      scopedSlots: _vm._u(
                                         [
-                                          _vm._v(" "),
-                                          _vm._v(" "),
-                                          _vm._v(" "),
-                                          _vm._v(" "),
-                                          _c(
-                                            "template",
-                                            { slot: "body.append" },
-                                            [
-                                              _c("tr", [
-                                                _c("th"),
-                                                _vm._v(" "),
-                                                _c("th"),
-                                                _vm._v(" "),
-                                                _c("th", [
-                                                  _vm._v("รวมจำนวนเงิน"),
+                                          {
+                                            key: "item.count",
+                                            fn: function (ref) {
+                                              var index = ref.index
+                                              return [
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(index + 1) +
+                                                    "\n                "
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                          {
+                                            key: "item.year",
+                                            fn: function (ref) {
+                                              var item = ref.item
+                                              return [
+                                                _vm._v(
+                                                  "\n                  ปีงบประมาณ : " +
+                                                    _vm._s(item.year) +
+                                                    " "
+                                                ),
+                                                _c("br"),
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(
+                                                      _vm.toFormatDateShortTH(
+                                                        item.date1
+                                                      )
+                                                    ) +
+                                                    " ถึง\n                  " +
+                                                    _vm._s(
+                                                      _vm.toFormatDateShortTH(
+                                                        item.date2
+                                                      )
+                                                    ) +
+                                                    "\n                "
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                          {
+                                            key: "item.title",
+                                            fn: function (ref) {
+                                              var item = ref.item
+                                              return [
+                                                _c("strong", [
+                                                  _vm._v("ประเภทแหล่งทุน :"),
                                                 ]),
-                                                _vm._v(" "),
-                                                _c("th", [
-                                                  _vm._v(
-                                                    "\n                        " +
-                                                      _vm._s(
-                                                        _vm.toFixedNumber(
-                                                          _vm.search_research_by_id.research_fundings.reduce(
-                                                            function (t, n) {
-                                                              return (
-                                                                t +
-                                                                Number(n.amount)
-                                                              )
-                                                            },
-                                                            0
-                                                          )
-                                                        )
-                                                      ) +
-                                                      "\n                      "
-                                                  ),
-                                                ]),
-                                              ]),
-                                            ]
-                                          ),
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(
+                                                      _vm.fetchParameterByGroupKey(
+                                                        _vm.parameter,
+                                                        "funding_type_group",
+                                                        item.type
+                                                      )
+                                                    ) +
+                                                    "\n                  "
+                                                ),
+                                                _c("br"),
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(
+                                                      _vm.fetchParameterByGroupKey(
+                                                        _vm.parameter,
+                                                        item.type,
+                                                        item.source_capital
+                                                      )
+                                                    ) +
+                                                    "\n                  "
+                                                ),
+                                                _c("br"),
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(
+                                                      _vm.fetchParameterByGroupKey(
+                                                        _vm.parameter,
+                                                        "funding_level_group",
+                                                        item.capital_level
+                                                      )
+                                                    ) +
+                                                    "\n                "
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                          {
+                                            key: "item.price",
+                                            fn: function (ref) {
+                                              var item = ref.item
+                                              return [
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(
+                                                      _vm.toFixedNumber(
+                                                        item.amount
+                                                      )
+                                                    ) +
+                                                    "\n                "
+                                                ),
+                                              ]
+                                            },
+                                          },
                                         ],
-                                        2
+                                        null,
+                                        true
+                                      ),
+                                    },
+                                    [
+                                      _vm._v(" "),
+                                      _vm._v(" "),
+                                      _vm._v(" "),
+                                      _vm._v(" "),
+                                      _c("template", { slot: "body.append" }, [
+                                        _c("tr", [
+                                          _c("th"),
+                                          _vm._v(" "),
+                                          _c("th"),
+                                          _vm._v(" "),
+                                          _c("th", [_vm._v("รวมจำนวนเงิน")]),
+                                          _vm._v(" "),
+                                          _c("th", [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(
+                                                  _vm.toFixedNumber(
+                                                    _vm.search_research_by_id.research_fundings.reduce(
+                                                      function (t, n) {
+                                                        return (
+                                                          t + Number(n.amount)
+                                                        )
+                                                      },
+                                                      0
+                                                    )
+                                                  )
+                                                ) +
+                                                "\n                    "
+                                            ),
+                                          ]),
+                                        ]),
+                                      ]),
+                                    ],
+                                    2
+                                  ),
+                                ]
+                              : [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pa-4 grey lighten-2 rounded-lg text-center",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย\n              "
                                       ),
                                     ]
-                                  : [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "pa-4 grey lighten-2 rounded-lg text-center",
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                  ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย\n                "
-                                          ),
-                                        ]
-                                      ),
-                                    ],
-                              ],
-                              2
-                            ),
+                                  ),
+                                ],
                           ],
-                          1
+                          2
                         ),
                       ],
                       1
@@ -1917,208 +1903,197 @@ var render = function () {
                         _c(
                           "v-col",
                           [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _vm.search_research_by_id.research_presentations
-                                  .length > 0
-                                  ? [
-                                      _c("v-data-table", {
-                                        attrs: {
-                                          headers:
-                                            _vm.headers_research_presentations,
-                                          items:
-                                            _vm.search_research_by_id
-                                              .research_presentations,
+                            _vm.search_research_by_id.research_presentations
+                              .length > 0
+                              ? [
+                                  _c("v-data-table", {
+                                    attrs: {
+                                      headers:
+                                        _vm.headers_research_presentations,
+                                      items:
+                                        _vm.search_research_by_id
+                                          .research_presentations,
+                                      "hide-default-footer": "",
+                                    },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "item.count",
+                                          fn: function (ref) {
+                                            var index = ref.index
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(index + 1) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
                                         },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "item.count",
-                                              fn: function (ref) {
-                                                var index = ref.index
-                                                return [
-                                                  _vm._v(
-                                                    "\n                    " +
-                                                      _vm._s(index + 1) +
-                                                      "\n                  "
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                            {
-                                              key: "item.research_presentation_date",
-                                              fn: function (ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _vm._v(
-                                                    "\n                    " +
+                                        {
+                                          key: "item.research_presentation_date",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(
+                                                    _vm.toFormatDateShortTH(
+                                                      item.research_presentation_date
+                                                    )
+                                                  ) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                        {
+                                          key: "item.description",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _c(
+                                                "v-row",
+                                                [
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        " รูปแบบการนำเสนอ : "
+                                                      ),
+                                                    ]),
+                                                    _vm._v(
                                                       _vm._s(
-                                                        _vm.toFormatDateShortTH(
-                                                          item.research_presentation_date
+                                                        _vm.fetchParameterByGroupKey(
+                                                          _vm.parameter,
+                                                          "presentations_type_group",
+                                                          item.presentation_style
                                                         )
                                                       ) +
-                                                      "\n                  "
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                            {
-                                              key: "item.description",
-                                              fn: function (ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _c(
-                                                    "v-row",
-                                                    [
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " รูปแบบการนำเสนอ : "
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm.fetchParameterByGroupKey(
-                                                              _vm.parameter,
-                                                              "presentations_type_group",
-                                                              item.presentation_style
-                                                            )
-                                                          ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " ประเภทงานวิชาการ : "
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          "\n                        " +
-                                                            _vm._s(
-                                                              _vm.fetchParameterByGroupKey(
-                                                                _vm.parameter,
-                                                                "presentations_academic_type_group",
-                                                                item.academic_work
-                                                              )
-                                                            ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " ชื่อวิชาการ : "
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          "\n                        " +
-                                                            _vm._s(
-                                                              item.academic_name
-                                                            ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                    ],
-                                                    1
-                                                  ),
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
                                                   _vm._v(" "),
-                                                  _c(
-                                                    "v-row",
-                                                    [
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " สถานที่นำเสนอ : "
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            item.place_presentation
-                                                          ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " ระดับการนำเสนอ : "
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          "\n                        " +
-                                                            _vm._s(
-                                                              _vm.fetchParameterByGroupKey(
-                                                                _vm.parameter,
-                                                                "presentation_level_group",
-                                                                item.presentation_level
-                                                              )
-                                                            ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " ชื่อหน่วยงานที่่จัด : "
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          "\n                        " +
-                                                            _vm._s(
-                                                              item.organization_name
-                                                            ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                    ],
-                                                    1
-                                                  ),
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        " ประเภทงานวิชาการ : "
+                                                      ),
+                                                    ]),
+                                                    _vm._v(
+                                                      "\n                      " +
+                                                        _vm._s(
+                                                          _vm.fetchParameterByGroupKey(
+                                                            _vm.parameter,
+                                                            "presentations_academic_type_group",
+                                                            item.academic_work
+                                                          )
+                                                        ) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
                                                   _vm._v(" "),
-                                                  _c("br"),
-                                                ]
-                                              },
-                                            },
-                                          ],
-                                          null,
-                                          true
-                                        ),
-                                      }),
-                                    ]
-                                  : [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "pa-4 grey lighten-2 rounded-lg text-center",
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(" ชื่อวิชาการ : "),
+                                                    ]),
+                                                    _vm._v(
+                                                      "\n                      " +
+                                                        _vm._s(
+                                                          item.academic_name
+                                                        ) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-row",
+                                                [
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        " สถานที่นำเสนอ : "
+                                                      ),
+                                                    ]),
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        item.place_presentation
+                                                      ) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        " ระดับการนำเสนอ : "
+                                                      ),
+                                                    ]),
+                                                    _vm._v(
+                                                      "\n                      " +
+                                                        _vm._s(
+                                                          _vm.fetchParameterByGroupKey(
+                                                            _vm.parameter,
+                                                            "presentation_level_group",
+                                                            item.presentation_level
+                                                          )
+                                                        ) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        " ชื่อหน่วยงานที่่จัด : "
+                                                      ),
+                                                    ]),
+                                                    _vm._v(
+                                                      "\n                      " +
+                                                        _vm._s(
+                                                          item.organization_name
+                                                        ) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c("br"),
+                                            ]
+                                          },
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                  ไม่มีข้อมูลการนำเสนองานวิจัย\n                "
-                                          ),
-                                        ]
+                                      ],
+                                      null,
+                                      true
+                                    ),
+                                  }),
+                                ]
+                              : [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pa-4 grey lighten-2 rounded-lg text-center",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                ไม่มีข้อมูลการนำเสนองานวิจัย\n              "
                                       ),
-                                    ],
-                              ],
-                              2
-                            ),
+                                    ]
+                                  ),
+                                ],
                           ],
-                          1
+                          2
                         ),
                       ],
                       1
@@ -2138,166 +2113,154 @@ var render = function () {
                         _c(
                           "v-col",
                           [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _vm.search_research_by_id.research_publications
-                                  .length > 0
-                                  ? [
-                                      _c("v-data-table", {
-                                        attrs: {
-                                          headers:
-                                            _vm.headers_research_publications,
-                                          items:
-                                            _vm.search_research_by_id
-                                              .research_publications,
+                            _vm.search_research_by_id.research_publications
+                              .length > 0
+                              ? [
+                                  _c("v-data-table", {
+                                    attrs: {
+                                      headers:
+                                        _vm.headers_research_publications,
+                                      items:
+                                        _vm.search_research_by_id
+                                          .research_publications,
+                                      "hide-default-footer": "",
+                                    },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "item.count",
+                                          fn: function (ref) {
+                                            var index = ref.index
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(index + 1) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
                                         },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "item.count",
-                                              fn: function (ref) {
-                                                var index = ref.index
-                                                return [
-                                                  _vm._v(
-                                                    "\n                    " +
-                                                      _vm._s(index + 1) +
-                                                      "\n                  "
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                            {
-                                              key: "item.publication_date",
-                                              fn: function (ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _vm._v(
-                                                    "\n                    " +
+                                        {
+                                          key: "item.publication_date",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(
+                                                    _vm.toFormatDateShortTH(
+                                                      item.publication_date
+                                                    )
+                                                  ) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                        {
+                                          key: "item.description",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  "\n                    " +
+                                                    _vm._s(
+                                                      _vm.search_research_by_id
+                                                        .title_name_en
+                                                    ) +
+                                                    "\n                  "
+                                                ),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c("strong", [
+                                                _vm._v(" วารสารที่ตีพิมพ์ : "),
+                                              ]),
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(item.title_th) +
+                                                  "\n                  "
+                                              ),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-row",
+                                                [
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(" ฉบับที่ : "),
+                                                    ]),
+                                                    _vm._v(
+                                                      _vm._s(item.no) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(" หน้า : "),
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          item.page_number
+                                                        ) +
+                                                        "\n                      "
+                                                    ),
+                                                    _c("br"),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("v-col", [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        " ระดับการนำเสนอ :"
+                                                      ),
+                                                    ]),
+                                                    _vm._v(
                                                       _vm._s(
-                                                        _vm.toFormatDateShortTH(
-                                                          item.publication_date
+                                                        _vm.fetchParameterByGroupKey(
+                                                          _vm.parameter,
+                                                          "presentation_level_group",
+                                                          item.presentation_level
                                                         )
                                                       ) +
-                                                      "\n                  "
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                            {
-                                              key: "item.description",
-                                              fn: function (ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _c("strong", [
-                                                    _vm._v(
-                                                      "\n                      " +
-                                                        _vm._s(
-                                                          _vm
-                                                            .search_research_by_id
-                                                            .title_name_en
-                                                        ) +
-                                                        "\n                    "
+                                                        "\n                      "
                                                     ),
+                                                    _c("br"),
                                                   ]),
-                                                  _vm._v(" "),
-                                                  _c("br"),
-                                                  _vm._v(" "),
-                                                  _c("strong", [
-                                                    _vm._v(
-                                                      " วารสารที่ตีพิมพ์ : "
-                                                    ),
-                                                  ]),
-                                                  _vm._v(
-                                                    " " +
-                                                      _vm._s(item.title_th) +
-                                                      "\n                    "
-                                                  ),
-                                                  _c("br"),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "v-row",
-                                                    [
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(" ฉบับที่ : "),
-                                                        ]),
-                                                        _vm._v(
-                                                          _vm._s(item.no) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(" หน้า : "),
-                                                        ]),
-                                                        _vm._v(
-                                                          " " +
-                                                            _vm._s(
-                                                              item.page_number
-                                                            ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("v-col", [
-                                                        _c("strong", [
-                                                          _vm._v(
-                                                            " ระดับการนำเสนอ :"
-                                                          ),
-                                                        ]),
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm.fetchParameterByGroupKey(
-                                                              _vm.parameter,
-                                                              "presentation_level_group",
-                                                              item.presentation_level
-                                                            )
-                                                          ) +
-                                                            "\n                        "
-                                                        ),
-                                                        _c("br"),
-                                                      ]),
-                                                    ],
-                                                    1
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("br"),
-                                                ]
-                                              },
-                                            },
-                                          ],
-                                          null,
-                                          true
-                                        ),
-                                      }),
-                                    ]
-                                  : [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "pa-4 grey lighten-2 rounded-lg text-center",
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c("br"),
+                                            ]
+                                          },
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                  ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย\n                "
-                                          ),
-                                        ]
+                                      ],
+                                      null,
+                                      true
+                                    ),
+                                  }),
+                                ]
+                              : [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pa-4 grey lighten-2 rounded-lg text-center",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย\n              "
                                       ),
-                                    ],
-                              ],
-                              2
-                            ),
+                                    ]
+                                  ),
+                                ],
                           ],
-                          1
+                          2
                         ),
                       ],
                       1
@@ -2317,131 +2280,121 @@ var render = function () {
                         _c(
                           "v-col",
                           [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _vm.search_research_by_id.research_benefits
-                                  .length > 0
-                                  ? [
-                                      _c("v-data-table", {
-                                        attrs: {
-                                          headers:
-                                            _vm.headers_research_benefits,
-                                          items:
-                                            _vm.search_research_by_id
-                                              .research_benefits,
-                                        },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "item.count",
-                                              fn: function (ref) {
-                                                var index = ref.index
-                                                return [
-                                                  _vm._v(
-                                                    "\n                    " +
-                                                      _vm._s(index + 1) +
-                                                      "\n                  "
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                            {
-                                              key: "item.date_reference",
-                                              fn: function (ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _vm._v(
-                                                    "\n                    " +
-                                                      _vm._s(
-                                                        _vm.toFormatDateShortTH(
-                                                          item.date_reference
-                                                        )
-                                                      ) +
-                                                      "\n                  "
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                            {
-                                              key: "item.description",
-                                              fn: function (ref) {
-                                                var item = ref.item
-                                                return [
-                                                  _c("strong", [
-                                                    _vm._v(
-                                                      " ชื่อผู้วิจัยที่นำไปอ้างอิง : "
-                                                    ),
-                                                  ]),
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      item.research_name_reference
-                                                    ) + "\n                    "
-                                                  ),
-                                                  _c("br"),
-                                                  _vm._v(" "),
-                                                  _c("strong", [
-                                                    _vm._v(
-                                                      " ชื่อภาษาไทย/Research Name : "
-                                                    ),
-                                                  ]),
-                                                  _vm._v(
-                                                    _vm._s(item.research_name) +
-                                                      "\n                    "
-                                                  ),
-                                                  _c("br"),
-                                                  _vm._v(" "),
-                                                  _c("strong", [
-                                                    _vm._v(" URL เชื่อมโยง : "),
-                                                  ]),
-                                                  _vm._v(
-                                                    _vm._s(item.url) +
-                                                      "\n                    "
-                                                  ),
-                                                  _c("br"),
-                                                  _vm._v(" "),
-                                                  _c("strong", [
-                                                    _vm._v(
-                                                      " การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : "
-                                                    ),
-                                                  ]),
-                                                  _vm._v(
-                                                    _vm._s(item.reference) +
-                                                      "\n                    "
-                                                  ),
-                                                  _c("br"),
-                                                ]
-                                              },
-                                            },
-                                          ],
-                                          null,
-                                          true
-                                        ),
-                                      }),
-                                    ]
-                                  : [
-                                      _c(
-                                        "div",
+                            _vm.search_research_by_id.research_benefits.length >
+                            0
+                              ? [
+                                  _c("v-data-table", {
+                                    attrs: {
+                                      headers: _vm.headers_research_benefits,
+                                      items:
+                                        _vm.search_research_by_id
+                                          .research_benefits,
+                                      "hide-default-footer": "",
+                                    },
+                                    scopedSlots: _vm._u(
+                                      [
                                         {
-                                          staticClass:
-                                            "pa-4 grey lighten-2 rounded-lg text-center",
+                                          key: "item.count",
+                                          fn: function (ref) {
+                                            var index = ref.index
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(index + 1) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                  ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์\n                "
-                                          ),
-                                        ]
+                                        {
+                                          key: "item.date_reference",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(
+                                                    _vm.toFormatDateShortTH(
+                                                      item.date_reference
+                                                    )
+                                                  ) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          },
+                                        },
+                                        {
+                                          key: "item.description",
+                                          fn: function (ref) {
+                                            var item = ref.item
+                                            return [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  " ชื่อผู้วิจัยที่นำไปอ้างอิง : "
+                                                ),
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  item.research_name_reference
+                                                ) + "\n                  "
+                                              ),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c("strong", [
+                                                _vm._v(
+                                                  " ชื่อภาษาไทย/Research Name : "
+                                                ),
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(item.research_name) +
+                                                  "\n                  "
+                                              ),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c("strong", [
+                                                _vm._v(" URL เชื่อมโยง : "),
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(item.url) +
+                                                  "\n                  "
+                                              ),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c("strong", [
+                                                _vm._v(
+                                                  " การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : "
+                                                ),
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(item.reference) +
+                                                  "\n                  "
+                                              ),
+                                              _c("br"),
+                                            ]
+                                          },
+                                        },
+                                      ],
+                                      null,
+                                      true
+                                    ),
+                                  }),
+                                ]
+                              : [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pa-4 grey lighten-2 rounded-lg text-center",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์\n              "
                                       ),
-                                    ],
-                              ],
-                              2
-                            ),
+                                    ]
+                                  ),
+                                ],
                           ],
-                          1
+                          2
                         ),
                       ],
                       1

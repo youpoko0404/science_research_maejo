@@ -9,6 +9,7 @@ use App\Models\ResearchFundings;
 use App\Models\ResearchPresentations;
 use App\Models\ResearchPublications;
 use App\Models\ResearchBenefits;
+use App\Models\ResearchSeconds;
 
 class ResearchController extends Controller
 {
@@ -46,12 +47,14 @@ class ResearchController extends Controller
         $research_presentations = ResearchPresentations::where('research_id', '=', $id)->get();
         $research_publications = ResearchPublications::where('research_id', '=', $id)->get();
         $research_benefits = ResearchBenefits::where('research_id', '=', $id)->get();
+        $research_seconds = ResearchSeconds::where('research_id', '=', $id)->get();
 
         if ($research && $research->created_by == auth()->user()->id) {
             $research['research_fundings'] = $research_funding;
             $research['research_presentations'] = $research_presentations;
             $research['research_publications'] = $research_publications;
             $research['research_benefits'] = $research_benefits;
+            $research['research_seconds'] = $research_seconds;
             return response()->json([
                 'success' => true,
                 'message' => 'Successfully',
@@ -78,6 +81,19 @@ class ResearchController extends Controller
                 'research_reference_path' => $this->uploadFile($request->file('research_reference_path'), $research->id)['name'] ?? null,
             ]
         );
+
+        if ($request->research_seconds) {
+            foreach (json_decode($request->research_seconds) as $seconds) {
+                $research_seconds = new ResearchSeconds;
+                $research_seconds->research_id = $research->id;
+                $research_seconds->research_second_name = $seconds->research_second_name;
+                $research_seconds->research_second_group = $seconds->research_second_group;
+                $research_seconds->research_second_branch = $seconds->research_second_branch;
+                $research_seconds->research_second_position = $seconds->research_second_position;
+                $research_seconds->research_second_responsible = $seconds->research_second_responsible;
+                $research_seconds->save();
+            }
+        }
 
         if ($request->research_fundings) {
             foreach (json_decode($request->research_fundings) as $funding) {
@@ -159,24 +175,21 @@ class ResearchController extends Controller
         $research->keyword_name_en = $request->keyword_name_en;
         $research->ref_code_nr = $request->ref_code_nr;
         $research->ref_code_university = $request->ref_code_university;
-        $research->research_period = $request->research_period;
+        $research->research_period_start = $request->research_period_start;
+        $research->research_period_end = $request->research_period_end;
         $research->research_model = $request->research_model;
         $research->research_type = $request->research_type;
         $research->research_branch = $request->research_branch;
-        $research->research_branch_main = $request->research_branch_main;
         $research->research_activities = $request->research_activities;
         $research->road_map = $request->road_map;
         $research->research_status = $request->research_status;
         $research->research_project_type = $request->research_project_type;
         $research->research_nature = $request->research_nature;
         $research->research_main_name = $request->research_main_name;
-        $research->research_main_address = $request->research_main_address;
+        $research->research_main_group = $request->research_main_group;
+        $research->research_main_branch = $request->research_main_branch;
         $research->research_main_position = $request->research_main_position;
         $research->research_main_responsible = $request->research_main_responsible;
-        $research->research_second_name = $request->research_second_name;
-        $research->research_second_address = $request->research_second_address;
-        $research->research_second_position = $request->research_second_position;
-        $research->research_second_responsible = $request->research_second_responsible;
         $research->research_consultant = $request->research_consultant;
         $research->research_operation = $request->research_operation;
         $research->research_objective = $request->research_objective;
@@ -189,6 +202,21 @@ class ResearchController extends Controller
         $research->research_reference = $request->research_reference;
         $research->updated_at = $request->updated_at;
         $research->update();
+
+        if ($request->research_seconds) {
+            ResearchSeconds::where('research_id', $research->id)->delete();
+            $ResearchIdDelete = ResearchSeconds::all()->pluck('id', 'id');
+            foreach (json_decode($request->research_seconds) as $seconds) {
+                $research_seconds = new ResearchSeconds;
+                $research_seconds->research_id = $research->id;
+                $research_seconds->research_second_name = $seconds->research_second_name;
+                $research_seconds->research_second_group = $seconds->research_second_group;
+                $research_seconds->research_second_branch = $seconds->research_second_branch;
+                $research_seconds->research_second_position = $seconds->research_second_position;
+                $research_seconds->research_second_responsible = $seconds->research_second_responsible;
+                $research_seconds->save();
+            }
+        }
 
         if ($request->research_fundings) {
             ResearchFundings::where('research_id', $research->id)->delete();
@@ -244,7 +272,7 @@ class ResearchController extends Controller
             }
         }
 
-        if ($request->research_presentations) {            
+        if ($request->research_presentations) {
             $ResearchIdDelete = ResearchPresentations::all()->pluck('id', 'id');
             foreach (json_decode($request->research_presentations) as $presentation) {
                 $ResearchPresentationsWhere = [

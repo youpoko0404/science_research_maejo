@@ -167,15 +167,73 @@
             <v-col cols="auto">
               <v-subheader class="mt-2">ช่วงเวลาวิจัย : </v-subheader>
             </v-col>
-            <v-col>
-              <v-text-field
+            <v-col cols="3">
+              <v-menu
+                v-model="datePicker_date7"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    color="green darken-3"
+                    v-model="request.research_period_start"
+                    prepend-icon="mdi-calendar"
+                    placeholder="วันที่เริ่มการวิจัย"
+                    v-bind="attrs"
+                    v-on="on"
+                    :rules="rules.requiredDateTime"
+                    required
+                  >
+                  </v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="dateNow_date_7"
+                  no-title
+                  @input="datePicker_date7 = false"
+                >
+                </v-date-picker>
+              </v-menu>
+            </v-col>
+            <v-col cols="3">
+              <v-menu
+                v-model="datePicker_date8"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    color="green darken-3"
+                    v-model="request.research_period_end"
+                    prepend-icon="mdi-calendar"
+                    v-bind="attrs"
+                    v-on="on"
+                    placeholder="วันสิ้นสุดการวิจัย"
+                    :rules="rules.requiredDateTime"
+                    required
+                  >
+                  </v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="dateNow_date_8"
+                  no-title
+                  @input="datePicker_date8 = false"
+                >
+                </v-date-picker>
+              </v-menu>
+              <!-- <v-text-field
                 label="ช่วงเวลาวิจัย"
                 color="green darken-3"
                 v-model="request.research_period"
                 :rules="rules.required"
                 required
               >
-              </v-text-field>
+              </v-text-field> -->
             </v-col>
           </v-row>
           <v-row>
@@ -210,27 +268,11 @@
           </v-row>
           <v-row>
             <v-col cols="auto">
-              <v-subheader class="mt-2">ระดับสาขางานวิจัย : </v-subheader>
-            </v-col>
-            <v-col>
-              <v-select
-                :items="parameter.branch_main_group"
-                color="green darken-3"
-                item-text="value_ref"
-                item-value="value"
-                label="สาขางานวิจัย"
-                v-model="request.research_branch_main"
-                :rules="rules.required"
-                required
-              >
-              </v-select>
-            </v-col>
-            <v-col cols="auto">
               <v-subheader class="mt-2">สาขางานวิจัย : </v-subheader>
             </v-col>
             <v-col>
               <v-select
-                :items="parameter[request.research_branch_main]"
+                :items="parameter.branch_group"
                 color="green darken-3"
                 item-text="value_ref"
                 item-value="value"
@@ -278,14 +320,20 @@
               <v-subheader class="mt-2">สถานะงานวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field
-                label="สถานะงานวิจัย"
+              <v-select
+                :items="[
+                  { text: 'กำลังดำเนินการ' },
+                  { text: 'ดำเนินการเสร็จสมบูรณ์แล้ว' },
+                ]"
                 color="green darken-3"
+                item-text="text"
+                item-value="text"
+                label="สถานะงานวิจัย"
                 v-model="request.research_status"
                 :rules="rules.required"
                 required
               >
-              </v-text-field>
+              </v-select>
             </v-col>
           </v-row>
           <v-row>
@@ -293,14 +341,17 @@
               <v-subheader class="mt-2">ประเภทโครงการวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field
-                label="ประเภทโครงการวิจัย"
+              <v-select
+                :items="[{ text: 'โครงการเดี่ยว' }, { text: 'ชุดโครงการ' }]"
                 color="green darken-3"
+                item-text="text"
+                item-value="text"
+                label="ประเภทโครงการวิจัย"
                 v-model="request.research_project_type"
                 :rules="rules.required"
                 required
               >
-              </v-text-field>
+              </v-select>
             </v-col>
           </v-row>
           <v-row>
@@ -308,14 +359,17 @@
               <v-subheader class="mt-2">ลักษณะโครงการวิจัย : </v-subheader>
             </v-col>
             <v-col>
-              <v-text-field
-                label="ลักษณะโครงการวิจัย"
+              <v-select
+                :items="[{ text: 'โครงการใหม่' }, { text: 'โครงการต่อเนื่อง' }]"
                 color="green darken-3"
+                item-text="text"
+                item-value="text"
+                label="ลักษณะโครงการวิจัย"
                 v-model="request.research_nature"
                 :rules="rules.required"
                 required
               >
-              </v-text-field>
+              </v-select>
             </v-col>
           </v-row>
         </div>
@@ -346,13 +400,26 @@
               </v-row>
               <v-row>
                 <v-col cols="auto">
-                  <v-subheader class="mt-2">สังกัด : </v-subheader>
+                  <v-subheader class="mt-2">คณะ : </v-subheader>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    label="สังกัด"
+                    label="คณะ"
                     color="green darken-3"
-                    v-model="request.research_main_address"
+                    v-model="request.research_main_group"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">สาขา : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="สาขา"
+                    color="green darken-3"
+                    v-model="request.research_main_branch"
                     :rules="rules.required"
                     required
                   >
@@ -392,7 +459,111 @@
               </v-row>
             </v-col>
             <v-col>
-              <div style="font-size: 20px">ผู้วิจัยรอง</div>
+              <div class="d-flex mb-6" color="grey lighten-2" flat tile>
+                <div class="h3 pa-2 mr-auto" style="font-size: 20px">
+                  ผู้วิจัยรอง
+                </div>
+                <template v-if="request.research_seconds.length > 0">
+                  <v-btn
+                    class="pa-2 error mr-2"
+                    @click="request.research_seconds = []"
+                  >
+                    ล้างค่า
+                  </v-btn>
+                </template>
+                <v-btn
+                  class="pa-2 primary"
+                  @click="
+                    () => {
+                      editedIndex = -1;
+                      dialog.research_seconds = true;
+                    }
+                  "
+                >
+                  เพิ่มผู้วิจัยรอง</v-btn
+                >
+              </div>
+              <template v-if="request.research_seconds.length > 0">
+                <v-data-table
+                  :headers="headers_research_owner"
+                  :items="request.research_seconds"
+                >
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:[`item.research_name`]="{ item }">
+                    <strong>{{ item.research_second_name }}</strong> <br />
+                    คณะ {{ item.research_second_group }} <br />
+                    สาขา {{ item.research_second_branch }} <br />
+                  </template>
+                  <template v-slot:[`item.position`]="{ item }">
+                    {{ item.research_second_position }}
+                  </template>
+                  <template v-slot:[`item.percent`]="{ item }">
+                    {{ `${item.research_second_responsible}%` }}
+                  </template>
+                  <template v-slot:[`item.actions`]="{ item }">
+                    <v-btn
+                      class="pa-2 error mr-2"
+                      @click="
+                        () => {
+                          onClickManageResearchSecond(item, 'delete');
+                        }
+                      "
+                    >
+                      ลบ</v-btn
+                    >
+                    <v-btn
+                      class="pa-2 primary"
+                      @click="
+                        () => {
+                          onClickManageResearchSecond(item, null);
+                          dialog.research_seconds = true;
+                        }
+                      "
+                    >
+                      แก้ไข</v-btn
+                    >
+                  </template>
+                </v-data-table>
+                <!-- <v-data-table
+                  :headers="headers_research_second"
+                  :items="request.research_second"
+                >
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:[`item.actions`]="{ item }">
+                    <v-btn
+                      class="pa-2 error mr-2"
+                      @click="
+                        () => {
+                          onClickManageResearchSecond(item, 'delete');
+                        }
+                      "
+                    >
+                      ลบ</v-btn
+                    >
+                    <v-btn
+                      class="pa-2 primary"
+                      @click="
+                        () => {
+                          onClickManageResearchSecond(item, null);
+                          dialog.research_fundings = true;
+                        }
+                      "
+                    >
+                      แก้ไข</v-btn
+                    >
+                  </template>
+                </v-data-table> -->
+              </template>
+              <template v-else>
+                <div class="pa-4 grey lighten-2 rounded-lg text-center">
+                  -- ไม่ระบุ --
+                </div>
+              </template>
+              <!-- <div style="font-size: 20px">ผู้วิจัยรอง</div>
               <v-row>
                 <v-col cols="auto">
                   <v-subheader class="mt-2">ชื่อผู้วิจัย : </v-subheader>
@@ -402,23 +573,30 @@
                     label="ชื่อผู้วิจัย"
                     color="green darken-3"
                     v-model="request.research_second_name"
-                    :rules="rules.required"
-                    required
                   >
                   </v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="auto">
-                  <v-subheader class="mt-2">สังกัด : </v-subheader>
+                  <v-subheader class="mt-2">คณะ : </v-subheader>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    label="สังกัด"
+                    label="คณะ"
                     color="green darken-3"
-                    v-model="request.research_second_address"
-                    :rules="rules.required"
-                    required
+                    v-model="request.research_second_group"
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">สาขา : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="สาขา"
+                    color="green darken-3"
+                    v-model="request.research_second_branch"
                   >
                   </v-text-field>
                 </v-col>
@@ -432,8 +610,6 @@
                     label="ตำแหน่งงานวิจัย"
                     color="green darken-3"
                     v-model="request.research_second_position"
-                    :rules="rules.required"
-                    required
                   >
                   </v-text-field>
                 </v-col>
@@ -447,13 +623,11 @@
                     label="ร้อยละความรับผิดชอบ"
                     color="green darken-3"
                     v-model="request.research_second_responsible"
-                    :rules="rules.requiredNumber"
-                    required
                     type="number"
                   >
                   </v-text-field>
                 </v-col>
-              </v-row>
+              </v-row> -->
             </v-col>
           </div>
         </div>
@@ -465,14 +639,17 @@
             </div>
           </div>
           <v-row>
-            <v-text-field
-              label="ที่ปรึกษางานวิจัย"
+            <v-select
+              :items="[{ text: 'ภายใน' }, { text: 'ภายนอก' }]"
               color="green darken-3"
+              item-text="text"
+              item-value="text"
+              label="ที่ปรึกษางานวิจัย"
               v-model="request.research_consultant"
               :rules="rules.required"
               required
             >
-            </v-text-field>
+            </v-select>
           </v-row>
         </div>
         <br />
@@ -1892,6 +2069,124 @@
     </div>
 
     <div class="text-center">
+      <v-dialog v-model="dialog.research_seconds" width="900">
+        <v-form ref="research_seconds">
+          <v-card>
+            <v-card-title class="grey lighten-2 mb-2">
+              เพิ่มผู้วิจัยรอง
+            </v-card-title>
+            <v-card-text>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ชื่อผู้วิจัย : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ชื่อผู้วิจัย"
+                    color="green darken-3"
+                    v-model="research_seconds.research_second_name"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">คณะ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="คณะ"
+                    color="green darken-3"
+                    v-model="research_seconds.research_second_group"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">สาขา : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="สาขา"
+                    color="green darken-3"
+                    v-model="research_seconds.research_second_branch"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ตำแหน่งงานวิจัย : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ตำแหน่งงานวิจัย"
+                    color="green darken-3"
+                    v-model="research_seconds.research_second_position"
+                    :rules="rules.required"
+                    required
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="auto">
+                  <v-subheader class="mt-2">ร้อยละความรับผิดชอบ : </v-subheader>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="ร้อยละความรับผิดชอบ"
+                    color="green darken-3"
+                    v-model="research_seconds.research_second_responsible"
+                    :rules="rules.requiredNumber"
+                    required
+                    type="number"
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="primary"
+                text
+                @click="
+                  () => {
+                    this.$refs.research_seconds.reset();
+                    dialog.research_seconds = !dialog.research_seconds;
+                  }
+                "
+              >
+                ยกเลิก
+              </v-btn>
+              <v-btn
+                color="primary"
+                text
+                @click="
+                  () => {
+                    this.$refs.research_seconds.validate();
+                    if (this.$refs.research_seconds.validate()) {
+                      onClickResearchSecond();
+                      dialog.research_seconds = !dialog.research_seconds;
+                    }
+                  }
+                "
+              >
+                ยืนยัน
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-form>
+      </v-dialog>
+    </div>
+
+    <div class="text-center">
       <v-dialog v-model="dialog.dialogDelete" max-width="500px">
         <v-card>
           <v-card-title>คุณยืนยันที่จะลบข้อมูลงานวิจัยนี้</v-card-title>
@@ -1944,6 +2239,7 @@ export default {
     editedIndex: -1,
     dialog: {
       dialogDelete: false,
+      research_seconds: false,
       research_fundings: false,
       research_presentations: false,
       research_publications: false,
@@ -1958,24 +2254,21 @@ export default {
       keyword_name_en: "",
       ref_code_nr: "",
       ref_code_university: "",
-      research_period: "",
+      research_period_start: "",
+      research_period_end: "",
       research_model: "",
       research_type: "",
       research_branch: "",
-      research_branch_main: "",
       research_activities: "",
       road_map: "",
       research_status: "",
       research_project_type: "",
       research_nature: "",
       research_main_name: "",
-      research_main_address: "",
+      research_main_group: "",
+      research_main_branch: "",
       research_main_position: "",
       research_main_responsible: "",
-      research_second_name: "",
-      research_second_address: "",
-      research_second_position: "",
-      research_second_responsible: "",
       research_consultant: "",
       research_operation: "",
       research_objective: "",
@@ -1991,8 +2284,18 @@ export default {
       research_publications: [],
       research_publications: [],
       //research_reference: [],
+      research_seconds: [],
       research_reference: "",
     },
+
+    research_seconds: {
+      research_second_name: "",
+      research_second_group: "",
+      research_second_branch: "",
+      research_second_position: "",
+      research_second_responsible: "",
+    },
+
     research_fundings: {
       type: "",
       other_type: "",
@@ -2051,6 +2354,18 @@ export default {
       { text: "จำนวนเงิน/บาท", value: "price" },
       { text: "จัดการ", value: "actions" },
     ],
+    headers_research_owner: [
+      { text: "", value: "count", width: "10px" },
+      {
+        text: "รายชื่อนักวิจัย",
+        value: "research_name",
+        width: "300px",
+        align: "left",
+      },
+      { text: "ตำแหน่งนักวิจัย", value: "position" },
+      { text: "สัดส่วน (%)", value: "percent" },
+      { text: "จัดการ", value: "actions" },
+    ],
     dateNow_date_1: "",
     datePicker_date1: false,
     dateNow_date_2: "",
@@ -2063,6 +2378,10 @@ export default {
     datePicker_date5: false,
     dateNow_date_6: "",
     datePicker_date6: false,
+    dateNow_date_7: "",
+    datePicker_date7: false,
+    dateNow_date_8: "",
+    datePicker_date8: false,
   }),
 
   computed: {
@@ -2104,13 +2423,19 @@ export default {
         this.dateNow_date_6
       );
     },
+    dateNow_date_7() {
+      this.request.research_period_start = dayJs.formatDate(
+        this.dateNow_date_7
+      );
+    },
+    dateNow_date_8() {
+      this.request.research_period_end = dayJs.formatDate(this.dateNow_date_8);
+    },
   },
 
   created() {
     this.fetchParameter([
-      "bachelor_degree_branch_group",
-      "master_degree_branch_group",
-      "doctor_degree_branch_group",
+      "branch_group",
       "research_other_group",
       "branch_main_group",
       "funding_type_group",
@@ -2166,6 +2491,32 @@ export default {
         this.$store.dispatch("research/delete", id).then((response) => {
           if (response.success) window.location.href = `/my-research`;
         });
+      }
+    },
+
+    onClickResearchSecond() {
+      const research_seconds = {};
+      for (const [key, value] of Object.entries(this.research_seconds)) {
+        research_seconds[key] = value;
+      }
+      if (this.editedIndex > -1) {
+        Object.assign(
+          this.request.research_seconds[this.editedIndex],
+          this.research_seconds
+        );
+      } else {
+        this.request.research_seconds.push(research_seconds);
+      }
+      this.$refs.research_seconds.reset();
+    },
+
+    onClickManageResearchSecond(item, action) {
+      if (action == "delete") {
+        this.editedIndex = this.request.research_seconds.indexOf(item);
+        this.request.research_seconds.splice(this.editedIndex, 1);
+      } else {
+        this.editedIndex = this.request.research_seconds.indexOf(item);
+        this.research_seconds = Object.assign({}, item);
       }
     },
 
@@ -2327,7 +2678,8 @@ export default {
           key == "research_benefits" ||
           key == "research_fundings" ||
           key == "research_presentations" ||
-          key == "research_publications"
+          key == "research_publications" ||
+          key == "research_seconds"
         ) {
           if (value) formData.append(key, JSON.stringify(value));
         } else {

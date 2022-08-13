@@ -5616,6 +5616,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -44799,7 +44802,12 @@ var render = function () {
               },
               [
                 _c("v-img", {
-                  attrs: { src: "/images/LogoSci.png", "max-width": "170" },
+                  staticStyle: {
+                    "max-width": "170px",
+                    height: "auto",
+                    width: "100%",
+                  },
+                  attrs: { src: "/images/LogoSci.png" },
                 }),
               ],
               1
