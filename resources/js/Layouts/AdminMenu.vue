@@ -2,7 +2,7 @@
   <div>
     <Loading :loading="loading" />
     <Snackbar />
-    <v-toolbar :height="150" dark prominent src="/images/SideBar.jpg">
+    <v-toolbar :height="200" dark prominent src="/images/SideBar.jpg">
       <v-col align-self="end">
         <div class="d-flex justify-end">
           <div class="pa-3">
@@ -15,11 +15,11 @@
               </v-btn>
             </div>
           </template>
-          <div class="pa-3">
+          <div class="pa-3" style="align-items: center; display: flex">
             <template v-if="user != null">
-              <v-btn style="cursor: auto" text>
+              <div style="cursor: auto" text>
                 บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
-              </v-btn>
+              </div>
             </template>
             <template v-if="user == null">
               <v-btn text @click="redirect('/login')">

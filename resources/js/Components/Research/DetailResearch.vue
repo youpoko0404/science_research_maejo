@@ -613,10 +613,10 @@
                   :headers="headers_research_fundings"
                   :items="request.research_fundings"
                 >
-                  <template v-slot:item.count="{ index }">
+                  <template v-slot:[`item.count`]="{ index }">
                     {{ index + 1 }}
                   </template>
-                  <template v-slot:item.title="{ item }">
+                  <template v-slot:[`item.title`]="{ item }">
                     <strong>{{
                       fetchParameterByGroupKey(
                         parameter,
@@ -641,15 +641,15 @@
                       )
                     }}
                   </template>
-                  <template v-slot:item.year="{ item }">
+                  <template v-slot:[`item.year`]="{ item }">
                     {{ item.year }} <br />
                     {{ formatDate(item.date1) }} -
                     {{ formatDate(item.date2) }}
                   </template>
-                  <template v-slot:item.price="{ item }">
+                  <template v-slot:[`item.price`]="{ item }">
                     {{ item.amount }}
                   </template>
-                  <template v-slot:item.actions="{ item }">
+                  <template v-slot:[`item.actions`]="{ item }">
                     <v-btn
                       class="pa-2 error mr-2"
                       @click="

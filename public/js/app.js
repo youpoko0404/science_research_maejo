@@ -5493,8 +5493,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -44667,14 +44665,7 @@ var render = function () {
     [
       _c(
         "v-toolbar",
-        {
-          attrs: {
-            height: 150,
-            dark: "",
-            prominent: "",
-            src: "https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg",
-          },
-        },
+        { attrs: { height: 200, dark: "", prominent: "", src: "" } },
         [
           _c("v-col", { attrs: { "align-self": "end" } }, [
             _c("div", { staticClass: "d-flex justify-end" }, [
@@ -44703,7 +44694,7 @@ var render = function () {
                 { staticClass: "pa-3" },
                 [
                   _c("v-btn", { attrs: { text: "", to: "/login" } }, [
-                    _vm._v("\n            บุคลากร(เข้าสู่ระบบ)\n          "),
+                    _vm._v(" บุคลากร(เข้าสู่ระบบ) "),
                   ]),
                 ],
                 1
@@ -44751,7 +44742,7 @@ var render = function () {
         "v-toolbar",
         {
           attrs: {
-            height: 150,
+            height: 200,
             dark: "",
             prominent: "",
             src: "/images/SideBar.jpg",
@@ -44805,12 +44796,15 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "pa-3" },
+                  {
+                    staticClass: "pa-3",
+                    staticStyle: { "align-items": "center", display: "flex" },
+                  },
                   [
                     _vm.user != null
                       ? [
                           _c(
-                            "v-btn",
+                            "div",
                             {
                               staticStyle: { cursor: "auto" },
                               attrs: { text: "" },

@@ -22,6 +22,10 @@ var dayJs = {
         const [month, day, year] = date.split("/");
         return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
+    toFormatDateShortTH(date) {
+        if (!date) return null;
+        return dayjs(date).add(543, "year").format("DD/MM/YYYY");
+    },
 };
 
 export default dayJs;

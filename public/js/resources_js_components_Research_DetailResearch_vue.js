@@ -2479,6 +2479,10 @@ var dayJs = {
         year = _date$split2[2];
 
     return "".concat(year, "-").concat(month.padStart(2, "0"), "-").concat(day.padStart(2, "0"));
+  },
+  toFormatDateShortTH: function toFormatDateShortTH(date) {
+    if (!date) return null;
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).add(543, "year").format("DD/MM/YYYY");
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dayJs);
@@ -4410,8 +4414,7 @@ var render = function () {
                                         },
                                       ],
                                       null,
-                                      false,
-                                      46886031
+                                      true
                                     ),
                                   },
                                   [
