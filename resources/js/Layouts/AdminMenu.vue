@@ -2,7 +2,20 @@
   <div>
     <Loading :loading="loading" />
     <Snackbar />
-    <v-toolbar :height="200" dark prominent src="/images/SideBar.jpg">
+    <v-toolbar :height="200" dark prominent src="/images/SideBar.jpeg">
+      <div class="d-flex mb-12" height="180">
+        <div class="pa-2" style="align-items: center; display: flex">
+          <v-img src="/images/LogoSci.png" max-width="170"></v-img>
+        </div>
+
+        <div class="pa-2 align-self-center">
+          <div style="font-size: 50px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
+          <div style="font-size: 20px">
+            Faculty of Science, Maejo University
+          </div>
+        </div>
+      </div>
+
       <v-col align-self="end">
         <div class="d-flex justify-end">
           <div class="pa-3">

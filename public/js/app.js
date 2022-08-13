@@ -5603,6 +5603,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -44773,10 +44786,38 @@ var render = function () {
             height: 200,
             dark: "",
             prominent: "",
-            src: "/images/SideBar.jpg",
+            src: "/images/SideBar.jpeg",
           },
         },
         [
+          _c("div", { staticClass: "d-flex mb-12", attrs: { height: "180" } }, [
+            _c(
+              "div",
+              {
+                staticClass: "pa-2",
+                staticStyle: { "align-items": "center", display: "flex" },
+              },
+              [
+                _c("v-img", {
+                  attrs: { src: "/images/LogoSci.png", "max-width": "170" },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "pa-2 align-self-center" }, [
+              _c("div", { staticStyle: { "font-size": "50px" } }, [
+                _vm._v("คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticStyle: { "font-size": "20px" } }, [
+                _vm._v(
+                  "\n          Faculty of Science, Maejo University\n        "
+                ),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
           _c("v-col", { attrs: { "align-self": "end" } }, [
             _c(
               "div",
