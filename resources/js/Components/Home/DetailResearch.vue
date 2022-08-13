@@ -129,9 +129,24 @@
             <div style="font-size: 30px">ส่วนที่ 2 นักวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                {{
-                  search_research_by_id.research_project_type || "-- ไม่ระบุ --"
-                }}
+                <v-data-table
+                  :headers="headers_research_owner"
+                  :items="research_owner_name(search_research_by_id)"
+                >
+                  <template v-slot:[`item.count`]="{ index }">
+                    {{ index + 1 }}
+                  </template>
+                  <template v-slot:[`item.research_name`]="{ item }">
+                    <strong>{{ item.research_name }}</strong> <br />
+                    สังกัด {{ item.research_address }} <br />
+                  </template>
+                  <template v-slot:[`item.position`]="{ item }">
+                    {{ item.research_position }}
+                  </template>
+                  <template v-slot:[`item.percent`]="{ item }">
+                    {{ `${item.research_responsible}%` }}
+                  </template>
+                </v-data-table>
               </v-card>
             </v-col>
           </v-container>
@@ -616,6 +631,17 @@ export default {
       },
       { text: "รายละเอียด", value: "description" },
     ],
+    headers_research_owner: [
+      { text: "", value: "count", width: "10px" },
+      {
+        text: "รายชื่อนักวิจัย",
+        value: "research_name",
+        width: "300px",
+        align: "left",
+      },
+      { text: "ตำแหน่งนักวิจัย", value: "position" },
+      { text: "สัดส่วน (%)", value: "percent" },
+    ],
   }),
   computed: {
     ...mapState({
@@ -688,6 +714,30 @@ export default {
 
     toFixedNumber(item) {
       if (item) return Number(item).toFixed(2);
+    },
+
+    research_owner_name(search_research_by_id) {
+      if (search_research_by_id) {
+        let arrayOwner = [];
+        let main = {
+          research_name: search_research_by_id.research_main_name,
+          research_position: search_research_by_id.research_main_position,
+          research_responsible: search_research_by_id.research_main_responsible,
+          research_address: search_research_by_id.research_main_address,
+          research_type: "ผู้วิจัยหลัก",
+        };
+        let second = {
+          research_name: search_research_by_id.research_second_name,
+          research_position: search_research_by_id.research_second_position,
+          research_responsible:
+            search_research_by_id.research_second_responsible,
+          research_address: search_research_by_id.research_second_address,
+          research_type: "ผู้วิจัยรอง",
+        };
+        arrayOwner.push(main);
+        arrayOwner.push(second);
+        return arrayOwner;
+      }
     },
   },
 };

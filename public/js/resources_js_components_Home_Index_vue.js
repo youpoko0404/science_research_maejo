@@ -127,11 +127,11 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
       return state.dashboard.loading;
     },
     dashboard: function dashboard(state) {
-      var _state$dashboard$dash;
+      var _state$dashboard$dash, _state$dashboard$dash2;
 
-      return (_state$dashboard$dash = state.dashboard.dashboard) === null || _state$dashboard$dash === void 0 ? void 0 : _state$dashboard$dash.filter(function (e) {
+      return (_state$dashboard$dash = (_state$dashboard$dash2 = state.dashboard.dashboard) === null || _state$dashboard$dash2 === void 0 ? void 0 : _state$dashboard$dash2.filter(function (e) {
         return e.count > 0;
-      });
+      })) !== null && _state$dashboard$dash !== void 0 ? _state$dashboard$dash : [];
     }
   })),
   created: function created() {

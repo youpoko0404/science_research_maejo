@@ -588,6 +588,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -655,6 +670,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         text: "รายละเอียด",
         value: "description"
+      }],
+      headers_research_owner: [{
+        text: "",
+        value: "count",
+        width: "10px"
+      }, {
+        text: "รายชื่อนักวิจัย",
+        value: "research_name",
+        width: "300px",
+        align: "left"
+      }, {
+        text: "ตำแหน่งนักวิจัย",
+        value: "position"
+      }, {
+        text: "สัดส่วน (%)",
+        value: "percent"
       }]
     };
   },
@@ -719,6 +750,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     toFixedNumber: function toFixedNumber(item) {
       if (item) return Number(item).toFixed(2);
+    },
+    research_owner_name: function research_owner_name(search_research_by_id) {
+      if (search_research_by_id) {
+        var arrayOwner = [];
+        var main = {
+          research_name: search_research_by_id.research_main_name,
+          research_position: search_research_by_id.research_main_position,
+          research_responsible: search_research_by_id.research_main_responsible,
+          research_address: search_research_by_id.research_main_address,
+          research_type: "ผู้วิจัยหลัก"
+        };
+        var second = {
+          research_name: search_research_by_id.research_second_name,
+          research_position: search_research_by_id.research_second_position,
+          research_responsible: search_research_by_id.research_second_responsible,
+          research_address: search_research_by_id.research_second_address,
+          research_type: "ผู้วิจัยรอง"
+        };
+        arrayOwner.push(main);
+        arrayOwner.push(second);
+        return arrayOwner;
+      }
     }
   }
 });
@@ -1232,16 +1285,85 @@ var render = function () {
                                 attrs: { outlined: "", tile: "" },
                               },
                               [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
+                                _c("v-data-table", {
+                                  attrs: {
+                                    headers: _vm.headers_research_owner,
+                                    items: _vm.research_owner_name(
                                       _vm.search_research_by_id
-                                        .research_project_type ||
-                                        "-- ไม่ระบุ --"
-                                    ) +
-                                    "\n            "
-                                ),
-                              ]
+                                    ),
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "item.count",
+                                        fn: function (ref) {
+                                          var index = ref.index
+                                          return [
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(index + 1) +
+                                                "\n                "
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                      {
+                                        key: "item.research_name",
+                                        fn: function (ref) {
+                                          var item = ref.item
+                                          return [
+                                            _c("strong", [
+                                              _vm._v(
+                                                _vm._s(item.research_name)
+                                              ),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("br"),
+                                            _vm._v(
+                                              "\n                  สังกัด " +
+                                                _vm._s(item.research_address) +
+                                                " "
+                                            ),
+                                            _c("br"),
+                                          ]
+                                        },
+                                      },
+                                      {
+                                        key: "item.position",
+                                        fn: function (ref) {
+                                          var item = ref.item
+                                          return [
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(item.research_position) +
+                                                "\n                "
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                      {
+                                        key: "item.percent",
+                                        fn: function (ref) {
+                                          var item = ref.item
+                                          return [
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(
+                                                  item.research_responsible +
+                                                    "%"
+                                                ) +
+                                                "\n                "
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                    ],
+                                    null,
+                                    true
+                                  ),
+                                }),
+                              ],
+                              1
                             ),
                           ],
                           1

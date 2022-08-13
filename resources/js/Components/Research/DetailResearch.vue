@@ -309,7 +309,7 @@
             </v-col>
             <v-col>
               <v-text-field
-                label="ประเภทโครงการวิจัย"
+                label="ลักษณะโครงการวิจัย"
                 color="green darken-3"
                 v-model="request.research_nature"
                 :rules="rules.required"
@@ -383,8 +383,9 @@
                     label="ร้อยละความรับผิดชอบ"
                     color="green darken-3"
                     v-model="request.research_main_responsible"
-                    :rules="rules.required"
+                    :rules="rules.requiredNumber"
                     required
+                    type="number"
                   >
                   </v-text-field>
                 </v-col>
@@ -446,8 +447,9 @@
                     label="ร้อยละความรับผิดชอบ"
                     color="green darken-3"
                     v-model="request.research_second_responsible"
-                    :rules="rules.required"
+                    :rules="rules.requiredNumber"
                     required
+                    type="number"
                   >
                   </v-text-field>
                 </v-col>
@@ -2036,6 +2038,10 @@ export default {
       requiredDateTime: [
         (v) => !!v || "โปรดกรอกข้อมูลให้ครบถ้วน",
         (v) => /^\d{2}\/\d{2}\/\d{4}$/.test(v) || "ข้อมูลไม่ถูกต้อง",
+      ],
+      requiredNumber: [
+        (v) => !!v || "โปรดกรอกข้อมูลให้ครบถ้วน",
+        (v) => v <= 100 || "โปรดหรอกข้อมูลไม่เกิน 100%",
       ],
     },
     headers_research_fundings: [

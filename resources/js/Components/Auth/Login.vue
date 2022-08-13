@@ -2,6 +2,7 @@
   <v-app>
     <Loading :loading="loading" />
     <v-main>
+      <Snackbar />
       <v-row align="center" justify="center">
         <v-layout align-center justify-center>
           <div class="limiter">
@@ -10,7 +11,7 @@
                 <div class="login100-pic js-tilt" data-tilt>
                   <img src="/images/login.png" alt="IMG" />
                 </div>
-                <dev>
+                <div>
                   <span class="login100-form-title"> Login </span>
                   <div
                     class="wrap-input100 validate-input"
@@ -55,7 +56,7 @@
                   <div class="text-center p-t-136">
                     <a class="txt2" href="#"> </a>
                   </div>
-                </dev>
+                </div>
               </div>
             </div>
           </div>
@@ -66,14 +67,18 @@
 </template>
 
 <script>
+import Snackbar from "../Snackbar/Snackbar.vue";
 import GuestTopBar from "../../Layouts/GuestTopBar.vue";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Loading from "../../Components/Loading/Loading";
 export default {
-  components: { GuestTopBar, Loading },
+  components: { GuestTopBar, Loading, Snackbar },
   data: () => ({
     email: "",
     password: "",
+    rules: {
+      required: [(val) => !!val || "โปรดกรอกข้อมูลให้ครบถ้วน"],
+    },
   }),
   props: {
     source: String,
@@ -84,16 +89,33 @@ export default {
     }),
   },
   methods: {
-    login() {
-      let user = {
-        email: this.email,
-        password: this.password,
-      };
-      this.$store.dispatch("auth/login", user).then((response) => {
-        if (response.success) {
-          window.location.href = "/my-research";
-        }
+    ...mapActions("snackbar", ["showSnack"]),
+    snackBar(timeout = 3500, text = "Successfully", color = "success") {
+      this.showSnack({
+        text: text,
+        color: color,
+        timeout: timeout,
       });
+    },
+    login() {
+      if (this.email == "" || this.password == "") {
+        return this.snackBar(3500, "โปรดกรอกข้อมูลให้ครบถ้วน", "warning");
+      } else {
+        let user = {
+          email: this.email,
+          password: this.password,
+        };
+        this.$store
+          .dispatch("auth/login", user)
+          .then((response) => {
+            if (response.success) {
+              window.location.href = "/my-research";
+            }
+          })
+          .catch((error) => {
+            this.snackBar(3500, "ชื่อผู้ใช้หรือรหัสผ่านผิดพลาด", "warning");
+          });
+      }
     },
   },
 };

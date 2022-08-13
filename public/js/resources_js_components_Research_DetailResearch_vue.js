@@ -1963,6 +1963,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -2071,6 +2073,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return !!v || "โปรดกรอกข้อมูลให้ครบถ้วน";
         }, function (v) {
           return /^\d{2}\/\d{2}\/\d{4}$/.test(v) || "ข้อมูลไม่ถูกต้อง";
+        }],
+        requiredNumber: [function (v) {
+          return !!v || "โปรดกรอกข้อมูลให้ครบถ้วน";
+        }, function (v) {
+          return v <= 100 || "โปรดหรอกข้อมูลไม่เกิน 100%";
         }]
       },
       headers_research_fundings: [{
@@ -3442,7 +3449,7 @@ var render = function () {
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "ประเภทโครงการวิจัย",
+                              label: "ลักษณะโครงการวิจัย",
                               color: "green darken-3",
                               rules: _vm.rules.required,
                               required: "",
@@ -3640,8 +3647,9 @@ var render = function () {
                                   attrs: {
                                     label: "ร้อยละความรับผิดชอบ",
                                     color: "green darken-3",
-                                    rules: _vm.rules.required,
+                                    rules: _vm.rules.requiredNumber,
                                     required: "",
+                                    type: "number",
                                   },
                                   model: {
                                     value:
@@ -3826,8 +3834,9 @@ var render = function () {
                                   attrs: {
                                     label: "ร้อยละความรับผิดชอบ",
                                     color: "green darken-3",
-                                    rules: _vm.rules.required,
+                                    rules: _vm.rules.requiredNumber,
                                     required: "",
+                                    type: "number",
                                   },
                                   model: {
                                     value:

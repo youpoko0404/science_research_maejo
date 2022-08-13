@@ -119,7 +119,7 @@ export default {
     ...mapState({
       loading: (state) => state.dashboard.loading,
       dashboard: (state) =>
-        state.dashboard.dashboard?.filter((e) => e.count > 0),
+        state.dashboard.dashboard?.filter((e) => e.count > 0) ?? [],
     }),
   },
   created() {
