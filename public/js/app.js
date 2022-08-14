@@ -5619,6 +5619,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5628,7 +5663,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Snackbar: _Components_Snackbar_Snackbar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      toggleMenu: false,
+      menu: [{
+        icon: "home",
+        title: "Link A"
+      }, {
+        icon: "info",
+        title: "Link B"
+      }, {
+        icon: "warning",
+        title: "Link C"
+      }]
+    };
   },
   created: function created() {
     var _this = this;
@@ -5649,14 +5696,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
     user: function user(state) {
       return state.auth.user;
     },
     loading: function loading(state) {
       return state.auth.loading;
     }
-  })),
+  })), {}, {
+    showMenu: function showMenu() {
+      return this.toggleMenu || this.$vuetify.breakpoint.mdAndUp;
+    }
+  }),
   methods: _objectSpread(_objectSpread({
     redirect: function redirect(path) {
       window.location.href = path;
@@ -44786,6 +44837,7 @@ var render = function () {
         "v-toolbar",
         {
           attrs: {
+            id: "toolbar",
             height: 200,
             dark: "",
             prominent: "",
@@ -44793,15 +44845,16 @@ var render = function () {
           },
         },
         [
-          _c("div", { staticClass: "d-flex mb-12", attrs: { height: "180" } }, [
+          _c("v-toolbar-title", [
             _c(
               "div",
               {
-                staticClass: "pa-2",
-                staticStyle: { "align-items": "center", display: "flex" },
+                staticStyle: { display: "flex", "align-items": "end" },
+                attrs: { flat: "", height: "200", tile: "" },
               },
               [
                 _c("v-img", {
+                  staticClass: "pa-2",
                   staticStyle: {
                     "max-width": "170px",
                     height: "auto",
@@ -44809,149 +44862,288 @@ var render = function () {
                   },
                   attrs: { src: "/images/LogoSci.png" },
                 }),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "pa-2 align-self-center" }, [
-              _c("div", { staticStyle: { "font-size": "40px" } }, [
-                _vm._v("คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้"),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "font-size": "20px" } }, [
-                _vm._v(
-                  "\n          Faculty of Science, Maejo University\n        "
-                ),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("v-col", { attrs: { "align-self": "end" } }, [
-            _c(
-              "div",
-              { staticClass: "d-flex justify-end" },
-              [
-                _c(
-                  "div",
-                  { staticClass: "pa-3" },
-                  [
-                    _c(
-                      "v-btn",
-                      { attrs: { text: "", to: "/", styles: "selected" } },
-                      [_vm._v(" หน้าแรก ")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm.user != null
-                  ? [
-                      _c(
-                        "div",
-                        { staticClass: "pa-3" },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                text: "",
-                                to: "/my-research",
-                                styles: "selected",
-                              },
-                            },
-                            [
-                              _vm._v(
-                                "\n              งานวิจัยจองฉัน\n            "
-                              ),
-                            ]
-                          ),
-                        ],
-                        1
-                      ),
-                    ]
-                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "pa-3",
-                    staticStyle: { "align-items": "center", display: "flex" },
+                    staticClass: "pa-2 align-self-center",
+                    attrs: { outlined: "", tile: "" },
                   },
                   [
+                    _c("div", { staticStyle: { "font-size": "40px" } }, [
+                      _vm._v("คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้"),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { "font-size": "20px" } }, [
+                      _vm._v(
+                        "\n            Faculty of Science, Maejo University\n          "
+                      ),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-toolbar-items",
+            { staticClass: "hidden-sm-and-down" },
+            [
+              _c("v-col", { attrs: { "align-self": "end" } }, [
+                _c(
+                  "div",
+                  { staticClass: "d-flex justify-end" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "pa-3" },
+                      [
+                        _c(
+                          "v-btn",
+                          { attrs: { text: "", to: "/", styles: "selected" } },
+                          [_vm._v(" หน้าแรก ")]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _vm.user != null
                       ? [
                           _c(
                             "div",
-                            {
-                              staticStyle: { cursor: "auto" },
-                              attrs: { text: "" },
-                            },
+                            { staticClass: "pa-3" },
                             [
-                              _vm._v(
-                                "\n              บุคลากร (" +
-                                  _vm._s(
-                                    _vm.user.first_name +
-                                      " " +
-                                      _vm.user.last_name
-                                  ) +
-                                  ")\n            "
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    text: "",
+                                    to: "/my-research",
+                                    styles: "selected",
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                งานวิจัยจองฉัน\n              "
+                                  ),
+                                ]
                               ),
-                            ]
+                            ],
+                            1
                           ),
                         ]
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.user == null
-                      ? [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { text: "" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.redirect("/login")
+                    _c(
+                      "div",
+                      {
+                        staticClass: "pa-3",
+                        staticStyle: {
+                          "align-items": "center",
+                          display: "flex",
+                        },
+                      },
+                      [
+                        _vm.user != null
+                          ? [
+                              _c(
+                                "div",
+                                {
+                                  staticStyle: { cursor: "auto" },
+                                  attrs: { text: "" },
                                 },
-                              },
-                            },
-                            [
-                              _vm._v(
-                                "\n              บุคลากร(เข้าสู่ระบบ)\n            "
+                                [
+                                  _vm._v(
+                                    "\n                บุคลากร (" +
+                                      _vm._s(
+                                        _vm.user.first_name +
+                                          " " +
+                                          _vm.user.last_name
+                                      ) +
+                                      ")\n              "
+                                  ),
+                                ]
                               ),
                             ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user == null
+                          ? [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { text: "" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.redirect("/login")
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                บุคลากร(เข้าสู่ระบบ)\n              "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          : _vm._e(),
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _vm.user != null
+                      ? [
+                          _c(
+                            "div",
+                            { staticClass: "pa-3" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { text: "", color: "error" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.redirect("/logout")
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                ออกจากระบบ\n              "
+                                  ),
+                                ]
+                              ),
+                            ],
+                            1
                           ),
                         ]
                       : _vm._e(),
                   ],
                   2
                 ),
-                _vm._v(" "),
-                _vm.user != null
-                  ? [
-                      _c(
-                        "div",
-                        { staticClass: "pa-3" },
-                        [
+              ]),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "hidden-md-and-up" },
+            [
+              _c(
+                "v-menu",
+                {
+                  attrs: { left: "", bottom: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function (ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
                           _c(
                             "v-btn",
-                            {
-                              attrs: { text: "", color: "error" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.redirect("/logout")
+                            _vm._g(
+                              _vm._b(
+                                { attrs: { icon: "" } },
+                                "v-btn",
+                                attrs,
+                                false
+                              ),
+                              on
+                            ),
+                            [_c("v-app-bar-nav-icon")],
+                            1
+                          ),
+                        ]
+                      },
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    [
+                      _c(
+                        "v-list-item",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.redirect("/")
+                            },
+                          },
+                        },
+                        [_vm._v(" หน้าแรก ")]
+                      ),
+                      _vm._v(" "),
+                      _vm.user != null
+                        ? [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/my-research")
+                                  },
                                 },
                               },
-                            },
-                            [_vm._v("\n              ออกจากระบบ\n            ")]
-                          ),
-                        ],
-                        1
-                      ),
-                    ]
-                  : _vm._e(),
-              ],
-              2
-            ),
-          ]),
+                              [
+                                _vm._v(
+                                  "\n              งานวิจัยจองฉัน\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user != null
+                        ? [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/logout")
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              ออกจากระบบ\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        : [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/login")
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              บุคลากร(เข้าสู่ระบบ)\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                    ],
+                    2
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
         ],
         1
       ),

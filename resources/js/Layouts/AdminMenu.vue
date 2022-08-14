@@ -2,56 +2,91 @@
   <div>
     <Loading :loading="loading" />
     <Snackbar />
-    <v-toolbar :height="200" dark prominent src="/images/SideBar.jpeg">
-      <div class="d-flex mb-12" height="180">
-        <div class="pa-2" style="align-items: center; display: flex">
+    <v-toolbar
+      id="toolbar"
+      :height="200"
+      dark
+      prominent
+      src="/images/SideBar.jpeg"
+    >
+      <v-toolbar-title>
+        <div flat height="200" style="display: flex; align-items: end" tile>
           <v-img
             src="/images/LogoSci.png"
             style="max-width: 170px; height: auto; width: 100%"
+            class="pa-2"
           ></v-img>
-        </div>
-
-        <div class="pa-2 align-self-center">
-          <div style="font-size: 40px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
-          <div style="font-size: 20px">
-            Faculty of Science, Maejo University
-          </div>
-        </div>
-      </div>
-
-      <v-col align-self="end">
-        <div class="d-flex justify-end">
-          <div class="pa-3">
-            <v-btn text to="/" styles="selected"> หน้าแรก </v-btn>
-          </div>
-          <template v-if="user != null">
-            <div class="pa-3">
-              <v-btn text to="/my-research" styles="selected">
-                งานวิจัยจองฉัน
-              </v-btn>
+          <div class="pa-2 align-self-center" outlined tile>
+            <div style="font-size: 40px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
+            <div style="font-size: 20px">
+              Faculty of Science, Maejo University
             </div>
-          </template>
-          <div class="pa-3" style="align-items: center; display: flex">
+          </div>
+        </div>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-col align-self="end">
+          <div class="d-flex justify-end">
+            <div class="pa-3">
+              <v-btn text to="/" styles="selected"> หน้าแรก </v-btn>
+            </div>
             <template v-if="user != null">
-              <div style="cursor: auto" text>
-                บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
+              <div class="pa-3">
+                <v-btn text to="/my-research" styles="selected">
+                  งานวิจัยจองฉัน
+                </v-btn>
               </div>
             </template>
-            <template v-if="user == null">
-              <v-btn text @click="redirect('/login')">
-                บุคลากร(เข้าสู่ระบบ)
-              </v-btn>
+            <div class="pa-3" style="align-items: center; display: flex">
+              <template v-if="user != null">
+                <div style="cursor: auto" text>
+                  บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
+                </div>
+              </template>
+              <template v-if="user == null">
+                <v-btn text @click="redirect('/login')">
+                  บุคลากร(เข้าสู่ระบบ)
+                </v-btn>
+              </template>
+            </div>
+            <template v-if="user != null">
+              <div class="pa-3">
+                <v-btn text color="error" @click="redirect('/logout')">
+                  ออกจากระบบ
+                </v-btn>
+              </div>
             </template>
           </div>
-          <template v-if="user != null">
-            <div class="pa-3">
-              <v-btn text color="error" @click="redirect('/logout')">
-                ออกจากระบบ
-              </v-btn>
-            </div>
+        </v-col>
+      </v-toolbar-items>
+      <div class="hidden-md-and-up">
+        <v-menu left bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            </v-btn>
           </template>
-        </div>
-      </v-col>
+          <v-list>
+            <v-list-item @click="redirect('/')"> หน้าแรก </v-list-item>
+            <template v-if="user != null">
+              <v-list-item @click="redirect('/my-research')">
+                งานวิจัยจองฉัน
+              </v-list-item>
+            </template>
+            <template v-if="user != null">
+              <v-list-item @click="redirect('/logout')">
+                ออกจากระบบ
+              </v-list-item>
+            </template>
+            <template v-else>
+              <v-list-item @click="redirect('/login')">
+                บุคลากร(เข้าสู่ระบบ)
+              </v-list-item>
+            </template>
+          </v-list>
+        </v-menu>
+      </div>
     </v-toolbar>
   </div>
 </template>
@@ -65,7 +100,14 @@ export default {
     Snackbar,
   },
   data() {
-    return {};
+    return {
+      toggleMenu: false,
+      menu: [
+        { icon: "home", title: "Link A" },
+        { icon: "info", title: "Link B" },
+        { icon: "warning", title: "Link C" },
+      ],
+    };
   },
   async created() {
     await this.fetchUser();
@@ -75,6 +117,9 @@ export default {
       user: (state) => state.auth.user,
       loading: (state) => state.auth.loading,
     }),
+    showMenu() {
+      return this.toggleMenu || this.$vuetify.breakpoint.mdAndUp;
+    },
   },
   methods: {
     redirect(path) {
