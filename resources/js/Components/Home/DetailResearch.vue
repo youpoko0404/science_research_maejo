@@ -641,7 +641,7 @@ export default {
       },
       { text: "ตำแหน่งนักวิจัย", value: "position" },
       { text: "สัดส่วน (%)", value: "percent" },
-    ],
+    ]
   }),
   computed: {
     ...mapState({
