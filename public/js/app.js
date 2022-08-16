@@ -5654,6 +5654,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6035,6 +6046,15 @@ var routes = [{
   meta: {
     title: "รายละเอียดงานวิจัย"
   }
+}, {
+  path: "/user-expertise",
+  name: "user_expertise",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Research_Expertise_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/Expertise.vue */ "./resources/js/components/Research/Expertise.vue"));
+  },
+  meta: {
+    title: "ความเชี่ยวชาญ"
+  }
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -6179,6 +6199,13 @@ var ResearchService = {
   },
   "delete": function _delete(id) {
     return httpRequest["delete"]("".concat(API_PATH, "/research/").concat(id));
+  },
+  searchUserExpertise: function searchUserExpertise(q) {
+    return httpRequest.get("".concat(API_PATH, "/search-user-expertise"), {
+      params: {
+        q: q
+      }
+    });
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResearchService);
@@ -6501,6 +6528,9 @@ var actions = {
                 });
 
               case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
               case "end":
                 return _context4.stop();
             }
@@ -6728,7 +6758,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   loading: false,
   research: null,
-  researchAll: null
+  researchAll: null,
+  search_user_expertise: null
 };
 var getters = {};
 var actions = {
@@ -6903,6 +6934,41 @@ var actions = {
         return _ref10.apply(this, arguments);
       };
     }());
+  },
+  fetchSearchUserExpertise: function fetchSearchUserExpertise(_ref11, q) {
+    var commit = _ref11.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context6.next = 3;
+                return _Service_Research_service__WEBPACK_IMPORTED_MODULE_0__["default"].searchUserExpertise(q).then(function (response) {
+                  if (response.data.success) {
+                    commit("SEARCH_USER_EXPERTISE_SET", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      return function (_x11, _x12) {
+        return _ref12.apply(this, arguments);
+      };
+    }());
   }
 };
 var mutations = {
@@ -6911,6 +6977,9 @@ var mutations = {
   },
   RESEARCH_SET: function RESEARCH_SET(state, response) {
     state.research = response;
+  },
+  SEARCH_USER_EXPERTISE_SET: function SEARCH_USER_EXPERTISE_SET(state, response) {
+    state.search_user_expertise = response;
   },
   LOADING_SET: function LOADING_SET(state, response) {
     state.loading = response;
@@ -44857,7 +44926,7 @@ var render = function () {
                 _c("v-img", {
                   staticClass: "pa-2",
                   staticStyle: {
-                    "max-width": "170px",
+                    "max-width": "150px",
                     height: "auto",
                     width: "100%",
                   },
@@ -44871,11 +44940,11 @@ var render = function () {
                     attrs: { outlined: "", tile: "" },
                   },
                   [
-                    _c("div", { staticStyle: { "font-size": "40px" } }, [
+                    _c("div", { staticStyle: { "font-size": "35px" } }, [
                       _vm._v("คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้"),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticStyle: { "font-size": "20px" } }, [
+                    _c("div", { staticStyle: { "font-size": "15px" } }, [
                       _vm._v(
                         "\n            Faculty of Science, Maejo University\n          "
                       ),
@@ -44886,8 +44955,6 @@ var render = function () {
               1
             ),
           ]),
-          _vm._v(" "),
-          _c("v-spacer"),
           _vm._v(" "),
           _c(
             "v-toolbar-items",
@@ -44900,7 +44967,7 @@ var render = function () {
                   [
                     _c(
                       "div",
-                      { staticClass: "pa-3" },
+                      { staticClass: "pa-2" },
                       [
                         _c(
                           "v-btn",
@@ -44915,7 +44982,7 @@ var render = function () {
                       ? [
                           _c(
                             "div",
-                            { staticClass: "pa-3" },
+                            { staticClass: "pa-2" },
                             [
                               _c(
                                 "v-btn",
@@ -44929,6 +44996,33 @@ var render = function () {
                                 [
                                   _vm._v(
                                     "\n                งานวิจัยจองฉัน\n              "
+                                  ),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.user != null
+                      ? [
+                          _c(
+                            "div",
+                            { staticClass: "pa-2" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    text: "",
+                                    to: "/user-expertise",
+                                    styles: "selected",
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                ความเชียวชาญ\n              "
                                   ),
                                 ]
                               ),
@@ -44959,11 +45053,7 @@ var render = function () {
                                 [
                                   _vm._v(
                                     "\n                บุคลากร (" +
-                                      _vm._s(
-                                        _vm.user.first_name +
-                                          " " +
-                                          _vm.user.last_name
-                                      ) +
+                                      _vm._s("" + _vm.user.first_name) +
                                       ")\n              "
                                   ),
                                 ]
@@ -44999,7 +45089,7 @@ var render = function () {
                       ? [
                           _c(
                             "div",
-                            { staticClass: "pa-3" },
+                            { staticClass: "pa-2" },
                             [
                               _c(
                                 "v-btn",
@@ -45095,6 +45185,26 @@ var render = function () {
                               [
                                 _vm._v(
                                   "\n              งานวิจัยจองฉัน\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user != null
+                        ? [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/user-expertise")
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              ความเชียวชาญ\n            "
                                 ),
                               ]
                             ),
@@ -108277,7 +108387,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/jatupat/Documents
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_DetailResearch_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

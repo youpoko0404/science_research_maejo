@@ -39,6 +39,12 @@ const routes = [
         component: () => import("../components/Research/DetailResearch.vue"),
         meta: { title: "รายละเอียดงานวิจัย" },
     },
+    {
+        path: "/user-expertise",
+        name: "user_expertise",
+        component: () => import("../components/Research/Expertise.vue"),
+        meta: { title: "ความเชี่ยวชาญ" },
+    },
 ];
 
 export default routes;

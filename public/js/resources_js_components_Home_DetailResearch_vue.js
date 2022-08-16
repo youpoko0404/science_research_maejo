@@ -763,17 +763,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           research_type: "ผู้วิจัยหลัก"
         };
         arrayOwner.push(main);
-        search_research_by_id.research_seconds.forEach(function (element) {
-          var second = {
-            research_name: element.research_second_name,
-            research_position: element.research_second_position,
-            research_responsible: element.research_second_responsible,
-            research_group: element.research_second_group,
-            research_branch: element.research_second_branch,
-            research_type: "ผู้วิจัยรอง"
-          };
-          arrayOwner.push(second);
-        });
+
+        if (search_research_by_id.research_seconds) {
+          search_research_by_id.research_seconds.forEach(function (element) {
+            var second = {
+              research_name: element.research_second_name,
+              research_position: element.research_second_position,
+              research_responsible: element.research_second_responsible,
+              research_group: element.research_second_group,
+              research_branch: element.research_second_branch,
+              research_type: "ผู้วิจัยรอง"
+            };
+            arrayOwner.push(second);
+          });
+        }
+
         return arrayOwner;
       }
     }

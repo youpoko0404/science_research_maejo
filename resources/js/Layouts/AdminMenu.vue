@@ -13,35 +13,41 @@
         <div flat height="200" style="display: flex; align-items: end" tile>
           <v-img
             src="/images/LogoSci.png"
-            style="max-width: 170px; height: auto; width: 100%"
+            style="max-width: 150px; height: auto; width: 100%"
             class="pa-2"
           ></v-img>
           <div class="pa-2 align-self-center" outlined tile>
-            <div style="font-size: 40px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
-            <div style="font-size: 20px">
+            <div style="font-size: 35px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
+            <div style="font-size: 15px">
               Faculty of Science, Maejo University
             </div>
           </div>
         </div>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-col align-self="end">
           <div class="d-flex justify-end">
-            <div class="pa-3">
+            <div class="pa-2">
               <v-btn text to="/" styles="selected"> หน้าแรก </v-btn>
             </div>
             <template v-if="user != null">
-              <div class="pa-3">
+              <div class="pa-2">
                 <v-btn text to="/my-research" styles="selected">
                   งานวิจัยจองฉัน
+                </v-btn>
+              </div>
+            </template>
+            <template v-if="user != null">
+              <div class="pa-2">
+                <v-btn text to="/user-expertise" styles="selected">
+                  ความเชียวชาญ
                 </v-btn>
               </div>
             </template>
             <div class="pa-3" style="align-items: center; display: flex">
               <template v-if="user != null">
                 <div style="cursor: auto" text>
-                  บุคลากร ({{ `${user.first_name} ${user.last_name}` }})
+                  บุคลากร ({{ `${user.first_name}` }})
                 </div>
               </template>
               <template v-if="user == null">
@@ -51,7 +57,7 @@
               </template>
             </div>
             <template v-if="user != null">
-              <div class="pa-3">
+              <div class="pa-2">
                 <v-btn text color="error" @click="redirect('/logout')">
                   ออกจากระบบ
                 </v-btn>
@@ -72,6 +78,11 @@
             <template v-if="user != null">
               <v-list-item @click="redirect('/my-research')">
                 งานวิจัยจองฉัน
+              </v-list-item>
+            </template>
+            <template v-if="user != null">
+              <v-list-item @click="redirect('/user-expertise')">
+                ความเชียวชาญ
               </v-list-item>
             </template>
             <template v-if="user != null">

@@ -65,6 +65,7 @@ Route::controller(ResearchController::class)->group(function () {
         Route::get('/research', 'fetchAll');
         Route::get('/research/{id}', 'fetchById');
         Route::delete('/research/{id}', 'delete');
+        Route::get('/search-user-expertise', 'fetchSearchUserExpertise');
     });
 });
 

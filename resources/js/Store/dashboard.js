@@ -74,7 +74,7 @@ const actions = {
                 .catch((error) => {
                     reject(error);
                 });
-            // commit("LOADING_SET", false);
+            commit("LOADING_SET", false);
         });
     },
 };
