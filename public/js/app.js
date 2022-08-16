@@ -5665,6 +5665,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -44956,6 +44957,8 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
           _c(
             "v-toolbar-items",
             { staticClass: "hidden-sm-and-down" },
@@ -44967,7 +44970,7 @@ var render = function () {
                   [
                     _c(
                       "div",
-                      { staticClass: "pa-2" },
+                      { staticClass: "pa-3" },
                       [
                         _c(
                           "v-btn",
@@ -44982,7 +44985,7 @@ var render = function () {
                       ? [
                           _c(
                             "div",
-                            { staticClass: "pa-2" },
+                            { staticClass: "pa-3" },
                             [
                               _c(
                                 "v-btn",
@@ -45009,7 +45012,7 @@ var render = function () {
                       ? [
                           _c(
                             "div",
-                            { staticClass: "pa-2" },
+                            { staticClass: "pa-3" },
                             [
                               _c(
                                 "v-btn",
@@ -45089,7 +45092,7 @@ var render = function () {
                       ? [
                           _c(
                             "div",
-                            { staticClass: "pa-2" },
+                            { staticClass: "pa-3" },
                             [
                               _c(
                                 "v-btn",

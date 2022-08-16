@@ -24,21 +24,22 @@
           </div>
         </div>
       </v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-col align-self="end">
           <div class="d-flex justify-end">
-            <div class="pa-2">
+            <div class="pa-3">
               <v-btn text to="/" styles="selected"> หน้าแรก </v-btn>
             </div>
             <template v-if="user != null">
-              <div class="pa-2">
+              <div class="pa-3">
                 <v-btn text to="/my-research" styles="selected">
                   งานวิจัยจองฉัน
                 </v-btn>
               </div>
             </template>
             <template v-if="user != null">
-              <div class="pa-2">
+              <div class="pa-3">
                 <v-btn text to="/user-expertise" styles="selected">
                   ความเชียวชาญ
                 </v-btn>
@@ -57,7 +58,7 @@
               </template>
             </div>
             <template v-if="user != null">
-              <div class="pa-2">
+              <div class="pa-3">
                 <v-btn text color="error" @click="redirect('/logout')">
                   ออกจากระบบ
                 </v-btn>
