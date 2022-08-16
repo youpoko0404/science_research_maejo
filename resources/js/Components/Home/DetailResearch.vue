@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loading :loading="loading || loadingParameter" />
-    <v-container v-if="!loading">
+    <v-container>
       <v-row justify="space-between">
         <v-col>
           <div style="font-size: 30px">รายละเอียดงานวิจัย</div>

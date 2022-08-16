@@ -7,11 +7,11 @@ const state = {
     loading: false,
 };
 
-const getters = {}
+const getters = {};
 
 const actions = {
     fetchDashboard({ commit }) {
-        return new Promise(async(resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             commit("LOADING_SET", true);
             await DashboardService.fetchDashboard()
                 .then((response) => {
@@ -19,15 +19,16 @@ const actions = {
                         commit("DASHBOARD_SET", response.data.payload);
                         resolve(response.data);
                     }
-                }).catch((error) => {
-                    reject(error);
                 })
+                .catch((error) => {
+                    reject(error);
+                });
             commit("LOADING_SET", false);
         });
     },
 
     fetchSearchResearch({ commit }, q) {
-        return new Promise(async(resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             commit("LOADING_SET", true);
             await DashboardService.fetchSearchResearch(q)
                 .then((response) => {
@@ -35,37 +36,45 @@ const actions = {
                         commit("SEARCH_RESEARCH_SET", response.data.payload);
                         resolve(response.data);
                     }
-                }).catch((error) => {
-                    reject(error);
                 })
+                .catch((error) => {
+                    reject(error);
+                });
             commit("LOADING_SET", false);
         });
     },
 
     fetchSearchResearchById({ commit }, id) {
-        return new Promise(async(resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             commit("LOADING_SET", true);
             await DashboardService.fetchSearchResearchById(id)
                 .then((response) => {
                     if (response.data.success) {
-                        commit("SEARCH_RESEARCH_BY_ID_SET", response.data.payload);
+                        commit(
+                            "SEARCH_RESEARCH_BY_ID_SET",
+                            response.data.payload
+                        );
                         resolve(response.data);
                     }
-                }).catch((error) => {
-                    reject(error);
                 })
+                .catch((error) => {
+                    reject(error);
+                });
             commit("LOADING_SET", false);
         });
     },
 
     downloadFile({ commit }, item) {
-        return new Promise(async(resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
+            commit("LOADING_SET", true);
             await DashboardService.downloadFile(item)
                 .then((response) => {
                     resolve(response.data);
-                }).catch((error) => {
-                    reject(error);
                 })
+                .catch((error) => {
+                    reject(error);
+                });
+            // commit("LOADING_SET", false);
         });
     },
 };

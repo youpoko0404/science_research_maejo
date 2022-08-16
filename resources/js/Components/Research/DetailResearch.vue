@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading :loading="loading || loadingUser" />
+    <Loading :loading="loading || loadingUser || loadingResearch" />
     <v-container>
       <v-form ref="request" lazy-validation>
         <v-row justify="space-between">
@@ -2390,6 +2390,7 @@ export default {
       parameter: (state) => state.parameter,
       user: (state) => state.auth.user,
       loadingUser: (state) => state.auth.loading,
+      loadingResearch: (state) => state.research.loading,
     }),
     research_id() {
       return this.$route.query.id;

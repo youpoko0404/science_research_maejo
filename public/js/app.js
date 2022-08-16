@@ -6492,14 +6492,15 @@ var actions = {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
+                commit("LOADING_SET", true);
+                _context4.next = 3;
                 return _Service_Dashboard_service__WEBPACK_IMPORTED_MODULE_0__["default"].downloadFile(item).then(function (response) {
                   resolve(response.data);
                 })["catch"](function (error) {
                   reject(error);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context4.stop();
             }

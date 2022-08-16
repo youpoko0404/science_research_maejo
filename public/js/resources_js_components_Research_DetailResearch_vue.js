@@ -2445,6 +2445,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     loadingUser: function loadingUser(state) {
       return state.auth.loading;
+    },
+    loadingResearch: function loadingResearch(state) {
+      return state.research.loading;
     }
   })), {}, {
     research_id: function research_id() {
@@ -2964,7 +2967,11 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("Loading", { attrs: { loading: _vm.loading || _vm.loadingUser } }),
+      _c("Loading", {
+        attrs: {
+          loading: _vm.loading || _vm.loadingUser || _vm.loadingResearch,
+        },
+      }),
       _vm._v(" "),
       _c(
         "v-container",

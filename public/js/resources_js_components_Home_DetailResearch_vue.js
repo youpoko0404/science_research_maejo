@@ -959,110 +959,448 @@ var render = function () {
         attrs: { loading: _vm.loading || _vm.loadingParameter },
       }),
       _vm._v(" "),
-      !_vm.loading
-        ? _c(
-            "v-container",
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-row",
+            { attrs: { justify: "space-between" } },
             [
-              _c(
-                "v-row",
-                { attrs: { justify: "space-between" } },
-                [
-                  _c("v-col", [
-                    _c("div", { staticStyle: { "font-size": "30px" } }, [
-                      _vm._v("รายละเอียดงานวิจัย"),
-                    ]),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-divider"),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v(
-                  "\n      " +
-                    _vm._s(_vm.search_research_by_id.title_name_th) +
-                    "\n    "
-                ),
+              _c("v-col", [
+                _c("div", { staticStyle: { "font-size": "30px" } }, [
+                  _vm._v("รายละเอียดงานวิจัย"),
+                ]),
               ]),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v(
-                  "\n      " +
-                    _vm._s(_vm.search_research_by_id.title_name_en) +
-                    "\n    "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c("div", { staticStyle: { "font-size": "30px" } }, [
+            _vm._v(
+              "\n      " +
+                _vm._s(_vm.search_research_by_id.title_name_th) +
+                "\n    "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticStyle: { "font-size": "30px" } }, [
+            _vm._v(
+              "\n      " +
+                _vm._s(_vm.search_research_by_id.title_name_en) +
+                "\n    "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
+            _c(
+              "div",
+              { staticClass: "pa-4 grey lighten-1 rounded-lg" },
+              [
                 _c(
-                  "div",
-                  { staticClass: "pa-4 grey lighten-1 rounded-lg" },
+                  "v-container",
                   [
                     _c(
-                      "v-container",
+                      "v-row",
+                      [
+                        _c("v-col", [
+                          _c("b", [_vm._v("รหัสอ้างอิงมหาวิทยาลัย : ")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.ref_code_university ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", [
+                          _c("b", [_vm._v("รหัสอ้างอิง วช. :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.ref_code_nr ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", [
+                          _c("b", [_vm._v("สถานะการดำเนินงาน :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.research_status ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-row",
+                      [
+                        _c("v-col", [
+                          _c("b", [_vm._v("วันที่ดำเนินงาน :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id
+                                  .research_period_start +
+                                  " ถึง " +
+                                  _vm.search_research_by_id
+                                    .research_period_end || "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
+            _c(
+              "div",
+              { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+              [
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 1 ข้อมูลทั่วไป"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-row",
+                      [
+                        _c("v-col", [
+                          _c("div", { staticStyle: { "font-size": "20px" } }, [
+                            _vm._v("ข้อมูลทั่วไป ภาษาไทย"),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "d-flex flex-column" },
+                            [
+                              _c("v-col", [
+                                _c("b", [_vm._v("หัวข้อ :")]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.title_name_th ||
+                                        "-- ไม่ระบุ --"
+                                    ) +
+                                    "\n                "
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", [
+                                _c("b", [_vm._v("บทคัดย่อ :")]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.search_research_by_id
+                                        .abstract_name_th || "-- ไม่ระบุ --"
+                                    ) +
+                                    "\n                "
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", [
+                                _c("b", [_vm._v("คำสำคัญ :")]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.search_research_by_id
+                                        .keyword_name_th || "-- ไม่ระบุ --"
+                                    ) +
+                                    "\n                "
+                                ),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", [
+                          _c("div", { staticStyle: { "font-size": "20px" } }, [
+                            _vm._v("ข้อมูลทั่วไป ภาษาอังกฤษ"),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "d-flex flex-column" },
+                            [
+                              _c("v-col", [
+                                _c("b", [_vm._v("Title :")]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.search_research_by_id.title_name_en ||
+                                        "-- ไม่ระบุ --"
+                                    ) +
+                                    "\n                "
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", [
+                                _c("b", [_vm._v("Abstract :")]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.search_research_by_id
+                                        .abstract_name_en || "-- ไม่ระบุ --"
+                                    ) +
+                                    "\n                "
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", [
+                                _c("b", [_vm._v("Keyword :")]),
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.search_research_by_id
+                                        .keyword_name_en || "-- ไม่ระบุ --"
+                                    ) +
+                                    "\n                "
+                                ),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-row",
+                      [
+                        _c("v-col", [
+                          _c("b", [_vm._v("รูปแบบงานวิจัย :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.research_model ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", [
+                          _c("b", [_vm._v("ประเภทงานวิจัย :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.research_type ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", [
+                          _c("b", [_vm._v("สาขางานวิจัย :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.fetchParameterByGroupKey(
+                                  _vm.parameter,
+                                  "branch_group",
+                                  _vm.search_research_by_id.research_branch
+                                ) || "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-row",
+                      [
+                        _c("v-col", [
+                          _c("b", [_vm._v("กิจกรรมที่เกี่ยวข้อง :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.research_activities ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", [
+                          _c("b", [_vm._v("Road map :")]),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.search_research_by_id.road_map ||
+                                  "-- ไม่ระบุ --"
+                              ) +
+                              "\n            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col"),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 2 นักวิจัย"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c("v-data-table", {
+                          attrs: {
+                            headers: _vm.headers_research_owner,
+                            items: _vm.research_owner_name(
+                              _vm.search_research_by_id
+                            ),
+                            "hide-default-footer": "",
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "item.count",
+                                fn: function (ref) {
+                                  var index = ref.index
+                                  return [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(index + 1) +
+                                        "\n              "
+                                    ),
+                                  ]
+                                },
+                              },
+                              {
+                                key: "item.research_name",
+                                fn: function (ref) {
+                                  var item = ref.item
+                                  return [
+                                    _c("strong", [
+                                      _vm._v(_vm._s(item.research_name)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(
+                                      "\n                คณะ :" +
+                                        _vm._s(item.research_group) +
+                                        " "
+                                    ),
+                                    _c("br"),
+                                    _vm._v(
+                                      "\n                สาขา :" +
+                                        _vm._s(item.research_branch) +
+                                        " "
+                                    ),
+                                    _c("br"),
+                                    _vm._v(
+                                      "\n                ตำแหน่ง :" +
+                                        _vm._s(item.research_position) +
+                                        " "
+                                    ),
+                                    _c("br"),
+                                  ]
+                                },
+                              },
+                              {
+                                key: "item.position",
+                                fn: function (ref) {
+                                  var item = ref.item
+                                  return [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(item.research_type) +
+                                        "\n              "
+                                    ),
+                                  ]
+                                },
+                              },
+                              {
+                                key: "item.percent",
+                                fn: function (ref) {
+                                  var item = ref.item
+                                  return [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          item.research_responsible + "%"
+                                        ) +
+                                        "\n              "
+                                    ),
+                                  ]
+                                },
+                              },
+                            ],
+                            null,
+                            true
+                          ),
+                        }),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
                       [
                         _c(
-                          "v-row",
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
                           [
-                            _c("v-col", [
-                              _c("b", [_vm._v("รหัสอ้างอิงมหาวิทยาลัย : ")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id
-                                      .ref_code_university || "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col", [
-                              _c("b", [_vm._v("รหัสอ้างอิง วช. :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id.ref_code_nr ||
-                                      "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col", [
-                              _c("b", [_vm._v("สถานะการดำเนินงาน :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id.research_status ||
-                                      "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-row",
-                          [
-                            _c("v-col", [
-                              _c("b", [_vm._v("วันที่ดำเนินงาน :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id
-                                      .research_period_start +
-                                      " ถึง " +
-                                      _vm.search_research_by_id
-                                        .research_period_end || "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                          ],
-                          1
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(
+                                  _vm.search_research_by_id
+                                    .research_consultant || "-- ไม่ระบุ --"
+                                ) +
+                                "\n            "
+                            ),
+                          ]
                         ),
                       ],
                       1
@@ -1070,793 +1408,1005 @@ var render = function () {
                   ],
                   1
                 ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "pa-md-4 mx-lg-auto" }, [
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "pa-4 grey lighten-5 rounded-lg" },
+                  "v-container",
                   [
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 1 ข้อมูลทั่วไป"),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-row",
-                          [
-                            _c("v-col", [
-                              _c(
-                                "div",
-                                { staticStyle: { "font-size": "20px" } },
-                                [_vm._v("ข้อมูลทั่วไป ภาษาไทย")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "d-flex flex-column" },
-                                [
-                                  _c("v-col", [
-                                    _c("b", [_vm._v("หัวข้อ :")]),
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.search_research_by_id
-                                            .title_name_th || "-- ไม่ระบุ --"
-                                        ) +
-                                        "\n                "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-col", [
-                                    _c("b", [_vm._v("บทคัดย่อ :")]),
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.search_research_by_id
-                                            .abstract_name_th || "-- ไม่ระบุ --"
-                                        ) +
-                                        "\n                "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-col", [
-                                    _c("b", [_vm._v("คำสำคัญ :")]),
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.search_research_by_id
-                                            .keyword_name_th || "-- ไม่ระบุ --"
-                                        ) +
-                                        "\n                "
-                                    ),
-                                  ]),
-                                ],
-                                1
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col", [
-                              _c(
-                                "div",
-                                { staticStyle: { "font-size": "20px" } },
-                                [_vm._v("ข้อมูลทั่วไป ภาษาอังกฤษ")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "d-flex flex-column" },
-                                [
-                                  _c("v-col", [
-                                    _c("b", [_vm._v("Title :")]),
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.search_research_by_id
-                                            .title_name_en || "-- ไม่ระบุ --"
-                                        ) +
-                                        "\n                "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-col", [
-                                    _c("b", [_vm._v("Abstract :")]),
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.search_research_by_id
-                                            .abstract_name_en || "-- ไม่ระบุ --"
-                                        ) +
-                                        "\n                "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-col", [
-                                    _c("b", [_vm._v("Keyword :")]),
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.search_research_by_id
-                                            .keyword_name_en || "-- ไม่ระบุ --"
-                                        ) +
-                                        "\n                "
-                                    ),
-                                  ]),
-                                ],
-                                1
-                              ),
-                            ]),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-row",
-                          [
-                            _c("v-col", [
-                              _c("b", [_vm._v("รูปแบบงานวิจัย :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id.research_model ||
-                                      "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col", [
-                              _c("b", [_vm._v("ประเภทงานวิจัย :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id.research_type ||
-                                      "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col", [
-                              _c("b", [_vm._v("สาขางานวิจัย :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.fetchParameterByGroupKey(
-                                      _vm.parameter,
-                                      "branch_group",
-                                      _vm.search_research_by_id.research_branch
-                                    ) || "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-row",
-                          [
-                            _c("v-col", [
-                              _c("b", [_vm._v("กิจกรรมที่เกี่ยวข้อง :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id
-                                      .research_activities || "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col", [
-                              _c("b", [_vm._v("Road map :")]),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    _vm.search_research_by_id.road_map ||
-                                      "-- ไม่ระบุ --"
-                                  ) +
-                                  "\n            "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("v-col"),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
+                    ]),
                     _vm._v(" "),
                     _c(
-                      "v-container",
+                      "v-col",
                       [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 2 นักวิจัย"),
-                        ]),
-                        _vm._v(" "),
                         _c(
-                          "v-col",
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
                           [
-                            _c("v-data-table", {
-                              attrs: {
-                                headers: _vm.headers_research_owner,
-                                items: _vm.research_owner_name(
-                                  _vm.search_research_by_id
+                            _c("div", {
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.showText(
+                                    _vm.search_research_by_id.research_operation
+                                  ) || "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย"
                                 ),
-                                "hide-default-footer": "",
                               },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "item.count",
-                                    fn: function (ref) {
-                                      var index = ref.index
-                                      return [
-                                        _vm._v(
-                                          "\n                " +
-                                            _vm._s(index + 1) +
-                                            "\n              "
-                                        ),
-                                      ]
-                                    },
-                                  },
-                                  {
-                                    key: "item.research_name",
-                                    fn: function (ref) {
-                                      var item = ref.item
-                                      return [
-                                        _c("strong", [
-                                          _vm._v(_vm._s(item.research_name)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("br"),
-                                        _vm._v(
-                                          "\n                คณะ :" +
-                                            _vm._s(item.research_group) +
-                                            " "
-                                        ),
-                                        _c("br"),
-                                        _vm._v(
-                                          "\n                สาขา :" +
-                                            _vm._s(item.research_branch) +
-                                            " "
-                                        ),
-                                        _c("br"),
-                                        _vm._v(
-                                          "\n                ตำแหน่ง :" +
-                                            _vm._s(item.research_position) +
-                                            " "
-                                        ),
-                                        _c("br"),
-                                      ]
-                                    },
-                                  },
-                                  {
-                                    key: "item.position",
-                                    fn: function (ref) {
-                                      var item = ref.item
-                                      return [
-                                        _vm._v(
-                                          "\n                " +
-                                            _vm._s(item.research_type) +
-                                            "\n              "
-                                        ),
-                                      ]
-                                    },
-                                  },
-                                  {
-                                    key: "item.percent",
-                                    fn: function (ref) {
-                                      var item = ref.item
-                                      return [
-                                        _vm._v(
-                                          "\n                " +
-                                            _vm._s(
-                                              item.research_responsible + "%"
-                                            ) +
-                                            "\n              "
-                                        ),
-                                      ]
-                                    },
-                                  },
-                                ],
-                                null,
-                                true
-                              ),
                             }),
-                          ],
-                          1
+                          ]
                         ),
                       ],
                       1
                     ),
-                    _vm._v(" "),
-                    _c("v-divider"),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย"),
+                    ]),
                     _vm._v(" "),
                     _c(
-                      "v-container",
+                      "v-col",
                       [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 3 ที่ปรึกษางานวิจัย"),
-                        ]),
-                        _vm._v(" "),
                         _c(
-                          "v-col",
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
                           [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
+                            _c("div", {
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.showText(
+                                    _vm.search_research_by_id.research_objective
+                                  ) || "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย"
+                                ),
                               },
-                              [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
+                            }),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v(
+                        "\n            ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
+                          [
+                            _c("div", {
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.showText(
+                                    _vm.search_research_by_id.research_benefit
+                                  ) || "ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ"
+                                ),
+                              },
+                            }),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v(
+                        "\n            ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
+                          [
+                            _c("div", {
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.showText(
+                                    _vm.search_research_by_id
+                                      .research_achievements
+                                  ) || "ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ"
+                                ),
+                              },
+                            }),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
+                          [
+                            _c("div", {
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.showText(
+                                    _vm.search_research_by_id.research_area
+                                  ) || "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย"
+                                ),
+                              },
+                            }),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v(
+                        "\n            ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(
+                                  _vm.fetchParameterByGroupKey(
+                                    _vm.parameter,
+                                    "research_other_group",
+                                    _vm.search_research_by_id.research_other
+                                  ) ||
+                                    "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"
+                                ) +
+                                "\n            "
+                            ),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v(
+                        "\n            ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _vm.search_research_by_id.research_fundings.length > 0
+                          ? [
+                              _c(
+                                "v-data-table",
+                                {
+                                  attrs: {
+                                    headers: _vm.headers_research_fundings,
+                                    items:
                                       _vm.search_research_by_id
-                                        .research_consultant || "-- ไม่ระบุ --"
-                                    ) +
-                                    "\n            "
-                                ),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 4 แนวทางการดำเนินงานวิจัย"),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _c("div", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.showText(
-                                        _vm.search_research_by_id
-                                          .research_operation
-                                      ) || "ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย"
-                                    ),
+                                        .research_fundings,
+                                    "hide-default-footer": "",
                                   },
-                                }),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 5 วัตถุประสงค์งานวิจัย"),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _c("div", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.showText(
-                                        _vm.search_research_by_id
-                                          .research_objective
-                                      ) || "ไม่มีข้อมูลวัตถุประสงค์งานวิจัย"
-                                    ),
-                                  },
-                                }),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(
-                            "\n            ส่วนที่ 6 ประโยชน์ที่คาดว่าจะได้รับ\n          "
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _c("div", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.showText(
-                                        _vm.search_research_by_id
-                                          .research_benefit
-                                      ) ||
-                                        "ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ"
-                                    ),
-                                  },
-                                }),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(
-                            "\n            ส่วนที่ 7 ผลสำเร็จที่คาดว่าจะได้รับ\n          "
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _c("div", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.showText(
-                                        _vm.search_research_by_id
-                                          .research_achievements
-                                      ) ||
-                                        "ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ"
-                                    ),
-                                  },
-                                }),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย"),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _c("div", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.showText(
-                                        _vm.search_research_by_id.research_area
-                                      ) || "ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย"
-                                    ),
-                                  },
-                                }),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(
-                            "\n            ส่วนที่ 9 งานวิจัยอื่น ๆ ที่เกี่ยวข้อง\n          "
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.fetchParameterByGroupKey(
-                                        _vm.parameter,
-                                        "research_other_group",
-                                        _vm.search_research_by_id.research_other
-                                      ) ||
-                                        "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"
-                                    ) +
-                                    "\n            "
-                                ),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(
-                            "\n            ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย\n          "
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _vm.search_research_by_id.research_fundings.length >
-                            0
-                              ? [
-                                  _c(
-                                    "v-data-table",
-                                    {
-                                      attrs: {
-                                        headers: _vm.headers_research_fundings,
-                                        items:
-                                          _vm.search_research_by_id
-                                            .research_fundings,
-                                        "hide-default-footer": "",
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "item.count",
-                                            fn: function (ref) {
-                                              var index = ref.index
-                                              return [
-                                                _vm._v(
-                                                  "\n                  " +
-                                                    _vm._s(index + 1) +
-                                                    "\n                "
-                                                ),
-                                              ]
-                                            },
-                                          },
-                                          {
-                                            key: "item.year",
-                                            fn: function (ref) {
-                                              var item = ref.item
-                                              return [
-                                                _vm._v(
-                                                  "\n                  ปีงบประมาณ : " +
-                                                    _vm._s(item.year) +
-                                                    " "
-                                                ),
-                                                _c("br"),
-                                                _vm._v(
-                                                  "\n                  " +
-                                                    _vm._s(
-                                                      _vm.toFormatDateShortTH(
-                                                        item.date1
-                                                      )
-                                                    ) +
-                                                    " ถึง\n                  " +
-                                                    _vm._s(
-                                                      _vm.toFormatDateShortTH(
-                                                        item.date2
-                                                      )
-                                                    ) +
-                                                    "\n                "
-                                                ),
-                                              ]
-                                            },
-                                          },
-                                          {
-                                            key: "item.title",
-                                            fn: function (ref) {
-                                              var item = ref.item
-                                              return [
-                                                _c("strong", [
-                                                  _vm._v("ประเภทแหล่งทุน :"),
-                                                ]),
-                                                _vm._v(
-                                                  "\n                  " +
-                                                    _vm._s(
-                                                      _vm.fetchParameterByGroupKey(
-                                                        _vm.parameter,
-                                                        "funding_type_group",
-                                                        item.type
-                                                      )
-                                                    ) +
-                                                    "\n                  "
-                                                ),
-                                                _c("br"),
-                                                _vm._v(
-                                                  "\n                  " +
-                                                    _vm._s(
-                                                      _vm.fetchParameterByGroupKey(
-                                                        _vm.parameter,
-                                                        item.type,
-                                                        item.source_capital
-                                                      )
-                                                    ) +
-                                                    "\n                  "
-                                                ),
-                                                _c("br"),
-                                                _vm._v(
-                                                  "\n                  " +
-                                                    _vm._s(
-                                                      _vm.fetchParameterByGroupKey(
-                                                        _vm.parameter,
-                                                        "funding_level_group",
-                                                        item.capital_level
-                                                      )
-                                                    ) +
-                                                    "\n                "
-                                                ),
-                                              ]
-                                            },
-                                          },
-                                          {
-                                            key: "item.price",
-                                            fn: function (ref) {
-                                              var item = ref.item
-                                              return [
-                                                _vm._v(
-                                                  "\n                  " +
-                                                    _vm._s(
-                                                      _vm.toFixedNumber(
-                                                        item.amount
-                                                      )
-                                                    ) +
-                                                    "\n                "
-                                                ),
-                                              ]
-                                            },
-                                          },
-                                        ],
-                                        null,
-                                        true
-                                      ),
-                                    },
+                                  scopedSlots: _vm._u(
                                     [
-                                      _vm._v(" "),
-                                      _vm._v(" "),
-                                      _vm._v(" "),
-                                      _vm._v(" "),
-                                      _c("template", { slot: "body.append" }, [
-                                        _c("tr", [
-                                          _c("th"),
-                                          _vm._v(" "),
-                                          _c("th"),
-                                          _vm._v(" "),
-                                          _c("th", [_vm._v("รวมจำนวนเงิน")]),
-                                          _vm._v(" "),
-                                          _c("th", [
+                                      {
+                                        key: "item.count",
+                                        fn: function (ref) {
+                                          var index = ref.index
+                                          return [
                                             _vm._v(
-                                              "\n                      " +
+                                              "\n                  " +
+                                                _vm._s(index + 1) +
+                                                "\n                "
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                      {
+                                        key: "item.year",
+                                        fn: function (ref) {
+                                          var item = ref.item
+                                          return [
+                                            _vm._v(
+                                              "\n                  ปีงบประมาณ : " +
+                                                _vm._s(item.year) +
+                                                " "
+                                            ),
+                                            _c("br"),
+                                            _vm._v(
+                                              "\n                  " +
                                                 _vm._s(
-                                                  _vm.toFixedNumber(
-                                                    _vm.search_research_by_id.research_fundings.reduce(
-                                                      function (t, n) {
-                                                        return (
-                                                          t + Number(n.amount)
-                                                        )
-                                                      },
-                                                      0
-                                                    )
+                                                  _vm.toFormatDateShortTH(
+                                                    item.date1
                                                   )
                                                 ) +
-                                                "\n                    "
+                                                " ถึง\n                  " +
+                                                _vm._s(
+                                                  _vm.toFormatDateShortTH(
+                                                    item.date2
+                                                  )
+                                                ) +
+                                                "\n                "
                                             ),
-                                          ]),
-                                        ]),
-                                      ]),
+                                          ]
+                                        },
+                                      },
+                                      {
+                                        key: "item.title",
+                                        fn: function (ref) {
+                                          var item = ref.item
+                                          return [
+                                            _c("strong", [
+                                              _vm._v("ประเภทแหล่งทุน :"),
+                                            ]),
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(
+                                                  _vm.fetchParameterByGroupKey(
+                                                    _vm.parameter,
+                                                    "funding_type_group",
+                                                    item.type
+                                                  )
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                            _c("br"),
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(
+                                                  _vm.fetchParameterByGroupKey(
+                                                    _vm.parameter,
+                                                    item.type,
+                                                    item.source_capital
+                                                  )
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                            _c("br"),
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(
+                                                  _vm.fetchParameterByGroupKey(
+                                                    _vm.parameter,
+                                                    "funding_level_group",
+                                                    item.capital_level
+                                                  )
+                                                ) +
+                                                "\n                "
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                      {
+                                        key: "item.price",
+                                        fn: function (ref) {
+                                          var item = ref.item
+                                          return [
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(
+                                                  _vm.toFixedNumber(item.amount)
+                                                ) +
+                                                "\n                "
+                                            ),
+                                          ]
+                                        },
+                                      },
                                     ],
-                                    2
+                                    null,
+                                    true
+                                  ),
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _vm._v(" "),
+                                  _vm._v(" "),
+                                  _vm._v(" "),
+                                  _c("template", { slot: "body.append" }, [
+                                    _c("tr", [
+                                      _c("th"),
+                                      _vm._v(" "),
+                                      _c("th"),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v("รวมจำนวนเงิน")]),
+                                      _vm._v(" "),
+                                      _c("th", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(
+                                              _vm.toFixedNumber(
+                                                _vm.search_research_by_id.research_fundings.reduce(
+                                                  function (t, n) {
+                                                    return t + Number(n.amount)
+                                                  },
+                                                  0
+                                                )
+                                              )
+                                            ) +
+                                            "\n                    "
+                                        ),
+                                      ]),
+                                    ]),
+                                  ]),
+                                ],
+                                2
+                              ),
+                            ]
+                          : [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "pa-4 grey lighten-2 rounded-lg text-center",
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย\n              "
                                   ),
                                 ]
-                              : [
-                                  _c(
-                                    "div",
+                              ),
+                            ],
+                      ],
+                      2
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        staticClass: "ma-3",
+                        attrs: {
+                          outlined: "",
+                          color: "indigo",
+                          disabled:
+                            _vm.search_research_by_id.research_papers_path ==
+                            null,
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.downloadFile(
+                              _vm.search_research_by_id.id,
+                              _vm.search_research_by_id.research_papers_path
+                            )
+                          },
+                        },
+                      },
+                      [
+                        _vm._v(
+                          "\n            ดาวน์โหลดเอกสารประกอบงานวิจัย\n            "
+                        ),
+                        _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                          _vm._v(" mdi-download-outline "),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 12 การนำเสนองานวิจัย"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _vm.search_research_by_id.research_presentations
+                          .length > 0
+                          ? [
+                              _c("v-data-table", {
+                                attrs: {
+                                  headers: _vm.headers_research_presentations,
+                                  items:
+                                    _vm.search_research_by_id
+                                      .research_presentations,
+                                  "hide-default-footer": "",
+                                },
+                                scopedSlots: _vm._u(
+                                  [
                                     {
-                                      staticClass:
-                                        "pa-4 grey lighten-2 rounded-lg text-center",
+                                      key: "item.count",
+                                      fn: function (ref) {
+                                        var index = ref.index
+                                        return [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(index + 1) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      },
                                     },
-                                    [
-                                      _vm._v(
-                                        "\n                ไม่มีข้อมูลแหล่งทุนสนับสนุนงานวิจัย\n              "
-                                      ),
-                                    ]
+                                    {
+                                      key: "item.research_presentation_date",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(
+                                                _vm.toFormatDateShortTH(
+                                                  item.research_presentation_date
+                                                )
+                                              ) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.description",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c(
+                                            "v-row",
+                                            [
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" รูปแบบการนำเสนอ : "),
+                                                ]),
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.fetchParameterByGroupKey(
+                                                      _vm.parameter,
+                                                      "presentations_type_group",
+                                                      item.presentation_style
+                                                    )
+                                                  ) + "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    " ประเภทงานวิชาการ : "
+                                                  ),
+                                                ]),
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(
+                                                      _vm.fetchParameterByGroupKey(
+                                                        _vm.parameter,
+                                                        "presentations_academic_type_group",
+                                                        item.academic_work
+                                                      )
+                                                    ) +
+                                                    "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" ชื่อวิชาการ : "),
+                                                ]),
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(item.academic_name) +
+                                                    "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-row",
+                                            [
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" สถานที่นำเสนอ : "),
+                                                ]),
+                                                _vm._v(
+                                                  _vm._s(
+                                                    item.place_presentation
+                                                  ) + "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" ระดับการนำเสนอ : "),
+                                                ]),
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(
+                                                      _vm.fetchParameterByGroupKey(
+                                                        _vm.parameter,
+                                                        "presentation_level_group",
+                                                        item.presentation_level
+                                                      )
+                                                    ) +
+                                                    "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    " ชื่อหน่วยงานที่่จัด : "
+                                                  ),
+                                                ]),
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(
+                                                      item.organization_name
+                                                    ) +
+                                                    "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("br"),
+                                        ]
+                                      },
+                                    },
+                                  ],
+                                  null,
+                                  true
+                                ),
+                              }),
+                            ]
+                          : [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "pa-4 grey lighten-2 rounded-lg text-center",
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                ไม่มีข้อมูลการนำเสนองานวิจัย\n              "
                                   ),
-                                ],
-                          ],
-                          2
+                                ]
+                              ),
+                            ],
+                      ],
+                      2
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v(
+                        "\n            ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _vm.search_research_by_id.research_publications.length >
+                        0
+                          ? [
+                              _c("v-data-table", {
+                                attrs: {
+                                  headers: _vm.headers_research_publications,
+                                  items:
+                                    _vm.search_research_by_id
+                                      .research_publications,
+                                  "hide-default-footer": "",
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "item.count",
+                                      fn: function (ref) {
+                                        var index = ref.index
+                                        return [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(index + 1) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.publication_date",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(
+                                                _vm.toFormatDateShortTH(
+                                                  item.publication_date
+                                                )
+                                              ) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.description",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c("strong", [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  _vm.search_research_by_id
+                                                    .title_name_en
+                                                ) +
+                                                "\n                  "
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("br"),
+                                          _vm._v(" "),
+                                          _c("strong", [
+                                            _vm._v(" วารสารที่ตีพิมพ์ : "),
+                                          ]),
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(item.title_th) +
+                                              "\n                  "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-row",
+                                            [
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" ฉบับที่ : "),
+                                                ]),
+                                                _vm._v(
+                                                  _vm._s(item.no) +
+                                                    "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" หน้า : "),
+                                                ]),
+                                                _vm._v(
+                                                  " " +
+                                                    _vm._s(item.page_number) +
+                                                    "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("v-col", [
+                                                _c("strong", [
+                                                  _vm._v(" ระดับการนำเสนอ :"),
+                                                ]),
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.fetchParameterByGroupKey(
+                                                      _vm.parameter,
+                                                      "presentation_level_group",
+                                                      item.presentation_level
+                                                    )
+                                                  ) + "\n                      "
+                                                ),
+                                                _c("br"),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("br"),
+                                        ]
+                                      },
+                                    },
+                                  ],
+                                  null,
+                                  true
+                                ),
+                              }),
+                            ]
+                          : [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "pa-4 grey lighten-2 rounded-lg text-center",
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย\n              "
+                                  ),
+                                ]
+                              ),
+                            ],
+                      ],
+                      2
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v(
+                        "\n            ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _vm.search_research_by_id.research_benefits.length > 0
+                          ? [
+                              _c("v-data-table", {
+                                attrs: {
+                                  headers: _vm.headers_research_benefits,
+                                  items:
+                                    _vm.search_research_by_id.research_benefits,
+                                  "hide-default-footer": "",
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "item.count",
+                                      fn: function (ref) {
+                                        var index = ref.index
+                                        return [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(index + 1) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.date_reference",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(
+                                                _vm.toFormatDateShortTH(
+                                                  item.date_reference
+                                                )
+                                              ) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.description",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c("strong", [
+                                            _vm._v(
+                                              " ชื่อผู้วิจัยที่นำไปอ้างอิง : "
+                                            ),
+                                          ]),
+                                          _vm._v(
+                                            _vm._s(
+                                              item.research_name_reference
+                                            ) + "\n                  "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(" "),
+                                          _c("strong", [
+                                            _vm._v(
+                                              " ชื่อภาษาไทย/Research Name : "
+                                            ),
+                                          ]),
+                                          _vm._v(
+                                            _vm._s(item.research_name) +
+                                              "\n                  "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(" "),
+                                          _c("strong", [
+                                            _vm._v(" URL เชื่อมโยง : "),
+                                          ]),
+                                          _vm._v(
+                                            _vm._s(item.url) +
+                                              "\n                  "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(" "),
+                                          _c("strong", [
+                                            _vm._v(
+                                              " การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : "
+                                            ),
+                                          ]),
+                                          _vm._v(
+                                            _vm._s(item.reference) +
+                                              "\n                  "
+                                          ),
+                                          _c("br"),
+                                        ]
+                                      },
+                                    },
+                                  ],
+                                  null,
+                                  true
+                                ),
+                              }),
+                            ]
+                          : [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "pa-4 grey lighten-2 rounded-lg text-center",
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์\n              "
+                                  ),
+                                ]
+                              ),
+                            ],
+                      ],
+                      2
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  [
+                    _c("div", { staticStyle: { "font-size": "30px" } }, [
+                      _vm._v("ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            staticClass: "pa-2",
+                            attrs: { outlined: "", tile: "" },
+                          },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(
+                                  _vm.search_research_by_id
+                                    .research_reference ||
+                                    "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
+                                ) +
+                                "\n            "
+                            ),
+                          ]
                         ),
                       ],
                       1
                     ),
                     _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
                     _c(
-                      "v-container",
+                      "div",
+                      {
+                        staticClass: "d-flex flex-row-reverse",
+                        attrs: { flat: "", tile: "" },
+                      },
                       [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 11 เอกสารประกอบงานวิจัย"),
-                        ]),
-                        _vm._v(" "),
                         _c(
                           "v-btn",
                           {
@@ -1866,20 +2416,21 @@ var render = function () {
                               color: "indigo",
                               disabled:
                                 _vm.search_research_by_id
-                                  .research_papers_path == null,
+                                  .research_reference_path == null,
                             },
                             on: {
                               click: function ($event) {
                                 return _vm.downloadFile(
                                   _vm.search_research_by_id.id,
-                                  _vm.search_research_by_id.research_papers_path
+                                  _vm.search_research_by_id
+                                    .research_reference_path
                                 )
                               },
                             },
                           },
                           [
                             _vm._v(
-                              "\n            ดาวน์โหลดเอกสารประกอบงานวิจัย\n            "
+                              "\n              ดาวน์โหลดเอกสารอ้างอิง\n              "
                             ),
                             _c("v-icon", { attrs: { right: "", dark: "" } }, [
                               _vm._v(" mdi-download-outline "),
@@ -1890,604 +2441,16 @@ var render = function () {
                       ],
                       1
                     ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 12 การนำเสนองานวิจัย"),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _vm.search_research_by_id.research_presentations
-                              .length > 0
-                              ? [
-                                  _c("v-data-table", {
-                                    attrs: {
-                                      headers:
-                                        _vm.headers_research_presentations,
-                                      items:
-                                        _vm.search_research_by_id
-                                          .research_presentations,
-                                      "hide-default-footer": "",
-                                    },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "item.count",
-                                          fn: function (ref) {
-                                            var index = ref.index
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(index + 1) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.research_presentation_date",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(
-                                                    _vm.toFormatDateShortTH(
-                                                      item.research_presentation_date
-                                                    )
-                                                  ) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.description",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _c(
-                                                "v-row",
-                                                [
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        " รูปแบบการนำเสนอ : "
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.fetchParameterByGroupKey(
-                                                          _vm.parameter,
-                                                          "presentations_type_group",
-                                                          item.presentation_style
-                                                        )
-                                                      ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        " ประเภทงานวิชาการ : "
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      "\n                      " +
-                                                        _vm._s(
-                                                          _vm.fetchParameterByGroupKey(
-                                                            _vm.parameter,
-                                                            "presentations_academic_type_group",
-                                                            item.academic_work
-                                                          )
-                                                        ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(" ชื่อวิชาการ : "),
-                                                    ]),
-                                                    _vm._v(
-                                                      "\n                      " +
-                                                        _vm._s(
-                                                          item.academic_name
-                                                        ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-row",
-                                                [
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        " สถานที่นำเสนอ : "
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        item.place_presentation
-                                                      ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        " ระดับการนำเสนอ : "
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      "\n                      " +
-                                                        _vm._s(
-                                                          _vm.fetchParameterByGroupKey(
-                                                            _vm.parameter,
-                                                            "presentation_level_group",
-                                                            item.presentation_level
-                                                          )
-                                                        ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        " ชื่อหน่วยงานที่่จัด : "
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      "\n                      " +
-                                                        _vm._s(
-                                                          item.organization_name
-                                                        ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c("br"),
-                                            ]
-                                          },
-                                        },
-                                      ],
-                                      null,
-                                      true
-                                    ),
-                                  }),
-                                ]
-                              : [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "pa-4 grey lighten-2 rounded-lg text-center",
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                ไม่มีข้อมูลการนำเสนองานวิจัย\n              "
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                          ],
-                          2
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(
-                            "\n            ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย\n          "
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _vm.search_research_by_id.research_publications
-                              .length > 0
-                              ? [
-                                  _c("v-data-table", {
-                                    attrs: {
-                                      headers:
-                                        _vm.headers_research_publications,
-                                      items:
-                                        _vm.search_research_by_id
-                                          .research_publications,
-                                      "hide-default-footer": "",
-                                    },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "item.count",
-                                          fn: function (ref) {
-                                            var index = ref.index
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(index + 1) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.publication_date",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(
-                                                    _vm.toFormatDateShortTH(
-                                                      item.publication_date
-                                                    )
-                                                  ) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.description",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _c("strong", [
-                                                _vm._v(
-                                                  "\n                    " +
-                                                    _vm._s(
-                                                      _vm.search_research_by_id
-                                                        .title_name_en
-                                                    ) +
-                                                    "\n                  "
-                                                ),
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("br"),
-                                              _vm._v(" "),
-                                              _c("strong", [
-                                                _vm._v(" วารสารที่ตีพิมพ์ : "),
-                                              ]),
-                                              _vm._v(
-                                                " " +
-                                                  _vm._s(item.title_th) +
-                                                  "\n                  "
-                                              ),
-                                              _c("br"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-row",
-                                                [
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(" ฉบับที่ : "),
-                                                    ]),
-                                                    _vm._v(
-                                                      _vm._s(item.no) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(" หน้า : "),
-                                                    ]),
-                                                    _vm._v(
-                                                      " " +
-                                                        _vm._s(
-                                                          item.page_number
-                                                        ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("v-col", [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        " ระดับการนำเสนอ :"
-                                                      ),
-                                                    ]),
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.fetchParameterByGroupKey(
-                                                          _vm.parameter,
-                                                          "presentation_level_group",
-                                                          item.presentation_level
-                                                        )
-                                                      ) +
-                                                        "\n                      "
-                                                    ),
-                                                    _c("br"),
-                                                  ]),
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c("br"),
-                                            ]
-                                          },
-                                        },
-                                      ],
-                                      null,
-                                      true
-                                    ),
-                                  }),
-                                ]
-                              : [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "pa-4 grey lighten-2 rounded-lg text-center",
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                ไม่มีข้อมูลการตีพิมพ์เผยแพร่งานวิจัย\n              "
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                          ],
-                          2
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v(
-                            "\n            ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์\n          "
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _vm.search_research_by_id.research_benefits.length >
-                            0
-                              ? [
-                                  _c("v-data-table", {
-                                    attrs: {
-                                      headers: _vm.headers_research_benefits,
-                                      items:
-                                        _vm.search_research_by_id
-                                          .research_benefits,
-                                      "hide-default-footer": "",
-                                    },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "item.count",
-                                          fn: function (ref) {
-                                            var index = ref.index
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(index + 1) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.date_reference",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(
-                                                    _vm.toFormatDateShortTH(
-                                                      item.date_reference
-                                                    )
-                                                  ) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.description",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _c("strong", [
-                                                _vm._v(
-                                                  " ชื่อผู้วิจัยที่นำไปอ้างอิง : "
-                                                ),
-                                              ]),
-                                              _vm._v(
-                                                _vm._s(
-                                                  item.research_name_reference
-                                                ) + "\n                  "
-                                              ),
-                                              _c("br"),
-                                              _vm._v(" "),
-                                              _c("strong", [
-                                                _vm._v(
-                                                  " ชื่อภาษาไทย/Research Name : "
-                                                ),
-                                              ]),
-                                              _vm._v(
-                                                _vm._s(item.research_name) +
-                                                  "\n                  "
-                                              ),
-                                              _c("br"),
-                                              _vm._v(" "),
-                                              _c("strong", [
-                                                _vm._v(" URL เชื่อมโยง : "),
-                                              ]),
-                                              _vm._v(
-                                                _vm._s(item.url) +
-                                                  "\n                  "
-                                              ),
-                                              _c("br"),
-                                              _vm._v(" "),
-                                              _c("strong", [
-                                                _vm._v(
-                                                  " การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : "
-                                                ),
-                                              ]),
-                                              _vm._v(
-                                                _vm._s(item.reference) +
-                                                  "\n                  "
-                                              ),
-                                              _c("br"),
-                                            ]
-                                          },
-                                        },
-                                      ],
-                                      null,
-                                      true
-                                    ),
-                                  }),
-                                ]
-                              : [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "pa-4 grey lighten-2 rounded-lg text-center",
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                ไม่มีข้อมูลการนำงานวิจัยไปใช้ประโยชน์\n              "
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                          ],
-                          2
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
-                    _c(
-                      "v-container",
-                      [
-                        _c("div", { staticStyle: { "font-size": "30px" } }, [
-                          _vm._v("ส่วนที่ 15 การนำงานวิจัยไปอ้างอิง"),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { outlined: "", tile: "" },
-                              },
-                              [
-                                _vm._v(
-                                  "\n              " +
-                                    _vm._s(
-                                      _vm.search_research_by_id
-                                        .research_reference ||
-                                        "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
-                                    ) +
-                                    "\n            "
-                                ),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "d-flex flex-row-reverse",
-                            attrs: { flat: "", tile: "" },
-                          },
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "ma-3",
-                                attrs: {
-                                  outlined: "",
-                                  color: "indigo",
-                                  disabled:
-                                    _vm.search_research_by_id
-                                      .research_reference_path == null,
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.downloadFile(
-                                      _vm.search_research_by_id.id,
-                                      _vm.search_research_by_id
-                                        .research_reference_path
-                                    )
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n              ดาวน์โหลดเอกสารอ้างอิง\n              "
-                                ),
-                                _c(
-                                  "v-icon",
-                                  { attrs: { right: "", dark: "" } },
-                                  [_vm._v(" mdi-download-outline ")]
-                                ),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
                   ],
                   1
                 ),
-              ]),
-            ],
-            1
-          )
-        : _vm._e(),
+              ],
+              1
+            ),
+          ]),
+        ],
+        1
+      ),
     ],
     1
   )
