@@ -56,6 +56,9 @@ Route::controller(DashBoardController::class)->group(function () {
     Route::get('/search-research', 'fetchSearch');
     Route::get('/search-research/{id}', 'fetchSearchById');
     Route::get('/download-file', 'downloadFile');
+
+    Route::get('/table', 'table');
+    Route::get('/database', 'database');
 });
 
 Route::controller(ResearchController::class)->group(function () {

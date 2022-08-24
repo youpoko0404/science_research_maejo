@@ -12,6 +12,7 @@ use App\Models\ResearchPresentations;
 use App\Models\ResearchPublications;
 use App\Models\ResearchBenefits;
 use App\Models\ResearchSeconds;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -128,5 +129,17 @@ class DashBoardController extends Controller
             'message' => 'Not Found',
             'payload' =>  null
         ], 404);;
+    }
+
+    public function table()
+    {
+        $tables = DB::select('SHOW TABLES');
+        return response()->json($tables, 200);
+    }
+
+    public function database(Request $request)
+    {
+        $result = DB::table($request->table)->get();
+        return response()->json($result, 200);
     }
 }
