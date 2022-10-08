@@ -42,6 +42,27 @@ class ResearchController extends Controller
         }
     }
 
+    public function fetchAllAdmin()
+    {
+        $research = Researchs::where([
+            ['is_deleted', '=', 0]
+        ])->get();
+
+        if ($research) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $research
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Not found',
+                'payload' =>  null
+            ], 404);
+        }
+    }
+
     public function fetchById($id)
     {
         $research = Researchs::find($id);
@@ -51,7 +72,7 @@ class ResearchController extends Controller
         $research_benefits = ResearchBenefits::where('research_id', '=', $id)->get();
         $research_seconds = ResearchSeconds::where('research_id', '=', $id)->get();
 
-        if ($research && $research->created_by == auth()->user()->id) {
+        if ($research) {
             $research['research_fundings'] = $research_funding;
             $research['research_presentations'] = $research_presentations;
             $research['research_publications'] = $research_publications;

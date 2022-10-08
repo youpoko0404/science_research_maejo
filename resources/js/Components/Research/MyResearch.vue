@@ -2,10 +2,14 @@
   <v-container>
     <Loading :loading="loading" />
     <div class="d-flex justify-space-between">
-      <div style="font-size: 30px">งานวิจัยของฉัน</div>
-      <v-btn color="primary" @click="heddleOnClickButton(0)">
-        เพิ่มข้อมูล
-      </v-btn>
+      <div style="font-size: 30px">
+        {{ "งานวิจัยของฉัน" }}
+      </div>
+      <template v-if="myPermission.is_create == 1">
+        <v-btn color="primary" @click="heddleOnClickButton(0)">
+          เพิ่มข้อมูล
+        </v-btn>
+      </template>
     </div>
     <v-divider></v-divider>
     <v-row>
@@ -26,9 +30,11 @@
           {{ item.title_name_en }}
         </template>
         <template v-slot:[`item.edit`]="{ item }">
-          <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
-            >แก้ไข</v-btn
-          >
+          <template v-if="myPermission.is_update == 1">
+            <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
+              >แก้ไข
+            </v-btn>
+          </template>
         </template>
         <template v-slot:no-data> ไม่พบผลการค้นหา </template>
       </v-data-table>
@@ -36,6 +42,7 @@
         <v-pagination v-model="page" :length="pageCount"></v-pagination>
       </div>
     </v-row>
+
     <div class="d-flex justify-space-between">
       <div style="font-size: 30px">ความเชี่ยวชาญของฉัน</div>
       <v-btn color="primary" @click="dialog.user_expertise = true">
@@ -236,9 +243,11 @@ export default {
 
   computed: {
     ...mapState({
+      user: (state) => state.auth.user ?? [],
       loading: (state) => state.research.loading,
       researchAll: (state) => state.research.researchAll ?? [],
       expertiseAll: (state) => state.user.expertiseAll ?? [],
+      myPermission: (state) => state.permission.my_permission ?? [],
     }),
   },
 
@@ -256,6 +265,7 @@ export default {
 
     fetchResearch() {
       this.$store.dispatch("research/fetchAll");
+      this.$store.dispatch("permission/fetchUserPermissionByUserId");
     },
 
     heddleOnClickSaveUserExpertise() {

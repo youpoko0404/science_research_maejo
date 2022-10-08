@@ -43,51 +43,10 @@ class AuthController extends Controller
                 'first_name' => $data->firstName,
                 'last_name' => $data->lastName,
                 'username' => $data->userName,
-                // 'position_number' => $data->positionNumber,
-                // 'employment_type' => $data->employmentType,
-                // 'position' => $data->position,
-                // 'level' => $data->level,
-                // 'work_start_date' => $data->workStartDate,
                 'password' => Hash::make($request->password)
             ];
 
             $user = User::updateOrCreate($userWhere, $userData);
-
-            // if ($data->study) {
-            //     foreach ($data->study as $study) {
-            //         $studyWhere = [
-            //             'user_id' => $user->id,
-            //             'level' => $study->level,
-            //             'educational' => $study->educational,
-            //             'university' => $study->university,
-            //         ];
-
-            //         $studyData = [
-            //             'user_id' => $user->id,
-            //             'level' => $study->level,
-            //             'educational' => $study->educational,
-            //             'university' => $study->university,
-            //         ];
-            //         StudyUser::updateOrCreate($studyWhere, $studyData);
-            //     }
-            // }
-
-            // if ($data->expertise) {
-            //     foreach ($data->expertise as $expertise) {
-            //         $expertiseWhere = [
-            //             'user_id' => $user->id,
-            //             'group' => $expertise->text,
-            //             'value' => $expertise->value,
-            //         ];
-
-            //         $expertiseData = [
-            //             'user_id' => $user->id,
-            //             'group' => $expertise->text,
-            //             'value' => $expertise->value,
-            //         ];
-            //         ExpertiseUser::updateOrCreate($expertiseWhere, $expertiseData);
-            //     }
-            // }
 
             if ($user) {
                 Auth::login($user);

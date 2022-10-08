@@ -63,19 +63,19 @@ export default {
           text: "ชื่อผลงาน",
           align: "start",
           value: "research_name",
-          width: "70%",
+          width: "50%",
         },
-        // {
-        //   text: "ชื่อผู้แต่ง",
-        //   align: "start",
-        //   value: "name",
-        //   width: "25%",
-        // },
         {
           text: "ชื่อผู้แต่ง",
           align: "start",
           value: "research_main_name",
           width: "25%",
+        },
+        {
+          text: "ช่วงเวลาวิจัย",
+          align: "start",
+          value: "research_period_start",
+          width: "20%",
         },
       ],
     };

@@ -6,6 +6,7 @@ import parameter from "./parameter";
 import dashboard from "./dashboard";
 import research from "./research";
 import user from "./user";
+import permission from "./permission";
 
 import snackbar from "./helper/snackbar";
 
@@ -19,5 +20,6 @@ export default new Vuex.Store({
         snackbar,
         research,
         user,
+        permission,
     },
 });

@@ -34,6 +34,12 @@ const routes = [
         meta: { title: "งานวิจัยของฉัน" },
     },
     {
+        path: "/manage-research",
+        name: "manage-research",
+        component: () => import("../components/Research/MyResearchAdmin.vue"),
+        meta: { title: "งานวิจัยทั้งหมด" },
+    },
+    {
         path: "/detail-research",
         name: "detail-research",
         component: () => import("../components/Research/DetailResearch.vue"),
@@ -44,6 +50,13 @@ const routes = [
         name: "user_expertise",
         component: () => import("../components/Research/Expertise.vue"),
         meta: { title: "ความเชี่ยวชาญ" },
+    },
+    {
+        path: "/user-permission",
+        name: "user_permission",
+        component: () =>
+            import("../components/UserPermission/UserPermission.vue"),
+        meta: { title: "จัดการสิทธิ" },
     },
 ];
 

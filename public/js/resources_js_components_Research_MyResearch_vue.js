@@ -184,6 +184,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -250,6 +257,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.fetchAllExpertise();
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+    user: function user(state) {
+      var _state$auth$user;
+
+      return (_state$auth$user = state.auth.user) !== null && _state$auth$user !== void 0 ? _state$auth$user : [];
+    },
     loading: function loading(state) {
       return state.research.loading;
     },
@@ -262,6 +274,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _state$user$expertise;
 
       return (_state$user$expertise = state.user.expertiseAll) !== null && _state$user$expertise !== void 0 ? _state$user$expertise : [];
+    },
+    myPermission: function myPermission(state) {
+      var _state$permission$my_;
+
+      return (_state$permission$my_ = state.permission.my_permission) !== null && _state$permission$my_ !== void 0 ? _state$permission$my_ : [];
     }
   })),
   methods: {
@@ -278,6 +295,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     fetchResearch: function fetchResearch() {
       this.$store.dispatch("research/fetchAll");
+      this.$store.dispatch("permission/fetchUserPermissionByUserId");
     },
     heddleOnClickSaveUserExpertise: function heddleOnClickSaveUserExpertise() {
       var _this = this;
@@ -418,23 +436,27 @@ var render = function () {
         { staticClass: "d-flex justify-space-between" },
         [
           _c("div", { staticStyle: { "font-size": "30px" } }, [
-            _vm._v("งานวิจัยของฉัน"),
+            _vm._v("\n      " + _vm._s("งานวิจัยของฉัน") + "\n    "),
           ]),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              attrs: { color: "primary" },
-              on: {
-                click: function ($event) {
-                  return _vm.heddleOnClickButton(0)
-                },
-              },
-            },
-            [_vm._v("\n      เพิ่มข้อมูล\n    ")]
-          ),
+          _vm.myPermission.is_create == 1
+            ? [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { color: "primary" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.heddleOnClickButton(0)
+                      },
+                    },
+                  },
+                  [_vm._v("\n        เพิ่มข้อมูล\n      ")]
+                ),
+              ]
+            : _vm._e(),
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c("v-divider"),
@@ -488,18 +510,22 @@ var render = function () {
                   fn: function (ref) {
                     var item = ref.item
                     return [
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "warning", dark: "" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.heddleOnClickButton(item.id)
-                            },
-                          },
-                        },
-                        [_vm._v("แก้ไข")]
-                      ),
+                      _vm.myPermission.is_update == 1
+                        ? [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "warning", dark: "" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.heddleOnClickButton(item.id)
+                                  },
+                                },
+                              },
+                              [_vm._v("แก้ไข\n          ")]
+                            ),
+                          ]
+                        : _vm._e(),
                     ]
                   },
                 },

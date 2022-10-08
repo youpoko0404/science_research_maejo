@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParameterController;
+use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\UserController;
@@ -66,6 +67,7 @@ Route::controller(ResearchController::class)->group(function () {
         Route::post('/research', 'save');
         Route::post('/research/edit/{id}', 'edit');
         Route::get('/research', 'fetchAll');
+        Route::get('/research/admin', 'fetchAllAdmin');
         Route::get('/research/{id}', 'fetchById');
         Route::delete('/research/{id}', 'delete');
         Route::get('/search-user-expertise', 'fetchSearchUserExpertise');
@@ -78,5 +80,13 @@ Route::controller(UserController::class)->group(function () {
         Route::post('/user-expertise', 'insertExpertise');
         Route::delete('/user-expertise/{id}', 'deleteUserExpertise');
         Route::post('/edit-user-expertise', 'updateExpertise');
+    });
+});
+
+Route::controller(UserPermissionsController::class)->group(function () {
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/user-permission', 'fetchUserPermission');
+        Route::post('/user-permission', 'updateUserPermission');
+        Route::get('/my-permission', 'fetchUserPermissionByUserId');
     });
 });

@@ -31,14 +31,28 @@
             <div class="pa-3">
               <v-btn text to="/" styles="selected"> หน้าแรก </v-btn>
             </div>
-            <template v-if="user != null">
+            <template v-if="user != null && user.role == 'admin'">
               <div class="pa-3">
-                <v-btn text to="/my-research" styles="selected">
-                  งานวิจัยจองฉัน
+                <v-btn text to="/user-permission" styles="selected">
+                  เพิ่มสิทธิ
                 </v-btn>
               </div>
             </template>
-            <template v-if="user != null">
+            <template v-if="user != null && user.role == 'admin'">
+              <div class="pa-3">
+                <v-btn text to="/manage-research" styles="selected">
+                  {{ "งานวิจัยทั้งหมด" }}
+                </v-btn>
+              </div>
+            </template>
+            <template v-else>
+              <div class="pa-3">
+                <v-btn text to="/my-research" styles="selected">
+                  {{ "งานวิจัยของฉัน" }}
+                </v-btn>
+              </div>
+            </template>
+            <template>
               <div class="pa-3">
                 <v-btn text to="/user-expertise" styles="selected">
                   ความเชียวชาญ

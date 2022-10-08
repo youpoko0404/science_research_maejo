@@ -40,22 +40,6 @@ const actions = {
             state.loading = false;
         });
     },
-
-    // logout({ commit }) {
-    //     return new Promise(async(resolve, reject) => {
-    //         state.loading = true;
-    //         await AuthService.logout()
-    //             .then((response) => {
-    //                 if (response.data.success) {
-    //                     commit("USER_CLEAR");
-    //                     resolve(response.data);
-    //                 }
-    //             }).catch((error) => {
-    //                 reject(error);
-    //             })
-    //         state.loading = false;
-    //     });
-    // },
 };
 
 const mutations = {
