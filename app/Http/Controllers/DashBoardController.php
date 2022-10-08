@@ -86,36 +86,35 @@ class DashBoardController extends Controller
             ->orderBy('created_at')
             ->get();
 
-        // foreach ($results as $result) {
-        //     $researchs_user = ResearchUsers::where('research_id', '=', $result->id)->get();
-        //     $result['part_2'] = $researchs_user;
-        // }
-
         $collection = collect($results);
 
-        $filtered = $collection->filter(function ($value, $key) use ($q) {
-            // $filtered_name = array_filter(
-            //     json_decode($value->part_2),
-            //     function ($obj) use ($q) {
-            //         return str_contains(strtolower($obj->name), strtolower($q));
-            //     }
-            // );
-            return
-                str_contains(strtolower($value->ref_code_university), strtolower($q)) ||
-                str_contains(strtolower($value->title_name_th), strtolower($q)) ||
-                str_contains(strtolower($value->title_name_en), strtolower($q)) ||
-                str_contains(strtolower($value->research_main_name), strtolower($q)) ||
-                str_contains(strtolower($value->research_second_name), strtolower($q));
+        $split_search_or = explode("OR", $q);
 
-            // str_contains(strtolower($value->university_code), strtolower($q)) ||
-            // $filtered_name;
-        })->values();
+        $res = collect();
 
+        foreach ($split_search_or as $name) {
+            if ($name) {
+                $space = str_replace(' ', '', $name);
+                $filtered = $collection->filter(function ($value, $key) use ($space) {
+                    return
+                        str_contains(strtolower($value->ref_code_university), strtolower($space)) ||
+                        str_contains(strtolower($value->title_name_th), strtolower($space)) ||
+                        str_contains(strtolower($value->title_name_en), strtolower($space)) ||
+                        str_contains(strtolower($value->research_main_name), strtolower($space)) ||
+                        str_contains(strtolower($value->research_second_name), strtolower($space)) ||
+                        str_contains(strtolower($value->research_period_start), strtolower($space));
+                })->values();
+
+                foreach ($filtered as $obj) {
+                    $res->push($obj);
+                }
+            }
+        }
 
         return response()->json([
             'success' => true,
             'message' => 'Successfully',
-            'payload' =>  $filtered
+            'payload' =>  $res->unique('id')->all()
         ], 200);
     }
 

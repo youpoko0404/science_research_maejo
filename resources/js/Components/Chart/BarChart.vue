@@ -112,6 +112,11 @@ export default {
             display: false,
           },
         },
+        scale: {
+          ticks: {
+            precision: 0,
+          },
+        },
       },
     };
   },
