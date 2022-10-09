@@ -253,8 +253,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    this.fetchResearch();
-    this.fetchAllExpertise();
+    this.fetchResearch(); // this.fetchAllExpertise();
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     user: function user(state) {
@@ -270,11 +269,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return (_state$research$resea = state.research.researchAll) !== null && _state$research$resea !== void 0 ? _state$research$resea : [];
     },
-    expertiseAll: function expertiseAll(state) {
-      var _state$user$expertise;
-
-      return (_state$user$expertise = state.user.expertiseAll) !== null && _state$user$expertise !== void 0 ? _state$user$expertise : [];
-    },
+    // expertiseAll: (state) => state.user.expertiseAll ?? [],
     myPermission: function myPermission(state) {
       var _state$permission$my_;
 
@@ -290,52 +285,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    fetchAllExpertise: function fetchAllExpertise() {
-      this.$store.dispatch("user/fetchAllExpertise");
-    },
+    // fetchAllExpertise() {
+    //   this.$store.dispatch("user/fetchAllExpertise");
+    // },
     fetchResearch: function fetchResearch() {
       this.$store.dispatch("research/fetchAll");
       this.$store.dispatch("permission/fetchUserPermissionByUserId");
-    },
-    heddleOnClickSaveUserExpertise: function heddleOnClickSaveUserExpertise() {
-      var _this = this;
+    } // heddleOnClickSaveUserExpertise() {
+    //   this.$refs.form_user_expertise.validate();
+    //   if (this.$refs.form_user_expertise.validate()) {
+    //     if (this.id_user_expertise != 0) {
+    //       let user_expertise = {
+    //         id: this.id_user_expertise,
+    //         user_expertise: this.user_expertise,
+    //       };
+    //       this.$store
+    //         .dispatch("user/UpdateExpertise", user_expertise)
+    //         .then((response) => {
+    //           if (response.success) {
+    //             location.reload();
+    //           }
+    //         });
+    //     } else {
+    //       let user_expertise = {
+    //         user_expertise: this.user_expertise,
+    //       };
+    //       this.$store
+    //         .dispatch("user/InsertExpertise", user_expertise)
+    //         .then((response) => {
+    //           if (response.success) {
+    //             this.$refs.form_user_expertise.reset();
+    //             this.dialog.user_expertise = false;
+    //           }
+    //         });
+    //     }
+    //   }
+    // },
+    // deleteUseExpertiseItemConfirm(id) {
+    //   if (id) {
+    //     this.$store
+    //       .dispatch("user/deleteUserExpertise", id)
+    //       .then((response) => {
+    //         if (response.success) {
+    //           location.reload();
+    //         }
+    //       });
+    //   }
+    // },
 
-      this.$refs.form_user_expertise.validate();
-
-      if (this.$refs.form_user_expertise.validate()) {
-        if (this.id_user_expertise != 0) {
-          var user_expertise = {
-            id: this.id_user_expertise,
-            user_expertise: this.user_expertise
-          };
-          this.$store.dispatch("user/UpdateExpertise", user_expertise).then(function (response) {
-            if (response.success) {
-              location.reload();
-            }
-          });
-        } else {
-          var _user_expertise = {
-            user_expertise: this.user_expertise
-          };
-          this.$store.dispatch("user/InsertExpertise", _user_expertise).then(function (response) {
-            if (response.success) {
-              _this.$refs.form_user_expertise.reset();
-
-              _this.dialog.user_expertise = false;
-            }
-          });
-        }
-      }
-    },
-    deleteUseExpertiseItemConfirm: function deleteUseExpertiseItemConfirm(id) {
-      if (id) {
-        this.$store.dispatch("user/deleteUserExpertise", id).then(function (response) {
-          if (response.success) {
-            location.reload();
-          }
-        });
-      }
-    }
   }
 });
 
@@ -422,7 +419,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
 var render = function () {
-  var this$1 = this
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -556,319 +552,6 @@ var render = function () {
                   expression: "page",
                 },
               }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "d-flex justify-space-between" },
-        [
-          _c("div", { staticStyle: { "font-size": "30px" } }, [
-            _vm._v("ความเชี่ยวชาญของฉัน"),
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              attrs: { color: "primary" },
-              on: {
-                click: function ($event) {
-                  _vm.dialog.user_expertise = true
-                },
-              },
-            },
-            [_vm._v("\n      เพิ่มข้อมูล\n    ")]
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-divider"),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        [
-          _c("v-data-table", {
-            staticClass: "elevation-1",
-            attrs: {
-              headers: _vm.headers1,
-              items: _vm.expertiseAll,
-              page: _vm.page,
-              "items-per-page": _vm.itemsPerPage,
-              "hide-default-footer": "",
-            },
-            on: {
-              "update:page": function ($event) {
-                _vm.page = $event
-              },
-              "page-count": function ($event) {
-                _vm.pageCount = $event
-              },
-            },
-            scopedSlots: _vm._u(
-              [
-                {
-                  key: "item.index",
-                  fn: function (ref) {
-                    var index = ref.index
-                    return [
-                      _vm._v("\n        " + _vm._s(index + 1) + "\n      "),
-                    ]
-                  },
-                },
-                {
-                  key: "item.edit",
-                  fn: function (ref) {
-                    var item = ref.item
-                    return [
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "warning", dark: "" },
-                          on: {
-                            click: function () {
-                              _vm.dialog.user_expertise = true
-                              _vm.id_user_expertise = item.id
-                              _vm.user_expertise = item.type
-                            },
-                          },
-                        },
-                        [_vm._v("แก้ไข")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "error", dark: "" },
-                          on: {
-                            click: function () {
-                              _vm.deleteId = item.id
-                              _vm.dialog.dialogDelete = true
-                            },
-                          },
-                        },
-                        [_vm._v("ลบ")]
-                      ),
-                    ]
-                  },
-                },
-                {
-                  key: "no-data",
-                  fn: function () {
-                    return [_vm._v(" ไม่พบผลการค้นหา ")]
-                  },
-                  proxy: true,
-                },
-              ],
-              null,
-              true
-            ),
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center pt-2" },
-            [
-              _c("v-pagination", {
-                attrs: { length: _vm.pageCount },
-                model: {
-                  value: _vm.page,
-                  callback: function ($$v) {
-                    _vm.page = $$v
-                  },
-                  expression: "page",
-                },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-center" },
-        [
-          _c(
-            "v-dialog",
-            {
-              attrs: { width: "900" },
-              model: {
-                value: _vm.dialog.user_expertise,
-                callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "user_expertise", $$v)
-                },
-                expression: "dialog.user_expertise",
-              },
-            },
-            [
-              _c(
-                "v-form",
-                { ref: "form_user_expertise" },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-card-title",
-                        { staticClass: "grey lighten-2 mb-2" },
-                        [
-                          _vm._v(
-                            "\n            ความเชี่ยวชาญของฉัน\n          "
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-text",
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      color: "green darken-3",
-                                      label: "ความเชี่ยวชาญของฉัน",
-                                      rules: _vm.rules.required,
-                                      required: "",
-                                    },
-                                    model: {
-                                      value: _vm.user_expertise,
-                                      callback: function ($$v) {
-                                        _vm.user_expertise = $$v
-                                      },
-                                      expression: "user_expertise",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-actions",
-                        [
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "primary", text: "" },
-                              on: {
-                                click: function () {
-                                  this$1.$refs.form_user_expertise.reset()
-                                  _vm.dialog.user_expertise =
-                                    !_vm.dialog.user_expertise
-                                },
-                              },
-                            },
-                            [_vm._v("\n              ยกเลิก\n            ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "primary", text: "" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.heddleOnClickSaveUserExpertise()
-                                },
-                              },
-                            },
-                            [_vm._v("\n              ยืนยัน\n            ")]
-                          ),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-center" },
-        [
-          _c(
-            "v-dialog",
-            {
-              attrs: { "max-width": "500px" },
-              model: {
-                value: _vm.dialog.dialogDelete,
-                callback: function ($$v) {
-                  _vm.$set(_vm.dialog, "dialogDelete", $$v)
-                },
-                expression: "dialog.dialogDelete",
-              },
-            },
-            [
-              _c(
-                "v-card",
-                [
-                  _c("v-card-title", [_vm._v("คุณยืนยันที่จะลบข้อมูลนี้")]),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "blue darken-1", text: "" },
-                          on: {
-                            click: function ($event) {
-                              _vm.dialog.dialogDelete = false
-                            },
-                          },
-                        },
-                        [_vm._v("ยกเลิก")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "blue darken-1", text: "" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.deleteUseExpertiseItemConfirm(
-                                _vm.deleteId
-                              )
-                            },
-                          },
-                        },
-                        [_vm._v("ตกลง")]
-                      ),
-                      _vm._v(" "),
-                      _c("v-spacer"),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
             ],
             1
           ),

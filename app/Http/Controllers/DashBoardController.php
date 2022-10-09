@@ -12,6 +12,7 @@ use App\Models\ResearchPresentations;
 use App\Models\ResearchPublications;
 use App\Models\ResearchBenefits;
 use App\Models\ResearchSeconds;
+use App\Models\UserExpertise;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -130,15 +131,25 @@ class DashBoardController extends Controller
         ], 404);;
     }
 
-    public function table()
+    public function fetchSearchUserExpertise(Request $request)
     {
-        $tables = DB::select('SHOW TABLES');
-        return response()->json($tables, 200);
-    }
+        $q = $request->q;
 
-    public function database(Request $request)
-    {
-        $result = DB::table($request->table)->get();
-        return response()->json($result, 200);
+        $results = UserExpertise::orderBy('created_at')->get();
+
+        $collection = collect($results);
+
+        $filtered = $collection->filter(function ($value, $key) use ($q) {
+            return
+                str_contains(strtolower($value->firstName), strtolower($q)) ||
+                str_contains(strtolower($value->lastName), strtolower($q));
+        })->values();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Successfully',
+            'payload' =>  $filtered
+        ], 200);
     }
 }

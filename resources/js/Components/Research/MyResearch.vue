@@ -43,7 +43,7 @@
       </div>
     </v-row>
 
-    <div class="d-flex justify-space-between">
+    <!-- <div class="d-flex justify-space-between">
       <div style="font-size: 30px">ความเชี่ยวชาญของฉัน</div>
       <v-btn color="primary" @click="dialog.user_expertise = true">
         เพิ่มข้อมูล
@@ -165,7 +165,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </div>
+    </div> -->
   </v-container>
 </template>
 
@@ -238,7 +238,7 @@ export default {
   }),
   created() {
     this.fetchResearch();
-    this.fetchAllExpertise();
+    // this.fetchAllExpertise();
   },
 
   computed: {
@@ -246,7 +246,7 @@ export default {
       user: (state) => state.auth.user ?? [],
       loading: (state) => state.research.loading,
       researchAll: (state) => state.research.researchAll ?? [],
-      expertiseAll: (state) => state.user.expertiseAll ?? [],
+      // expertiseAll: (state) => state.user.expertiseAll ?? [],
       myPermission: (state) => state.permission.my_permission ?? [],
     }),
   },
@@ -259,57 +259,57 @@ export default {
       });
     },
 
-    fetchAllExpertise() {
-      this.$store.dispatch("user/fetchAllExpertise");
-    },
+    // fetchAllExpertise() {
+    //   this.$store.dispatch("user/fetchAllExpertise");
+    // },
 
     fetchResearch() {
       this.$store.dispatch("research/fetchAll");
       this.$store.dispatch("permission/fetchUserPermissionByUserId");
     },
 
-    heddleOnClickSaveUserExpertise() {
-      this.$refs.form_user_expertise.validate();
-      if (this.$refs.form_user_expertise.validate()) {
-        if (this.id_user_expertise != 0) {
-          let user_expertise = {
-            id: this.id_user_expertise,
-            user_expertise: this.user_expertise,
-          };
-          this.$store
-            .dispatch("user/UpdateExpertise", user_expertise)
-            .then((response) => {
-              if (response.success) {
-                location.reload();
-              }
-            });
-        } else {
-          let user_expertise = {
-            user_expertise: this.user_expertise,
-          };
-          this.$store
-            .dispatch("user/InsertExpertise", user_expertise)
-            .then((response) => {
-              if (response.success) {
-                this.$refs.form_user_expertise.reset();
-                this.dialog.user_expertise = false;
-              }
-            });
-        }
-      }
-    },
+    // heddleOnClickSaveUserExpertise() {
+    //   this.$refs.form_user_expertise.validate();
+    //   if (this.$refs.form_user_expertise.validate()) {
+    //     if (this.id_user_expertise != 0) {
+    //       let user_expertise = {
+    //         id: this.id_user_expertise,
+    //         user_expertise: this.user_expertise,
+    //       };
+    //       this.$store
+    //         .dispatch("user/UpdateExpertise", user_expertise)
+    //         .then((response) => {
+    //           if (response.success) {
+    //             location.reload();
+    //           }
+    //         });
+    //     } else {
+    //       let user_expertise = {
+    //         user_expertise: this.user_expertise,
+    //       };
+    //       this.$store
+    //         .dispatch("user/InsertExpertise", user_expertise)
+    //         .then((response) => {
+    //           if (response.success) {
+    //             this.$refs.form_user_expertise.reset();
+    //             this.dialog.user_expertise = false;
+    //           }
+    //         });
+    //     }
+    //   }
+    // },
 
-    deleteUseExpertiseItemConfirm(id) {
-      if (id) {
-        this.$store
-          .dispatch("user/deleteUserExpertise", id)
-          .then((response) => {
-            if (response.success) {
-              location.reload();
-            }
-          });
-      }
-    },
+    // deleteUseExpertiseItemConfirm(id) {
+    //   if (id) {
+    //     this.$store
+    //       .dispatch("user/deleteUserExpertise", id)
+    //       .then((response) => {
+    //         if (response.success) {
+    //           location.reload();
+    //         }
+    //       });
+    //   }
+    // },
   },
 };
 </script>

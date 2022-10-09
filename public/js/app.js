@@ -5396,7 +5396,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         };
         this.$store.dispatch("auth/login", user).then(function (response) {
           if (response.success) {
-            window.location.href = "/my-research";
+            console.log(response.payload.role);
+            if (response.payload.role == "admin") window.location.href = "/manage-research";else window.location.href = "/my-research";
           }
         })["catch"](function (error) {
           _this.snackBar(3500, "ชื่อผู้ใช้หรือรหัสผ่านผิดพลาด", "warning");
@@ -6265,13 +6266,6 @@ var ResearchService = {
   },
   "delete": function _delete(id) {
     return httpRequest["delete"]("".concat(API_PATH, "/research/").concat(id));
-  },
-  searchUserExpertise: function searchUserExpertise(q) {
-    return httpRequest.get("".concat(API_PATH, "/search-user-expertise"), {
-      params: {
-        q: q
-      }
-    });
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResearchService);
@@ -6294,17 +6288,15 @@ __webpack_require__.r(__webpack_exports__);
 var httpRequest = new _HttpRequest_httpRequest__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var API_PATH = "/api";
 var UserService = {
-  InsertExpertise: function InsertExpertise(user_expertise) {
-    return httpRequest.post("".concat(API_PATH, "/user-expertise"), user_expertise);
+  updateExpertise: function updateExpertise() {
+    return httpRequest.get("".concat(API_PATH, "/update-expertise"));
   },
-  fetchAllExpertise: function fetchAllExpertise() {
-    return httpRequest.get("".concat(API_PATH, "/user-expertise"));
-  },
-  deleteUserExpertise: function deleteUserExpertise(id) {
-    return httpRequest["delete"]("".concat(API_PATH, "/user-expertise/").concat(id));
-  },
-  UpdateExpertise: function UpdateExpertise(user_expertise) {
-    return httpRequest.post("".concat(API_PATH, "/edit-user-expertise"), user_expertise);
+  searchUserExpertise: function searchUserExpertise(q) {
+    return httpRequest.get("".concat(API_PATH, "/search-user-expertise"), {
+      params: {
+        q: q
+      }
+    });
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserService);
@@ -6896,10 +6888,10 @@ var actions = {
               case 0:
                 state.loading = true;
                 _context3.next = 3;
-                return _Service_Permission_service__WEBPACK_IMPORTED_MODULE_0__["default"].updateUserPermission(item).then(function (response) {// if (response.data.success) {
-                  //     commit("USER_PERMISSIONS", response.data.payload);
-                  //     resolve(response.data);
-                  // }
+                return _Service_Permission_service__WEBPACK_IMPORTED_MODULE_0__["default"].updateUserPermission(item).then(function (response) {
+                  if (response.data.success) {
+                    resolve(response.data);
+                  }
                 })["catch"](function (error) {
                   reject(error);
                 });
@@ -6963,8 +6955,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   loading: false,
   research: null,
-  researchAll: null,
-  search_user_expertise: null
+  researchAll: null
 };
 var getters = {};
 var actions = {
@@ -7174,41 +7165,6 @@ var actions = {
         return _ref12.apply(this, arguments);
       };
     }());
-  },
-  fetchSearchUserExpertise: function fetchSearchUserExpertise(_ref13, q) {
-    var commit = _ref13.commit;
-    return new Promise( /*#__PURE__*/function () {
-      var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(resolve, reject) {
-        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                commit("LOADING_SET", true);
-                _context7.next = 3;
-                return _Service_Research_service__WEBPACK_IMPORTED_MODULE_0__["default"].searchUserExpertise(q).then(function (response) {
-                  if (response.data.success) {
-                    commit("SEARCH_USER_EXPERTISE_SET", response.data.payload);
-                    resolve(response.data);
-                  }
-                })["catch"](function (error) {
-                  reject(error);
-                });
-
-              case 3:
-                commit("LOADING_SET", false);
-
-              case 4:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }));
-
-      return function (_x13, _x14) {
-        return _ref14.apply(this, arguments);
-      };
-    }());
   }
 };
 var mutations = {
@@ -7217,9 +7173,6 @@ var mutations = {
   },
   RESEARCH_SET: function RESEARCH_SET(state, response) {
     state.research = response;
-  },
-  SEARCH_USER_EXPERTISE_SET: function SEARCH_USER_EXPERTISE_SET(state, response) {
-    state.search_user_expertise = response;
   },
   LOADING_SET: function LOADING_SET(state, response) {
     state.loading = response;
@@ -7258,11 +7211,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   loading: false,
-  expertiseAll: null
+  search_user_expertise: null
 };
 var getters = {};
 var actions = {
-  InsertExpertise: function InsertExpertise(_ref, user_expertise) {
+  fetchSearchUserExpertise: function fetchSearchUserExpertise(_ref, q) {
     var commit = _ref.commit;
     return new Promise( /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve, reject) {
@@ -7272,9 +7225,9 @@ var actions = {
               case 0:
                 commit("LOADING_SET", true);
                 _context.next = 3;
-                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].InsertExpertise(user_expertise).then(function (response) {
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].searchUserExpertise(q).then(function (response) {
                   if (response.data.success) {
-                    state.expertiseAll.push(response.data.payload);
+                    commit("SEARCH_USER_EXPERTISE_SET", response.data.payload);
                     resolve(response.data);
                   }
                 })["catch"](function (error) {
@@ -7297,7 +7250,7 @@ var actions = {
       };
     }());
   },
-  fetchAllExpertise: function fetchAllExpertise(_ref3) {
+  updateExpertise: function updateExpertise(_ref3) {
     var commit = _ref3.commit;
     return new Promise( /*#__PURE__*/function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(resolve, reject) {
@@ -7307,9 +7260,8 @@ var actions = {
               case 0:
                 commit("LOADING_SET", true);
                 _context2.next = 3;
-                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchAllExpertise().then(function (response) {
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].updateExpertise().then(function (response) {
                   if (response.data.success) {
-                    commit("EXPERTISE_ALL_SET", response.data.payload);
                     resolve(response.data);
                   }
                 })["catch"](function (error) {
@@ -7331,79 +7283,11 @@ var actions = {
         return _ref4.apply(this, arguments);
       };
     }());
-  },
-  deleteUserExpertise: function deleteUserExpertise(_ref5, id) {
-    var commit = _ref5.commit;
-    return new Promise( /*#__PURE__*/function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(resolve, reject) {
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                commit("LOADING_SET", true);
-                _context3.next = 3;
-                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].deleteUserExpertise(id).then(function (response) {
-                  if (response.data.success) {
-                    resolve(response.data);
-                  }
-                })["catch"](function (error) {
-                  reject(error);
-                });
-
-              case 3:
-                commit("LOADING_SET", false);
-
-              case 4:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-
-      return function (_x5, _x6) {
-        return _ref6.apply(this, arguments);
-      };
-    }());
-  },
-  UpdateExpertise: function UpdateExpertise(_ref7, user_expertise) {
-    var commit = _ref7.commit;
-    return new Promise( /*#__PURE__*/function () {
-      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(resolve, reject) {
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                commit("LOADING_SET", true);
-                _context4.next = 3;
-                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].UpdateExpertise(user_expertise).then(function (response) {
-                  if (response.data.success) {
-                    resolve(response.data);
-                  }
-                })["catch"](function (error) {
-                  reject(error);
-                });
-
-              case 3:
-                commit("LOADING_SET", false);
-
-              case 4:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }));
-
-      return function (_x7, _x8) {
-        return _ref8.apply(this, arguments);
-      };
-    }());
   }
 };
 var mutations = {
-  EXPERTISE_ALL_SET: function EXPERTISE_ALL_SET(state, response) {
-    state.expertiseAll = response;
+  SEARCH_USER_EXPERTISE_SET: function SEARCH_USER_EXPERTISE_SET(state, response) {
+    state.search_user_expertise = response;
   },
   LOADING_SET: function LOADING_SET(state, response) {
     state.loading = response;
@@ -45237,7 +45121,7 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                เพิ่มสิทธิ\n              "
+                                    "\n                จัดการสิทธิ\n              "
                                   ),
                                 ]
                               ),
@@ -45274,7 +45158,10 @@ var render = function () {
                             1
                           ),
                         ]
-                      : [
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.user != null && _vm.user.role != "admin"
+                      ? [
                           _c(
                             "div",
                             { staticClass: "pa-3" },
@@ -45299,7 +45186,8 @@ var render = function () {
                             ],
                             1
                           ),
-                        ],
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
                     [
                       _c(
@@ -45317,7 +45205,7 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                "\n                ความเชียวชาญ\n              "
+                                "\n                ความเชี่ยวชาญ\n              "
                               ),
                             ]
                           ),

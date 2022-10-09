@@ -2,19 +2,22 @@ import UserService from "../Service/User.service";
 
 const state = {
     loading: false,
-    expertiseAll: null,
+    search_user_expertise: null,
 };
 
 const getters = {};
 
 const actions = {
-    InsertExpertise({ commit }, user_expertise) {
+    fetchSearchUserExpertise({ commit }, q) {
         return new Promise(async (resolve, reject) => {
             commit("LOADING_SET", true);
-            await UserService.InsertExpertise(user_expertise)
+            await UserService.searchUserExpertise(q)
                 .then((response) => {
                     if (response.data.success) {
-                        state.expertiseAll.push(response.data.payload);
+                        commit(
+                            "SEARCH_USER_EXPERTISE_SET",
+                            response.data.payload
+                        );
                         resolve(response.data);
                     }
                 })
@@ -25,43 +28,10 @@ const actions = {
         });
     },
 
-    fetchAllExpertise({ commit }) {
+    updateExpertise({ commit }) {
         return new Promise(async (resolve, reject) => {
             commit("LOADING_SET", true);
-            await UserService.fetchAllExpertise()
-                .then((response) => {
-                    if (response.data.success) {
-                        commit("EXPERTISE_ALL_SET", response.data.payload);
-                        resolve(response.data);
-                    }
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-            commit("LOADING_SET", false);
-        });
-    },
-
-    deleteUserExpertise({ commit }, id) {
-        return new Promise(async (resolve, reject) => {
-            commit("LOADING_SET", true);
-            await UserService.deleteUserExpertise(id)
-                .then((response) => {
-                    if (response.data.success) {
-                        resolve(response.data);
-                    }
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-            commit("LOADING_SET", false);
-        });
-    },
-
-    UpdateExpertise({ commit }, user_expertise) {
-        return new Promise(async (resolve, reject) => {
-            commit("LOADING_SET", true);
-            await UserService.UpdateExpertise(user_expertise)
+            await UserService.updateExpertise()
                 .then((response) => {
                     if (response.data.success) {
                         resolve(response.data);
@@ -76,8 +46,8 @@ const actions = {
 };
 
 const mutations = {
-    EXPERTISE_ALL_SET(state, response) {
-        state.expertiseAll = response;
+    SEARCH_USER_EXPERTISE_SET(state, response) {
+        state.search_user_expertise = response;
     },
     LOADING_SET(state, response) {
         state.loading = response;

@@ -34,7 +34,7 @@
             <template v-if="user != null && user.role == 'admin'">
               <div class="pa-3">
                 <v-btn text to="/user-permission" styles="selected">
-                  เพิ่มสิทธิ
+                  จัดการสิทธิ
                 </v-btn>
               </div>
             </template>
@@ -45,7 +45,7 @@
                 </v-btn>
               </div>
             </template>
-            <template v-else>
+            <template v-if="user != null && user.role != 'admin'">
               <div class="pa-3">
                 <v-btn text to="/my-research" styles="selected">
                   {{ "งานวิจัยของฉัน" }}
@@ -55,7 +55,7 @@
             <template>
               <div class="pa-3">
                 <v-btn text to="/user-expertise" styles="selected">
-                  ความเชียวชาญ
+                  ความเชี่ยวชาญ
                 </v-btn>
               </div>
             </template>

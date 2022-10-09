@@ -5,20 +5,15 @@ const httpRequest = new HttpRequest();
 const API_PATH = "/api";
 
 const UserService = {
-    InsertExpertise: (user_expertise) => {
-        return httpRequest.post(`${API_PATH}/user-expertise`, user_expertise);
+    updateExpertise: () => {
+        return httpRequest.get(`${API_PATH}/update-expertise`);
     },
-    fetchAllExpertise: () => {
-        return httpRequest.get(`${API_PATH}/user-expertise`);
-    },
-    deleteUserExpertise: (id) => {
-        return httpRequest.delete(`${API_PATH}/user-expertise/${id}`);
-    },
-    UpdateExpertise: (user_expertise) => {
-        return httpRequest.post(
-            `${API_PATH}/edit-user-expertise`,
-            user_expertise
-        );
+    searchUserExpertise: (q) => {
+        return httpRequest.get(`${API_PATH}/search-user-expertise`, {
+            params: {
+                q: q,
+            },
+        });
     },
 };
 

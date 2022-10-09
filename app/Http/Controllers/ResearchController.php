@@ -410,38 +410,4 @@ class ResearchController extends Controller
         }
         return null;
     }
-
-    public function fetchSearchUserExpertise(Request $request)
-    {
-        $q = $request->q;
-
-        $results = UserExpertise::where('is_deleted', '=', 0)
-            ->orderBy('created_at')
-            ->get();
-
-        foreach ($results as $result) {
-            $user = User::where('id', '=', $result->user_id)->get();
-            $result['user'] = $user;
-        }
-
-        $collection = collect($results);
-
-        $filtered = $collection->filter(function ($value, $key) use ($q) {
-            $filtered_name = array_filter(
-                json_decode($value->user),
-                function ($obj) use ($q) {
-                    return str_contains(strtolower($obj->first_name), strtolower($q)) ||
-                        str_contains(strtolower($obj->last_name), strtolower($q));
-                }
-            );
-            return
-                str_contains(strtolower($value->type), strtolower($q)) || $filtered_name;
-        })->values();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Successfully',
-            'payload' =>  $filtered
-        ], 200);
-    }
 }

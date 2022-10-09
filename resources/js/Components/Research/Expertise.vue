@@ -1,8 +1,19 @@
 <template>
   <div>
-    <Loading :loading="loading" />
+    <Loading :loading="loading || user_loading" />
     <v-container>
-      <div style="font-size: 30px">ความเชี่ยวชาญ</div>
+      <div class="d-flex justify-space-between">
+        <div style="font-size: 30px">
+          <div style="font-size: 30px">ความเชี่ยวชาญ</div>
+        </div>
+        <template v-if="user.role == 'admin'">
+          <div>
+            <v-btn color="primary" @click="updateExpertise()">
+              Update Expertise
+            </v-btn>
+          </div>
+        </template>
+      </div>
       <v-divider></v-divider>
       <v-row>
         <v-text-field
@@ -33,7 +44,9 @@
               {{ index + 1 }}
             </template>
             <template v-slot:[`item.name`]="{ item }">
-              {{ `${item.user[0].first_name} ${item.user[0].last_name}` }}
+              {{
+                `${item.titlePositionShort} ${item.firstName} ${item.lastName}`
+              }}
             </template>
             <template v-slot:no-data> ไม่พบผลการค้นหา </template>
           </v-data-table>
@@ -49,7 +62,7 @@
 
 <script>
 import Loading from "../../Components/Loading/Loading";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
     Loading,
@@ -90,12 +103,21 @@ export default {
   },
   computed: {
     ...mapState({
+      user: (state) => state.auth.user ?? [],
       loading: (state) => state.research.loading,
-      search_user_expertise: (state) =>
-        state.research.search_user_expertise || [],
+      user_loading: (state) => state.user.loading,
+      search_user_expertise: (state) => state.user.search_user_expertise || [],
     }),
   },
   methods: {
+    ...mapActions("snackbar", ["showSnack"]),
+    snackBar(timeout = 3500, text = "Successfully", color = "success") {
+      this.showSnack({
+        text: text,
+        color: color,
+        timeout: timeout,
+      });
+    },
     heddleOnClickSearch() {
       this.$router.replace(
         {
@@ -110,7 +132,18 @@ export default {
       }
     },
     fetchSearchUserExpertise(q) {
-      this.$store.dispatch("research/fetchSearchUserExpertise", q);
+      this.$store.dispatch("user/fetchSearchUserExpertise", q);
+    },
+    updateExpertise() {
+      this.$store
+        .dispatch("user/updateExpertise")
+        .then((e) => {
+          if (e.message == "Successfully")
+            this.snackBar(3500, "Successfully", "success");
+        })
+        .catch((error) => {
+          this.snackBar(3500, "มีบางอย่างผิดพลาดโปรดลองอีกครั้ง", "warning");
+        });
     },
   },
 };

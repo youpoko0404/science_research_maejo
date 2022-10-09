@@ -30,14 +30,7 @@ const ResearchService = {
     },
     delete: (id) => {
         return httpRequest.delete(`${API_PATH}/research/${id}`);
-    },
-    searchUserExpertise: (q) => {
-        return httpRequest.get(`${API_PATH}/search-user-expertise`, {
-            params: {
-                q: q,
-            },
-        });
-    },
+    }
 };
 
 export default ResearchService;

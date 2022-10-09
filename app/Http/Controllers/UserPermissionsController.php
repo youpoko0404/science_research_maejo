@@ -17,27 +17,18 @@ class UserPermissionsController extends Controller
     {
         $permission = UserPermissions::where('user_id', auth()->user()->id)->first();
 
-        if ($permission) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Successfully',
-                'payload' =>  $permission
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => true,
-                'message' => 'Not found',
-                'payload' =>  null
-            ], 404);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Successfully',
+            'payload' =>  $permission
+        ], 200);
     }
 
     public function fetchUserPermission()
     {
         $cards = DB::select("SELECT 
                                 u.id,
-                                u.first_name,
-                                u.last_name,
+                                CONCAT(u.first_name,' ', u.last_name) as name,
                                 IFNULL(up.is_create,0) as is_create,
 	                            IFNULL(up.is_update,0) as is_update
                                 FROM users u 

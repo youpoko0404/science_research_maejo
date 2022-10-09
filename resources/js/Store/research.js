@@ -4,7 +4,6 @@ const state = {
     loading: false,
     research: null,
     researchAll: null,
-    search_user_expertise: null,
 };
 
 const getters = {};
@@ -108,26 +107,6 @@ const actions = {
             commit("LOADING_SET", false);
         });
     },
-
-    fetchSearchUserExpertise({ commit }, q) {
-        return new Promise(async (resolve, reject) => {
-            commit("LOADING_SET", true);
-            await ResearchService.searchUserExpertise(q)
-                .then((response) => {
-                    if (response.data.success) {
-                        commit(
-                            "SEARCH_USER_EXPERTISE_SET",
-                            response.data.payload
-                        );
-                        resolve(response.data);
-                    }
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-            commit("LOADING_SET", false);
-        });
-    },
 };
 
 const mutations = {
@@ -137,9 +116,7 @@ const mutations = {
     RESEARCH_SET(state, response) {
         state.research = response;
     },
-    SEARCH_USER_EXPERTISE_SET(state, response) {
-        state.search_user_expertise = response;
-    },
+
     LOADING_SET(state, response) {
         state.loading = response;
     },

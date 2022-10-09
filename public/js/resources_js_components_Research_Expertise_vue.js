@@ -68,6 +68,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -107,14 +120,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+    user: function user(state) {
+      var _state$auth$user;
+
+      return (_state$auth$user = state.auth.user) !== null && _state$auth$user !== void 0 ? _state$auth$user : [];
+    },
     loading: function loading(state) {
       return state.research.loading;
     },
+    user_loading: function user_loading(state) {
+      return state.user.loading;
+    },
     search_user_expertise: function search_user_expertise(state) {
-      return state.research.search_user_expertise || [];
+      return state.user.search_user_expertise || [];
     }
   })),
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("snackbar", ["showSnack"])), {}, {
+    snackBar: function snackBar() {
+      var timeout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3500;
+      var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Successfully";
+      var color = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "success";
+      this.showSnack({
+        text: text,
+        color: color,
+        timeout: timeout
+      });
+    },
     heddleOnClickSearch: function heddleOnClickSearch() {
       this.$router.replace({
         query: {
@@ -127,9 +158,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     fetchSearchUserExpertise: function fetchSearchUserExpertise(q) {
-      this.$store.dispatch("research/fetchSearchUserExpertise", q);
+      this.$store.dispatch("user/fetchSearchUserExpertise", q);
+    },
+    updateExpertise: function updateExpertise() {
+      var _this = this;
+
+      this.$store.dispatch("user/updateExpertise").then(function (e) {
+        if (e.message == "Successfully") _this.snackBar(3500, "Successfully", "success");
+      })["catch"](function (error) {
+        _this.snackBar(3500, "มีบางอย่างผิดพลาดโปรดลองอีกครั้ง", "warning");
+      });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -221,14 +261,46 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("Loading", { attrs: { loading: _vm.loading } }),
+      _c("Loading", { attrs: { loading: _vm.loading || _vm.user_loading } }),
       _vm._v(" "),
       _c(
         "v-container",
         [
-          _c("div", { staticStyle: { "font-size": "30px" } }, [
-            _vm._v("ความเชี่ยวชาญ"),
-          ]),
+          _c(
+            "div",
+            { staticClass: "d-flex justify-space-between" },
+            [
+              _c("div", { staticStyle: { "font-size": "30px" } }, [
+                _c("div", { staticStyle: { "font-size": "30px" } }, [
+                  _vm._v("ความเชี่ยวชาญ"),
+                ]),
+              ]),
+              _vm._v(" "),
+              _vm.user.role == "admin"
+                ? [
+                    _c(
+                      "div",
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { color: "primary" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.updateExpertise()
+                              },
+                            },
+                          },
+                          [_vm._v("\n            Update Expertise\n          ")]
+                        ),
+                      ],
+                      1
+                    ),
+                  ]
+                : _vm._e(),
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("v-divider"),
           _vm._v(" "),
@@ -340,9 +412,11 @@ var render = function () {
                                 _vm._v(
                                   "\n            " +
                                     _vm._s(
-                                      item.user[0].first_name +
+                                      item.titlePositionShort +
                                         " " +
-                                        item.user[0].last_name
+                                        item.firstName +
+                                        " " +
+                                        item.lastName
                                     ) +
                                     "\n          "
                                 ),

@@ -44,14 +44,14 @@ const actions = {
     },
 
     updateUserPermission({ commit }, item) {
+
         return new Promise(async (resolve, reject) => {
             state.loading = true;
             await Permission.updateUserPermission(item)
                 .then((response) => {
-                    // if (response.data.success) {
-                    //     commit("USER_PERMISSIONS", response.data.payload);
-                    //     resolve(response.data);
-                    // }
+                    if (response.data.success) {
+                        resolve(response.data);
+                    }
                 })
                 .catch((error) => {
                     reject(error);

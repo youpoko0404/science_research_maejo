@@ -109,7 +109,10 @@ export default {
           .dispatch("auth/login", user)
           .then((response) => {
             if (response.success) {
-              window.location.href = "/my-research";
+              console.log(response.payload.role);
+              if (response.payload.role == "admin")
+                window.location.href = "/manage-research";
+              else window.location.href = "/my-research";
             }
           })
           .catch((error) => {

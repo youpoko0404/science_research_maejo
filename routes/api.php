@@ -34,14 +34,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/user', function (Request $request) {
         $user = $request->user();
         // $study = StudyUser::where('user_id', '=', $user->id)->get();
-        $expertise = UserExpertise::where('user_id', '=', $user->id)->get();
+        // $expertise = UserExpertise::where('user_id', '=', $user->id)->get();
 
-        $collection = collect($user);
+        // $collection = collect($user);
         // $result = $collection->put("study", $study)->all();
         // $result = $collection->put("service", [])->all();
-        $result = $collection->put("expertise", $expertise)->all();
+        // $result = $collection->put("expertise", $expertise)->all();
 
-        return response()->json(['success' => true, 'user' => $result]);
+        return response()->json(['success' => true, 'user' => $user]);
     })->middleware('auth');
 });
 
@@ -57,9 +57,7 @@ Route::controller(DashBoardController::class)->group(function () {
     Route::get('/search-research', 'fetchSearch');
     Route::get('/search-research/{id}', 'fetchSearchById');
     Route::get('/download-file', 'downloadFile');
-
-    Route::get('/table', 'table');
-    Route::get('/database', 'database');
+    Route::get('/search-user-expertise', 'fetchSearchUserExpertise');
 });
 
 Route::controller(ResearchController::class)->group(function () {
@@ -70,16 +68,13 @@ Route::controller(ResearchController::class)->group(function () {
         Route::get('/research/admin', 'fetchAllAdmin');
         Route::get('/research/{id}', 'fetchById');
         Route::delete('/research/{id}', 'delete');
-        Route::get('/search-user-expertise', 'fetchSearchUserExpertise');
     });
 });
 
 Route::controller(UserController::class)->group(function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/user-expertise', 'fetchExpertiseAll');
-        Route::post('/user-expertise', 'insertExpertise');
-        Route::delete('/user-expertise/{id}', 'deleteUserExpertise');
-        Route::post('/edit-user-expertise', 'updateExpertise');
+        Route::get('/update-expertise', 'updateExpertise');
     });
 });
 

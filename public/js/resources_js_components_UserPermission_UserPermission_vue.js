@@ -60,6 +60,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -68,6 +84,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      search: "",
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
@@ -102,16 +119,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.permission.user_permission || [];
     }
   })),
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("snackbar", ["showSnack"])), {}, {
+    snackBar: function snackBar() {
+      var timeout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3500;
+      var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Successfully";
+      var color = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "success";
+      this.showSnack({
+        text: text,
+        color: color,
+        timeout: timeout
+      });
+    },
     fetchUserPermission: function fetchUserPermission() {
       this.$store.dispatch("permission/fetchUserPermission");
     },
     updateUserPermission: function updateUserPermission(item) {
+      var _this = this;
+
       item.is_create = !item.is_create;
       item.is_update = !item.is_update;
-      this.$store.dispatch("permission/updateUserPermission", item);
+      this.$store.dispatch("permission/updateUserPermission", item).then(function (e) {
+        if (e.message == "Successfully") {
+          _this.snackBar(3500, "Successfully", "success");
+        }
+      });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -208,11 +241,41 @@ var render = function () {
       _c(
         "v-container",
         [
-          _c("div", { staticStyle: { "font-size": "30px" } }, [
-            _vm._v("จัดการสิทธิ"),
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "d-flex justify-space-between",
+              staticStyle: { padding: "0px 0px 20px 0px" },
+            },
+            [
+              _c("div", [
+                _c("div", { staticStyle: { "font-size": "30px" } }, [
+                  _vm._v("จัดการสิทธิ"),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "mdi-magnify",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": "",
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function ($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search",
+                },
+              }),
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("v-divider"),
+          _c("v-spacer"),
           _vm._v(" "),
           _c(
             "v-row",
@@ -220,6 +283,7 @@ var render = function () {
               _c("v-data-table", {
                 staticClass: "elevation-1",
                 attrs: {
+                  search: _vm.search,
                   headers: _vm.headers,
                   items: _vm.user_permission,
                   page: _vm.page,
@@ -243,19 +307,6 @@ var render = function () {
                         return [
                           _vm._v(
                             "\n          " + _vm._s(index + 1) + "\n        "
-                          ),
-                        ]
-                      },
-                    },
-                    {
-                      key: "item.name",
-                      fn: function (ref) {
-                        var item = ref.item
-                        return [
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(item.first_name + " " + item.last_name) +
-                              "\n        "
                           ),
                         ]
                       },
