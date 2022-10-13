@@ -44,38 +44,38 @@ class UserController extends Controller
             foreach ($data as $obj) {
                 if ($obj->facultyId == '20300') {
                     $expertiseWhere = [
-                        'citizenId' => $obj->citizenId
+                        'citizen_id' => $obj->citizenId
                     ];
                     $expertiseData = [
-                        'citizenId' => $obj->citizenId,
-                        "titlePositionShort" => $obj->titlePositionShort,
-                        "firstName" => $obj->firstName,
-                        "lastName" => $obj->lastName,
-                        "sectionId" => $obj->sectionId,
+                        "citizen_id" => $obj->citizenId,
+                        "title_position_short" => $obj->titlePositionShort,
+                        "first_name" => $obj->firstName,
+                        "last_name" => $obj->lastName,
+                        "section_id" => $obj->sectionId,
                         "section" => $obj->section,
-                        "divisionId" => $obj->divisionId,
+                        "division_id" => $obj->divisionId,
                         "division" => $obj->division,
-                        "facultyId" => $obj->facultyId,
+                        "faculty_id" => $obj->facultyId,
                         "faculty" => $obj->faculty,
-                        "personExpId" => $obj->personExpId,
-                        "expTypeId" => $obj->expTypeId,
-                        "expType" => $obj->expType,
-                        "expAcadPosition" => $obj->expAcadPosition,
-                        "expGroupFieldId" => $obj->expGroupFieldId,
-                        "expGroupField" => $obj->expGroupField,
-                        "expGroupField_EN" => $obj->expGroupField_EN,
-                        "expMainFieldId" => $obj->expMainFieldId,
-                        "expMainField" => $obj->expMainField,
-                        "expMainField_EN" => $obj->expMainField_EN,
-                        "expSubFieldId" => $obj->expSubFieldId,
-                        "expSubField" => $obj->expSubField,
-                        "expSubField_EN" => $obj->expSubField_EN,
-                        "expDetail" => $obj->expDetail,
-                        "isResearch" => $obj->isResearch,
-                        "isService" => $obj->isService,
-                        "isAward" => $obj->isAward,
-                        "isExperience" => $obj->isExperience,
-                        "isInterest" => $obj->isInterest
+                        "person_exp_id" => $obj->personExpId,
+                        "exp_type_id" => $obj->expTypeId,
+                        "exp_type" => $obj->expType,
+                        "exp_acad_position" => $obj->expAcadPosition,
+                        "exp_group_field_id" => $obj->expGroupFieldId,
+                        "exp_group_field" => $obj->expGroupField,
+                        "exp_group_field_en" => $obj->expGroupField_EN,
+                        "exp_main_field_id" => $obj->expMainFieldId,
+                        "exp_main_field" => $obj->expMainField,
+                        "exp_main_field_en" => $obj->expMainField_EN,
+                        "exp_sub_field_id" => $obj->expSubFieldId,
+                        "exp_sub_field" => $obj->expSubField,
+                        "exp_sub_field_en" => $obj->expSubField_EN,
+                        "exp_detail" => $obj->expDetail,
+                        "is_research" => $obj->isResearch,
+                        "is_service" => $obj->isService,
+                        "is_award" => $obj->isAward,
+                        "is_experience" => $obj->isExperience,
+                        "is_interest" => $obj->isInterest
                     ];
                     UserExpertise::updateOrCreate($expertiseWhere, $expertiseData);
                 }
