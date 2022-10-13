@@ -5911,19 +5911,12 @@ var HttpRequest = /*#__PURE__*/function () {
         setTimeout(function () {
           if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {
             _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push("/");
-          } // router.push('/error500');
-          // window.location.href ='/error500'
-
-        });
-      } else if (error.response.status === 401) {
-        setTimeout(function () {// window.location.href ='/login'
-        });
-      } else if (error.response.status === 404) {
-        setTimeout(function () {
-          if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {
-            _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push("/");
           }
         });
+      } else if (error.response.status === 401) {
+        setTimeout(function () {});
+      } else if (error.response.status === 404) {
+        setTimeout(function () {});
       } else if (error.response.status === 500) {
         setTimeout(function () {
           if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {

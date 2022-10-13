@@ -33,23 +33,11 @@ class HttpRequest {
                         ) {
                             router.push("/");
                         }
-                        // router.push('/error500');
-                        // window.location.href ='/error500'
                     });
                 } else if (error.response.status === 401) {
-                    setTimeout(() => {
-                        // window.location.href ='/login'
-                    });
+                    setTimeout(() => {});
                 } else if (error.response.status === 404) {
-                    setTimeout(() => {
-                        if (
-                            window.confirm(
-                                `มีบางอย่างผิดพลาด โปรดกด 'OK' เพื่อกลับไปยังหน้าแรก`
-                            )
-                        ) {
-                            router.push("/");
-                        }
-                    });
+                    setTimeout(() => {});
                 } else if (error.response.status === 500) {
                     setTimeout(() => {
                         if (
