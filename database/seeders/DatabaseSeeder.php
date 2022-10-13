@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\Models\Parameter;
-
+use App\Models\User;
 use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +27,24 @@ class ParametersTableSeeder extends Seeder
 {
     public function run()
     {
+        User::query()->truncate();
+
+        $user = [
+            [
+                'first_name' => "Admin",
+                'last_name' => "",
+                'email' => "admin.science@mju.ac.th",
+                'password' => Hash::make('12345678'),
+                'username' => "admin",
+                'role' => "admin"
+            ],
+        ];
+
+        // branch_main_group
+        foreach ($user as $row) {
+            User::create($row);
+        }
+
         Parameter::query()->truncate();
 
         $branch_main_group = [
@@ -481,6 +499,5 @@ class ParametersTableSeeder extends Seeder
         foreach ($presentation_level_group as $row) {
             Parameter::create($row);
         }
-
     }
 }

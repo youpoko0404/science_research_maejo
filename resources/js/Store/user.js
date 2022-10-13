@@ -3,6 +3,7 @@ import UserService from "../Service/User.service";
 const state = {
     loading: false,
     search_user_expertise: null,
+    expertise_exp_main_field: null,
 };
 
 const getters = {};
@@ -43,11 +44,34 @@ const actions = {
             commit("LOADING_SET", false);
         });
     },
+
+    fetchExpertiseExpMainFieldAll({ commit }) {
+        return new Promise(async (resolve, reject) => {
+            commit("LOADING_SET", true);
+            await UserService.fetchExpertiseExpMainFieldAll()
+                .then((response) => {
+                    if (response.data.success) {
+                        commit(
+                            "EXPERTISE_EXP_MAIN_FIELD_SET",
+                            response.data.payload
+                        );
+                        resolve(response.data);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            commit("LOADING_SET", false);
+        });
+    },
 };
 
 const mutations = {
     SEARCH_USER_EXPERTISE_SET(state, response) {
         state.search_user_expertise = response;
+    },
+    EXPERTISE_EXP_MAIN_FIELD_SET(state, response) {
+        state.expertise_exp_main_field = response;
     },
     LOADING_SET(state, response) {
         state.loading = response;

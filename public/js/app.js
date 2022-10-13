@@ -5898,7 +5898,7 @@ var HttpRequest = /*#__PURE__*/function () {
       baseURL: url,
       timeout: 600000
     });
-    this.axiosInstance.defaults.headers['Content-Type'] = 'application/json';
+    this.axiosInstance.defaults.headers["Content-Type"] = "application/json";
     this.axiosInstance.interceptors.request.use(function (config) {
       return config;
     }, function (error) {
@@ -5908,8 +5908,12 @@ var HttpRequest = /*#__PURE__*/function () {
       return response;
     }, function (error) {
       if (error.response === undefined) {
-        setTimeout(function () {// router.push('/error500');
+        setTimeout(function () {
+          if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {
+            _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push("/");
+          } // router.push('/error500');
           // window.location.href ='/error500'
+
         });
       } else if (error.response.status === 401) {
         setTimeout(function () {// window.location.href ='/login'
@@ -5917,12 +5921,14 @@ var HttpRequest = /*#__PURE__*/function () {
       } else if (error.response.status === 404) {
         setTimeout(function () {
           if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {
-            _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push('/');
+            _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push("/");
           }
         });
       } else if (error.response.status === 500) {
-        setTimeout(function () {// router.push('/error500');
-          // window.location.href = '/error500'
+        setTimeout(function () {
+          if (window.confirm("\u0E21\u0E35\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14 \u0E42\u0E1B\u0E23\u0E14\u0E01\u0E14 'OK' \u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E22\u0E31\u0E07\u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01")) {
+            _Router_index__WEBPACK_IMPORTED_MODULE_1__["default"].push("/");
+          }
         });
       }
 
@@ -6290,6 +6296,9 @@ var API_PATH = "/api";
 var UserService = {
   updateExpertise: function updateExpertise() {
     return httpRequest.get("".concat(API_PATH, "/update-expertise"));
+  },
+  fetchExpertiseExpMainFieldAll: function fetchExpertiseExpMainFieldAll() {
+    return httpRequest.get("".concat(API_PATH, "/user-expertise-exp-main-field"));
   },
   searchUserExpertise: function searchUserExpertise(q) {
     return httpRequest.get("".concat(API_PATH, "/search-user-expertise"), {
@@ -7211,7 +7220,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   loading: false,
-  search_user_expertise: null
+  search_user_expertise: null,
+  expertise_exp_main_field: null
 };
 var getters = {};
 var actions = {
@@ -7283,11 +7293,49 @@ var actions = {
         return _ref4.apply(this, arguments);
       };
     }());
+  },
+  fetchExpertiseExpMainFieldAll: function fetchExpertiseExpMainFieldAll(_ref5) {
+    var commit = _ref5.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context3.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchExpertiseExpMainFieldAll().then(function (response) {
+                  if (response.data.success) {
+                    commit("EXPERTISE_EXP_MAIN_FIELD_SET", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x5, _x6) {
+        return _ref6.apply(this, arguments);
+      };
+    }());
   }
 };
 var mutations = {
   SEARCH_USER_EXPERTISE_SET: function SEARCH_USER_EXPERTISE_SET(state, response) {
     state.search_user_expertise = response;
+  },
+  EXPERTISE_EXP_MAIN_FIELD_SET: function EXPERTISE_EXP_MAIN_FIELD_SET(state, response) {
+    state.expertise_exp_main_field = response;
   },
   LOADING_SET: function LOADING_SET(state, response) {
     state.loading = response;

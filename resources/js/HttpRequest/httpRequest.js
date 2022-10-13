@@ -1,75 +1,92 @@
-import axios from 'axios'
-import router from '../Router/index';
+import axios from "axios";
+import router from "../Router/index";
 class HttpRequest {
-    axiosInstance
+    axiosInstance;
     constructor(url) {
         this.axiosInstance = axios.create({
             baseURL: url,
             timeout: 600000,
-        })
-        this.axiosInstance.defaults.headers['Content-Type'] = 'application/json'
+        });
+        this.axiosInstance.defaults.headers["Content-Type"] =
+            "application/json";
 
         this.axiosInstance.interceptors.request.use(
             (config) => {
-                return config
+                return config;
             },
             (error) => {
-                return Promise.reject(error)
-            },
-        )
+                return Promise.reject(error);
+            }
+        );
 
         this.axiosInstance.interceptors.response.use(
             (response) => {
-                return response
+                return response;
             },
             (error) => {
                 if (error.response === undefined) {
                     setTimeout(() => {
+                        if (
+                            window.confirm(
+                                `มีบางอย่างผิดพลาด โปรดกด 'OK' เพื่อกลับไปยังหน้าแรก`
+                            )
+                        ) {
+                            router.push("/");
+                        }
                         // router.push('/error500');
                         // window.location.href ='/error500'
-                    })
+                    });
                 } else if (error.response.status === 401) {
                     setTimeout(() => {
                         // window.location.href ='/login'
-                    })
+                    });
                 } else if (error.response.status === 404) {
                     setTimeout(() => {
-                        if (window.confirm(`มีบางอย่างผิดพลาด โปรดกด 'OK' เพื่อกลับไปยังหน้าแรก`)) {
-                            router.push('/');
+                        if (
+                            window.confirm(
+                                `มีบางอย่างผิดพลาด โปรดกด 'OK' เพื่อกลับไปยังหน้าแรก`
+                            )
+                        ) {
+                            router.push("/");
                         }
-                    })
+                    });
                 } else if (error.response.status === 500) {
                     setTimeout(() => {
-                        // router.push('/error500');
-                        // window.location.href = '/error500'
-                    })
+                        if (
+                            window.confirm(
+                                `มีบางอย่างผิดพลาด โปรดกด 'OK' เพื่อกลับไปยังหน้าแรก`
+                            )
+                        ) {
+                            router.push("/");
+                        }
+                    });
                 }
                 return new Promise((resolve, reject) => {
-                    reject(error)
-                })
-            },
-        )
+                    reject(error);
+                });
+            }
+        );
     }
 
     setHeader(header) {
-        this.axiosInstance.defaults.headers.common[header.key] = header.value
+        this.axiosInstance.defaults.headers.common[header.key] = header.value;
     }
 
     get(methodName, config) {
-        return this.axiosInstance.get(methodName, config)
+        return this.axiosInstance.get(methodName, config);
     }
 
     post(methodName, data, config) {
-        return this.axiosInstance.post(methodName, data, config)
+        return this.axiosInstance.post(methodName, data, config);
     }
 
     put(methodName, data, config) {
-        return this.axiosInstance.put(methodName, data, config)
+        return this.axiosInstance.put(methodName, data, config);
     }
 
     delete(methodName, config) {
-        return this.axiosInstance.delete(methodName, config)
+        return this.axiosInstance.delete(methodName, config);
     }
 }
 
-export default HttpRequest
+export default HttpRequest;

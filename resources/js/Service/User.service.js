@@ -8,6 +8,11 @@ const UserService = {
     updateExpertise: () => {
         return httpRequest.get(`${API_PATH}/update-expertise`);
     },
+
+    fetchExpertiseExpMainFieldAll: () => {
+        return httpRequest.get(`${API_PATH}/user-expertise-exp-main-field`);
+    },
+
     searchUserExpertise: (q) => {
         return httpRequest.get(`${API_PATH}/search-user-expertise`, {
             params: {

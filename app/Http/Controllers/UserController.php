@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\UserExpertise;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -90,6 +91,25 @@ class UserController extends Controller
                 'message' => 'Error!!',
                 'payload' =>  null
             ], 201);
+        }
+    }
+
+    public function fetchExpertiseExpMainFieldAll()
+    {
+        $research = DB::select("SELECT DISTINCT expMainFieldId,expMainField FROM science_maejo_research.user_expertises");
+
+        if ($research) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $research
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Not found',
+                'payload' =>  null
+            ], 404);
         }
     }
 }

@@ -17,7 +17,7 @@
       <v-divider></v-divider>
       <v-row>
         <v-text-field
-          label="ค้นหาข้อมูลจากความเชี่ยวชาญ ชื่อ-สกุล"
+          label="ค้นหาข้อมูลความเชี่ยวชาญ"
           solo
           v-model="query_param"
           v-on:keyup.enter="heddleOnClickSearch"
@@ -26,34 +26,115 @@
             <v-btn color="primary" @click="heddleOnClickSearch"> SEARCH </v-btn>
           </template>
         </v-text-field>
-        <template v-if="this.$route.query.q">
-          <div style="font-size: 15px; margin-bottom: 10px">
-            ผลการค้นหา
-            {{ search_user_expertise ? search_user_expertise.length : 0 }}
-            รายการ
-          </div>
-          <v-data-table
-            :headers="headers"
-            :items="search_user_expertise"
-            :page.sync="page"
-            :items-per-page="itemsPerPage"
-            class="elevation-1"
-            @page-count="pageCount = $event"
-          >
-            <template v-slot:[`item.index`]="{ index }">
-              {{ index + 1 }}
-            </template>
-            <template v-slot:[`item.name`]="{ item }">
-              {{
-                `${item.titlePositionShort} ${item.firstName} ${item.lastName}`
-              }}
-            </template>
-            <template v-slot:no-data> ไม่พบผลการค้นหา </template>
-          </v-data-table>
-          <div class="text-center pt-2">
-            <v-pagination v-model="page" :length="pageCount"></v-pagination>
-          </div>
-        </template>
+        <v-col cols="3">
+          <v-card class="mx-auto" max-width="300">
+            <v-col cols="12">
+              <h5>สาขาวิชาความเชี่ยวชาญ</h5>
+              <v-checkbox
+                label="ทั้งหมด"
+                color="green darken-3"
+                value="all"
+                hide-details
+                @click="selectAllCheckBox"
+                v-model="selectAll"
+              ></v-checkbox>
+              <div
+                v-for="expertise in expertise_exp_main_field"
+                :key="expertise.expMainFieldId"
+              >
+                <v-checkbox
+                  v-model="selected"
+                  :label="expertise.expMainField"
+                  color="green darken-3"
+                  :value="expertise.expMainFieldId"
+                  hide-details
+                  @click="selectCheckBox"
+                >
+                </v-checkbox>
+              </div>
+            </v-col>
+          </v-card>
+        </v-col>
+        <v-col cols="1" style="width: 1.33333333%">
+          <v-divider vertical></v-divider
+        ></v-col>
+        <v-col cols="8" style="width: 72.66666667%">
+          <template v-if="this.$route.query.q">
+            <div style="font-size: 15px; margin-bottom: 10px">
+              ผลการค้นหา
+              {{ filteredItems ? filteredItems.length : 0 }}
+              รายการ
+            </div>
+            <v-data-table
+              :headers="headers"
+              :items="filteredItems"
+              :page.sync="page"
+              :items-per-page="itemsPerPage"
+              class="elevation-1"
+              @page-count="pageCount = $event"
+            >
+              <template v-slot:[`item.index`]="{ index }">
+                {{ index + 1 }}
+              </template>
+              <template v-slot:[`item.detail`]="{ item }">
+                <strong> ชื่อหน่วยงาน : </strong>
+                {{
+                  `${item.section || ""}  ${item.division || ""} ${
+                    item.faculty || ""
+                  }`
+                }}
+                <br />
+                <strong> ประเภทความเชี่ยวชาญ : </strong>
+                {{ `${item.expType || ""}` }}
+                <br />
+                <strong> กลุ่มสาขาวิชาความเชี่ยวชาญ : </strong>
+                {{ `${item.expGroupField || ""} ${item.expMainField || ""}` }}
+                <br />
+                <strong> อนุสาขาวิชาความเชี่ยวชาญ : </strong>
+                {{ `${item.expSubField || ""}` }}
+                <br />
+                <strong> รายละเอียดความเชี่ยวชาญเพิ่มเติม : </strong>
+                {{ `${item.expDetail || ""}` }}
+                <br />
+                <template v-if="!isEmpty(item.isResearch)">
+                  <strong>
+                    มีผลงานวิจัย/ผลงานทางวิชาการ/ผลงานอื่น ๆ ที่เกี่ยวข้อง
+                  </strong>
+                  <br />
+                </template>
+                <template v-if="!isEmpty(item.isService)">
+                  <strong>
+                    เป็นวิทยากร/ให้บริการวิชาการ/สอน/บรรยายแก่บุคคลอื่นหรือองค์กร
+                  </strong>
+                  <br />
+                </template>
+                <template v-if="!isEmpty(item.isAward)">
+                  <strong> ได้รับรางวัลในสาขาวิชาที่มีความเชี่ยวชาญ </strong>
+                  <br />
+                </template>
+                <template v-if="!isEmpty(item.isExperience)">
+                  <strong> ความเชี่ยวชาญที่สั่งสมจากประสบการณ์การทำงาน </strong>
+                  <br />
+                </template>
+                <template v-if="!isEmpty(item.isInterest)">
+                  <strong>
+                    ความเชี่ยวชาญที่มีความสนใจและมีการศึกษาหาความรู้/ฝึกฝนปฏิบัติจนมีความเชี่ยวชาญ
+                  </strong>
+                  <br />
+                </template>
+              </template>
+              <template v-slot:[`item.name`]="{ item }">
+                {{
+                  `${item.titlePositionShort} ${item.firstName} ${item.lastName}`
+                }}
+              </template>
+              <template v-slot:no-data> ไม่พบผลการค้นหา </template>
+            </v-data-table>
+            <div class="text-center pt-2">
+              <v-pagination v-model="page" :length="pageCount"></v-pagination>
+            </div>
+          </template>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -68,6 +149,8 @@ export default {
     Loading,
   },
   data: () => ({
+    selected: [],
+    selectAll: [],
     checkResearch: false,
     query_param: "",
     page: 1,
@@ -82,24 +165,27 @@ export default {
         width: "5%",
       },
       {
-        text: "ความเชี่ยวชาญ",
+        text: "รายละเอียด",
         align: "start",
-        value: "type",
+        value: "detail",
         width: "70%",
       },
       {
         text: "ชื่อ-สกุล",
-        align: "start",
+        align: "center",
         value: "name",
         width: "25",
       },
     ],
   }),
-  created() {
+  async created() {
+    await this.fetchExpertiseExpMainFieldAll();
     if (this.$route.query.q) {
       this.query_param = this.$route.query.q;
       this.fetchSearchUserExpertise(this.$route.query.q);
     }
+    this.selected = this.expertise_exp_main_field.map((e) => e.expMainFieldId);
+    this.selectAll = ["all"];
   },
   computed: {
     ...mapState({
@@ -107,7 +193,24 @@ export default {
       loading: (state) => state.research.loading,
       user_loading: (state) => state.user.loading,
       search_user_expertise: (state) => state.user.search_user_expertise || [],
+      expertise_exp_main_field: (state) =>
+        state.user.expertise_exp_main_field || [],
     }),
+
+    filteredItems() {
+      var result = [];
+      this.selected.forEach((element) => {
+        result.push(
+          ..._.orderBy(
+            this.search_user_expertise.filter((item) => {
+              return item.expMainFieldId.toLowerCase().includes(element);
+            }),
+            "headline"
+          )
+        );
+      });
+      return result;
+    },
   },
   methods: {
     ...mapActions("snackbar", ["showSnack"]),
@@ -133,6 +236,13 @@ export default {
     },
     fetchSearchUserExpertise(q) {
       this.$store.dispatch("user/fetchSearchUserExpertise", q);
+      this.selected = this.expertise_exp_main_field.map(
+        (e) => e.expMainFieldId
+      );
+      this.selectAll = ["all"];
+    },
+    async fetchExpertiseExpMainFieldAll() {
+      await this.$store.dispatch("user/fetchExpertiseExpMainFieldAll");
     },
     updateExpertise() {
       this.$store
@@ -144,6 +254,28 @@ export default {
         .catch((error) => {
           this.snackBar(3500, "มีบางอย่างผิดพลาดโปรดลองอีกครั้ง", "warning");
         });
+    },
+    selectAllCheckBox() {
+      if (this.selectAll.includes("all")) {
+        this.selected = this.expertise_exp_main_field.map(
+          (e) => e.expMainFieldId
+        );
+      } else {
+        this.selected = [];
+      }
+    },
+
+    selectCheckBox() {
+      if (this.selected.length == this.expertise_exp_main_field.length) {
+        this.selectAll = ["all"];
+      } else {
+        this.selectAll = [];
+      }
+    },
+
+    isEmpty(value) {
+      if (value != null && value != "") return false;
+      else return true;
     },
   },
 };

@@ -72,10 +72,9 @@ Route::controller(ResearchController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::group(['middleware' => ['auth']], function () {
-        Route::get('/user-expertise', 'fetchExpertiseAll');
-        Route::get('/update-expertise', 'updateExpertise');
-    });
+    Route::get('/user-expertise', 'fetchExpertiseAll');
+    Route::get('/user-expertise-exp-main-field', 'fetchExpertiseExpMainFieldAll');
+    Route::get('/update-expertise', 'updateExpertise');
 });
 
 Route::controller(UserPermissionsController::class)->group(function () {
