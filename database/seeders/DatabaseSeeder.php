@@ -27,7 +27,7 @@ class ParametersTableSeeder extends Seeder
 {
     public function run()
     {
-        User::query()->truncate();
+        User::truncate();
 
         $user = [
             [
@@ -45,7 +45,7 @@ class ParametersTableSeeder extends Seeder
             User::create($row);
         }
 
-        Parameter::query()->truncate();
+        Parameter::truncate();
 
         $branch_main_group = [
             [
