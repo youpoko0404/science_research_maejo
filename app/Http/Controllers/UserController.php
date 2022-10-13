@@ -96,7 +96,7 @@ class UserController extends Controller
 
     public function fetchExpertiseExpMainFieldAll()
     {
-        $research = DB::select("SELECT DISTINCT expMainFieldId,expMainField FROM user_expertises");
+        $research = DB::select("SELECT DISTINCT exp_main_field_id,exp_main_field FROM user_expertises");
 
         if ($research) {
             return response()->json([
