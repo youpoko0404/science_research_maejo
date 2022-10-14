@@ -39,6 +39,7 @@ class UserExpertise extends Model
         "is_award",
         "is_experience",
         "is_interest",
+        "contact",
         "created_at",
         "updated_at"
     ];

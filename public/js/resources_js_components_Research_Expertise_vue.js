@@ -220,7 +220,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: "ช่องทางการติดต่อ",
         align: "center",
-        value: ""
+        value: "contact"
       }]
     };
   },

@@ -183,7 +183,7 @@ export default {
       {
         text: "ช่องทางการติดต่อ",
         align: "center",
-        value: "",
+        value: "contact",
       },
     ],
   }),

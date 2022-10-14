@@ -44,6 +44,7 @@ class CreateExpertiseUsersTable extends Migration
             $table->boolean("is_award")->nullable()->default(null);
             $table->boolean("is_experience")->nullable()->default(null);
             $table->boolean("is_interest")->nullable()->default(null);
+            $table->longText("contact")->nullable()->default(null);
             $table->timestamps();
         });
     }
