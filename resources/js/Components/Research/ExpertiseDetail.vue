@@ -1,6 +1,11 @@
 <template>
   <v-container>
     <Loading :loading="loading" />
+    <div>
+      <div style="font-size: 30px; padding: 10px">
+        {{ "ข้อมูลความเชี่ยวชาญ" }}
+      </div>
+    </div>
     <div class="pa-4 grey lighten-2 rounded-lg">
       <h2>
         ชื่อ :

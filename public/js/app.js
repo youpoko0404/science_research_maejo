@@ -6092,7 +6092,7 @@ var routes = [{
   path: "/expertise-detail",
   name: "expertise_detail",
   component: function component() {
-    return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../components/Research/ExpertiseDetail.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Research_ExpertiseDetail_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/ExpertiseDetail.vue */ "./resources/js/components/Research/ExpertiseDetail.vue"));
   },
   meta: {
     title: "ข้อมูลความเชี่ยวชาญ"
@@ -108661,7 +108661,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/jatupat/Documents
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_MyResearchAdmin_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1,"resources_js_components_UserPermission_UserPermission_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_MyResearchAdmin_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1,"resources_js_components_UserPermission_UserPermission_vue":1,"resources_js_components_Research_ExpertiseDetail_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

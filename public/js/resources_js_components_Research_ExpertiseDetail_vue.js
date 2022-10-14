@@ -89,6 +89,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -291,6 +296,12 @@ var render = function () {
     "v-container",
     [
       _c("Loading", { attrs: { loading: _vm.loading } }),
+      _vm._v(" "),
+      _c("div", [
+        _c("div", { staticStyle: { "font-size": "30px", padding: "10px" } }, [
+          _vm._v("\n      " + _vm._s("ข้อมูลความเชี่ยวชาญ") + "\n    "),
+        ]),
+      ]),
       _vm._v(" "),
       _c(
         "div",
