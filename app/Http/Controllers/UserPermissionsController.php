@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserPermissions;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UserPermissionsController extends Controller
@@ -26,15 +27,22 @@ class UserPermissionsController extends Controller
 
     public function fetchUserPermission()
     {
-        $cards = DB::select("SELECT 
-                                u.id,
-                                CONCAT(u.first_name,' ', u.last_name) as name,
-                                IFNULL(up.is_create,0) as is_create,
-	                            IFNULL(up.is_update,0) as is_update
-                                FROM users u 
-                            LEFT JOIN user_permissions up ON u.id = up.user_id 
-                            WHERE u.`role` != 'admin '
-                            ");
+        $cards = User::select(
+            "users.id",
+            "users.first_name",
+            "users.last_name",
+            "user_permissions.is_create",
+            "user_permissions.is_update",
+        )
+            ->leftJoin("user_permissions", "user_permissions.user_id", "=", "users.id")
+            ->where('users.role', '!=', "admin")
+            ->get();
+
+        foreach ($cards as $card) {
+            $card["name"] = $card["first_name"] . " " . $card["last_name"];
+            $card["is_create"] = $card["is_create"] == null ? 0 : 1;
+            $card["is_update"] = $card["is_update"] == null ? 0 : 1;
+        }
 
         if ($cards) {
             return response()->json([
