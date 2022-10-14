@@ -20,6 +20,9 @@ const UserService = {
             },
         });
     },
+    fetchUserExpertiseById: (id) => {
+        return httpRequest.get(`${API_PATH}/user-expertise/${id}`);
+    },
 };
 
 export default UserService;

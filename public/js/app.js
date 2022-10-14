@@ -6088,6 +6088,15 @@ var routes = [{
   meta: {
     title: "จัดการสิทธิ"
   }
+}, {
+  path: "/expertise-detail",
+  name: "expertise_detail",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Research_ExpertiseDetail_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/ExpertiseDetail.vue */ "./resources/js/components/Research/ExpertiseDetail.vue"));
+  },
+  meta: {
+    title: "ข้อมูลความเชี่ยวชาญ"
+  }
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -6299,6 +6308,9 @@ var UserService = {
         q: q
       }
     });
+  },
+  fetchUserExpertiseById: function fetchUserExpertiseById(id) {
+    return httpRequest.get("".concat(API_PATH, "/user-expertise/").concat(id));
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserService);
@@ -7214,7 +7226,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   loading: false,
   search_user_expertise: null,
-  expertise_exp_main_field: null
+  expertise_exp_main_field: null,
+  expertise_by_id: null
 };
 var getters = {};
 var actions = {
@@ -7321,6 +7334,41 @@ var actions = {
         return _ref6.apply(this, arguments);
       };
     }());
+  },
+  fetchUserExpertiseById: function fetchUserExpertiseById(_ref7, id) {
+    var commit = _ref7.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context4.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchUserExpertiseById(id).then(function (response) {
+                  if (response.data.success) {
+                    commit("EXPERTISE_BY_ID", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function (_x7, _x8) {
+        return _ref8.apply(this, arguments);
+      };
+    }());
   }
 };
 var mutations = {
@@ -7332,6 +7380,9 @@ var mutations = {
   },
   LOADING_SET: function LOADING_SET(state, response) {
     state.loading = response;
+  },
+  EXPERTISE_BY_ID: function EXPERTISE_BY_ID(state, response) {
+    state.expertise_by_id = response;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -108610,7 +108661,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/jatupat/Documents
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_MyResearchAdmin_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1,"resources_js_components_UserPermission_UserPermission_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_MyResearchAdmin_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1,"resources_js_components_UserPermission_UserPermission_vue":1,"resources_js_components_Research_ExpertiseDetail_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

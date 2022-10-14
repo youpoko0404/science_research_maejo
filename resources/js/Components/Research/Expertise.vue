@@ -44,9 +44,9 @@
               >
                 <v-checkbox
                   v-model="selected"
-                  :label="expertise.expMainField"
+                  :label="expertise.exp_main_field"
                   color="green darken-3"
-                  :value="expertise.expMainFieldId"
+                  :value="expertise.exp_main_field_id"
                   hide-details
                   @click="selectCheckBox"
                 >
@@ -70,8 +70,9 @@
               :items="filteredItems"
               :page.sync="page"
               :items-per-page="itemsPerPage"
-              class="elevation-1"
+              class="elevation-1 row-pointer"
               @page-count="pageCount = $event"
+              @click:row="handleRowClick"
             >
               <template v-slot:[`item.index`]="{ index }">
                 {{ index + 1 }}
@@ -85,47 +86,51 @@
                 }}
                 <br />
                 <strong> ประเภทความเชี่ยวชาญ : </strong>
-                {{ `${item.expType || ""}` }}
+                {{ `${item.exp_type || ""}` }}
                 <br />
                 <strong> กลุ่มสาขาวิชาความเชี่ยวชาญ : </strong>
-                {{ `${item.expGroupField || ""} ${item.expMainField || ""}` }}
+                {{
+                  `${item.exp_group_field || ""} ${item.exp_main_field || ""}`
+                }}
                 <br />
                 <strong> อนุสาขาวิชาความเชี่ยวชาญ : </strong>
-                {{ `${item.expSubField || ""}` }}
+                {{ `${item.exp_sub_field || ""}` }}
                 <br />
                 <strong> รายละเอียดความเชี่ยวชาญเพิ่มเติม : </strong>
-                {{ `${item.expDetail || ""}` }}
+                {{ `${item.exp_detail || ""}` }}
                 <br />
-                <template v-if="!isEmpty(item.isResearch)">
+                <!-- <template v-if="!isEmpty(item.is_research)">
                   <strong>
                     มีผลงานวิจัย/ผลงานทางวิชาการ/ผลงานอื่น ๆ ที่เกี่ยวข้อง
                   </strong>
                   <br />
                 </template>
-                <template v-if="!isEmpty(item.isService)">
+                <template v-if="!isEmpty(item.is_service)">
                   <strong>
                     เป็นวิทยากร/ให้บริการวิชาการ/สอน/บรรยายแก่บุคคลอื่นหรือองค์กร
                   </strong>
                   <br />
                 </template>
-                <template v-if="!isEmpty(item.isAward)">
+                <template v-if="!isEmpty(item.is_award)">
                   <strong> ได้รับรางวัลในสาขาวิชาที่มีความเชี่ยวชาญ </strong>
                   <br />
                 </template>
-                <template v-if="!isEmpty(item.isExperience)">
+                <template v-if="!isEmpty(item.is_experience)">
                   <strong> ความเชี่ยวชาญที่สั่งสมจากประสบการณ์การทำงาน </strong>
                   <br />
                 </template>
-                <template v-if="!isEmpty(item.isInterest)">
+                <template v-if="!isEmpty(item.is_interest)">
                   <strong>
                     ความเชี่ยวชาญที่มีความสนใจและมีการศึกษาหาความรู้/ฝึกฝนปฏิบัติจนมีความเชี่ยวชาญ
                   </strong>
                   <br />
-                </template>
+                </template> -->
               </template>
               <template v-slot:[`item.name`]="{ item }">
                 {{
-                  `${item.titlePositionShort} ${item.firstName} ${item.lastName}`
+                  `${item.title_position_short || ""} ${
+                    item.first_name || ""
+                  } ${item.last_name || ""}`
                 }}
               </template>
               <template v-slot:no-data> ไม่พบผลการค้นหา </template>
@@ -155,7 +160,7 @@ export default {
     query_param: "",
     page: 1,
     pageCount: 0,
-    itemsPerPage: 10,
+    itemsPerPage: 15,
     headers: [
       {
         text: "ลำดับ",
@@ -168,13 +173,17 @@ export default {
         text: "รายละเอียด",
         align: "start",
         value: "detail",
-        width: "70%",
+        // width: "70%",
       },
       {
         text: "ชื่อ-สกุล",
         align: "center",
         value: "name",
-        width: "25",
+      },
+      {
+        text: "ช่องทางการติดต่อ",
+        align: "center",
+        value: "",
       },
     ],
   }),
@@ -184,8 +193,8 @@ export default {
       this.query_param = this.$route.query.q;
       this.fetchSearchUserExpertise(this.$route.query.q);
     }
-    this.selected = this.expertise_exp_main_field.map((e) => e.expMainFieldId);
-    this.selectAll = ["all"];
+    // this.selected = this.expertise_exp_main_field.map((e) => e.expMainFieldId);
+    // this.selectAll = ["all"];
   },
   computed: {
     ...mapState({
@@ -203,7 +212,7 @@ export default {
         result.push(
           ..._.orderBy(
             this.search_user_expertise.filter((item) => {
-              return item.expMainFieldId.toLowerCase().includes(element);
+              return item.exp_main_field_id.toLowerCase().includes(element);
             }),
             "headline"
           )
@@ -237,7 +246,7 @@ export default {
     fetchSearchUserExpertise(q) {
       this.$store.dispatch("user/fetchSearchUserExpertise", q);
       this.selected = this.expertise_exp_main_field.map(
-        (e) => e.expMainFieldId
+        (e) => e.exp_main_field_id
       );
       this.selectAll = ["all"];
     },
@@ -258,7 +267,7 @@ export default {
     selectAllCheckBox() {
       if (this.selectAll.includes("all")) {
         this.selected = this.expertise_exp_main_field.map(
-          (e) => e.expMainFieldId
+          (e) => e.exp_main_field_id
         );
       } else {
         this.selected = [];
@@ -277,8 +286,23 @@ export default {
       if (value != null && value != "") return false;
       else return true;
     },
+
+    handleRowClick(val) {
+      this.$router.push({
+        path: "/expertise-detail",
+        query: {
+          id: val.id,
+        },
+      });
+    },
   },
 };
 </script>
+
+<style lang="css" scoped>
+.row-pointer >>> tbody tr :hover {
+  cursor: pointer;
+}
+</style>
 
 

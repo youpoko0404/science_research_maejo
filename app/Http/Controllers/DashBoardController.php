@@ -141,30 +141,30 @@ class DashBoardController extends Controller
 
         $filtered = $collection->filter(function ($value, $key) use ($q) {
             return
-                str_contains(strtolower($value->citizenId), strtolower($q)) ||
-                str_contains(strtolower($value->titlePositionShort), strtolower($q)) ||
-                str_contains(strtolower($value->firstName), strtolower($q)) ||
-                str_contains(strtolower($value->lastName), strtolower($q)) ||
-                str_contains(strtolower($value->sectionId), strtolower($q)) ||
+                str_contains(strtolower($value->citizen_id), strtolower($q)) ||
+                str_contains(strtolower($value->title_position_short), strtolower($q)) ||
+                str_contains(strtolower($value->first_name), strtolower($q)) ||
+                str_contains(strtolower($value->last_name), strtolower($q)) ||
+                str_contains(strtolower($value->section_id), strtolower($q)) ||
                 str_contains(strtolower($value->section), strtolower($q)) ||
-                str_contains(strtolower($value->divisionId), strtolower($q)) ||
+                str_contains(strtolower($value->division_id), strtolower($q)) ||
                 str_contains(strtolower($value->division), strtolower($q)) ||
-                str_contains(strtolower($value->facultyId), strtolower($q)) ||
+                str_contains(strtolower($value->faculty_id), strtolower($q)) ||
                 str_contains(strtolower($value->faculty), strtolower($q)) ||
-                str_contains(strtolower($value->personExpId), strtolower($q)) ||
-                str_contains(strtolower($value->expTypeId), strtolower($q)) ||
-                str_contains(strtolower($value->expType), strtolower($q)) ||
-                str_contains(strtolower($value->expAcadPosition), strtolower($q)) ||
-                str_contains(strtolower($value->expGroupFieldId), strtolower($q)) ||
-                str_contains(strtolower($value->expGroupField), strtolower($q)) ||
-                str_contains(strtolower($value->expGroupField_EN), strtolower($q)) ||
-                str_contains(strtolower($value->expMainFieldId), strtolower($q)) ||
-                str_contains(strtolower($value->expMainField_EN), strtolower($q)) ||
-                str_contains(strtolower($value->expSubFieldId), strtolower($q)) ||
-                str_contains(strtolower($value->expSubField), strtolower($q)) ||
-                str_contains(strtolower($value->expSubField_EN), strtolower($q)) ||
-                str_contains(strtolower($value->expDetail), strtolower($q)) ||
-                str_contains(strtolower($value->expMainField), strtolower($q));
+                str_contains(strtolower($value->person_exp_id), strtolower($q)) ||
+                str_contains(strtolower($value->exp_type_id), strtolower($q)) ||
+                str_contains(strtolower($value->exp_type), strtolower($q)) ||
+                str_contains(strtolower($value->exp_acad_position), strtolower($q)) ||
+                str_contains(strtolower($value->exp_group_field_id), strtolower($q)) ||
+                str_contains(strtolower($value->exp_group_field), strtolower($q)) ||
+                str_contains(strtolower($value->exp_group_field_en), strtolower($q)) ||
+                str_contains(strtolower($value->exp_main_field_id), strtolower($q)) ||
+                str_contains(strtolower($value->exp_main_field_en), strtolower($q)) ||
+                str_contains(strtolower($value->exp_sub_field_id), strtolower($q)) ||
+                str_contains(strtolower($value->exp_sub_field), strtolower($q)) ||
+                str_contains(strtolower($value->exp_sub_field_en), strtolower($q)) ||
+                str_contains(strtolower($value->exp_detail), strtolower($q)) ||
+                str_contains(strtolower($value->exp_main_field), strtolower($q));
         })->values();
 
 
@@ -174,4 +174,7 @@ class DashBoardController extends Controller
             'payload' =>  $filtered
         ], 200);
     }
+
+
+   
 }

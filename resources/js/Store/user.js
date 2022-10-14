@@ -4,6 +4,7 @@ const state = {
     loading: false,
     search_user_expertise: null,
     expertise_exp_main_field: null,
+    expertise_by_id: null,
 };
 
 const getters = {};
@@ -64,6 +65,23 @@ const actions = {
             commit("LOADING_SET", false);
         });
     },
+
+    fetchUserExpertiseById({ commit }, id) {
+        return new Promise(async (resolve, reject) => {
+            commit("LOADING_SET", true);
+            await UserService.fetchUserExpertiseById(id)
+                .then((response) => {
+                    if (response.data.success) {
+                        commit("EXPERTISE_BY_ID", response.data.payload);
+                        resolve(response.data);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            commit("LOADING_SET", false);
+        });
+    },
 };
 
 const mutations = {
@@ -75,6 +93,9 @@ const mutations = {
     },
     LOADING_SET(state, response) {
         state.loading = response;
+    },
+    EXPERTISE_BY_ID(state, response) {
+        state.expertise_by_id = response;
     },
 };
 

@@ -26,6 +26,10 @@ Route::get('/user-expertise', function () {
     return view('index');
 });
 
+Route::get('/expertise-detail', function () {
+    return view('index');
+});
+
 Route::get('/logout', function () {
     if (Auth::user()) {
         Auth::user()->tokens()->delete();

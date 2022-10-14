@@ -112,4 +112,23 @@ class UserController extends Controller
             ], 404);
         }
     }
+
+    public function fetchUserExpertiseById($id)
+    {
+        $results = UserExpertise::find($id);
+
+        if ($results) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $results
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  null,
+            ], 201);
+        }
+    }
 }

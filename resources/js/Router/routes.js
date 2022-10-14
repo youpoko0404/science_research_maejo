@@ -58,6 +58,12 @@ const routes = [
             import("../components/UserPermission/UserPermission.vue"),
         meta: { title: "จัดการสิทธิ" },
     },
+    {
+        path: "/expertise-detail",
+        name: "expertise_detail",
+        component: () => import("../components/Research/ExpertiseDetail.vue"),
+        meta: { title: "ข้อมูลความเชี่ยวชาญ" },
+    },
 ];
 
 export default routes;

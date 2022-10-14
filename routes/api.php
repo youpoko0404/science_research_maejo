@@ -75,6 +75,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user-expertise', 'fetchExpertiseAll');
     Route::get('/user-expertise-exp-main-field', 'fetchExpertiseExpMainFieldAll');
     Route::get('/update-expertise', 'updateExpertise');
+    Route::get('/user-expertise/{id}', 'fetchUserExpertiseById');
 });
 
 Route::controller(UserPermissionsController::class)->group(function () {
