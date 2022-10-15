@@ -33,9 +33,25 @@ class ParametersTableSeeder extends Seeder
             [
                 'first_name' => "Admin",
                 'last_name' => "",
-                'email' => "admin.science@mju.ac.th",
+                'email' => "admin@gmail.com",
                 'password' => Hash::make('12345678'),
                 'username' => "admin",
+                'role' => "admin"
+            ],
+            [
+                'first_name' => "Admin1",
+                'last_name' => "",
+                'email' => "admin1@gmail.com",
+                'password' => Hash::make('12345678'),
+                'username' => "admin1",
+                'role' => "admin"
+            ],
+            [
+                'first_name' => "Admin2",
+                'last_name' => "",
+                'email' => "admin2@gmail.com",
+                'password' => Hash::make('12345678'),
+                'username' => "admin2",
                 'role' => "admin"
             ],
         ];
