@@ -27,7 +27,7 @@ class ParametersTableSeeder extends Seeder
 {
     public function run()
     {
-        User::truncate();
+        // User::truncate();
 
         $user = [
             [
@@ -39,20 +39,36 @@ class ParametersTableSeeder extends Seeder
                 'role' => "admin"
             ],
             [
-                'first_name' => "Admin1",
+                'first_name' => "staff1",
                 'last_name' => "",
-                'email' => "admin1@gmail.com",
+                'email' => "staff1@gmail.com",
                 'password' => Hash::make('12345678'),
-                'username' => "admin1",
-                'role' => "admin"
+                'username' => "staff1",
+                'role' => "staff"
             ],
             [
-                'first_name' => "Admin2",
+                'first_name' => "staff2",
                 'last_name' => "",
-                'email' => "admin2@gmail.com",
+                'email' => "staff2@gmail.com",
                 'password' => Hash::make('12345678'),
-                'username' => "admin2",
-                'role' => "admin"
+                'username' => "staff2",
+                'role' => "staff"
+            ],
+            [
+                'first_name' => "staff3",
+                'last_name' => "",
+                'email' => "staff3@gmail.com",
+                'password' => Hash::make('12345678'),
+                'username' => "staff3",
+                'role' => "staff"
+            ],
+            [
+                'first_name' => "staff4",
+                'last_name' => "",
+                'email' => "staff4@gmail.com",
+                'password' => Hash::make('12345678'),
+                'username' => "staff4",
+                'role' => "staff"
             ],
         ];
 
@@ -61,7 +77,7 @@ class ParametersTableSeeder extends Seeder
             User::create($row);
         }
 
-        Parameter::truncate();
+        // Parameter::truncate();
 
         $branch_main_group = [
             [

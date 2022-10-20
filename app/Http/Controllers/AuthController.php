@@ -21,58 +21,69 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        if (str_contains($request->email, 'admin')) {
+        $user = User::where([['email', '=', $request->email]])->first();
 
-            $user = User::where([['email', '=', $request->email]])->first();
-
-            if (Hash::check($request->password, $user->password)) {
-                Auth::login($user);
-                $request->session()->regenerate();
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Successfully',
-                    'payload' =>  $user
-                ], 200);
-            }
-        } else {
-            $client = new Client([
-                'base_uri' => 'https://sci-mock-api.herokuapp.com/',
-            ]);
-
-            $response = $client->request('POST', 'login', [
-                'json' => [
-                    'email' => $request->email,
-                    'password' => $request->password
-                ],
-            ]);
-
-            if ($response->getStatusCode() == 200) {
-                $data = json_decode($response->getBody())->payload;
-
-                $userWhere = [
-                    'email' => $data->email,
-                ];
-
-                $userData = [
-                    'first_name' => $data->firstName,
-                    'last_name' => $data->lastName,
-                    'username' => $data->userName,
-                    'password' => Hash::make($request->password)
-                ];
-
-                $user = User::updateOrCreate($userWhere, $userData);
-
-                if ($user) {
-                    Auth::login($user);
-                    $request->session()->regenerate();
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Successfully',
-                        'payload' =>  $user
-                    ], 200);
-                }
-            }
+        if (Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+            $request->session()->regenerate();
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $user
+            ], 200);
         }
+        // if (str_contains($request->email, 'admin')) {
+
+        //     $user = User::where([['email', '=', $request->email]])->first();
+
+        //     if (Hash::check($request->password, $user->password)) {
+        //         Auth::login($user);
+        //         $request->session()->regenerate();
+        //         return response()->json([
+        //             'success' => true,
+        //             'message' => 'Successfully',
+        //             'payload' =>  $user
+        //         ], 200);
+        //     }
+        // } else {
+        //     $client = new Client([
+        //         'base_uri' => 'https://sci-mock-api.herokuapp.com/',
+        //     ]);
+
+        //     $response = $client->request('POST', 'login', [
+        //         'json' => [
+        //             'email' => $request->email,
+        //             'password' => $request->password
+        //         ],
+        //     ]);
+
+        //     if ($response->getStatusCode() == 200) {
+        //         $data = json_decode($response->getBody())->payload;
+
+        //         $userWhere = [
+        //             'email' => $data->email,
+        //         ];
+
+        //         $userData = [
+        //             'first_name' => $data->firstName,
+        //             'last_name' => $data->lastName,
+        //             'username' => $data->userName,
+        //             'password' => Hash::make($request->password)
+        //         ];
+
+        //         $user = User::updateOrCreate($userWhere, $userData);
+
+        //         if ($user) {
+        //             Auth::login($user);
+        //             $request->session()->regenerate();
+        //             return response()->json([
+        //                 'success' => true,
+        //                 'message' => 'Successfully',
+        //                 'payload' =>  $user
+        //             ], 200);
+        //         }
+        //     }
+        // }
 
         return response()->json([
             'success' => true,

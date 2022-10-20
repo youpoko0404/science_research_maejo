@@ -137,6 +137,16 @@ class DashBoardController extends Controller
 
         $results = UserExpertise::orderBy('created_at')->get();
 
+        if ($q == '') {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $results
+            ], 200);
+        }
+
+        $results = UserExpertise::orderBy('created_at')->get();
+
         $collection = collect($results);
 
         $filtered = $collection->filter(function ($value, $key) use ($q) {
@@ -174,7 +184,4 @@ class DashBoardController extends Controller
             'payload' =>  $filtered
         ], 200);
     }
-
-
-   
 }

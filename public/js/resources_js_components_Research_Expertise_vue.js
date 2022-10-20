@@ -185,8 +185,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -236,15 +234,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _this.fetchExpertiseExpMainFieldAll();
 
             case 2:
-              if (_this.$route.query.q) {
-                _this.query_param = _this.$route.query.q;
+              _this.query_param = _this.$route.query.q;
 
-                _this.fetchSearchUserExpertise(_this.$route.query.q);
-              } // this.selected = this.expertise_exp_main_field.map((e) => e.expMainFieldId);
+              _this.fetchSearchUserExpertise(_this.$route.query.q); // this.selected = this.expertise_exp_main_field.map((e) => e.expMainFieldId);
               // this.selectAll = ["all"];
 
 
-            case 3:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -300,10 +296,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           q: this.query_param
         }
       }, function () {});
-
-      if (this.query_param) {
-        this.fetchSearchUserExpertise(this.query_param);
-      }
+      this.fetchSearchUserExpertise(this.query_param);
     },
     fetchSearchUserExpertise: function fetchSearchUserExpertise(q) {
       this.$store.dispatch("user/fetchSearchUserExpertise", q);
@@ -694,183 +687,171 @@ var render = function () {
                   attrs: { cols: "8" },
                 },
                 [
-                  this.$route.query.q
-                    ? [
-                        _c(
-                          "div",
-                          {
-                            staticStyle: {
-                              "font-size": "15px",
-                              "margin-bottom": "10px",
-                            },
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        "font-size": "15px",
+                        "margin-bottom": "10px",
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n          ผลการค้นหา\n          " +
+                          _vm._s(
+                            _vm.filteredItems ? _vm.filteredItems.length : 0
+                          ) +
+                          "\n          รายการ\n        "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    staticClass: "elevation-1 row-pointer",
+                    attrs: {
+                      headers: _vm.headers,
+                      items: _vm.filteredItems,
+                      page: _vm.page,
+                      "items-per-page": _vm.itemsPerPage,
+                    },
+                    on: {
+                      "update:page": function ($event) {
+                        _vm.page = $event
+                      },
+                      "page-count": function ($event) {
+                        _vm.pageCount = $event
+                      },
+                      "click:row": _vm.handleRowClick,
+                    },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "item.index",
+                          fn: function (ref) {
+                            var index = ref.index
+                            return [
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(index + 1) +
+                                  "\n          "
+                              ),
+                            ]
                           },
-                          [
-                            _vm._v(
-                              "\n            ผลการค้นหา\n            " +
-                                _vm._s(
-                                  _vm.filteredItems
-                                    ? _vm.filteredItems.length
-                                    : 0
-                                ) +
-                                "\n            รายการ\n          "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("v-data-table", {
-                          staticClass: "elevation-1 row-pointer",
-                          attrs: {
-                            headers: _vm.headers,
-                            items: _vm.filteredItems,
-                            page: _vm.page,
-                            "items-per-page": _vm.itemsPerPage,
+                        },
+                        {
+                          key: "item.detail",
+                          fn: function (ref) {
+                            var item = ref.item
+                            return [
+                              _c("strong", [_vm._v(" ชื่อหน่วยงาน : ")]),
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(
+                                    (item.section || "") +
+                                      "  " +
+                                      (item.division || "") +
+                                      " " +
+                                      (item.faculty || "")
+                                  ) +
+                                  "\n            "
+                              ),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("strong", [_vm._v(" ประเภทความเชี่ยวชาญ : ")]),
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s("" + (item.exp_type || "")) +
+                                  "\n            "
+                              ),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("strong", [
+                                _vm._v(" กลุ่มสาขาวิชาความเชี่ยวชาญ : "),
+                              ]),
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(
+                                    (item.exp_group_field || "") +
+                                      " " +
+                                      (item.exp_main_field || "")
+                                  ) +
+                                  "\n            "
+                              ),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("strong", [
+                                _vm._v(" อนุสาขาวิชาความเชี่ยวชาญ : "),
+                              ]),
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s("" + (item.exp_sub_field || "")) +
+                                  "\n            "
+                              ),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("strong", [
+                                _vm._v(" รายละเอียดความเชี่ยวชาญเพิ่มเติม : "),
+                              ]),
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s("" + (item.exp_detail || "")) +
+                                  "\n            "
+                              ),
+                              _c("br"),
+                            ]
                           },
-                          on: {
-                            "update:page": function ($event) {
-                              _vm.page = $event
-                            },
-                            "page-count": function ($event) {
-                              _vm.pageCount = $event
-                            },
-                            "click:row": _vm.handleRowClick,
+                        },
+                        {
+                          key: "item.name",
+                          fn: function (ref) {
+                            var item = ref.item
+                            return [
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(
+                                    (item.title_position_short || "") +
+                                      " " +
+                                      (item.first_name || "") +
+                                      " " +
+                                      (item.last_name || "")
+                                  ) +
+                                  "\n          "
+                              ),
+                            ]
                           },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "item.index",
-                                fn: function (ref) {
-                                  var index = ref.index
-                                  return [
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s(index + 1) +
-                                        "\n            "
-                                    ),
-                                  ]
-                                },
-                              },
-                              {
-                                key: "item.detail",
-                                fn: function (ref) {
-                                  var item = ref.item
-                                  return [
-                                    _c("strong", [_vm._v(" ชื่อหน่วยงาน : ")]),
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s(
-                                          (item.section || "") +
-                                            "  " +
-                                            (item.division || "") +
-                                            " " +
-                                            (item.faculty || "")
-                                        ) +
-                                        "\n              "
-                                    ),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("strong", [
-                                      _vm._v(" ประเภทความเชี่ยวชาญ : "),
-                                    ]),
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s("" + (item.exp_type || "")) +
-                                        "\n              "
-                                    ),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("strong", [
-                                      _vm._v(" กลุ่มสาขาวิชาความเชี่ยวชาญ : "),
-                                    ]),
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s(
-                                          (item.exp_group_field || "") +
-                                            " " +
-                                            (item.exp_main_field || "")
-                                        ) +
-                                        "\n              "
-                                    ),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("strong", [
-                                      _vm._v(" อนุสาขาวิชาความเชี่ยวชาญ : "),
-                                    ]),
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s(
-                                          "" + (item.exp_sub_field || "")
-                                        ) +
-                                        "\n              "
-                                    ),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("strong", [
-                                      _vm._v(
-                                        " รายละเอียดความเชี่ยวชาญเพิ่มเติม : "
-                                      ),
-                                    ]),
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s("" + (item.exp_detail || "")) +
-                                        "\n              "
-                                    ),
-                                    _c("br"),
-                                  ]
-                                },
-                              },
-                              {
-                                key: "item.name",
-                                fn: function (ref) {
-                                  var item = ref.item
-                                  return [
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s(
-                                          (item.title_position_short || "") +
-                                            " " +
-                                            (item.first_name || "") +
-                                            " " +
-                                            (item.last_name || "")
-                                        ) +
-                                        "\n            "
-                                    ),
-                                  ]
-                                },
-                              },
-                              {
-                                key: "no-data",
-                                fn: function () {
-                                  return [_vm._v(" ไม่พบผลการค้นหา ")]
-                                },
-                                proxy: true,
-                              },
-                            ],
-                            null,
-                            true
-                          ),
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "text-center pt-2" },
-                          [
-                            _c("v-pagination", {
-                              attrs: { length: _vm.pageCount },
-                              model: {
-                                value: _vm.page,
-                                callback: function ($$v) {
-                                  _vm.page = $$v
-                                },
-                                expression: "page",
-                              },
-                            }),
-                          ],
-                          1
-                        ),
-                      ]
-                    : _vm._e(),
+                        },
+                        {
+                          key: "no-data",
+                          fn: function () {
+                            return [_vm._v(" ไม่พบผลการค้นหา ")]
+                          },
+                          proxy: true,
+                        },
+                      ],
+                      null,
+                      true
+                    ),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "text-center pt-2" },
+                    [
+                      _c("v-pagination", {
+                        attrs: { length: _vm.pageCount },
+                        model: {
+                          value: _vm.page,
+                          callback: function ($$v) {
+                            _vm.page = $$v
+                          },
+                          expression: "page",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
                 ],
-                2
+                1
               ),
             ],
             1

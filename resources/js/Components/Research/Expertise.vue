@@ -59,47 +59,45 @@
           <v-divider vertical></v-divider
         ></v-col>
         <v-col cols="8" style="width: 72.66666667%">
-          <template v-if="this.$route.query.q">
-            <div style="font-size: 15px; margin-bottom: 10px">
-              ผลการค้นหา
-              {{ filteredItems ? filteredItems.length : 0 }}
-              รายการ
-            </div>
-            <v-data-table
-              :headers="headers"
-              :items="filteredItems"
-              :page.sync="page"
-              :items-per-page="itemsPerPage"
-              class="elevation-1 row-pointer"
-              @page-count="pageCount = $event"
-              @click:row="handleRowClick"
-            >
-              <template v-slot:[`item.index`]="{ index }">
-                {{ index + 1 }}
-              </template>
-              <template v-slot:[`item.detail`]="{ item }">
-                <strong> ชื่อหน่วยงาน : </strong>
-                {{
-                  `${item.section || ""}  ${item.division || ""} ${
-                    item.faculty || ""
-                  }`
-                }}
-                <br />
-                <strong> ประเภทความเชี่ยวชาญ : </strong>
-                {{ `${item.exp_type || ""}` }}
-                <br />
-                <strong> กลุ่มสาขาวิชาความเชี่ยวชาญ : </strong>
-                {{
-                  `${item.exp_group_field || ""} ${item.exp_main_field || ""}`
-                }}
-                <br />
-                <strong> อนุสาขาวิชาความเชี่ยวชาญ : </strong>
-                {{ `${item.exp_sub_field || ""}` }}
-                <br />
-                <strong> รายละเอียดความเชี่ยวชาญเพิ่มเติม : </strong>
-                {{ `${item.exp_detail || ""}` }}
-                <br />
-                <!-- <template v-if="!isEmpty(item.is_research)">
+          <!-- <template v-if="this.$route.query.q"> -->
+          <div style="font-size: 15px; margin-bottom: 10px">
+            ผลการค้นหา
+            {{ filteredItems ? filteredItems.length : 0 }}
+            รายการ
+          </div>
+          <v-data-table
+            :headers="headers"
+            :items="filteredItems"
+            :page.sync="page"
+            :items-per-page="itemsPerPage"
+            class="elevation-1 row-pointer"
+            @page-count="pageCount = $event"
+            @click:row="handleRowClick"
+          >
+            <template v-slot:[`item.index`]="{ index }">
+              {{ index + 1 }}
+            </template>
+            <template v-slot:[`item.detail`]="{ item }">
+              <strong> ชื่อหน่วยงาน : </strong>
+              {{
+                `${item.section || ""}  ${item.division || ""} ${
+                  item.faculty || ""
+                }`
+              }}
+              <br />
+              <strong> ประเภทความเชี่ยวชาญ : </strong>
+              {{ `${item.exp_type || ""}` }}
+              <br />
+              <strong> กลุ่มสาขาวิชาความเชี่ยวชาญ : </strong>
+              {{ `${item.exp_group_field || ""} ${item.exp_main_field || ""}` }}
+              <br />
+              <strong> อนุสาขาวิชาความเชี่ยวชาญ : </strong>
+              {{ `${item.exp_sub_field || ""}` }}
+              <br />
+              <strong> รายละเอียดความเชี่ยวชาญเพิ่มเติม : </strong>
+              {{ `${item.exp_detail || ""}` }}
+              <br />
+              <!-- <template v-if="!isEmpty(item.is_research)">
                   <strong>
                     มีผลงานวิจัย/ผลงานทางวิชาการ/ผลงานอื่น ๆ ที่เกี่ยวข้อง
                   </strong>
@@ -125,20 +123,20 @@
                   </strong>
                   <br />
                 </template> -->
-              </template>
-              <template v-slot:[`item.name`]="{ item }">
-                {{
-                  `${item.title_position_short || ""} ${
-                    item.first_name || ""
-                  } ${item.last_name || ""}`
-                }}
-              </template>
-              <template v-slot:no-data> ไม่พบผลการค้นหา </template>
-            </v-data-table>
-            <div class="text-center pt-2">
-              <v-pagination v-model="page" :length="pageCount"></v-pagination>
-            </div>
-          </template>
+            </template>
+            <template v-slot:[`item.name`]="{ item }">
+              {{
+                `${item.title_position_short || ""} ${item.first_name || ""} ${
+                  item.last_name || ""
+                }`
+              }}
+            </template>
+            <template v-slot:no-data> ไม่พบผลการค้นหา </template>
+          </v-data-table>
+          <div class="text-center pt-2">
+            <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          </div>
+          <!-- </template> -->
         </v-col>
       </v-row>
     </v-container>
@@ -189,10 +187,8 @@ export default {
   }),
   async created() {
     await this.fetchExpertiseExpMainFieldAll();
-    if (this.$route.query.q) {
-      this.query_param = this.$route.query.q;
-      this.fetchSearchUserExpertise(this.$route.query.q);
-    }
+    this.query_param = this.$route.query.q;
+    this.fetchSearchUserExpertise(this.$route.query.q);
     // this.selected = this.expertise_exp_main_field.map((e) => e.expMainFieldId);
     // this.selectAll = ["all"];
   },
@@ -239,9 +235,7 @@ export default {
         },
         () => {}
       );
-      if (this.query_param) {
-        this.fetchSearchUserExpertise(this.query_param);
-      }
+      this.fetchSearchUserExpertise(this.query_param);
     },
     fetchSearchUserExpertise(q) {
       this.$store.dispatch("user/fetchSearchUserExpertise", q);

@@ -20,6 +20,9 @@
         {{ item.title_name_th }}<br />
         {{ item.title_name_en }}
       </template>
+      <template v-slot:[`item.research_period_start`]="{ item }">
+        {{ convertDate(item.research_period_start) }}
+      </template>
       <!-- <template v-slot:[`item.name`]="{ item }">
         {{
           item.part_2
@@ -38,6 +41,7 @@
 </template>
 
 <script>
+import dayJs from "../Utili/dayJs";
 export default {
   name: "Research",
   props: {
@@ -88,6 +92,9 @@ export default {
           query: { id: row.id },
         });
       }
+    },
+    convertDate(date) {
+      return dayJs.formatDateTH(date);
     },
   },
 };
