@@ -138,6 +138,11 @@ class DashBoardController extends Controller
         $results = UserExpertise::orderBy('created_at')->get();
 
         if ($q == '') {
+
+            foreach ($results as $items) {
+                $items["name"] = $items["section"] . " " . $items["division"] . " " . $items["faculty"];
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Successfully',
@@ -177,6 +182,9 @@ class DashBoardController extends Controller
                 str_contains(strtolower($value->exp_main_field), strtolower($q));
         })->values();
 
+        foreach ($filtered as $items) {
+            $items["name"] = $items["section"] . " " . $items["division"] . " " . $items["faculty"];
+        }
 
         return response()->json([
             'success' => true,

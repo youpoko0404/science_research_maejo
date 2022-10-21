@@ -2787,6 +2787,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         link.target = "_blank";
         link.click();
       });
+    },
+    filter: function filter(evt) {
+      evt = evt ? evt : window.event;
+      var expect = evt.target.value.toString() + evt.key.toString();
+
+      if (!/^[-+]?[0-9]*\.?[0-9]*$/.test(expect)) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
     }
   }
 });
@@ -4193,6 +4203,11 @@ var render = function () {
                                     required: "",
                                     type: "number",
                                   },
+                                  on: {
+                                    keypress: function ($event) {
+                                      return _vm.filter(_vm.event)
+                                    },
+                                  },
                                   model: {
                                     value:
                                       _vm.request.research_main_responsible,
@@ -4839,202 +4854,190 @@ var render = function () {
                       _vm.request.research_fundings.length > 0
                         ? [
                             _c(
-                              "div",
-                              { staticClass: "pa-4 grey lighten-2 rounded-lg" },
-                              [
-                                _c(
-                                  "v-data-table",
-                                  {
-                                    attrs: {
-                                      headers: _vm.headers_research_fundings,
-                                      items: _vm.request.research_fundings,
-                                    },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "item.count",
-                                          fn: function (ref) {
-                                            var index = ref.index
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(index + 1) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.title",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _c("strong", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.fetchParameterByGroupKey(
-                                                      _vm.parameter,
-                                                      "funding_type_group",
-                                                      item.type
-                                                    )
-                                                  )
-                                                ),
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("br"),
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(
-                                                    _vm.fetchParameterByGroupKey(
-                                                      _vm.parameter,
-                                                      item.type,
-                                                      item.source_capital
-                                                    )
-                                                  ) +
-                                                  "\n                  "
-                                              ),
-                                              _c("br"),
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(
-                                                    _vm.fetchParameterByGroupKey(
-                                                      _vm.parameter,
-                                                      "funding_level_group",
-                                                      item.capital_level
-                                                    )
-                                                  ) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.year",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(item.year) +
-                                                  " "
-                                              ),
-                                              _c("br"),
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(
-                                                    _vm.formatDate(item.date1)
-                                                  ) +
-                                                  " -\n                  " +
-                                                  _vm._s(
-                                                    _vm.formatDate(item.date2)
-                                                  ) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.price",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _vm._v(
-                                                "\n                  " +
-                                                  _vm._s(item.amount) +
-                                                  "\n                "
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                        {
-                                          key: "item.actions",
-                                          fn: function (ref) {
-                                            var item = ref.item
-                                            return [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  staticClass:
-                                                    "pa-2 error mr-2",
-                                                  on: {
-                                                    click: function () {
-                                                      _vm.onClickManageResearchFunding(
-                                                        item,
-                                                        "delete"
-                                                      )
-                                                    },
-                                                  },
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                    ลบ"
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  staticClass: "pa-2 primary",
-                                                  on: {
-                                                    click: function () {
-                                                      _vm.onClickManageResearchFunding(
-                                                        item,
-                                                        null
-                                                      )
-                                                      _vm.dialog.research_fundings = true
-                                                    },
-                                                  },
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                    แก้ไข"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          },
-                                        },
-                                      ],
-                                      null,
-                                      true
-                                    ),
-                                  },
+                              "v-data-table",
+                              {
+                                attrs: {
+                                  headers: _vm.headers_research_fundings,
+                                  items: _vm.request.research_fundings,
+                                },
+                                scopedSlots: _vm._u(
                                   [
-                                    _vm._v(" "),
-                                    _vm._v(" "),
-                                    _vm._v(" "),
-                                    _vm._v(" "),
-                                    _vm._v(" "),
-                                    _c("template", { slot: "body.append" }, [
-                                      _c("tr", [
-                                        _c("th"),
-                                        _vm._v(" "),
-                                        _c("th"),
-                                        _vm._v(" "),
-                                        _c("th", [_vm._v("รวมทั้งหมดเป็น")]),
-                                        _vm._v(" "),
-                                        _c("th", [
+                                    {
+                                      key: "item.count",
+                                      fn: function (ref) {
+                                        var index = ref.index
+                                        return [
                                           _vm._v(
-                                            "\n                      " +
+                                            "\n                " +
+                                              _vm._s(index + 1) +
+                                              "\n              "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.title",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c("strong", [
+                                            _vm._v(
                                               _vm._s(
-                                                _vm.request.research_fundings.reduce(
-                                                  function (t, n) {
-                                                    return t + Number(n.amount)
-                                                  },
-                                                  0
+                                                _vm.fetchParameterByGroupKey(
+                                                  _vm.parameter,
+                                                  "funding_type_group",
+                                                  item.type
+                                                )
+                                              )
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("br"),
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(
+                                                _vm.fetchParameterByGroupKey(
+                                                  _vm.parameter,
+                                                  item.type,
+                                                  item.source_capital
                                                 )
                                               ) +
-                                              "\n                    "
+                                              "\n                "
                                           ),
-                                        ]),
-                                      ]),
-                                    ]),
+                                          _c("br"),
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(
+                                                _vm.fetchParameterByGroupKey(
+                                                  _vm.parameter,
+                                                  "funding_level_group",
+                                                  item.capital_level
+                                                )
+                                              ) +
+                                              "\n              "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.year",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(item.year) +
+                                              " "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(
+                                                _vm.formatDate(item.date1)
+                                              ) +
+                                              " -\n                " +
+                                              _vm._s(
+                                                _vm.formatDate(item.date2)
+                                              ) +
+                                              "\n              "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.price",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(item.amount) +
+                                              "\n              "
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                    {
+                                      key: "item.actions",
+                                      fn: function (ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              staticClass: "pa-2 error mr-2",
+                                              on: {
+                                                click: function () {
+                                                  _vm.onClickManageResearchFunding(
+                                                    item,
+                                                    "delete"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [_vm._v("\n                  ลบ")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              staticClass: "pa-2 primary",
+                                              on: {
+                                                click: function () {
+                                                  _vm.onClickManageResearchFunding(
+                                                    item,
+                                                    null
+                                                  )
+                                                  _vm.dialog.research_fundings = true
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                  แก้ไข"
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      },
+                                    },
                                   ],
-                                  2
+                                  null,
+                                  true
                                 ),
+                              },
+                              [
+                                _vm._v(" "),
+                                _vm._v(" "),
+                                _vm._v(" "),
+                                _vm._v(" "),
+                                _vm._v(" "),
+                                _c("template", { slot: "body.append" }, [
+                                  _c("tr", [
+                                    _c("th"),
+                                    _vm._v(" "),
+                                    _c("th"),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("รวมทั้งหมดเป็น")]),
+                                    _vm._v(" "),
+                                    _c("th", [
+                                      _vm._v(
+                                        "\n                    " +
+                                          _vm._s(
+                                            _vm.request.research_fundings.reduce(
+                                              function (t, n) {
+                                                return t + Number(n.amount)
+                                              },
+                                              0
+                                            )
+                                          ) +
+                                          "\n                  "
+                                      ),
+                                    ]),
+                                  ]),
+                                ]),
                               ],
-                              1
+                              2
                             ),
                           ]
                         : [
@@ -8000,6 +8003,11 @@ var render = function () {
                                       rules: _vm.rules.requiredNumber,
                                       required: "",
                                       type: "number",
+                                    },
+                                    on: {
+                                      keypress: function ($event) {
+                                        return _vm.filter(_vm.event)
+                                      },
                                     },
                                     model: {
                                       value:

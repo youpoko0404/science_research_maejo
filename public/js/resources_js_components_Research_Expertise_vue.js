@@ -181,10 +181,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -209,12 +205,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: "รายละเอียด",
         align: "start",
-        value: "detail" // width: "70%",
+        value: "name" // width: "70%",
 
       }, {
         text: "ชื่อ-สกุล",
         align: "center",
-        value: "name"
+        value: "first_name"
       }, {
         text: "ช่องทางการติดต่อ",
         align: "center",
@@ -739,20 +735,14 @@ var render = function () {
                           },
                         },
                         {
-                          key: "item.detail",
+                          key: "item.name",
                           fn: function (ref) {
                             var item = ref.item
                             return [
                               _c("strong", [_vm._v(" ชื่อหน่วยงาน : ")]),
                               _vm._v(
                                 "\n            " +
-                                  _vm._s(
-                                    (item.section || "") +
-                                      "  " +
-                                      (item.division || "") +
-                                      " " +
-                                      (item.faculty || "")
-                                  ) +
+                                  _vm._s((item.name || "") + " ") +
                                   "\n            "
                               ),
                               _c("br"),
@@ -802,7 +792,7 @@ var render = function () {
                           },
                         },
                         {
-                          key: "item.name",
+                          key: "item.first_name",
                           fn: function (ref) {
                             var item = ref.item
                             return [

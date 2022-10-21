@@ -453,6 +453,7 @@
                     :rules="rules.requiredNumber"
                     required
                     type="number"
+                    @keypress="filter(event)"
                   >
                   </v-text-field>
                 </v-col>
@@ -787,87 +788,85 @@
           </div>
           <v-row>
             <template v-if="request.research_fundings.length > 0">
-              <div class="pa-4 grey lighten-2 rounded-lg">
-                <v-data-table
-                  :headers="headers_research_fundings"
-                  :items="request.research_fundings"
-                >
-                  <template v-slot:[`item.count`]="{ index }">
-                    {{ index + 1 }}
-                  </template>
-                  <template v-slot:[`item.title`]="{ item }">
-                    <strong>{{
-                      fetchParameterByGroupKey(
-                        parameter,
-                        "funding_type_group",
-                        item.type
-                      )
-                    }}</strong>
-                    <br />
-                    {{
-                      fetchParameterByGroupKey(
-                        parameter,
-                        item.type,
-                        item.source_capital
-                      )
-                    }}
-                    <br />
-                    {{
-                      fetchParameterByGroupKey(
-                        parameter,
-                        "funding_level_group",
-                        item.capital_level
-                      )
-                    }}
-                  </template>
-                  <template v-slot:[`item.year`]="{ item }">
-                    {{ item.year }} <br />
-                    {{ formatDate(item.date1) }} -
-                    {{ formatDate(item.date2) }}
-                  </template>
-                  <template v-slot:[`item.price`]="{ item }">
-                    {{ item.amount }}
-                  </template>
-                  <template v-slot:[`item.actions`]="{ item }">
-                    <v-btn
-                      class="pa-2 error mr-2"
-                      @click="
-                        () => {
-                          onClickManageResearchFunding(item, 'delete');
-                        }
-                      "
-                    >
-                      ลบ</v-btn
-                    >
-                    <v-btn
-                      class="pa-2 primary"
-                      @click="
-                        () => {
-                          onClickManageResearchFunding(item, null);
-                          dialog.research_fundings = true;
-                        }
-                      "
-                    >
-                      แก้ไข</v-btn
-                    >
-                  </template>
-                  <template slot="body.append">
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th>รวมทั้งหมดเป็น</th>
-                      <th>
-                        {{
-                          request.research_fundings.reduce(
-                            (t, n) => t + Number(n.amount),
-                            0
-                          )
-                        }}
-                      </th>
-                    </tr>
-                  </template>
-                </v-data-table>
-              </div>
+              <v-data-table
+                :headers="headers_research_fundings"
+                :items="request.research_fundings"
+              >
+                <template v-slot:[`item.count`]="{ index }">
+                  {{ index + 1 }}
+                </template>
+                <template v-slot:[`item.title`]="{ item }">
+                  <strong>{{
+                    fetchParameterByGroupKey(
+                      parameter,
+                      "funding_type_group",
+                      item.type
+                    )
+                  }}</strong>
+                  <br />
+                  {{
+                    fetchParameterByGroupKey(
+                      parameter,
+                      item.type,
+                      item.source_capital
+                    )
+                  }}
+                  <br />
+                  {{
+                    fetchParameterByGroupKey(
+                      parameter,
+                      "funding_level_group",
+                      item.capital_level
+                    )
+                  }}
+                </template>
+                <template v-slot:[`item.year`]="{ item }">
+                  {{ item.year }} <br />
+                  {{ formatDate(item.date1) }} -
+                  {{ formatDate(item.date2) }}
+                </template>
+                <template v-slot:[`item.price`]="{ item }">
+                  {{ item.amount }}
+                </template>
+                <template v-slot:[`item.actions`]="{ item }">
+                  <v-btn
+                    class="pa-2 error mr-2"
+                    @click="
+                      () => {
+                        onClickManageResearchFunding(item, 'delete');
+                      }
+                    "
+                  >
+                    ลบ</v-btn
+                  >
+                  <v-btn
+                    class="pa-2 primary"
+                    @click="
+                      () => {
+                        onClickManageResearchFunding(item, null);
+                        dialog.research_fundings = true;
+                      }
+                    "
+                  >
+                    แก้ไข</v-btn
+                  >
+                </template>
+                <template slot="body.append">
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th>รวมทั้งหมดเป็น</th>
+                    <th>
+                      {{
+                        request.research_fundings.reduce(
+                          (t, n) => t + Number(n.amount),
+                          0
+                        )
+                      }}
+                    </th>
+                  </tr>
+                </template>
+              </v-data-table>
             </template>
             <template v-else>
               <div class="pa-4 grey lighten-2 rounded-lg text-center">
@@ -2146,6 +2145,7 @@
                     :rules="rules.requiredNumber"
                     required
                     type="number"
+                    @keypress="filter(event)"
                   >
                   </v-text-field>
                 </v-col>
@@ -2720,6 +2720,16 @@ export default {
         link.target = "_blank";
         link.click();
       });
+    },
+    filter: function (evt) {
+      evt = evt ? evt : window.event;
+      let expect = evt.target.value.toString() + evt.key.toString();
+
+      if (!/^[-+]?[0-9]*\.?[0-9]*$/.test(expect)) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
     },
   },
 };

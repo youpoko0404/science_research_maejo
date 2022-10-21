@@ -92,7 +92,7 @@
             <v-list-item @click="redirect('/')"> หน้าแรก </v-list-item>
             <template v-if="user != null">
               <v-list-item @click="redirect('/my-research')">
-                งานวิจัยจองฉัน
+                งานวิจัยของฉัน
               </v-list-item>
             </template>
             <template v-if="user != null">

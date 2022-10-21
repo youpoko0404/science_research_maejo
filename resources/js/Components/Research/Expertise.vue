@@ -77,13 +77,9 @@
             <template v-slot:[`item.index`]="{ index }">
               {{ index + 1 }}
             </template>
-            <template v-slot:[`item.detail`]="{ item }">
+            <template v-slot:[`item.name`]="{ item }">
               <strong> ชื่อหน่วยงาน : </strong>
-              {{
-                `${item.section || ""}  ${item.division || ""} ${
-                  item.faculty || ""
-                }`
-              }}
+              {{ `${item.name || ""} ` }}
               <br />
               <strong> ประเภทความเชี่ยวชาญ : </strong>
               {{ `${item.exp_type || ""}` }}
@@ -124,7 +120,7 @@
                   <br />
                 </template> -->
             </template>
-            <template v-slot:[`item.name`]="{ item }">
+            <template v-slot:[`item.first_name`]="{ item }">
               {{
                 `${item.title_position_short || ""} ${item.first_name || ""} ${
                   item.last_name || ""
@@ -170,13 +166,13 @@ export default {
       {
         text: "รายละเอียด",
         align: "start",
-        value: "detail",
+        value: "name",
         // width: "70%",
       },
       {
         text: "ชื่อ-สกุล",
         align: "center",
-        value: "name",
+        value: "first_name",
       },
       {
         text: "ช่องทางการติดต่อ",
