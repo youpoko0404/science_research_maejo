@@ -5681,6 +5681,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -45445,6 +45446,18 @@ var render = function () {
                         [_vm._v(" หน้าแรก ")]
                       ),
                       _vm._v(" "),
+                      _c(
+                        "v-list-item",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.redirect("/user-expertise")
+                            },
+                          },
+                        },
+                        [_vm._v(" ความเชียวชาญ ")]
+                      ),
+                      _vm._v(" "),
                       _vm.user != null
                         ? [
                             _c(
@@ -45459,26 +45472,6 @@ var render = function () {
                               [
                                 _vm._v(
                                   "\n              งานวิจัยของฉัน\n            "
-                                ),
-                              ]
-                            ),
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.user != null
-                        ? [
-                            _c(
-                              "v-list-item",
-                              {
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.redirect("/user-expertise")
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n              ความเชียวชาญ\n            "
                                 ),
                               ]
                             ),
