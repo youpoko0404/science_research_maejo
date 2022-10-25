@@ -15,18 +15,24 @@
         </template>
       </div>
       <v-divider></v-divider>
+
       <v-row>
-        <v-text-field
-          label="ค้นหาข้อมูลความเชี่ยวชาญ"
-          solo
-          v-model="query_param"
-          v-on:keyup.enter="heddleOnClickSearch"
-        >
-          <template v-slot:append>
-            <v-btn color="primary" @click="heddleOnClickSearch"> SEARCH </v-btn>
-          </template>
-        </v-text-field>
-        <v-col cols="3">
+        <div>
+          <v-text-field
+            label="ค้นหาข้อมูลความเชี่ยวชาญ"
+            solo
+            v-model="query_param"
+            v-on:keyup.enter="heddleOnClickSearch"
+          >
+            <template v-slot:append>
+              <v-btn color="primary" @click="heddleOnClickSearch">
+                SEARCH
+              </v-btn>
+            </template>
+          </v-text-field>
+        </div>
+
+        <v-col cols="12" md="3">
           <v-card class="mx-auto" max-width="300">
             <v-col cols="12">
               <h5>สาขาวิชาความเชี่ยวชาญ</h5>
@@ -55,11 +61,7 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="1" style="width: 1.33333333%">
-          <v-divider vertical></v-divider
-        ></v-col>
-        <v-col cols="8" style="width: 72.66666667%">
-          <!-- <template v-if="this.$route.query.q"> -->
+        <v-col cols="12" md="9">
           <div style="font-size: 15px; margin-bottom: 10px">
             ผลการค้นหา
             {{ filteredItems ? filteredItems.length : 0 }}
@@ -93,32 +95,6 @@
               <strong> รายละเอียดความเชี่ยวชาญเพิ่มเติม : </strong>
               {{ `${item.exp_detail || ""}` }}
               <br />
-              <!-- <template v-if="!isEmpty(item.is_research)">
-                  <strong>
-                    มีผลงานวิจัย/ผลงานทางวิชาการ/ผลงานอื่น ๆ ที่เกี่ยวข้อง
-                  </strong>
-                  <br />
-                </template>
-                <template v-if="!isEmpty(item.is_service)">
-                  <strong>
-                    เป็นวิทยากร/ให้บริการวิชาการ/สอน/บรรยายแก่บุคคลอื่นหรือองค์กร
-                  </strong>
-                  <br />
-                </template>
-                <template v-if="!isEmpty(item.is_award)">
-                  <strong> ได้รับรางวัลในสาขาวิชาที่มีความเชี่ยวชาญ </strong>
-                  <br />
-                </template>
-                <template v-if="!isEmpty(item.is_experience)">
-                  <strong> ความเชี่ยวชาญที่สั่งสมจากประสบการณ์การทำงาน </strong>
-                  <br />
-                </template>
-                <template v-if="!isEmpty(item.is_interest)">
-                  <strong>
-                    ความเชี่ยวชาญที่มีความสนใจและมีการศึกษาหาความรู้/ฝึกฝนปฏิบัติจนมีความเชี่ยวชาญ
-                  </strong>
-                  <br />
-                </template> -->
             </template>
             <template v-slot:[`item.first_name`]="{ item }">
               {{
@@ -132,7 +108,6 @@
           <div class="text-center pt-2">
             <v-pagination v-model="page" :length="pageCount"></v-pagination>
           </div>
-          <!-- </template> -->
         </v-col>
       </v-row>
     </v-container>

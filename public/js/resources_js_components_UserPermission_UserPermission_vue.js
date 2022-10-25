@@ -76,6 +76,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -277,107 +279,111 @@ var render = function () {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c(
-            "v-row",
-            [
-              _c("v-data-table", {
-                staticClass: "elevation-1",
-                attrs: {
-                  search: _vm.search,
-                  headers: _vm.headers,
-                  items: _vm.user_permission,
-                  page: _vm.page,
-                  "items-per-page": _vm.itemsPerPage,
-                  "hide-default-footer": "",
-                },
-                on: {
-                  "update:page": function ($event) {
-                    _vm.page = $event
+          _c("v-row", [
+            _c(
+              "div",
+              [
+                _c("v-data-table", {
+                  staticClass: "elevation-1",
+                  attrs: {
+                    search: _vm.search,
+                    headers: _vm.headers,
+                    items: _vm.user_permission,
+                    page: _vm.page,
+                    "items-per-page": _vm.itemsPerPage,
+                    "hide-default-footer": "",
                   },
-                  "page-count": function ($event) {
-                    _vm.pageCount = $event
-                  },
-                },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "item.index",
-                      fn: function (ref) {
-                        var index = ref.index
-                        return [
-                          _vm._v(
-                            "\n          " + _vm._s(index + 1) + "\n        "
-                          ),
-                        ]
-                      },
+                  on: {
+                    "update:page": function ($event) {
+                      _vm.page = $event
                     },
-                    {
-                      key: "item.permission",
-                      fn: function (ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                depressed: "",
-                                color:
-                                  item.is_create == 0 ? "primary" : "error",
-                              },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.updateUserPermission(item)
+                    "page-count": function ($event) {
+                      _vm.pageCount = $event
+                    },
+                  },
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "item.index",
+                        fn: function (ref) {
+                          var index = ref.index
+                          return [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(index + 1) +
+                                "\n          "
+                            ),
+                          ]
+                        },
+                      },
+                      {
+                        key: "item.permission",
+                        fn: function (ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  depressed: "",
+                                  color:
+                                    item.is_create == 0 ? "primary" : "error",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.updateUserPermission(item)
+                                  },
                                 },
                               },
-                            },
-                            [
-                              _vm._v(
-                                "\n            " +
-                                  _vm._s(
-                                    item.is_create == 0
-                                      ? "เพิ่มสิทธิ"
-                                      : "ลบสิทธิ"
-                                  ) +
-                                  "\n          "
-                              ),
-                            ]
-                          ),
-                        ]
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(
+                                      item.is_create == 0
+                                        ? "เพิ่มสิทธิ"
+                                        : "ลบสิทธิ"
+                                    ) +
+                                    "\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        },
                       },
-                    },
-                    {
-                      key: "no-data",
-                      fn: function () {
-                        return [_vm._v(" ไม่พบผลการค้นหา ")]
+                      {
+                        key: "no-data",
+                        fn: function () {
+                          return [_vm._v(" ไม่พบผลการค้นหา ")]
+                        },
+                        proxy: true,
                       },
-                      proxy: true,
-                    },
+                    ],
+                    null,
+                    true
+                  ),
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "text-center pt-2" },
+                  [
+                    _c("v-pagination", {
+                      attrs: { length: _vm.pageCount },
+                      model: {
+                        value: _vm.page,
+                        callback: function ($$v) {
+                          _vm.page = $$v
+                        },
+                        expression: "page",
+                      },
+                    }),
                   ],
-                  null,
-                  true
+                  1
                 ),
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "text-center pt-2" },
-                [
-                  _c("v-pagination", {
-                    attrs: { length: _vm.pageCount },
-                    model: {
-                      value: _vm.page,
-                      callback: function ($$v) {
-                        _vm.page = $$v
-                      },
-                      expression: "page",
-                    },
-                  }),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
+              ],
+              1
+            ),
+          ]),
         ],
         1
       ),

@@ -63,6 +63,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -246,103 +248,109 @@ var render = function () {
       _vm._v(" "),
       _c("v-divider"),
       _vm._v(" "),
-      _c(
-        "v-row",
-        [
-          _c("v-data-table", {
-            staticClass: "elevation-1",
-            attrs: {
-              headers: _vm.headers,
-              items: _vm.researchAll,
-              page: _vm.page,
-              "items-per-page": _vm.itemsPerPage,
-              "hide-default-footer": "",
-            },
-            on: {
-              "update:page": function ($event) {
-                _vm.page = $event
+      _c("v-row", [
+        _c(
+          "div",
+          [
+            _c("v-data-table", {
+              staticClass: "elevation-1",
+              attrs: {
+                headers: _vm.headers,
+                items: _vm.researchAll,
+                page: _vm.page,
+                "items-per-page": _vm.itemsPerPage,
+                "hide-default-footer": "",
               },
-              "page-count": function ($event) {
-                _vm.pageCount = $event
+              on: {
+                "update:page": function ($event) {
+                  _vm.page = $event
+                },
+                "page-count": function ($event) {
+                  _vm.pageCount = $event
+                },
               },
-            },
-            scopedSlots: _vm._u(
-              [
-                {
-                  key: "item.index",
-                  fn: function (ref) {
-                    var index = ref.index
-                    return [
-                      _vm._v("\n        " + _vm._s(index + 1) + "\n      "),
-                    ]
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "item.index",
+                    fn: function (ref) {
+                      var index = ref.index
+                      return [
+                        _vm._v(
+                          "\n          " + _vm._s(index + 1) + "\n        "
+                        ),
+                      ]
+                    },
                   },
-                },
-                {
-                  key: "item.research_name",
-                  fn: function (ref) {
-                    var item = ref.item
-                    return [
-                      _vm._v("\n        " + _vm._s(item.title_name_th)),
-                      _c("br"),
-                      _vm._v(
-                        "\n        " + _vm._s(item.title_name_en) + "\n      "
-                      ),
-                    ]
+                  {
+                    key: "item.research_name",
+                    fn: function (ref) {
+                      var item = ref.item
+                      return [
+                        _vm._v("\n          " + _vm._s(item.title_name_th)),
+                        _c("br"),
+                        _vm._v(
+                          "\n          " +
+                            _vm._s(item.title_name_en) +
+                            "\n        "
+                        ),
+                      ]
+                    },
                   },
-                },
-                {
-                  key: "item.edit",
-                  fn: function (ref) {
-                    var item = ref.item
-                    return [
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "warning", dark: "" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.heddleOnClickButton(item.id)
+                  {
+                    key: "item.edit",
+                    fn: function (ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { color: "warning", dark: "" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.heddleOnClickButton(item.id)
+                              },
                             },
                           },
-                        },
-                        [_vm._v("แก้ไข")]
-                      ),
-                    ]
+                          [_vm._v("แก้ไข")]
+                        ),
+                      ]
+                    },
                   },
-                },
-                {
-                  key: "no-data",
-                  fn: function () {
-                    return [_vm._v(" ไม่พบผลการค้นหา ")]
+                  {
+                    key: "no-data",
+                    fn: function () {
+                      return [_vm._v(" ไม่พบผลการค้นหา ")]
+                    },
+                    proxy: true,
                   },
-                  proxy: true,
-                },
+                ],
+                null,
+                true
+              ),
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "text-center pt-2" },
+              [
+                _c("v-pagination", {
+                  attrs: { length: _vm.pageCount },
+                  model: {
+                    value: _vm.page,
+                    callback: function ($$v) {
+                      _vm.page = $$v
+                    },
+                    expression: "page",
+                  },
+                }),
               ],
-              null,
-              true
+              1
             ),
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center pt-2" },
-            [
-              _c("v-pagination", {
-                attrs: { length: _vm.pageCount },
-                model: {
-                  value: _vm.page,
-                  callback: function ($$v) {
-                    _vm.page = $$v
-                  },
-                  expression: "page",
-                },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
+          ],
+          1
+        ),
+      ]),
     ],
     1
   )

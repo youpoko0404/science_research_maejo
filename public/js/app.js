@@ -5682,6 +5682,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -45455,10 +45462,30 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v(" ความเชียวชาญ ")]
+                        [_vm._v("\n            ความเชียวชาญ\n          ")]
                       ),
                       _vm._v(" "),
-                      _vm.user != null
+                      _vm.user != null && _vm.user.role == "admin"
+                        ? [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/manage-research")
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              งานวิจัยทั้งหมด\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user != null && _vm.user.role != "admin"
                         ? [
                             _c(
                               "v-list-item",
@@ -45472,6 +45499,26 @@ var render = function () {
                               [
                                 _vm._v(
                                   "\n              งานวิจัยของฉัน\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user != null && _vm.user.role == "admin"
+                        ? [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/user-permission")
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              จัดการสิทธิ\n            "
                                 ),
                               ]
                             ),

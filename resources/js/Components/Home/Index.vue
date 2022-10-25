@@ -5,16 +5,20 @@
       <div style="font-size: 30px">ข้อมูลงานวิจัย</div>
       <v-divider></v-divider>
       <v-row>
-        <v-text-field
-          label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
-          solo
-          v-model="query_param"
-          v-on:keyup.enter="heddleOnClickSearch"
-        >
-          <template v-slot:append>
-            <v-btn color="primary" @click="heddleOnClickSearch"> SEARCH </v-btn>
-          </template>
-        </v-text-field>
+        <div>
+          <v-text-field
+            label="ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย"
+            solo
+            v-model="query_param"
+            v-on:keyup.enter="heddleOnClickSearch"
+          >
+            <template v-slot:append>
+              <v-btn color="primary" @click="heddleOnClickSearch">
+                SEARCH
+              </v-btn>
+            </template>
+          </v-text-field>
+        </div>
         <template v-if="this.$route.query.q">
           <Research :research="search_research" />
         </template>

@@ -90,17 +90,24 @@
           </template>
           <v-list>
             <v-list-item @click="redirect('/')"> หน้าแรก </v-list-item>
-            <v-list-item @click="redirect('/user-expertise')"> ความเชียวชาญ </v-list-item>
-            <template v-if="user != null">
+            <v-list-item @click="redirect('/user-expertise')">
+              ความเชียวชาญ
+            </v-list-item>
+            <template v-if="user != null && user.role == 'admin'">
+              <v-list-item @click="redirect('/manage-research')">
+                งานวิจัยทั้งหมด
+              </v-list-item>
+            </template>
+            <template v-if="user != null && user.role != 'admin'">
               <v-list-item @click="redirect('/my-research')">
                 งานวิจัยของฉัน
               </v-list-item>
             </template>
-            <!-- <template v-if="user != null">
-              <v-list-item @click="redirect('/user-expertise')">
-                ความเชียวชาญ
+            <template v-if="user != null && user.role == 'admin'">
+              <v-list-item @click="redirect('/user-permission')">
+                จัดการสิทธิ
               </v-list-item>
-            </template> -->
+            </template>
             <template v-if="user != null">
               <v-list-item @click="redirect('/logout')">
                 ออกจากระบบ

@@ -335,6 +335,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -14767,49 +14771,61 @@ var render = function () {
           _c(
             "v-row",
             [
-              _c("v-text-field", {
-                attrs: {
-                  label:
-                    "ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย",
-                  solo: "",
-                },
-                on: {
-                  keyup: function ($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.heddleOnClickSearch.apply(null, arguments)
-                  },
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "append",
-                    fn: function () {
-                      return [
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: { color: "primary" },
-                            on: { click: _vm.heddleOnClickSearch },
-                          },
-                          [_vm._v(" SEARCH ")]
-                        ),
-                      ]
+              _c(
+                "div",
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      label:
+                        "ค้นหาข้อมูลจากรหัสโครงการ ชื่อโครงการภาษาไทย ชื่อโครงการภาษาอังกฤษ ชื่อผู้วิจัย",
+                      solo: "",
                     },
-                    proxy: true,
-                  },
-                ]),
-                model: {
-                  value: _vm.query_param,
-                  callback: function ($$v) {
-                    _vm.query_param = $$v
-                  },
-                  expression: "query_param",
-                },
-              }),
+                    on: {
+                      keyup: function ($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.heddleOnClickSearch.apply(null, arguments)
+                      },
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "append",
+                        fn: function () {
+                          return [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "primary" },
+                                on: { click: _vm.heddleOnClickSearch },
+                              },
+                              [_vm._v("\n              SEARCH\n            ")]
+                            ),
+                          ]
+                        },
+                        proxy: true,
+                      },
+                    ]),
+                    model: {
+                      value: _vm.query_param,
+                      callback: function ($$v) {
+                        _vm.query_param = $$v
+                      },
+                      expression: "query_param",
+                    },
+                  }),
+                ],
+                1
+              ),
               _vm._v(" "),
               this.$route.query.q
                 ? [_c("Research", { attrs: { research: _vm.search_research } })]

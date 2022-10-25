@@ -20,35 +20,37 @@
       </div>
       <v-spacer></v-spacer>
       <v-row>
-        <v-data-table
-          :search="search"
-          :headers="headers"
-          :items="user_permission"
-          :page.sync="page"
-          :items-per-page="itemsPerPage"
-          hide-default-footer
-          class="elevation-1"
-          @page-count="pageCount = $event"
-        >
-          <template v-slot:[`item.index`]="{ index }">
-            {{ index + 1 }}
-          </template>
-          <!-- <template v-slot:[`item.name`]="{ item }">
+        <div>
+          <v-data-table
+            :search="search"
+            :headers="headers"
+            :items="user_permission"
+            :page.sync="page"
+            :items-per-page="itemsPerPage"
+            hide-default-footer
+            class="elevation-1"
+            @page-count="pageCount = $event"
+          >
+            <template v-slot:[`item.index`]="{ index }">
+              {{ index + 1 }}
+            </template>
+            <!-- <template v-slot:[`item.name`]="{ item }">
             {{ `${item.first_name} ${item.last_name}` }}
           </template> -->
-          <template v-slot:[`item.permission`]="{ item }">
-            <v-btn
-              depressed
-              :color="item.is_create == 0 ? 'primary' : 'error'"
-              @click="updateUserPermission(item)"
-            >
-              {{ item.is_create == 0 ? "เพิ่มสิทธิ" : "ลบสิทธิ" }}
-            </v-btn>
-          </template>
-          <template v-slot:no-data> ไม่พบผลการค้นหา </template>
-        </v-data-table>
-        <div class="text-center pt-2">
-          <v-pagination v-model="page" :length="pageCount"></v-pagination>
+            <template v-slot:[`item.permission`]="{ item }">
+              <v-btn
+                depressed
+                :color="item.is_create == 0 ? 'primary' : 'error'"
+                @click="updateUserPermission(item)"
+              >
+                {{ item.is_create == 0 ? "เพิ่มสิทธิ" : "ลบสิทธิ" }}
+              </v-btn>
+            </template>
+            <template v-slot:no-data> ไม่พบผลการค้นหา </template>
+          </v-data-table>
+          <div class="text-center pt-2">
+            <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          </div>
         </div>
       </v-row>
     </v-container>

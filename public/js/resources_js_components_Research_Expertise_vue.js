@@ -156,31 +156,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -560,49 +535,61 @@ var render = function () {
           _c(
             "v-row",
             [
-              _c("v-text-field", {
-                attrs: { label: "ค้นหาข้อมูลความเชี่ยวชาญ", solo: "" },
-                on: {
-                  keyup: function ($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.heddleOnClickSearch.apply(null, arguments)
-                  },
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "append",
-                    fn: function () {
-                      return [
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: { color: "primary" },
-                            on: { click: _vm.heddleOnClickSearch },
-                          },
-                          [_vm._v(" SEARCH ")]
-                        ),
-                      ]
+              _c(
+                "div",
+                [
+                  _c("v-text-field", {
+                    attrs: { label: "ค้นหาข้อมูลความเชี่ยวชาญ", solo: "" },
+                    on: {
+                      keyup: function ($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.heddleOnClickSearch.apply(null, arguments)
+                      },
                     },
-                    proxy: true,
-                  },
-                ]),
-                model: {
-                  value: _vm.query_param,
-                  callback: function ($$v) {
-                    _vm.query_param = $$v
-                  },
-                  expression: "query_param",
-                },
-              }),
+                    scopedSlots: _vm._u([
+                      {
+                        key: "append",
+                        fn: function () {
+                          return [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "primary" },
+                                on: { click: _vm.heddleOnClickSearch },
+                              },
+                              [_vm._v("\n              SEARCH\n            ")]
+                            ),
+                          ]
+                        },
+                        proxy: true,
+                      },
+                    ]),
+                    model: {
+                      value: _vm.query_param,
+                      callback: function ($$v) {
+                        _vm.query_param = $$v
+                      },
+                      expression: "query_param",
+                    },
+                  }),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "v-col",
-                { attrs: { cols: "3" } },
+                { attrs: { cols: "12", md: "3" } },
                 [
                   _c(
                     "v-card",
@@ -671,17 +658,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-col",
-                { staticStyle: { width: "1.33333333%" }, attrs: { cols: "1" } },
-                [_c("v-divider", { attrs: { vertical: "" } })],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticStyle: { width: "72.66666667%" },
-                  attrs: { cols: "8" },
-                },
+                { attrs: { cols: "12", md: "9" } },
                 [
                   _c(
                     "div",

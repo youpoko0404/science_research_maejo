@@ -13,33 +13,35 @@
     </div>
     <v-divider></v-divider>
     <v-row>
-      <v-data-table
-        :headers="headers"
-        :items="researchAll"
-        :page.sync="page"
-        :items-per-page="itemsPerPage"
-        hide-default-footer
-        class="elevation-1"
-        @page-count="pageCount = $event"
-      >
-        <template v-slot:[`item.index`]="{ index }">
-          {{ index + 1 }}
-        </template>
-        <template v-slot:[`item.research_name`]="{ item }">
-          {{ item.title_name_th }}<br />
-          {{ item.title_name_en }}
-        </template>
-        <template v-slot:[`item.edit`]="{ item }">
-          <template v-if="myPermission.is_update == 1">
-            <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
-              >แก้ไข
-            </v-btn>
+      <div>
+        <v-data-table
+          :headers="headers"
+          :items="researchAll"
+          :page.sync="page"
+          :items-per-page="itemsPerPage"
+          hide-default-footer
+          class="elevation-1"
+          @page-count="pageCount = $event"
+        >
+          <template v-slot:[`item.index`]="{ index }">
+            {{ index + 1 }}
           </template>
-        </template>
-        <template v-slot:no-data> ไม่พบผลการค้นหา </template>
-      </v-data-table>
-      <div class="text-center pt-2">
-        <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          <template v-slot:[`item.research_name`]="{ item }">
+            {{ item.title_name_th }}<br />
+            {{ item.title_name_en }}
+          </template>
+          <template v-slot:[`item.edit`]="{ item }">
+            <template v-if="myPermission.is_update == 1">
+              <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
+                >แก้ไข
+              </v-btn>
+            </template>
+          </template>
+          <template v-slot:no-data> ไม่พบผลการค้นหา </template>
+        </v-data-table>
+        <div class="text-center pt-2">
+          <v-pagination v-model="page" :length="pageCount"></v-pagination>
+        </div>
       </div>
     </v-row>
 
