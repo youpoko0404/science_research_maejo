@@ -2,20 +2,10 @@
   <div>
     <Loading :loading="loading" />
     <Snackbar />
-    <v-toolbar
-      id="toolbar"
-      :height="200"
-      dark
-      prominent
-      src="/images/SideBar.jpeg"
-    >
+    <v-toolbar id="toolbar" :height="200" dark prominent src="/images/SideBar.jpeg">
       <v-toolbar-title>
         <div flat height="200" style="display: flex; align-items: end" tile>
-          <v-img
-            src="/images/LogoSci.png"
-            style="max-width: 150px; height: auto; width: 100%"
-            class="pa-2"
-          ></v-img>
+          <v-img src="/images/LogoSci.png" style="max-width: 150px; height: auto; width: 100%" class="pa-2"></v-img>
           <div class="pa-2 align-self-center" outlined tile>
             <div style="font-size: 35px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
             <div style="font-size: 15px">
@@ -40,15 +30,22 @@
             </template>
             <template v-if="user != null && user.role == 'admin'">
               <div class="pa-3">
-                <v-btn text to="/manage-research" styles="selected">
-                  {{ "งานวิจัยทั้งหมด" }}
+                <v-btn text to="/user-management" styles="selected">
+                  จัดการข้อมูลผู้ใช้
                 </v-btn>
               </div>
             </template>
-            <template v-if="user != null && user.role != 'admin'">
+            <template v-if="user != null && (user.role == 'admin' || myPermission.is_create == 1)">
+              <div class="pa-3">
+                <v-btn text to="/manage-research" styles="selected">
+                  งานวิจัย
+                </v-btn>
+              </div>
+            </template>
+            <template v-else>
               <div class="pa-3">
                 <v-btn text to="/my-research" styles="selected">
-                  {{ "งานวิจัยของฉัน" }}
+                  งานวิจัย
                 </v-btn>
               </div>
             </template>
@@ -93,19 +90,24 @@
             <v-list-item @click="redirect('/user-expertise')">
               ความเชียวชาญ
             </v-list-item>
-            <template v-if="user != null && user.role == 'admin'">
+            <template v-if="user != null && (user.role == 'admin' || myPermission.is_create == 1)">
               <v-list-item @click="redirect('/manage-research')">
-                งานวิจัยทั้งหมด
+                งานวิจัย
               </v-list-item>
             </template>
             <template v-if="user != null && user.role != 'admin'">
               <v-list-item @click="redirect('/my-research')">
-                งานวิจัยของฉัน
+                งานวิจัย
               </v-list-item>
             </template>
             <template v-if="user != null && user.role == 'admin'">
               <v-list-item @click="redirect('/user-permission')">
                 จัดการสิทธิ
+              </v-list-item>
+            </template>
+            <template v-if="user != null && user.role == 'admin'">
+              <v-list-item @click="redirect('/user-management')">
+                จัดการข้อมูลผู้ใช้
               </v-list-item>
             </template>
             <template v-if="user != null">
@@ -136,11 +138,6 @@ export default {
   data() {
     return {
       toggleMenu: false,
-      menu: [
-        { icon: "home", title: "Link A" },
-        { icon: "info", title: "Link B" },
-        { icon: "warning", title: "Link C" },
-      ],
     };
   },
   async created() {
@@ -150,6 +147,7 @@ export default {
     ...mapState({
       user: (state) => state.auth.user,
       loading: (state) => state.auth.loading,
+      myPermission: (state) => state.permission.my_permission ?? [],
     }),
     showMenu() {
       return this.toggleMenu || this.$vuetify.breakpoint.mdAndUp;
@@ -169,7 +167,8 @@ export default {
     },
 
     async fetchUser() {
-      await this.$store.dispatch("auth/fetchUser").catch((e) => {});
+      await this.$store.dispatch("auth/fetchUser").catch((e) => { });
+      await this.$store.dispatch("permission/fetchUserPermissionByUserId").catch((e) => { });
     },
   },
 };

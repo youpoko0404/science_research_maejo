@@ -72,7 +72,7 @@
                 </v-col>
                 <v-col>
                   <v-text-field
-                    label="คำสำคัญ"
+                    label="คำสำคัญ1, คำสำคัญ2, คำสำคัญ3"
                     color="green darken-3"
                     v-model="request.keyword_name_th"
                     :rules="rules.required"
@@ -140,8 +140,8 @@
             <v-col>
               <v-text-field
                 label="รหัสอ้างอิง วช."
-                color="green darken-3"
                 v-model="request.ref_code_nr"
+                color="green darken-3"
                 :rules="rules.required"
                 required
               >
@@ -1325,8 +1325,6 @@
               color="green darken-3"
               label="การนำงานวิจัยไปใช้อ้างอิง"
               v-model="request.research_reference"
-              :rules="rules.required"
-              required
             ></v-textarea>
           </v-row>
         </div>
@@ -2185,7 +2183,6 @@
         </v-form>
       </v-dialog>
     </div>
-
     <div class="text-center">
       <v-dialog v-model="dialog.dialogDelete" max-width="500px">
         <v-card>

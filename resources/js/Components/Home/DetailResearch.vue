@@ -21,7 +21,7 @@
               <v-col>
                 <b>รหัสอ้างอิงมหาวิทยาลัย : </b>
                 {{
-                  search_research_by_id.ref_code_university || "-- ไม่ระบุ --"
+                    search_research_by_id.ref_code_university || "-- ไม่ระบุ --"
                 }}
               </v-col>
               <v-col>
@@ -37,8 +37,8 @@
               <v-col>
                 <b>วันที่ดำเนินงาน :</b>
                 {{
-                  `${search_research_by_id.research_period_start} ถึง ${search_research_by_id.research_period_end}` ||
-                  "-- ไม่ระบุ --"
+                    `${search_research_by_id.research_period_start} ถึง ${search_research_by_id.research_period_end}` ||
+                    "-- ไม่ระบุ --"
                 }}
               </v-col>
             </v-row>
@@ -60,13 +60,13 @@
                   <v-col>
                     <b>บทคัดย่อ :</b>
                     {{
-                      search_research_by_id.abstract_name_th || "-- ไม่ระบุ --"
+                        search_research_by_id.abstract_name_th || "-- ไม่ระบุ --"
                     }}
                   </v-col>
                   <v-col>
                     <b>คำสำคัญ :</b>
                     {{
-                      search_research_by_id.keyword_name_th || "-- ไม่ระบุ --"
+                        search_research_by_id.keyword_name_th || "-- ไม่ระบุ --"
                     }}
                   </v-col>
                 </div>
@@ -81,13 +81,13 @@
                   <v-col>
                     <b>Abstract :</b>
                     {{
-                      search_research_by_id.abstract_name_en || "-- ไม่ระบุ --"
+                        search_research_by_id.abstract_name_en || "-- ไม่ระบุ --"
                     }}
                   </v-col>
                   <v-col>
                     <b>Keyword :</b>
                     {{
-                      search_research_by_id.keyword_name_en || "-- ไม่ระบุ --"
+                        search_research_by_id.keyword_name_en || "-- ไม่ระบุ --"
                     }}
                   </v-col>
                 </div>
@@ -105,11 +105,11 @@
               <v-col>
                 <b>สาขางานวิจัย :</b>
                 {{
-                  fetchParameterByGroupKey(
-                    parameter,
-                    "branch_group",
-                    search_research_by_id.research_branch
-                  ) || "-- ไม่ระบุ --"
+                    fetchParameterByGroupKey(
+                      parameter,
+                      "branch_group",
+                      search_research_by_id.research_branch
+                    ) || "-- ไม่ระบุ --"
                 }}
               </v-col>
             </v-row>
@@ -117,7 +117,7 @@
               <v-col>
                 <b>กิจกรรมที่เกี่ยวข้อง :</b>
                 {{
-                  search_research_by_id.research_activities || "-- ไม่ระบุ --"
+                    search_research_by_id.research_activities || "-- ไม่ระบุ --"
                 }}
               </v-col>
               <v-col>
@@ -131,11 +131,8 @@
           <v-container>
             <div style="font-size: 30px">ส่วนที่ 2 นักวิจัย</div>
             <v-col>
-              <v-data-table
-                :headers="headers_research_owner"
-                :items="research_owner_name(search_research_by_id)"
-                hide-default-footer
-              >
+              <v-data-table :headers="headers_research_owner" :items="research_owner_name(search_research_by_id)"
+                hide-default-footer>
                 <template v-slot:[`item.count`]="{ index }">
                   {{ index + 1 }}
                 </template>
@@ -160,7 +157,7 @@
             <v-col>
               <v-card class="pa-2" outlined tile>
                 {{
-                  search_research_by_id.research_consultant || "-- ไม่ระบุ --"
+                    search_research_by_id.research_consultant || "-- ไม่ระบุ --"
                 }}
               </v-card>
             </v-col>
@@ -170,12 +167,10 @@
             <div style="font-size: 30px">ส่วนที่ 4 แนวทางการดำเนินงานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div
-                  v-html="
-                    showText(search_research_by_id.research_operation) ||
-                    'ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย'
-                  "
-                ></div>
+                <div v-html="
+                  showText(search_research_by_id.research_operation) ||
+                  'ไม่มีข้อมูลแนวทางการดำเนินงานวิจัย'
+                "></div>
               </v-card>
             </v-col>
           </v-container>
@@ -184,12 +179,10 @@
             <div style="font-size: 30px">ส่วนที่ 5 วัตถุประสงค์งานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div
-                  v-html="
-                    showText(search_research_by_id.research_objective) ||
-                    'ไม่มีข้อมูลวัตถุประสงค์งานวิจัย'
-                  "
-                ></div>
+                <div v-html="
+                  showText(search_research_by_id.research_objective) ||
+                  'ไม่มีข้อมูลวัตถุประสงค์งานวิจัย'
+                "></div>
               </v-card>
             </v-col>
           </v-container>
@@ -200,12 +193,10 @@
             </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div
-                  v-html="
-                    showText(search_research_by_id.research_benefit) ||
-                    'ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ'
-                  "
-                ></div>
+                <div v-html="
+                  showText(search_research_by_id.research_benefit) ||
+                  'ไม่มีข้อมูลประโยชน์ที่คาดว่าจะได้รับ'
+                "></div>
               </v-card>
             </v-col>
           </v-container>
@@ -216,12 +207,10 @@
             </div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div
-                  v-html="
-                    showText(search_research_by_id.research_achievements) ||
-                    'ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ'
-                  "
-                ></div>
+                <div v-html="
+                  showText(search_research_by_id.research_achievements) ||
+                  'ไม่มีข้อมูลผลสำเร็จที่คาดว่าจะได้รับ'
+                "></div>
               </v-card>
             </v-col>
           </v-container>
@@ -230,12 +219,10 @@
             <div style="font-size: 30px">ส่วนที่ 8 พื้นที่ดำเนินงานวิจัย</div>
             <v-col>
               <v-card class="pa-2" outlined tile>
-                <div
-                  v-html="
-                    showText(search_research_by_id.research_area) ||
-                    'ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย'
-                  "
-                ></div>
+                <div v-html="
+                  showText(search_research_by_id.research_area) ||
+                  'ไม่มีข้อมูลพื้นที่ดำเนินงานวิจัย'
+                "></div>
               </v-card>
             </v-col>
           </v-container>
@@ -247,11 +234,11 @@
             <v-col>
               <v-card class="pa-2" outlined tile>
                 {{
-                  fetchParameterByGroupKey(
-                    parameter,
-                    "research_other_group",
-                    search_research_by_id.research_other
-                  ) || "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"
+                    fetchParameterByGroupKey(
+                      parameter,
+                      "research_other_group",
+                      search_research_by_id.research_other
+                    ) || "ไม่มีข้อมูลงานวิจัยอื่น ๆ ที่เกี่ยวข้อง'"
                 }}
               </v-card>
             </v-col>
@@ -262,14 +249,9 @@
               ส่วนที่ 10 แหล่งทุนสนับสนุนงานวิจัย
             </div>
             <v-col>
-              <template
-                v-if="search_research_by_id.research_fundings.length > 0"
-              >
-                <v-data-table
-                  :headers="headers_research_fundings"
-                  :items="search_research_by_id.research_fundings"
-                  hide-default-footer
-                >
+              <template v-if="search_research_by_id.research_fundings.length > 0">
+                <v-data-table :headers="headers_research_fundings" :items="search_research_by_id.research_fundings"
+                  hide-default-footer>
                   <template v-slot:[`item.count`]="{ index }">
                     {{ index + 1 }}
                   </template>
@@ -281,27 +263,27 @@
                   <template v-slot:[`item.title`]="{ item }">
                     <strong>ประเภทแหล่งทุน :</strong>
                     {{
-                      fetchParameterByGroupKey(
-                        parameter,
-                        "funding_type_group",
-                        item.type
-                      )
+                        fetchParameterByGroupKey(
+                          parameter,
+                          "funding_type_group",
+                          item.type
+                        )
                     }}
                     <br />
                     {{
-                      fetchParameterByGroupKey(
-                        parameter,
-                        item.type,
-                        item.source_capital
-                      )
+                        fetchParameterByGroupKey(
+                          parameter,
+                          item.type,
+                          item.source_capital
+                        )
                     }}
                     <br />
                     {{
-                      fetchParameterByGroupKey(
-                        parameter,
-                        "funding_level_group",
-                        item.capital_level
-                      )
+                        fetchParameterByGroupKey(
+                          parameter,
+                          "funding_level_group",
+                          item.capital_level
+                        )
                     }}
                   </template>
                   <template v-slot:[`item.price`]="{ item }">
@@ -314,12 +296,12 @@
                       <th>รวมจำนวนเงิน</th>
                       <th>
                         {{
-                          toFixedNumber(
-                            search_research_by_id.research_fundings.reduce(
-                              (t, n) => t + Number(n.amount),
-                              0
+                            toFixedNumber(
+                              search_research_by_id.research_fundings.reduce(
+                                (t, n) => t + Number(n.amount),
+                                0
+                              )
                             )
-                          )
                         }}
                       </th>
                     </tr>
@@ -336,18 +318,12 @@
           <v-divider></v-divider>
           <v-container>
             <div style="font-size: 30px">ส่วนที่ 11 เอกสารประกอบงานวิจัย</div>
-            <v-btn
-              class="ma-3"
-              @click="
-                downloadFile(
-                  search_research_by_id.id,
-                  search_research_by_id.research_papers_path
-                )
-              "
-              outlined
-              color="indigo"
-              :disabled="search_research_by_id.research_papers_path == null"
-            >
+            <v-btn class="ma-3" @click="
+              downloadFile(
+                search_research_by_id.id,
+                search_research_by_id.research_papers_path
+              )
+            " outlined color="indigo" :disabled="search_research_by_id.research_papers_path == null">
               ดาวน์โหลดเอกสารประกอบงานวิจัย
               <v-icon right dark> mdi-download-outline </v-icon>
             </v-btn>
@@ -356,44 +332,36 @@
           <v-container>
             <div style="font-size: 30px">ส่วนที่ 12 การนำเสนองานวิจัย</div>
             <v-col>
-              <template
-                v-if="search_research_by_id.research_presentations.length > 0"
-              >
-                <v-data-table
-                  :headers="headers_research_presentations"
-                  :items="search_research_by_id.research_presentations"
-                  hide-default-footer
-                >
+              <template v-if="search_research_by_id.research_presentations.length > 0">
+                <v-data-table :headers="headers_research_presentations"
+                  :items="search_research_by_id.research_presentations" hide-default-footer>
                   <template v-slot:[`item.count`]="{ index }">
                     {{ index + 1 }}
                   </template>
-                  <template
-                    v-slot:[`item.research_presentation_date`]="{ item }"
-                  >
+                  <template v-slot:[`item.research_presentation_date`]="{ item }">
                     {{ toFormatDateShortTH(item.research_presentation_date) }}
                   </template>
 
                   <template v-slot:[`item.description`]="{ item }">
                     <v-row>
                       <v-col>
-                        <strong> รูปแบบการนำเสนอ : </strong
-                        >{{
-                          fetchParameterByGroupKey(
-                            parameter,
-                            "presentations_type_group",
-                            item.presentation_style
-                          )
+                        <strong> รูปแบบการนำเสนอ : </strong>{{
+                            fetchParameterByGroupKey(
+                              parameter,
+                              "presentations_type_group",
+                              item.presentation_style
+                            )
                         }}
                         <br />
                       </v-col>
                       <v-col>
                         <strong> ประเภทงานวิชาการ : </strong>
                         {{
-                          fetchParameterByGroupKey(
-                            parameter,
-                            "presentations_academic_type_group",
-                            item.academic_work
-                          )
+                            fetchParameterByGroupKey(
+                              parameter,
+                              "presentations_academic_type_group",
+                              item.academic_work
+                            )
                         }}
                         <br />
                       </v-col>
@@ -405,18 +373,17 @@
                     </v-row>
                     <v-row>
                       <v-col>
-                        <strong> สถานที่นำเสนอ : </strong
-                        >{{ item.place_presentation }}
+                        <strong> สถานที่นำเสนอ : </strong>{{ item.place_presentation }}
                         <br />
                       </v-col>
                       <v-col>
                         <strong> ระดับการนำเสนอ : </strong>
                         {{
-                          fetchParameterByGroupKey(
-                            parameter,
-                            "presentation_level_group",
-                            item.presentation_level
-                          )
+                            fetchParameterByGroupKey(
+                              parameter,
+                              "presentation_level_group",
+                              item.presentation_level
+                            )
                         }}
                         <br />
                       </v-col>
@@ -443,14 +410,9 @@
               ส่วนที่ 13 การตีพิมพ์เผยแพร่งานวิจัย
             </div>
             <v-col>
-              <template
-                v-if="search_research_by_id.research_publications.length > 0"
-              >
-                <v-data-table
-                  :headers="headers_research_publications"
-                  :items="search_research_by_id.research_publications"
-                  hide-default-footer
-                >
+              <template v-if="search_research_by_id.research_publications.length > 0">
+                <v-data-table :headers="headers_research_publications"
+                  :items="search_research_by_id.research_publications" hide-default-footer>
                   <template v-slot:[`item.count`]="{ index }">
                     {{ index + 1 }}
                   </template>
@@ -474,13 +436,12 @@
                         <br />
                       </v-col>
                       <v-col>
-                        <strong> ระดับการนำเสนอ :</strong
-                        >{{
-                          fetchParameterByGroupKey(
-                            parameter,
-                            "presentation_level_group",
-                            item.presentation_level
-                          )
+                        <strong> ระดับการนำเสนอ :</strong>{{
+                            fetchParameterByGroupKey(
+                              parameter,
+                              "presentation_level_group",
+                              item.presentation_level
+                            )
                         }}
                         <br />
                       </v-col>
@@ -507,14 +468,9 @@
               ส่วนที่ 14 การนำงานวิจัยไปใช้ประโยชน์
             </div>
             <v-col>
-              <template
-                v-if="search_research_by_id.research_benefits.length > 0"
-              >
-                <v-data-table
-                  :headers="headers_research_benefits"
-                  :items="search_research_by_id.research_benefits"
-                  hide-default-footer
-                >
+              <template v-if="search_research_by_id.research_benefits.length > 0">
+                <v-data-table :headers="headers_research_benefits" :items="search_research_by_id.research_benefits"
+                  hide-default-footer>
                   <template v-slot:[`item.count`]="{ index }">
                     {{ index + 1 }}
                   </template>
@@ -522,16 +478,13 @@
                     {{ toFormatDateShortTH(item.date_reference) }}
                   </template>
                   <template v-slot:[`item.description`]="{ item }">
-                    <strong> ชื่อผู้วิจัยที่นำไปอ้างอิง : </strong
-                    >{{ item.research_name_reference }}
+                    <strong> ชื่อผู้วิจัยที่นำไปอ้างอิง : </strong>{{ item.research_name_reference }}
                     <br />
-                    <strong> ชื่อภาษาไทย/Research Name : </strong
-                    >{{ item.research_name }}
+                    <strong> ชื่อภาษาไทย/Research Name : </strong>{{ item.research_name }}
                     <br />
                     <strong> URL เชื่อมโยง : </strong>{{ item.url }}
                     <br />
-                    <strong> การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : </strong
-                    >{{ item.reference }}
+                    <strong> การอ้างอิง / วารสารงาน ที่ สกอ. ยอมรับ : </strong>{{ item.reference }}
                     <br />
                   </template>
                 </v-data-table>
@@ -549,26 +502,20 @@
             <v-col>
               <v-card class="pa-2" outlined tile>
                 {{
-                  search_research_by_id.research_reference ||
-                  "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
+                    search_research_by_id.research_reference ||
+                    "ไม่มีข้อมูลการนำงานวิจัยไปอ้างอิง"
                 }}
               </v-card>
             </v-col>
             <div class="d-flex flex-row-reverse" flat tile>
-              <v-btn
-                class="ma-3"
-                @click="
-                  downloadFile(
-                    search_research_by_id.id,
-                    search_research_by_id.research_reference_path
-                  )
-                "
-                outlined
-                color="indigo"
-                :disabled="
-                  search_research_by_id.research_reference_path == null
-                "
-              >
+              <v-btn class="ma-3" @click="
+                downloadFile(
+                  search_research_by_id.id,
+                  search_research_by_id.research_reference_path
+                )
+              " outlined color="indigo" :disabled="
+  search_research_by_id.research_reference_path == null
+                ">
                 ดาวน์โหลดเอกสารอ้างอิง
                 <v-icon right dark> mdi-download-outline </v-icon>
               </v-btn>

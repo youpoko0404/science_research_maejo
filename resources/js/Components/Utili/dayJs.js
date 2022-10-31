@@ -7,7 +7,7 @@ var dayJs = {
         return dayjs(date)
             .locale("th")
             .add(543, "year")
-            .format("วันที่ DD เดือน MMMM พศ. YYYY");
+            .format("DD MMMM YYYY");
     },
     formatDateEN(date) {
         if (!date) return null;
@@ -15,7 +15,7 @@ var dayJs = {
     },
     formatDate(date) {
         if (!date) return null;
-        return dayjs(date).format("MM/DD/YYYY");
+        return dayjs(date).format("DD/MM/YYYY");
     },
     parseDate(date) {
         if (!date) return null;

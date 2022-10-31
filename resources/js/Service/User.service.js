@@ -23,6 +23,18 @@ const UserService = {
     fetchUserExpertiseById: (id) => {
         return httpRequest.get(`${API_PATH}/user-expertise/${id}`);
     },
+
+    fetchUser: () => {
+        return httpRequest.get(`${API_PATH}/user-management`);
+    },
+
+    fetchUserById: (id) => {
+        return httpRequest.get(`${API_PATH}/user-management-by-id/${id}`);
+    },
+
+    updateUserById: (item) => {
+        return httpRequest.post(`${API_PATH}/update-user-management`, item);
+    },
 };
 
 export default UserService;

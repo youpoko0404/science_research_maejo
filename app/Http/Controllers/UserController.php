@@ -5,11 +5,82 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\UserExpertise;
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function updateUser(Request $request)
+    {
+        $users = User::find($request->id);
+        $userWhere = [
+            'id' => $request->id
+        ];
+        $userData = [
+            "email" => $request->email,
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "password" => $request->password != "" ? Hash::make($request->password) : $users->password,
+            "username" => $request->username,
+        ];
+        $results = User::updateOrCreate($userWhere, $userData);
+
+        if ($results) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $results
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  null,
+            ], 201);
+        }
+    }
+    public function fetchUserById($id)
+    {
+        $results = User::find($id);
+
+        if ($results) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $results
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  null,
+            ], 201);
+        }
+    }
+
+    public function fetchUser()
+    {
+        $users = User::where('role', '!=', "admin")
+            ->orderBy('created_at')
+            ->get();
+
+        if ($users) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  $users
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Not found',
+                'payload' =>  null
+            ], 404);
+        }
+    }
+
     public function fetchExpertiseAll()
     {
         $research = UserExpertise::get();

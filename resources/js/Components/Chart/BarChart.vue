@@ -2,20 +2,10 @@
   <div>
     <Loading :loading="loading" />
     <v-card>
-      <v-card-title class="justify-center"
-        >จำนวนงานวิจัยแยกตามสาขา</v-card-title
-      >
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData(dashboard)"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
+      <v-card-title class="justify-center">จำนวนงานวิจัยแยกตามสาขา</v-card-title>
+      <Bar :chart-options="chartOptions" :chart-data="chartData(dashboard)" :chart-id="chartId"
+        :dataset-id-key="datasetIdKey" :plugins="plugins" :css-classes="cssClasses" :styles="styles" :width="width"
+        :height="height" />
     </v-card>
     <div v-if="dashboard.length > 0">
       <div class="mt-5">
@@ -95,7 +85,7 @@ export default {
     },
     styles: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     plugins: {
       type: Array,
@@ -112,11 +102,18 @@ export default {
             display: false,
           },
         },
+        onHover:(event,chartElement)=>{
+
+        },
         scale: {
           ticks: {
             precision: 0,
           },
         },
+        onClick: (event, item) => {
+          let index = item[0].index
+          this.heddleOnClickSearch(this.dashboard[index].branch.split(" ")[1])
+        }
       },
     };
   },
@@ -134,6 +131,10 @@ export default {
   methods: {
     fetchDashboard() {
       this.$store.dispatch("dashboard/fetchDashboard");
+    },
+
+    heddleOnClickSearch(q) {
+      window.location.href = `/?q=${q}`;
     },
 
     chartData(dashboard) {

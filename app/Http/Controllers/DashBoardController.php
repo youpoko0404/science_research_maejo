@@ -35,6 +35,7 @@ class DashBoardController extends Controller
             ])->get();
             $collection->push(
                 [
+                    'value' => $branch->value,
                     'branch' => $branch->value_ref,
                     'count' =>  $research->count(),
                     'color' => $branch->remark
@@ -83,11 +84,20 @@ class DashBoardController extends Controller
     {
         $q = $request->q;
 
-        $results = Researchs::where('is_deleted', '=', 0)
+        // $results = Researchs::where('is_deleted', '=', 0)
+        //     ->select('league_name')
+        //     ->orderBy('created_at')
+        //     ->get();
+
+        $results = DB::table('researchs')
+            ->select('researchs.*', 'parameters.value_ref')
+            ->join('parameters', 'parameters.value', '=', 'researchs.research_branch')
+            ->where('researchs.is_deleted', '=', 0)
             ->orderBy('created_at')
             ->get();
 
         $collection = collect($results);
+
 
         $split_search_or = explode("OR", $q);
 
@@ -98,11 +108,11 @@ class DashBoardController extends Controller
                 $space = str_replace(' ', '', $name);
                 $filtered = $collection->filter(function ($value, $key) use ($space) {
                     return
+                        str_contains(strtolower($value->value_ref), strtolower($space)) ||
                         str_contains(strtolower($value->ref_code_university), strtolower($space)) ||
                         str_contains(strtolower($value->title_name_th), strtolower($space)) ||
                         str_contains(strtolower($value->title_name_en), strtolower($space)) ||
                         str_contains(strtolower($value->research_main_name), strtolower($space)) ||
-                        str_contains(strtolower($value->research_second_name), strtolower($space)) ||
                         str_contains(strtolower($value->research_period_start), strtolower($space));
                 })->values();
 

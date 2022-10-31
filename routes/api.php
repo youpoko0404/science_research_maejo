@@ -13,6 +13,8 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\UserController;
 use App\Models\StudyUser;
 use App\Models\UserExpertise;
+use App\Models\UserPermissions;
+
 
 
 
@@ -33,14 +35,8 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('/user', function (Request $request) {
         $user = $request->user();
-        // $study = StudyUser::where('user_id', '=', $user->id)->get();
-        // $expertise = UserExpertise::where('user_id', '=', $user->id)->get();
-
-        // $collection = collect($user);
-        // $result = $collection->put("study", $study)->all();
-        // $result = $collection->put("service", [])->all();
-        // $result = $collection->put("expertise", $expertise)->all();
-
+        $permission = UserPermissions::where('user_id', '=', $user->id)->first();
+        $user["permission"] = $permission;
         return response()->json(['success' => true, 'user' => $user]);
     })->middleware('auth');
 });
@@ -72,6 +68,9 @@ Route::controller(ResearchController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
+    Route::post('/update-user-management', 'updateUser');
+    Route::get('/user-management', 'fetchUser');
+    Route::get('/user-management-by-id/{id}', 'fetchUserById');
     Route::get('/user-expertise', 'fetchExpertiseAll');
     Route::get('/user-expertise-exp-main-field', 'fetchExpertiseExpMainFieldAll');
     Route::get('/update-expertise', 'updateExpertise');

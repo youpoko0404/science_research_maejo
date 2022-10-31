@@ -13,32 +13,16 @@
                 </div>
                 <div>
                   <span class="login100-form-title"> Login </span>
-                  <div
-                    class="wrap-input100 validate-input"
-                    data-validate="Valid email is required: ex@abc.xyz"
-                  >
-                    <input
-                      v-model="email"
-                      class="input100"
-                      type="email"
-                      placeholder="Email"
-                    />
+                  <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input v-model="email" class="input100" type="email" placeholder="Email" />
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                       <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                   </div>
-                  <div
-                    class="wrap-input100 validate-input"
-                    data-validate="Password is required"
-                  >
-                    <input
-                      v-model="password"
-                      class="input100"
-                      type="password"
-                      placeholder="Password"
-                      v-on:keyup.enter="login()"
-                    />
+                  <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input v-model="password" class="input100" type="password" placeholder="Password"
+                      v-on:keyup.enter="login()" />
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                       <i class="fa fa-lock" aria-hidden="true"></i>
@@ -109,10 +93,18 @@ export default {
           .dispatch("auth/login", user)
           .then((response) => {
             if (response.success) {
-              console.log(response.payload.role);
-              if (response.payload.role == "admin")
+              if (response.payload.role == "admin") {
                 window.location.href = "/manage-research";
-              else window.location.href = "/my-research";
+              }
+              else if (response.payload.permission != null) {
+                if (response.payload.permission.is_create == 1) {
+                  window.location.href = "/manage-research";
+                } else {
+                  window.location.href = "/my-research";
+                }
+              } else {
+                window.location.href = "/my-research";
+              }
             }
           })
           .catch((error) => {

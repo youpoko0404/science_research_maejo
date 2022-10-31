@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\StudyUser;
 use App\Models\ExpertiseUser;
+use App\Models\UserPermissions;
 use Illuminate\Support\Facades\Hash;
 use GuzzleHttp\Client;
 
@@ -22,8 +23,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $user = User::where([['email', '=', $request->email]])->first();
+        $permission = UserPermissions::where('user_id', '=', $user->id)->first();
 
         if (Hash::check($request->password, $user->password)) {
+            $user["permission"] = $permission;
             Auth::login($user);
             $request->session()->regenerate();
             return response()->json([

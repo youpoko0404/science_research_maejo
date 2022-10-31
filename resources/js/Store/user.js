@@ -5,13 +5,15 @@ const state = {
     search_user_expertise: null,
     expertise_exp_main_field: null,
     expertise_by_id: null,
+    users: null,
+    user: null,
 };
 
 const getters = {};
 
 const actions = {
     fetchSearchUserExpertise({ commit }, q) {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             commit("LOADING_SET", true);
             await UserService.searchUserExpertise(q)
                 .then((response) => {
@@ -31,7 +33,7 @@ const actions = {
     },
 
     updateExpertise({ commit }) {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             commit("LOADING_SET", true);
             await UserService.updateExpertise()
                 .then((response) => {
@@ -47,7 +49,7 @@ const actions = {
     },
 
     fetchExpertiseExpMainFieldAll({ commit }) {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             commit("LOADING_SET", true);
             await UserService.fetchExpertiseExpMainFieldAll()
                 .then((response) => {
@@ -67,12 +69,62 @@ const actions = {
     },
 
     fetchUserExpertiseById({ commit }, id) {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             commit("LOADING_SET", true);
             await UserService.fetchUserExpertiseById(id)
                 .then((response) => {
                     if (response.data.success) {
                         commit("EXPERTISE_BY_ID", response.data.payload);
+                        resolve(response.data);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            commit("LOADING_SET", false);
+        });
+    },
+
+    fetchUser({ commit }) {
+        return new Promise(async(resolve, reject) => {
+            commit("LOADING_SET", true);
+            await UserService.fetchUser()
+                .then((response) => {
+                    if (response.data.success) {
+                        commit("USERS", response.data.payload);
+                        resolve(response.data);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            commit("LOADING_SET", false);
+        });
+    },
+
+    fetchUserById({ commit }, id) {
+        return new Promise(async(resolve, reject) => {
+            commit("LOADING_SET", true);
+            await UserService.fetchUserById(id)
+                .then((response) => {
+                    if (response.data.success) {
+                        commit("USERS_BY_ID", response.data.payload);
+                        resolve(response.data);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            commit("LOADING_SET", false);
+        });
+    },
+
+    UpdateUserById({ commit }, item) {
+        return new Promise(async(resolve, reject) => {
+            commit("LOADING_SET", true);
+            await UserService.updateUserById(item)
+                .then((response) => {
+                    if (response.data.success) {
                         resolve(response.data);
                     }
                 })
@@ -96,6 +148,12 @@ const mutations = {
     },
     EXPERTISE_BY_ID(state, response) {
         state.expertise_by_id = response;
+    },
+    USERS(state, response) {
+        state.users = response;
+    },
+    USERS_BY_ID(state, response) {
+        state.user = response;
     },
 };
 
