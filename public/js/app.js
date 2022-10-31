@@ -5684,6 +5684,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -45410,28 +45434,32 @@ var render = function () {
                           ),
                         ]
                       : [
-                          _c(
-                            "div",
-                            { staticClass: "pa-3" },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    text: "",
-                                    to: "/my-research",
-                                    styles: "selected",
-                                  },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                งานวิจัย\n              "
-                                  ),
-                                ]
-                              ),
-                            ],
-                            1
-                          ),
+                          _vm.user != null
+                            ? [
+                                _c(
+                                  "div",
+                                  { staticClass: "pa-3" },
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          text: "",
+                                          to: "/my-research",
+                                          styles: "selected",
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                  งานวิจัย\n                "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ]
+                            : _vm._e(),
                         ],
                     _vm._v(" "),
                     [
@@ -45626,23 +45654,27 @@ var render = function () {
                               [_vm._v("\n              งานวิจัย\n            ")]
                             ),
                           ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.user != null && _vm.user.role != "admin"
-                        ? [
-                            _c(
-                              "v-list-item",
-                              {
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.redirect("/my-research")
-                                  },
-                                },
-                              },
-                              [_vm._v("\n              งานวิจัย\n            ")]
-                            ),
-                          ]
-                        : _vm._e(),
+                        : [
+                            _vm.user != null
+                              ? [
+                                  _c(
+                                    "v-list-item",
+                                    {
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.redirect("/my-research")
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                งานวิจัย\n              "
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              : _vm._e(),
+                          ],
                       _vm._v(" "),
                       _vm.user != null && _vm.user.role == "admin"
                         ? [

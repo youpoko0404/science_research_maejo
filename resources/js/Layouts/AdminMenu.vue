@@ -2,10 +2,20 @@
   <div>
     <Loading :loading="loading" />
     <Snackbar />
-    <v-toolbar id="toolbar" :height="200" dark prominent src="/images/SideBar.jpeg">
+    <v-toolbar
+      id="toolbar"
+      :height="200"
+      dark
+      prominent
+      src="/images/SideBar.jpeg"
+    >
       <v-toolbar-title>
         <div flat height="200" style="display: flex; align-items: end" tile>
-          <v-img src="/images/LogoSci.png" style="max-width: 150px; height: auto; width: 100%" class="pa-2"></v-img>
+          <v-img
+            src="/images/LogoSci.png"
+            style="max-width: 150px; height: auto; width: 100%"
+            class="pa-2"
+          ></v-img>
           <div class="pa-2 align-self-center" outlined tile>
             <div style="font-size: 35px">คณะวิทยาศาสตร์ มหาวิทยาลัยแม่โจ้</div>
             <div style="font-size: 15px">
@@ -35,7 +45,12 @@
                 </v-btn>
               </div>
             </template>
-            <template v-if="user != null && (user.role == 'admin' || myPermission.is_create == 1)">
+            <template
+              v-if="
+                user != null &&
+                (user.role == 'admin' || myPermission.is_create == 1)
+              "
+            >
               <div class="pa-3">
                 <v-btn text to="/manage-research" styles="selected">
                   งานวิจัย
@@ -43,11 +58,13 @@
               </div>
             </template>
             <template v-else>
-              <div class="pa-3">
-                <v-btn text to="/my-research" styles="selected">
-                  งานวิจัย
-                </v-btn>
-              </div>
+              <template v-if="user != null">
+                <div class="pa-3">
+                  <v-btn text to="/my-research" styles="selected">
+                    งานวิจัย
+                  </v-btn>
+                </div>
+              </template>
             </template>
             <template>
               <div class="pa-3">
@@ -90,15 +107,22 @@
             <v-list-item @click="redirect('/user-expertise')">
               ความเชียวชาญ
             </v-list-item>
-            <template v-if="user != null && (user.role == 'admin' || myPermission.is_create == 1)">
+            <template
+              v-if="
+                user != null &&
+                (user.role == 'admin' || myPermission.is_create == 1)
+              "
+            >
               <v-list-item @click="redirect('/manage-research')">
                 งานวิจัย
               </v-list-item>
             </template>
-            <template v-if="user != null && user.role != 'admin'">
-              <v-list-item @click="redirect('/my-research')">
-                งานวิจัย
-              </v-list-item>
+            <template v-else>
+              <template v-if="user != null">
+                <v-list-item @click="redirect('/my-research')">
+                  งานวิจัย
+                </v-list-item>
+              </template>
             </template>
             <template v-if="user != null && user.role == 'admin'">
               <v-list-item @click="redirect('/user-permission')">
@@ -167,8 +191,10 @@ export default {
     },
 
     async fetchUser() {
-      await this.$store.dispatch("auth/fetchUser").catch((e) => { });
-      await this.$store.dispatch("permission/fetchUserPermissionByUserId").catch((e) => { });
+      await this.$store.dispatch("auth/fetchUser").catch((e) => {});
+      await this.$store
+        .dispatch("permission/fetchUserPermissionByUserId")
+        .catch((e) => {});
     },
   },
 };
