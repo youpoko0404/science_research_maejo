@@ -56,16 +56,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -110,6 +100,8 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
     }
   },
   data: function data() {
+    var _this = this;
+
     return {
       chartOptions: {
         responsive: true,
@@ -119,10 +111,16 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
             display: false
           }
         },
+        onHover: function onHover(event, chartElement) {},
         scale: {
           ticks: {
             precision: 0
           }
+        },
+        onClick: function onClick(event, item) {
+          var index = item[0].index;
+
+          _this.heddleOnClickSearch(_this.dashboard[index].branch.split(" ")[1]);
         }
       }
     };
@@ -145,6 +143,9 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
   methods: {
     fetchDashboard: function fetchDashboard() {
       this.$store.dispatch("dashboard/fetchDashboard");
+    },
+    heddleOnClickSearch: function heddleOnClickSearch(q) {
+      window.location.href = "/?q=".concat(q);
     },
     chartData: function chartData(dashboard) {
       var chartData = {};
@@ -421,7 +422,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var dayJs = {
   formatDateTH: function formatDateTH(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("th").add(543, "year").format("วันที่ DD เดือน MMMM พศ. YYYY");
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("th").add(543, "year").format("DD MMMM YYYY");
   },
   formatDateEN: function formatDateEN(date) {
     if (!date) return null;
@@ -429,7 +430,7 @@ var dayJs = {
   },
   formatDate: function formatDate(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format("MM/DD/YYYY");
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format("DD/MM/YYYY");
   },
   parseDate: function parseDate(date) {
     if (!date) return null;

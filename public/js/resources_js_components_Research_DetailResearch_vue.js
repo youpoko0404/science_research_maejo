@@ -2257,9 +2257,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -2835,7 +2832,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var dayJs = {
   formatDateTH: function formatDateTH(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("th").add(543, "year").format("วันที่ DD เดือน MMMM พศ. YYYY");
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).locale("th").add(543, "year").format("DD MMMM YYYY");
   },
   formatDateEN: function formatDateEN(date) {
     if (!date) return null;
@@ -2843,7 +2840,7 @@ var dayJs = {
   },
   formatDate: function formatDate(date) {
     if (!date) return null;
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format("MM/DD/YYYY");
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format("DD/MM/YYYY");
   },
   parseDate: function parseDate(date) {
     if (!date) return null;
@@ -3185,7 +3182,7 @@ var render = function () {
                                 [
                                   _c("v-text-field", {
                                     attrs: {
-                                      label: "คำสำคัญ",
+                                      label: "คำสำคัญ1, คำสำคัญ2, คำสำคัญ3",
                                       color: "green darken-3",
                                       rules: _vm.rules.required,
                                       required: "",
@@ -5844,8 +5841,6 @@ var render = function () {
                         attrs: {
                           color: "green darken-3",
                           label: "การนำงานวิจัยไปใช้อ้างอิง",
-                          rules: _vm.rules.required,
-                          required: "",
                         },
                         model: {
                           value: _vm.request.research_reference,

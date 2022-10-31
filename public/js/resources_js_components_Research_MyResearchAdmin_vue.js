@@ -61,10 +61,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -77,6 +73,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dialogDelete: false,
         user_expertise: false
       },
+      search: "",
       deleteId: 0,
       page: 1,
       pageCount: 0,
@@ -93,7 +90,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: "ชื่อผลงาน",
         align: "start",
         sortable: false,
-        value: "research_name"
+        value: "title_name_th"
       }, {
         text: "",
         align: "start",
@@ -227,7 +224,7 @@ var render = function () {
         { staticClass: "d-flex justify-space-between" },
         [
           _c("div", { staticStyle: { "font-size": "30px" } }, [
-            _vm._v("\n      " + _vm._s("งานวิจัยทั้งหมด") + "\n    "),
+            _vm._v("\n      " + _vm._s("งานวิจัย") + "\n    "),
           ]),
           _vm._v(" "),
           _c(
@@ -248,6 +245,39 @@ var render = function () {
       _vm._v(" "),
       _c("v-divider"),
       _vm._v(" "),
+      _c(
+        "div",
+        { staticStyle: { display: "flex", "justify-content": "flex-end" } },
+        [
+          _c(
+            "v-col",
+            {
+              staticStyle: { padding: "0px 0px 20px 0px" },
+              attrs: { cols: "8" },
+            },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "mdi-magnify",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": "",
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function ($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search",
+                },
+              }),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("v-row", [
         _c(
           "div",
@@ -255,6 +285,7 @@ var render = function () {
             _c("v-data-table", {
               staticClass: "elevation-1",
               attrs: {
+                search: _vm.search,
                 headers: _vm.headers,
                 items: _vm.researchAll,
                 page: _vm.page,
@@ -283,7 +314,7 @@ var render = function () {
                     },
                   },
                   {
-                    key: "item.research_name",
+                    key: "item.title_name_th",
                     fn: function (ref) {
                       var item = ref.item
                       return [

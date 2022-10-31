@@ -5328,22 +5328,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5396,8 +5380,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         };
         this.$store.dispatch("auth/login", user).then(function (response) {
           if (response.success) {
-            console.log(response.payload.role);
-            if (response.payload.role == "admin") window.location.href = "/manage-research";else window.location.href = "/my-research";
+            if (response.payload.role == "admin") {
+              window.location.href = "/manage-research";
+            } else if (response.payload.permission != null) {
+              if (response.payload.permission.is_create == 1) {
+                window.location.href = "/manage-research";
+              } else {
+                window.location.href = "/my-research";
+              }
+            } else {
+              window.location.href = "/my-research";
+            }
           }
         })["catch"](function (error) {
           _this.snackBar(3500, "ชื่อผู้ใช้หรือรหัสผ่านผิดพลาด", "warning");
@@ -5689,6 +5682,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -5699,17 +5694,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      toggleMenu: false,
-      menu: [{
-        icon: "home",
-        title: "Link A"
-      }, {
-        icon: "info",
-        title: "Link B"
-      }, {
-        icon: "warning",
-        title: "Link C"
-      }]
+      toggleMenu: false
     };
   },
   created: function created() {
@@ -5737,6 +5722,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     loading: function loading(state) {
       return state.auth.loading;
+    },
+    myPermission: function myPermission(state) {
+      var _state$permission$my_;
+
+      return (_state$permission$my_ = state.permission.my_permission) !== null && _state$permission$my_ !== void 0 ? _state$permission$my_ : [];
     }
   })), {}, {
     showMenu: function showMenu() {
@@ -5770,6 +5760,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.$store.dispatch("auth/fetchUser")["catch"](function (e) {});
 
               case 2:
+                _context2.next = 4;
+                return _this2.$store.dispatch("permission/fetchUserPermissionByUserId")["catch"](function (e) {});
+
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -6058,7 +6052,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_components_Research_MyResearch_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/MyResearch.vue */ "./resources/js/components/Research/MyResearch.vue"));
   },
   meta: {
-    title: "งานวิจัยของฉัน"
+    title: "งานวิจัย"
   }
 }, {
   path: "/manage-research",
@@ -6067,7 +6061,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_components_Research_MyResearchAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Research/MyResearchAdmin.vue */ "./resources/js/components/Research/MyResearchAdmin.vue"));
   },
   meta: {
-    title: "งานวิจัยทั้งหมด"
+    title: "งานวิจัย"
   }
 }, {
   path: "/detail-research",
@@ -6104,6 +6098,15 @@ var routes = [{
   },
   meta: {
     title: "ข้อมูลความเชี่ยวชาญ"
+  }
+}, {
+  path: "/user-management",
+  name: "user_management",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Account_UserManagement_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Account/UserManagement.vue */ "./resources/js/components/Account/UserManagement.vue"));
+  },
+  meta: {
+    title: "จัดการข้อมูลผู้ใช้"
   }
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
@@ -6319,6 +6322,15 @@ var UserService = {
   },
   fetchUserExpertiseById: function fetchUserExpertiseById(id) {
     return httpRequest.get("".concat(API_PATH, "/user-expertise/").concat(id));
+  },
+  fetchUser: function fetchUser() {
+    return httpRequest.get("".concat(API_PATH, "/user-management"));
+  },
+  fetchUserById: function fetchUserById(id) {
+    return httpRequest.get("".concat(API_PATH, "/user-management-by-id/").concat(id));
+  },
+  updateUserById: function updateUserById(item) {
+    return httpRequest.post("".concat(API_PATH, "/update-user-management"), item);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserService);
@@ -7235,7 +7247,9 @@ var state = {
   loading: false,
   search_user_expertise: null,
   expertise_exp_main_field: null,
-  expertise_by_id: null
+  expertise_by_id: null,
+  users: null,
+  user: null
 };
 var getters = {};
 var actions = {
@@ -7377,6 +7391,110 @@ var actions = {
         return _ref8.apply(this, arguments);
       };
     }());
+  },
+  fetchUser: function fetchUser(_ref9) {
+    var commit = _ref9.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context5.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchUser().then(function (response) {
+                  if (response.data.success) {
+                    commit("USERS", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      return function (_x9, _x10) {
+        return _ref10.apply(this, arguments);
+      };
+    }());
+  },
+  fetchUserById: function fetchUserById(_ref11, id) {
+    var commit = _ref11.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context6.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].fetchUserById(id).then(function (response) {
+                  if (response.data.success) {
+                    commit("USERS_BY_ID", response.data.payload);
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      return function (_x11, _x12) {
+        return _ref12.apply(this, arguments);
+      };
+    }());
+  },
+  UpdateUserById: function UpdateUserById(_ref13, item) {
+    var commit = _ref13.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context7.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].updateUserById(item).then(function (response) {
+                  if (response.data.success) {
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      return function (_x13, _x14) {
+        return _ref14.apply(this, arguments);
+      };
+    }());
   }
 };
 var mutations = {
@@ -7391,6 +7509,12 @@ var mutations = {
   },
   EXPERTISE_BY_ID: function EXPERTISE_BY_ID(state, response) {
     state.expertise_by_id = response;
+  },
+  USERS: function USERS(state, response) {
+    state.users = response;
+  },
+  USERS_BY_ID: function USERS_BY_ID(state, response) {
+    state.user = response;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -45242,15 +45366,13 @@ var render = function () {
                                 {
                                   attrs: {
                                     text: "",
-                                    to: "/manage-research",
+                                    to: "/user-management",
                                     styles: "selected",
                                   },
                                 },
                                 [
                                   _vm._v(
-                                    "\n                " +
-                                      _vm._s("งานวิจัยทั้งหมด") +
-                                      "\n              "
+                                    "\n                จัดการข้อมูลผู้ใช้\n              "
                                   ),
                                 ]
                               ),
@@ -45260,8 +45382,34 @@ var render = function () {
                         ]
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.user != null && _vm.user.role != "admin"
+                    _vm.user != null &&
+                    (_vm.user.role == "admin" ||
+                      _vm.myPermission.is_create == 1)
                       ? [
+                          _c(
+                            "div",
+                            { staticClass: "pa-3" },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    text: "",
+                                    to: "/manage-research",
+                                    styles: "selected",
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                งานวิจัย\n              "
+                                  ),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                        ]
+                      : [
                           _c(
                             "div",
                             { staticClass: "pa-3" },
@@ -45277,17 +45425,14 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                " +
-                                      _vm._s("งานวิจัยของฉัน") +
-                                      "\n              "
+                                    "\n                งานวิจัย\n              "
                                   ),
                                 ]
                               ),
                             ],
                             1
                           ),
-                        ]
-                      : _vm._e(),
+                        ],
                     _vm._v(" "),
                     [
                       _c(
@@ -45465,7 +45610,9 @@ var render = function () {
                         [_vm._v("\n            ความเชียวชาญ\n          ")]
                       ),
                       _vm._v(" "),
-                      _vm.user != null && _vm.user.role == "admin"
+                      _vm.user != null &&
+                      (_vm.user.role == "admin" ||
+                        _vm.myPermission.is_create == 1)
                         ? [
                             _c(
                               "v-list-item",
@@ -45476,11 +45623,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [
-                                _vm._v(
-                                  "\n              งานวิจัยทั้งหมด\n            "
-                                ),
-                              ]
+                              [_vm._v("\n              งานวิจัย\n            ")]
                             ),
                           ]
                         : _vm._e(),
@@ -45496,11 +45639,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [
-                                _vm._v(
-                                  "\n              งานวิจัยของฉัน\n            "
-                                ),
-                              ]
+                              [_vm._v("\n              งานวิจัย\n            ")]
                             ),
                           ]
                         : _vm._e(),
@@ -45519,6 +45658,26 @@ var render = function () {
                               [
                                 _vm._v(
                                   "\n              จัดการสิทธิ\n            "
+                                ),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user != null && _vm.user.role == "admin"
+                        ? [
+                            _c(
+                              "v-list-item",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.redirect("/user-management")
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              จัดการข้อมูลผู้ใช้\n            "
                                 ),
                               ]
                             ),
@@ -108701,7 +108860,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/jatupat/Documents
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_MyResearchAdmin_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1,"resources_js_components_UserPermission_UserPermission_vue":1,"resources_js_components_Research_ExpertiseDetail_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_Index_vue":1,"resources_js_components_Home_DetailResearch_vue":1,"resources_js_components_Account_Account_vue":1,"resources_js_components_Research_MyResearch_vue":1,"resources_js_components_Research_MyResearchAdmin_vue":1,"resources_js_components_Research_DetailResearch_vue":1,"resources_js_components_Research_Expertise_vue":1,"resources_js_components_UserPermission_UserPermission_vue":1,"resources_js_components_Research_ExpertiseDetail_vue":1,"resources_js_components_Account_UserManagement_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
