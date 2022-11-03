@@ -35,6 +35,10 @@ const UserService = {
     updateUserById: (item) => {
         return httpRequest.post(`${API_PATH}/update-user-management`, item);
     },
+
+    deleteUserById: (id) => {
+        return httpRequest.delete(`${API_PATH}/user-management/${id}`);
+    }
 };
 
 export default UserService;

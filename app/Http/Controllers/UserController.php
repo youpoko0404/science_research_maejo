@@ -41,6 +41,7 @@ class UserController extends Controller
             ], 201);
         }
     }
+
     public function fetchUserById($id)
     {
         $results = User::find($id);
@@ -60,6 +61,28 @@ class UserController extends Controller
         }
     }
 
+    public function deleteUserById($id)
+    {
+        $results = User::find($id);
+        if ($results) {
+            $results->update(
+                [
+                    'is_deleted' => 1
+                ]
+            );
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully',
+                'payload' =>  null
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'File not found',
+                'payload' =>  null
+            ], 404);
+        }
+    }
     public function fetchUser()
     {
         $users = User::where('role', '!=', "admin")

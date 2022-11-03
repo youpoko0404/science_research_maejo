@@ -135,6 +135,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -248,6 +249,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         }, _callee);
+      }))();
+    },
+    heddleOnClickDelete: function heddleOnClickDelete(id) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch("user/deleteUserById", id).then(function (e) {
+                  if (e.success) {
+                    location.reload();
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     },
     heddleOnClickSave: function heddleOnClickSave() {
@@ -496,6 +520,19 @@ var render = function () {
                                 },
                               },
                               [_vm._v("แก้ไข")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "error", dark: "" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.heddleOnClickDelete(item.id)
+                                  },
+                                },
+                              },
+                              [_vm._v("ลบ")]
                             ),
                           ]
                         },

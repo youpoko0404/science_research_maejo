@@ -31,6 +31,7 @@
             </template>
             <template v-slot:[`item.edit`]="{ item }">
               <v-btn color="warning" dark @click="heddleOnClickButton(item.id)">แก้ไข</v-btn>
+              <v-btn color="error" dark @click="heddleOnClickDelete(item.id)">ลบ</v-btn>
             </template>
             <template v-slot:no-data> ไม่พบผลการค้นหา </template>
           </v-data-table>
@@ -198,6 +199,14 @@ export default {
             this.request.email = e.payload?.email.replace("@gmail.com", '') ?? ""
             this.request.username = e.payload?.username ?? ""
             this.dialog = true
+          }
+        });
+    },
+    async heddleOnClickDelete(id) {
+      await this.$store.dispatch("user/deleteUserById", id)
+        .then((e) => {
+          if (e.success) {
+            location.reload();
           }
         });
     },
