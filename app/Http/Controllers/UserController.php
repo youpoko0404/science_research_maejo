@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::find($request->id);
         $userWhere = [
-            'id' => $request->id
+            'id' => $request->id,
         ];
         $userData = [
             "email" => $request->email,
@@ -85,7 +85,7 @@ class UserController extends Controller
     }
     public function fetchUser()
     {
-        $users = User::where('role', '!=', "admin")
+        $users = User::where('role', '!=', "admin")->where('is_deleted', '==', 0)
             ->orderBy('created_at')
             ->get();
 

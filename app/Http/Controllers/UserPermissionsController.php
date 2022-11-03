@@ -36,6 +36,7 @@ class UserPermissionsController extends Controller
         )
             ->leftJoin("user_permissions", "user_permissions.user_id", "=", "users.id")
             ->where('users.role', '!=', "admin")
+            ->where('users.is_deleted', '==', 0)
             ->get();
 
         foreach ($cards as $card) {
