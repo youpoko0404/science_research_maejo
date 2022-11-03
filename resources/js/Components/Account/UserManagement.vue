@@ -87,7 +87,7 @@
                       required
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       v-model="request.username"
                       label="ชื่อผู้ใช้"
@@ -98,17 +98,11 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
+                      color="green darken-3"
                       v-model="request.email"
+                      :rules="rules.emailRules"
                       label="อีเมล"
-                      color="green darken-3"
-                      :rules="rules.required"
                       required
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      color="green darken-3"
-                      v-model="request.email_type"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
@@ -157,6 +151,24 @@
         </v-card>
       </v-dialog>
     </v-row>
+
+    <div class="text-center">
+      <v-dialog v-model="dialogDelete" max-width="500px">
+        <v-card>
+          <v-card-title>คุณยืนยันที่จะลบผู้ใช้นี้</v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="dialogDelete = false"
+              >ยกเลิก</v-btn
+            >
+            <v-btn color="blue darken-1" text @click="deleteItemConfirm()"
+              >ตกลง</v-btn
+            >
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
   </div>
 </template>
 
@@ -170,8 +182,11 @@ export default {
   data: () => ({
     rules: {
       required: [(val) => !!val || "โปรดกรอกข้อมูลให้ครบถ้วน"],
+      emailRules: [(v) => /.+@.+/.test(v) || "รูปแบบอีเมลไม่ถูกต้อง"],
     },
+    user_id: 0,
     search: "",
+    dialogDelete: false,
     dialog: false,
     page: 1,
     pageCount: 0,
@@ -181,7 +196,6 @@ export default {
       first_name: "",
       last_name: "",
       email: "",
-      email_type: "@mju.ac.th",
       username: "",
       password: "",
       confirm_password: "",
@@ -248,19 +262,29 @@ export default {
           this.request.id = e.payload?.id ?? 0;
           this.request.first_name = e.payload?.first_name ?? "";
           this.request.last_name = e.payload?.last_name ?? "";
-          this.request.email = e.payload?.email.replace("@gmail.com", "") ?? "";
+          this.request.email = e.payload?.email ?? "";
           this.request.username = e.payload?.username ?? "";
           this.dialog = true;
         }
       });
     },
     async heddleOnClickDelete(id) {
-      await this.$store.dispatch("user/deleteUserById", id).then((e) => {
-        if (e.success) {
-          location.reload();
-        }
-      });
+      this.dialogDelete = true;
+      this.user_id = id;
     },
+
+    async deleteItemConfirm() {
+      if (this.user_id) {
+        await this.$store
+          .dispatch("user/deleteUserById", this.user_id)
+          .then((e) => {
+            if (e.success) {
+              location.reload();
+            }
+          });
+      }
+    },
+
     heddleOnClickSave() {
       if (
         this.request.id < 1 &&
@@ -274,7 +298,7 @@ export default {
           id: this.request.id,
           first_name: this.request.first_name,
           last_name: this.request.last_name,
-          email: this.request.email + this.request.email_type,
+          email: this.request.email,
           username: this.request.username,
           password: this.request.password,
         };

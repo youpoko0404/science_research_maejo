@@ -189,6 +189,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -200,9 +212,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       rules: {
         required: [function (val) {
           return !!val || "โปรดกรอกข้อมูลให้ครบถ้วน";
+        }],
+        emailRules: [function (v) {
+          return /.+@.+/.test(v) || "รูปแบบอีเมลไม่ถูกต้อง";
         }]
       },
+      user_id: 0,
       search: "",
+      dialogDelete: false,
       dialog: false,
       page: 1,
       pageCount: 0,
@@ -212,7 +229,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         first_name: "",
         last_name: "",
         email: "",
-        email_type: "@mju.ac.th",
         username: "",
         password: "",
         confirm_password: ""
@@ -285,12 +301,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 2;
                 return _this.$store.dispatch("user/fetchUserById", id).then(function (e) {
                   if (e.success) {
-                    var _e$payload$id, _e$payload, _e$payload$first_name, _e$payload2, _e$payload$last_name, _e$payload3, _e$payload$email$repl, _e$payload4, _e$payload$username, _e$payload5;
+                    var _e$payload$id, _e$payload, _e$payload$first_name, _e$payload2, _e$payload$last_name, _e$payload3, _e$payload$email, _e$payload4, _e$payload$username, _e$payload5;
 
                     _this.request.id = (_e$payload$id = (_e$payload = e.payload) === null || _e$payload === void 0 ? void 0 : _e$payload.id) !== null && _e$payload$id !== void 0 ? _e$payload$id : 0;
                     _this.request.first_name = (_e$payload$first_name = (_e$payload2 = e.payload) === null || _e$payload2 === void 0 ? void 0 : _e$payload2.first_name) !== null && _e$payload$first_name !== void 0 ? _e$payload$first_name : "";
                     _this.request.last_name = (_e$payload$last_name = (_e$payload3 = e.payload) === null || _e$payload3 === void 0 ? void 0 : _e$payload3.last_name) !== null && _e$payload$last_name !== void 0 ? _e$payload$last_name : "";
-                    _this.request.email = (_e$payload$email$repl = (_e$payload4 = e.payload) === null || _e$payload4 === void 0 ? void 0 : _e$payload4.email.replace("@gmail.com", "")) !== null && _e$payload$email$repl !== void 0 ? _e$payload$email$repl : "";
+                    _this.request.email = (_e$payload$email = (_e$payload4 = e.payload) === null || _e$payload4 === void 0 ? void 0 : _e$payload4.email) !== null && _e$payload$email !== void 0 ? _e$payload$email : "";
                     _this.request.username = (_e$payload$username = (_e$payload5 = e.payload) === null || _e$payload5 === void 0 ? void 0 : _e$payload5.username) !== null && _e$payload$username !== void 0 ? _e$payload$username : "";
                     _this.dialog = true;
                   }
@@ -312,12 +328,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _this2.$store.dispatch("user/deleteUserById", id).then(function (e) {
-                  if (e.success) {
-                    location.reload();
-                  }
-                });
+                _this2.dialogDelete = true;
+                _this2.user_id = id;
 
               case 2:
               case "end":
@@ -325,6 +337,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         }, _callee2);
+      }))();
+    },
+    deleteItemConfirm: function deleteItemConfirm() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!_this3.user_id) {
+                  _context3.next = 3;
+                  break;
+                }
+
+                _context3.next = 3;
+                return _this3.$store.dispatch("user/deleteUserById", _this3.user_id).then(function (e) {
+                  if (e.success) {
+                    location.reload();
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     },
     heddleOnClickSave: function heddleOnClickSave() {
@@ -337,7 +377,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           id: this.request.id,
           first_name: this.request.first_name,
           last_name: this.request.last_name,
-          email: this.request.email + this.request.email_type,
+          email: this.request.email,
           username: this.request.username,
           password: this.request.password
         };
@@ -723,7 +763,7 @@ var render = function () {
                                   _vm._v(" "),
                                   _c(
                                     "v-col",
-                                    { attrs: { cols: "12" } },
+                                    { attrs: { cols: "12", sm: "6", md: "6" } },
                                     [
                                       _c("v-text-field", {
                                         attrs: {
@@ -754,9 +794,9 @@ var render = function () {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          label: "อีเมล",
                                           color: "green darken-3",
-                                          rules: _vm.rules.required,
+                                          rules: _vm.rules.emailRules,
+                                          label: "อีเมล",
                                           required: "",
                                         },
                                         model: {
@@ -765,28 +805,6 @@ var render = function () {
                                             _vm.$set(_vm.request, "email", $$v)
                                           },
                                           expression: "request.email",
-                                        },
-                                      }),
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", sm: "6", md: "6" } },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: { color: "green darken-3" },
-                                        model: {
-                                          value: _vm.request.email_type,
-                                          callback: function ($$v) {
-                                            _vm.$set(
-                                              _vm.request,
-                                              "email_type",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "request.email_type",
                                         },
                                       }),
                                     ],
@@ -893,6 +911,73 @@ var render = function () {
                         ],
                         1
                       ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "text-center" },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { "max-width": "500px" },
+              model: {
+                value: _vm.dialogDelete,
+                callback: function ($$v) {
+                  _vm.dialogDelete = $$v
+                },
+                expression: "dialogDelete",
+              },
+            },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", [_vm._v("คุณยืนยันที่จะลบผู้ใช้นี้")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", text: "" },
+                          on: {
+                            click: function ($event) {
+                              _vm.dialogDelete = false
+                            },
+                          },
+                        },
+                        [_vm._v("ยกเลิก")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", text: "" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteItemConfirm()
+                            },
+                          },
+                        },
+                        [_vm._v("ตกลง")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer"),
                     ],
                     1
                   ),
