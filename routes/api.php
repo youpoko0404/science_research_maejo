@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Models\StudyUser;
 use App\Models\UserExpertise;
 use App\Models\UserPermissions;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -35,6 +36,12 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('/user', function (Request $request) {
         $user = $request->user();
+        if ($user->is_deleted == 1) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect('/');
+        }
         $permission = UserPermissions::where('user_id', '=', $user->id)->first();
         $user["permission"] = $permission;
         return response()->json(['success' => true, 'user' => $user]);
