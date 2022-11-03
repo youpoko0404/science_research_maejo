@@ -136,6 +136,59 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -159,7 +212,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         first_name: "",
         last_name: "",
         email: "",
-        email_type: "@gmail.com",
+        email_type: "@mju.ac.th",
         username: "",
         password: "",
         confirm_password: ""
@@ -237,7 +290,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     _this.request.id = (_e$payload$id = (_e$payload = e.payload) === null || _e$payload === void 0 ? void 0 : _e$payload.id) !== null && _e$payload$id !== void 0 ? _e$payload$id : 0;
                     _this.request.first_name = (_e$payload$first_name = (_e$payload2 = e.payload) === null || _e$payload2 === void 0 ? void 0 : _e$payload2.first_name) !== null && _e$payload$first_name !== void 0 ? _e$payload$first_name : "";
                     _this.request.last_name = (_e$payload$last_name = (_e$payload3 = e.payload) === null || _e$payload3 === void 0 ? void 0 : _e$payload3.last_name) !== null && _e$payload$last_name !== void 0 ? _e$payload$last_name : "";
-                    _this.request.email = (_e$payload$email$repl = (_e$payload4 = e.payload) === null || _e$payload4 === void 0 ? void 0 : _e$payload4.email.replace("@gmail.com", '')) !== null && _e$payload$email$repl !== void 0 ? _e$payload$email$repl : "";
+                    _this.request.email = (_e$payload$email$repl = (_e$payload4 = e.payload) === null || _e$payload4 === void 0 ? void 0 : _e$payload4.email.replace("@gmail.com", "")) !== null && _e$payload$email$repl !== void 0 ? _e$payload$email$repl : "";
                     _this.request.username = (_e$payload$username = (_e$payload5 = e.payload) === null || _e$payload5 === void 0 ? void 0 : _e$payload5.username) !== null && _e$payload$username !== void 0 ? _e$payload$username : "";
                     _this.dialog = true;
                   }
@@ -398,7 +451,7 @@ var render = function () {
             { staticClass: "d-flex justify-space-between" },
             [
               _c("div", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v("\n          จัดการข้อมูลผู้ใช้\n        "),
+                _vm._v("จัดการข้อมูลผู้ใช้"),
               ]),
               _vm._v(" "),
               [
@@ -412,7 +465,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("\n            เพิ่มข้อมูล\n          ")]
+                  [_vm._v("\n          เพิ่มข้อมูล\n        ")]
                 ),
               ],
             ],
@@ -484,9 +537,9 @@ var render = function () {
                           var index = ref.index
                           return [
                             _vm._v(
-                              "\n              " +
+                              "\n            " +
                                 _vm._s(index + 1) +
-                                "\n            "
+                                "\n          "
                             ),
                           ]
                         },
@@ -497,9 +550,9 @@ var render = function () {
                           var item = ref.item
                           return [
                             _vm._v(
-                              "\n              " +
+                              "\n            " +
                                 _vm._s(item.first_name + " " + item.last_name) +
-                                "\n            "
+                                "\n          "
                             ),
                           ]
                         },
@@ -723,10 +776,7 @@ var render = function () {
                                     { attrs: { cols: "12", sm: "6", md: "6" } },
                                     [
                                       _c("v-text-field", {
-                                        attrs: {
-                                          color: "green darken-3",
-                                          disabled: "",
-                                        },
+                                        attrs: { color: "green darken-3" },
                                         model: {
                                           value: _vm.request.email_type,
                                           callback: function ($$v) {
@@ -822,7 +872,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("\n                ยกเลิก\n              ")]
+                            [_vm._v("\n              ยกเลิก\n            ")]
                           ),
                           _vm._v(" "),
                           _c(
@@ -838,7 +888,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("\n                ยืนยัน\n              ")]
+                            [_vm._v("\n              ยืนยัน\n            ")]
                           ),
                         ],
                         1

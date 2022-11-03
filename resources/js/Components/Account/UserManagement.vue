@@ -3,9 +3,7 @@
     <Loading :loading="loading" />
     <v-container>
       <div class="d-flex justify-space-between">
-        <div style="font-size: 30px">
-          จัดการข้อมูลผู้ใช้
-        </div>
+        <div style="font-size: 30px">จัดการข้อมูลผู้ใช้</div>
         <template>
           <v-btn color="primary" @click="heddleOnClickButton(0)">
             เพิ่มข้อมูล
@@ -13,16 +11,30 @@
         </template>
       </div>
       <v-divider></v-divider>
-      <div style="display: flex;justify-content: flex-end;">
-        <v-col cols="8" style="padding: 0px 0px 20px 0px;">
-          <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
+      <div style="display: flex; justify-content: flex-end">
+        <v-col cols="8" style="padding: 0px 0px 20px 0px">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          >
           </v-text-field>
         </v-col>
       </div>
       <v-row>
         <div>
-          <v-data-table :search="search" :headers="headers" :items="users" :page.sync="page"
-            :items-per-page="itemsPerPage" hide-default-footer class="elevation-1" @page-count="pageCount = $event">
+          <v-data-table
+            :search="search"
+            :headers="headers"
+            :items="users"
+            :page.sync="page"
+            :items-per-page="itemsPerPage"
+            hide-default-footer
+            class="elevation-1"
+            @page-count="pageCount = $event"
+          >
             <template v-slot:[`item.index`]="{ index }">
               {{ index + 1 }}
             </template>
@@ -30,8 +42,12 @@
               {{ `${item.first_name} ${item.last_name}` }}
             </template>
             <template v-slot:[`item.edit`]="{ item }">
-              <v-btn color="warning" dark @click="heddleOnClickButton(item.id)">แก้ไข</v-btn>
-              <v-btn color="error" dark @click="heddleOnClickDelete(item.id)">ลบ</v-btn>
+              <v-btn color="warning" dark @click="heddleOnClickButton(item.id)"
+                >แก้ไข</v-btn
+              >
+              <v-btn color="error" dark @click="heddleOnClickDelete(item.id)"
+                >ลบ</v-btn
+              >
             </template>
             <template v-slot:no-data> ไม่พบผลการค้นหา </template>
           </v-data-table>
@@ -49,37 +65,69 @@
             <span style="font-size: 20px">ข้อมูลผู้ใช้</span>
           </v-card-title>
           <v-form ref="required">
-
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="request.first_name" label="ชื่อ" color="green darken-3"
-                      :rules="rules.required" required>
+                    <v-text-field
+                      v-model="request.first_name"
+                      label="ชื่อ"
+                      color="green darken-3"
+                      :rules="rules.required"
+                      required
+                    >
                     </v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="request.last_name" label="นามสกุล" color="green darken-3"
-                      :rules="rules.required" required></v-text-field>
+                    <v-text-field
+                      v-model="request.last_name"
+                      label="นามสกุล"
+                      color="green darken-3"
+                      :rules="rules.required"
+                      required
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field v-model="request.username" label="ชื่อผู้ใช้" color="green darken-3"
-                      :rules="rules.required" required></v-text-field>
+                    <v-text-field
+                      v-model="request.username"
+                      label="ชื่อผู้ใช้"
+                      color="green darken-3"
+                      :rules="rules.required"
+                      required
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="request.email" label="อีเมล" color="green darken-3" :rules="rules.required"
-                      required></v-text-field>
+                    <v-text-field
+                      v-model="request.email"
+                      label="อีเมล"
+                      color="green darken-3"
+                      :rules="rules.required"
+                      required
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
-                    <v-text-field color="green darken-3" disabled v-model="request.email_type"></v-text-field>
+                    <v-text-field
+                      color="green darken-3"
+                      v-model="request.email_type"
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field color="green darken-3" v-model="request.password" label="รหัสผ่าน" type="password"
-                      required></v-text-field>
+                    <v-text-field
+                      color="green darken-3"
+                      v-model="request.password"
+                      label="รหัสผ่าน"
+                      type="password"
+                      required
+                    ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field color="green darken-3" v-model="request.confirm_password" label="ยืนยันรหัสผ่าน"
-                      type="password" required>
+                    <v-text-field
+                      color="green darken-3"
+                      v-model="request.confirm_password"
+                      label="ยืนยันรหัสผ่าน"
+                      type="password"
+                      required
+                    >
                     </v-text-field>
                   </v-col>
                 </v-row>
@@ -90,13 +138,18 @@
               <v-btn color="blue darken-1" text @click="dialog = false">
                 ยกเลิก
               </v-btn>
-              <v-btn color="blue darken-1" text @click="() => {
-  this.$refs.required.validate();
-  if (this.$refs.required.validate()) {
-    heddleOnClickSave();
-  }
-}
-              ">
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="
+                  () => {
+                    this.$refs.required.validate();
+                    if (this.$refs.required.validate()) {
+                      heddleOnClickSave();
+                    }
+                  }
+                "
+              >
                 ยืนยัน
               </v-btn>
             </v-card-actions>
@@ -128,7 +181,7 @@ export default {
       first_name: "",
       last_name: "",
       email: "",
-      email_type: "@gmail.com",
+      email_type: "@mju.ac.th",
       username: "",
       password: "",
       confirm_password: "",
@@ -190,28 +243,29 @@ export default {
       this.$store.dispatch("user/fetchUser");
     },
     async heddleOnClickButton(id) {
-      await this.$store.dispatch("user/fetchUserById", id)
-        .then((e) => {
-          if (e.success) {
-            this.request.id = e.payload?.id ?? 0
-            this.request.first_name = e.payload?.first_name ?? ""
-            this.request.last_name = e.payload?.last_name ?? ""
-            this.request.email = e.payload?.email.replace("@gmail.com", '') ?? ""
-            this.request.username = e.payload?.username ?? ""
-            this.dialog = true
-          }
-        });
+      await this.$store.dispatch("user/fetchUserById", id).then((e) => {
+        if (e.success) {
+          this.request.id = e.payload?.id ?? 0;
+          this.request.first_name = e.payload?.first_name ?? "";
+          this.request.last_name = e.payload?.last_name ?? "";
+          this.request.email = e.payload?.email.replace("@gmail.com", "") ?? "";
+          this.request.username = e.payload?.username ?? "";
+          this.dialog = true;
+        }
+      });
     },
     async heddleOnClickDelete(id) {
-      await this.$store.dispatch("user/deleteUserById", id)
-        .then((e) => {
-          if (e.success) {
-            location.reload();
-          }
-        });
+      await this.$store.dispatch("user/deleteUserById", id).then((e) => {
+        if (e.success) {
+          location.reload();
+        }
+      });
     },
     heddleOnClickSave() {
-      if (this.request.id < 1 && (this.request.password == "" || this.request.confirm_password == "")) {
+      if (
+        this.request.id < 1 &&
+        (this.request.password == "" || this.request.confirm_password == "")
+      ) {
         this.snackBar(3500, "โปรดกรอกข้อมูลให้ครบถ้วน", "warning");
       } else if (this.request.password != this.request.confirm_password) {
         this.snackBar(3500, "รหัสผ่านไม่ตรงกัน โปรดลองอีกครั้ง", "warning");
@@ -222,15 +276,15 @@ export default {
           last_name: this.request.last_name,
           email: this.request.email + this.request.email_type,
           username: this.request.username,
-          password: this.request.password
-        }
+          password: this.request.password,
+        };
         this.$store.dispatch("user/UpdateUserById", req).then((e) => {
           if (e.success) {
             location.reload();
           }
         });
       }
-    }
+    },
   },
 };
 </script>

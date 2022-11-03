@@ -6355,6 +6355,9 @@ var UserService = {
   },
   updateUserById: function updateUserById(item) {
     return httpRequest.post("".concat(API_PATH, "/update-user-management"), item);
+  },
+  deleteUserById: function deleteUserById(id) {
+    return httpRequest["delete"]("".concat(API_PATH, "/user-management/").concat(id));
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserService);
@@ -7517,6 +7520,40 @@ var actions = {
 
       return function (_x13, _x14) {
         return _ref14.apply(this, arguments);
+      };
+    }());
+  },
+  deleteUserById: function deleteUserById(_ref15, id) {
+    var commit = _ref15.commit;
+    return new Promise( /*#__PURE__*/function () {
+      var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(resolve, reject) {
+        return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                commit("LOADING_SET", true);
+                _context8.next = 3;
+                return _Service_User_service__WEBPACK_IMPORTED_MODULE_0__["default"].deleteUserById(id).then(function (response) {
+                  if (response.data.success) {
+                    resolve(response.data);
+                  }
+                })["catch"](function (error) {
+                  reject(error);
+                });
+
+              case 3:
+                commit("LOADING_SET", false);
+
+              case 4:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+
+      return function (_x15, _x16) {
+        return _ref16.apply(this, arguments);
       };
     }());
   }
